@@ -27,7 +27,6 @@ import java.awt.Font;
 public class MainMenuFrame extends JFrame {
 
 	private JPanel contentPane;
-
 	/**
 	 * Launch the application.
 	 */
@@ -75,16 +74,57 @@ public class MainMenuFrame extends JFrame {
 		JButton btnHostAGame = new JButton("Host a Game");
 		btnHostAGame.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnHostAGame.setBounds(0, 0, 200, 50);
-		btnHostAGame.setMaximumSize(new Dimension(150, 50));
-		btnHostAGame.setMinimumSize(new Dimension(150, 50));
+		
 		btnHostAGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							setEnabled(false);
+							HostGameFrame frame = new HostGameFrame();
+							frame.setVisible(true);
+							frame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+							frame.addWindowListener(new java.awt.event.WindowAdapter() {
+							    @Override
+							    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+							        setEnabled(true);
+							    }
+							});
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
 			}
 		});
 		
 		JButton btnJoinAGame = new JButton("Join a Game");
 		btnJoinAGame.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnJoinAGame.setBounds(0, 60, 200, 50);
+		
+		btnJoinAGame.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							setEnabled(false);
+							JoinGameFrame frame = new JoinGameFrame();
+							frame.setVisible(true);
+							frame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+							frame.addWindowListener(new java.awt.event.WindowAdapter() {
+							    @Override
+							    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+							        setEnabled(true);
+							    }
+							});
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+			}
+		});
+		
 		panel.setLayout(null);
 		panel.add(btnHostAGame);
 		panel.add(btnJoinAGame);
