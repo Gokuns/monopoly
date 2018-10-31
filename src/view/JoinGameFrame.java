@@ -28,22 +28,6 @@ public class JoinGameFrame extends JFrame {
 	private JPanel monopolyLogoPanel;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					JoinGameFrame frame = new JoinGameFrame();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
 	public JoinGameFrame() {
