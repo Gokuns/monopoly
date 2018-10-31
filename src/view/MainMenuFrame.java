@@ -10,6 +10,8 @@ import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+
 import java.awt.Dimension;
 import javax.swing.JLabel;
 import javax.swing.BoxLayout;
@@ -27,26 +29,14 @@ import java.awt.Font;
 public class MainMenuFrame extends JFrame {
 
 	private JPanel contentPane;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MainMenuFrame frame = new MainMenuFrame();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private JButton joinAGameButton;
+	private JButton hostAGameButton;
 
 	/**
 	 * Create the frame.
 	 */
 	public MainMenuFrame() {
+		setTitle("Monopoly");
 		setMinimumSize(new Dimension(800, 600));
 		setResizable(false);
 		setLocationRelativeTo(null);
@@ -71,62 +61,22 @@ public class MainMenuFrame extends JFrame {
 		panel.setBounds(300, 250, 200, 200);
 		contentPane.add(panel);
 		
-		JButton btnHostAGame = new JButton("Host a Game");
-		btnHostAGame.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnHostAGame.setBounds(0, 0, 200, 50);
+		hostAGameButton = new JButton("Host a Game");
+		hostAGameButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		hostAGameButton.setBounds(0, 0, 200, 50);
 		
-		btnHostAGame.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				EventQueue.invokeLater(new Runnable() {
-					public void run() {
-						try {
-							setEnabled(false);
-							HostGameFrame frame = new HostGameFrame();
-							frame.setVisible(true);
-							frame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-							frame.addWindowListener(new java.awt.event.WindowAdapter() {
-							    @Override
-							    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-							        setEnabled(true);
-							    }
-							});
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-					}
-				});
-			}
-		});
-		
-		JButton btnJoinAGame = new JButton("Join a Game");
-		btnJoinAGame.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnJoinAGame.setBounds(0, 60, 200, 50);
-		
-		btnJoinAGame.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				EventQueue.invokeLater(new Runnable() {
-					public void run() {
-						try {
-							setEnabled(false);
-							JoinGameFrame frame = new JoinGameFrame();
-							frame.setVisible(true);
-							frame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-							frame.addWindowListener(new java.awt.event.WindowAdapter() {
-							    @Override
-							    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-							        setEnabled(true);
-							    }
-							});
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-					}
-				});
-			}
-		});
+		joinAGameButton = new JButton("Join a Game");
+		joinAGameButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		joinAGameButton.setBounds(0, 60, 200, 50);
 		
 		panel.setLayout(null);
-		panel.add(btnHostAGame);
-		panel.add(btnJoinAGame);
+		panel.add(hostAGameButton);
+		panel.add(joinAGameButton);
+	}
+	public JButton getJoinAGameButton() {
+		return joinAGameButton;
+	}
+	public JButton getHostAGameButton() {
+		return hostAGameButton;
 	}
 }
