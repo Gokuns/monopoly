@@ -63,24 +63,23 @@ public class MainMenuFrame extends JFrame {
 			monopolyLogoPanel.setBounds(200, 80, 400, 79);
 			contentPane.add(monopolyLogoPanel);
 			
-			JPanel panel = new JPanel();
-			panel.setBounds(300, 250, 200, 200);
-			contentPane.add(panel);
-			
-			JButton btnHostAGame = new JButton("Host a Game");
-			btnHostAGame.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-				}
-			});
-			
-			JButton btnJoinAGame = new JButton("Join a Game");
-			panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-			panel.add(btnHostAGame);
-			panel.add(btnJoinAGame);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
-
+		JPanel panel = new JPanel();
+		panel.setBounds(300, 250, 200, 200);
+		contentPane.add(panel);
+		
+		JButton btnHostAGame = new JButton("Host a Game");
+		btnHostAGame.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		
+		JButton btnJoinAGame = new JButton("Join a Game");
+		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		panel.add(btnHostAGame);
+		panel.add(btnJoinAGame);
 	}
 }

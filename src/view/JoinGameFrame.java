@@ -10,16 +10,22 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import javax.swing.JTextField;
 import java.awt.Component;
+
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.Color;
 
 public class JoinGameFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
-	private JPanel panel;
+	private JPanel monopolyLogoPanel;
 
 	/**
 	 * Launch the application.
@@ -67,9 +73,17 @@ public class JoinGameFrame extends JFrame {
 		btnNewButton.setBounds(148, 160, 151, 44);
 		contentPane.add(btnNewButton);
 		
-		panel = new JPanel();
-		panel.setBounds(51, 13, 342, 68);
-		contentPane.add(panel);
+		try {
+			Image logoImage = ImageIO.read(new File("monopolyLogo.png"));
+			logoImage = logoImage.getScaledInstance(350, 70, Image.SCALE_SMOOTH);
+			monopolyLogoPanel = new BackgroundImagePanel(logoImage);
+			monopolyLogoPanel.setBounds(50, 15, 350, 70);
+			contentPane.add(monopolyLogoPanel);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 }
