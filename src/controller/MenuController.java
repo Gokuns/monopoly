@@ -13,11 +13,11 @@ import view.MainMenuFrame;
 
 public class MenuController implements ActionListener{
 
-	private static JButton hostGameButton;
-	private static JButton joinAGameButton;
-	private static MainMenuFrame menu;
+	private JButton hostGameButton;
+	private JButton joinAGameButton;
+	private MainMenuFrame menu;
 
-	public static void main(String[] args) {
+	public MenuController(){
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -25,12 +25,13 @@ public class MenuController implements ActionListener{
 					hostGameButton = menu.getHostAGameButton();
 					joinAGameButton = menu.getJoinAGameButton();
 					menu.setVisible(true);
-
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
+		hostGameButton.addActionListener(this);
+		joinAGameButton.addActionListener(this);
 	}
 
 	@Override
@@ -77,7 +78,6 @@ public class MenuController implements ActionListener{
 			});
 		}
 	}
-
 }
 
 
