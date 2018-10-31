@@ -1,4 +1,4 @@
-package Model;
+package Model.Dice;
 
 public class RegularDie {
 
