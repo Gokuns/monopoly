@@ -9,11 +9,11 @@ public class Player {
 	private Piece piece;
 	private ArrayList<Property> PrList;
 	private ArrayList<Card> Cards;
-	private boolean isTurn = false;
-	private boolean inJail =false;
-	private boolean doubleDice = false;
-	private boolean moved = false;
-	private boolean rolled = false;
+	private boolean isTurn;
+	private boolean inJail;
+	private boolean doubleDice;
+	private boolean moved;
+	private boolean rolled;
 
 	public Player (String name, String ID, Piece piece) {
 		this.name = name;
@@ -21,6 +21,10 @@ public class Player {
 		this.piece = new Piece();
 		this.PrList = new ArrayList<Property>();
 		this.Cards = new ArrayList<Card>();
+		this.isTurn = false;
+		this.inJail = false;
+		this.doubleDice = false;
+		this.rolled = false;
 		
 	}
 
