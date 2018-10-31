@@ -22,6 +22,7 @@ import javax.swing.SpringLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class MainMenuFrame extends JFrame {
 
@@ -58,9 +59,9 @@ public class MainMenuFrame extends JFrame {
 		
 		try {
 			Image logoImage = ImageIO.read(new File("monopolyLogo.png"));
-			logoImage = logoImage.getScaledInstance(400, 79, Image.SCALE_SMOOTH);
+			logoImage = logoImage.getScaledInstance(600, 120, Image.SCALE_SMOOTH);
 			JPanel monopolyLogoPanel = new BackgroundImagePanel(logoImage);
-			monopolyLogoPanel.setBounds(200, 80, 400, 79);
+			monopolyLogoPanel.setBounds(100, 60, 600, 120);
 			contentPane.add(monopolyLogoPanel);
 			
 		} catch (IOException e) {
@@ -72,13 +73,19 @@ public class MainMenuFrame extends JFrame {
 		contentPane.add(panel);
 		
 		JButton btnHostAGame = new JButton("Host a Game");
+		btnHostAGame.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnHostAGame.setBounds(0, 0, 200, 50);
+		btnHostAGame.setMaximumSize(new Dimension(150, 50));
+		btnHostAGame.setMinimumSize(new Dimension(150, 50));
 		btnHostAGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
 		
 		JButton btnJoinAGame = new JButton("Join a Game");
-		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		btnJoinAGame.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnJoinAGame.setBounds(0, 60, 200, 50);
+		panel.setLayout(null);
 		panel.add(btnHostAGame);
 		panel.add(btnJoinAGame);
 	}
