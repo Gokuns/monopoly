@@ -15,23 +15,16 @@ public class MenuController implements ActionListener{
 
 	private JButton hostGameButton;
 	private JButton joinAGameButton;
+	private JButton joinWithIPButton;
 	private MainMenuFrame menu;
 
-	public MenuController(){
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					menu = new MainMenuFrame();
-					hostGameButton = menu.getHostAGameButton();
-					joinAGameButton = menu.getJoinAGameButton();
-					hostGameButton.addActionListener(MenuController.this);
-					joinAGameButton.addActionListener(MenuController.this);
-					menu.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	public MenuController(MainMenuFrame menu){
+		this.menu = menu;
+		hostGameButton = menu.getHostAGameButton();
+		joinAGameButton = menu.getJoinAGameButton();
+		hostGameButton.addActionListener(MenuController.this);
+		joinAGameButton.addActionListener(MenuController.this);
+		menu.setVisible(true);
 	}
 
 	@Override

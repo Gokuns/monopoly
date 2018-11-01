@@ -47,10 +47,6 @@ public class HostGameFrame extends JFrame {
 		JButton btnNewButton = new JButton("Start game");
 		btnNewButton.setEnabled(false);
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		btnNewButton.setBounds(148, 160, 151, 44);
 		contentPane.add(btnNewButton);
 		
