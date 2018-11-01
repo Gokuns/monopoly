@@ -17,8 +17,8 @@ public class MenuController implements ActionListener{
 		this.menu = menu;
 		hostGameButton = menu.getHostAGameButton();
 		joinAGameButton = menu.getJoinAGameButton();
-		hostGameButton.addActionListener(MenuController.this);
-		joinAGameButton.addActionListener(MenuController.this);
+		hostGameButton.addActionListener(this);
+		joinAGameButton.addActionListener(this);
 		menu.setVisible(true);
 	}
 
