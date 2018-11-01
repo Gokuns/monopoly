@@ -2,8 +2,6 @@ package controller;
 
 import java.io.IOException;
 import java.net.ServerSocket;
-import java.net.Socket;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 
 public class HostNetwork{
@@ -24,11 +22,7 @@ public class HostNetwork{
 	}
 	
 	private void acceptConnections() throws IOException {
-		while(true) {
-			serverSockets.get(connections - 1).accept();
-			connections++;
-			System.out.println("connection established");
-		}
+		serverSockets.get(connections - 1).accept();
 	}
 	
 }

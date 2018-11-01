@@ -1,27 +1,17 @@
 package view;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import javax.swing.JTextField;
-import java.awt.Component;
+import java.awt.Font;
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.IOException;
-import java.awt.event.ActionEvent;
-import java.awt.Font;
-import java.awt.Image;
-import java.awt.Color;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 
 public class HostGameFrame extends JFrame {
 
@@ -34,10 +24,8 @@ public class HostGameFrame extends JFrame {
 	 */
 	public HostGameFrame() {
 		setTitle("Host Game");
-		setMaximumSize(new Dimension(400, 200));
-		setMinimumSize(new Dimension(400, 200));
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -47,14 +35,14 @@ public class HostGameFrame extends JFrame {
 		JButton btnNewButton = new JButton("Start game");
 		btnNewButton.setEnabled(false);
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnNewButton.setBounds(148, 160, 151, 44);
+		btnNewButton.setBounds(145, 160, 150, 45);
 		contentPane.add(btnNewButton);
 		
 		try {
 			Image logoImage = ImageIO.read(new File("monopolyLogo.png"));
 			logoImage = logoImage.getScaledInstance(350, 70, Image.SCALE_SMOOTH);
 			monopolyLogoPanel = new BackgroundImagePanel(logoImage);
-			monopolyLogoPanel.setBounds(50, 15, 350, 70);
+			monopolyLogoPanel.setBounds(45, 15, 350, 70);
 			contentPane.add(monopolyLogoPanel);
 			
 			lblNewLabel = new JLabel("Waiting for players...");
@@ -67,7 +55,8 @@ public class HostGameFrame extends JFrame {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
+		setVisible(true);
 	}
 
 }

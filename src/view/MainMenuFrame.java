@@ -1,32 +1,17 @@
 package view;
 
-import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-
-import java.awt.Dimension;
-import javax.swing.JLabel;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import java.awt.Component;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import net.miginfocom.swing.MigLayout;
-import javax.swing.SpringLayout;
-import javax.swing.WindowConstants;
-
-import java.awt.FlowLayout;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.Font;
 
 public class MainMenuFrame extends JFrame {
 
@@ -82,8 +67,6 @@ public class MainMenuFrame extends JFrame {
 				try {
 					setEnabled(false);
 					HostGameFrame frame = new HostGameFrame();
-					frame.setVisible(true);
-					frame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 					frame.addWindowListener(new java.awt.event.WindowAdapter() {
 					    @Override
 					    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
@@ -103,8 +86,6 @@ public class MainMenuFrame extends JFrame {
 				try {
 					setEnabled(false);
 					JoinGameFrame frame = new JoinGameFrame();
-					frame.setVisible(true);
-					frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 					frame.addWindowListener(new java.awt.event.WindowAdapter() {
 						@Override
 						public void windowClosing(java.awt.event.WindowEvent windowEvent) {
