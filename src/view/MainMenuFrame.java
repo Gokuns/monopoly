@@ -21,6 +21,8 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.SpringLayout;
+import javax.swing.WindowConstants;
+
 import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -73,9 +75,53 @@ public class MainMenuFrame extends JFrame {
 		panel.add(hostAGameButton);
 		panel.add(joinAGameButton);
 	}
+	
+	public void initHostAGameFrame() {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					setEnabled(false);
+					HostGameFrame frame = new HostGameFrame();
+					frame.setVisible(true);
+					frame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+					frame.addWindowListener(new java.awt.event.WindowAdapter() {
+					    @Override
+					    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+					    	setEnabled(true);
+					    }
+					});
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	
+	public void initJoinAGameFrame() {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					setEnabled(false);
+					JoinGameFrame frame = new JoinGameFrame();
+					frame.setVisible(true);
+					frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+					frame.addWindowListener(new java.awt.event.WindowAdapter() {
+						@Override
+						public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+							setEnabled(true);
+						}
+					});
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	
 	public JButton getJoinAGameButton() {
 		return joinAGameButton;
 	}
+	
 	public JButton getHostAGameButton() {
 		return hostAGameButton;
 	}

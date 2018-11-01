@@ -31,44 +31,10 @@ public class MenuController implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		JButton source = (JButton)e.getSource();
 		if(source.equals(hostGameButton)) {
-			EventQueue.invokeLater(new Runnable() {
-				public void run() {
-					try {
-						menu.setEnabled(false);
-						HostGameFrame frame = new HostGameFrame();
-						frame.setVisible(true);
-						frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-						frame.addWindowListener(new java.awt.event.WindowAdapter() {
-						    @Override
-						    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-						    	menu.setEnabled(true);
-						    }
-						});
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				}
-			});
+			menu.initHostAGameFrame();
 		}
 		else if(source.equals(joinAGameButton)) {
-			EventQueue.invokeLater(new Runnable() {
-				public void run() {
-					try {
-						menu.setEnabled(false);
-						JoinGameFrame frame = new JoinGameFrame();
-						frame.setVisible(true);
-						frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-						frame.addWindowListener(new java.awt.event.WindowAdapter() {
-							@Override
-							public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-								menu.setEnabled(true);
-							}
-						});
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				}
-			});
+			menu.initJoinAGameFrame();
 		}
 	}
 }
