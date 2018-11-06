@@ -11,15 +11,12 @@ public class ClientNetwork {
 	public ClientNetwork(String host) {
 		try {
 			socket = new Socket(host, port);
-			if(socket.isConnected()) {
-				System.out.println("Connected");
-			}
+			// TODO handle connections
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
 	
 }
