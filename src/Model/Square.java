@@ -1,13 +1,12 @@
 package Model;
 
-public class Square {
+public abstract class Square {
 	private String name;
 	private String desciption;
 	
 	public Square(String name, String description) {
 		this.name = name;
 		this.desciption = description;
-		
 	}
 
 	public String getName() {

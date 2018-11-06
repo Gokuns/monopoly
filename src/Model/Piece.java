@@ -5,7 +5,7 @@ import java.awt.*;
 
 public class Piece {
      private Color color;
-     private ImageIcon img;
-     private Point pos;
+     private ImageIcon imgge;
+     private Point position;
 
 }

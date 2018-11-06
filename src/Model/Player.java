@@ -7,25 +7,24 @@ public class Player {
 	private String ID;
 	private int balance=3200;
 	private Piece piece;
-	private ArrayList<Property> PrList;
-	private ArrayList<Card> Cards;
+	private ArrayList<Property> propList;
+	private ArrayList<Card> cards;
 	private boolean isTurn;
 	private boolean inJail;
-	private boolean doubleDice;
-	private boolean moved;
-	private boolean rolled;
+	private boolean throwsDoubleDice;
+	private boolean hasMoved;
+	private boolean hasRolled;
 
 	public Player (String name, String ID, Piece piece) {
 		this.name = name;
 		this.ID = ID;
 		this.piece = new Piece();
-		this.PrList = new ArrayList<Property>();
-		this.Cards = new ArrayList<Card>();
+		this.propList = new ArrayList<Property>();
+		this.cards = new ArrayList<Card>();
 		this.isTurn = false;
 		this.inJail = false;
-		this.doubleDice = false;
-		this.rolled = false;
-		
+		this.throwsDoubleDice = false;
+		this.hasRolled = false;
 	}
 
 	public String getName() {
@@ -61,19 +60,19 @@ public class Player {
 	}
 
 	public ArrayList<Property> getPrList() {
-		return PrList;
+		return propList;
 	}
 
 	public void setPrList(ArrayList<Property> prList) {
-		PrList = prList;
+		propList = prList;
 	}
 
 	public ArrayList<Card> getCards() {
-		return Cards;
+		return cards;
 	}
 
 	public void setCards(ArrayList<Card> cards) {
-		Cards = cards;
+		this.cards = cards;
 	}
 
 	public boolean isTurn() {
@@ -93,27 +92,27 @@ public class Player {
 	}
 
 	public boolean isDoubleDice() {
-		return doubleDice;
+		return throwsDoubleDice;
 	}
 
 	public void setDoubleDice(boolean doubleDice) {
-		this.doubleDice = doubleDice;
+		this.throwsDoubleDice = doubleDice;
 	}
 
 	public boolean isMoved() {
-		return moved;
+		return hasMoved;
 	}
 
 	public void setMoved(boolean moved) {
-		this.moved = moved;
+		this.hasMoved = moved;
 	}
 
 	public boolean isRolled() {
-		return rolled;
+		return hasRolled;
 	}
 
 	public void setRolled(boolean rolled) {
-		this.rolled = rolled;
+		this.hasRolled = rolled;
 	}
 	
 	

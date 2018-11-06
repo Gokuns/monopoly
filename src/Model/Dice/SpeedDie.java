@@ -6,18 +6,19 @@ import Model.Dice.Die.faceValue;
 
 public class SpeedDie extends Die {
 
-	faceValue fValues[] = {faceValue.ONE, faceValue.TWO, faceValue.THREE, faceValue.MRMONOPOLY, faceValue.MRMONOPOLY, faceValue.BUS};
+	faceValue fValues[];
 	
 	public SpeedDie() {
-		
+		this.fValues = new faceValue[]{faceValue.ONE, faceValue.TWO, faceValue.THREE, faceValue.MRMONOPOLY, faceValue.MRMONOPOLY, faceValue.BUS};
 	}
 
 	@Override
 	protected faceValue roll() {
 		// TODO Auto-generated method stub
 		Random rand = new Random();
-		int randVal = rand.nextInt(5);
-		return fValues[randVal];
+		int randIndex = rand.nextInt(6);
+		faceValue randVal = fValues[randIndex];
+		return randVal;
 	}
 	
 }

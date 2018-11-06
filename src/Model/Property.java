@@ -5,13 +5,14 @@ public abstract class Property extends Square{
 	private Player owner;
 	private int price;
 	private boolean isMortgaged;
-	
-	public Property(String name, int price, String description) {
+	private Deed deed;
+
+	public Property(String name, int price, String description, Deed deed) {
 		super(name,description);
-		this.name = name;
-		this.owner=null;
 		this.price = price;
+		this.owner=null;
 		this.isMortgaged = false;
+		this.deed = deed;
 	}
 
 	public String getName() {
@@ -44,6 +45,14 @@ public abstract class Property extends Square{
 
 	public void setMortgaged(boolean isMortgaged) {
 		this.isMortgaged = isMortgaged;
+	}
+	
+	public Deed getDeed() {
+		return deed;
+	}
+
+	public void setDeed(Deed deed) {
+		this.deed = deed;
 	}
 	
 }
