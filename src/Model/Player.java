@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Player {
 	private String name;
-	private String ID;
+	private int ID;
 	private int balance=3200;
 	private Piece piece;
 	private ArrayList<Property> propList;
@@ -14,8 +14,9 @@ public class Player {
 	private boolean throwsDoubleDice;
 	private boolean hasMoved;
 	private boolean hasRolled;
+	private boolean isBankrupt;
 
-	public Player (String name, String ID, Piece piece) {
+	public Player (String name, int ID, Piece piece) {
 		this.name = name;
 		this.ID = ID;
 		this.piece = new Piece();
@@ -25,6 +26,7 @@ public class Player {
 		this.inJail = false;
 		this.throwsDoubleDice = false;
 		this.hasRolled = false;
+		this.setBankrupt(false);
 	}
 
 	public String getName() {
@@ -35,11 +37,11 @@ public class Player {
 		this.name = name;
 	}
 
-	public String getID() {
+	public int getID() {
 		return ID;
 	}
 
-	public void setID(String iD) {
+	public void setID(int iD) {
 		ID = iD;
 	}
 
@@ -113,6 +115,14 @@ public class Player {
 
 	public void setRolled(boolean rolled) {
 		this.hasRolled = rolled;
+	}
+
+	public boolean isBankrupt() {
+		return isBankrupt;
+	}
+
+	public void setBankrupt(boolean isBankrupt) {
+		this.isBankrupt = isBankrupt;
 	}
 	
 	

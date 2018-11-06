@@ -5,7 +5,15 @@ import java.awt.*;
 
 public class Piece {
      private Color color;
-     private ImageIcon imgge;
-     private Point position;
-
+     private ImageIcon img;
+     private Point pos;
+     
+    /*
+     Oriental = {
+    		 "Price" : 120,
+    		 "Rent" : 6,
+    		 "1st house" : 12
+     }
+     */
+     
 }
