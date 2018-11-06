@@ -10,9 +10,12 @@ import network.HostNetwork;
 import view.MainMenuFrame;
 
 public class MenuController implements ActionListener{
-
+	
+	
+	
 	private JButton hostGameButton;
 	private JButton joinAGameButton;
+	private JButton joinWithIPButton;
 	private MainMenuFrame menu;
 
 	public MenuController(MainMenuFrame menu){
@@ -29,12 +32,14 @@ public class MenuController implements ActionListener{
 		JButton source = (JButton)e.getSource();
 		if(source.equals(hostGameButton)) {
 			menu.initHostAGameFrame();
-			HostNetwork hn = new HostNetwork();
-			hn.start();
 		}
 		else if(source.equals(joinAGameButton)) {
 			menu.initJoinAGameFrame();
-			ClientNetwork cn = new ClientNetwork("localhost");
+			joinWithIPButton = menu.getJoinWithIPButton();
+			joinWithIPButton.addActionListener(this);
+		}
+		else if(source.equals(joinWithIPButton)) {
+			
 		}
 	}
 }

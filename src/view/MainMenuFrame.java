@@ -18,6 +18,8 @@ public class MainMenuFrame extends JFrame {
 	private JPanel contentPane;
 	private JButton joinAGameButton;
 	private JButton hostAGameButton;
+	private JoinGameFrame joinGameFrame;
+	private HostGameFrame hostGameFrame;
 
 	/**
 	 * Create the frame.
@@ -66,10 +68,11 @@ public class MainMenuFrame extends JFrame {
 			public void run() {
 				try {
 					setEnabled(false);
-					HostGameFrame frame = new HostGameFrame();
-					frame.addWindowListener(new java.awt.event.WindowAdapter() {
+					hostGameFrame = new HostGameFrame();
+					hostGameFrame.addWindowListener(new java.awt.event.WindowAdapter() {
 					    @Override
 					    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+					    	hostGameFrame = null;
 					    	setEnabled(true);
 					    }
 					});
@@ -85,10 +88,11 @@ public class MainMenuFrame extends JFrame {
 			public void run() {
 				try {
 					setEnabled(false);
-					JoinGameFrame frame = new JoinGameFrame();
-					frame.addWindowListener(new java.awt.event.WindowAdapter() {
+					joinGameFrame = new JoinGameFrame();
+					joinGameFrame.addWindowListener(new java.awt.event.WindowAdapter() {
 						@Override
 						public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+							joinGameFrame = null;
 							setEnabled(true);
 						}
 					});
@@ -106,4 +110,9 @@ public class MainMenuFrame extends JFrame {
 	public JButton getHostAGameButton() {
 		return hostAGameButton;
 	}
+	
+	public JButton getJoinWithIPButton() {
+		return joinGameFrame.getJoinWithIPButton();
+	}
+	
 }

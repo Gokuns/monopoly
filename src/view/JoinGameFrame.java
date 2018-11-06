@@ -17,6 +17,7 @@ public class JoinGameFrame extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 	private JPanel monopolyLogoPanel;
+	private JButton joinWithIPButton;
 
 	/**
 	 * Create the frame.
@@ -36,10 +37,10 @@ public class JoinGameFrame extends JFrame {
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
-		JButton btnNewButton = new JButton("Join with IP");
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnNewButton.setBounds(145, 160, 150, 45);
-		contentPane.add(btnNewButton);
+		joinWithIPButton = new JButton("Join with IP");
+		joinWithIPButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		joinWithIPButton.setBounds(145, 160, 150, 45);
+		contentPane.add(joinWithIPButton);
 		
 		try {
 			Image logoImage = ImageIO.read(new File("monopolyLogo.png"));
@@ -55,4 +56,10 @@ public class JoinGameFrame extends JFrame {
 		setVisible(true);
 	}
 
+	public String getTextFieldText() {
+		return textField.getText();
+	}
+	public JButton getJoinWithIPButton() {
+		return joinWithIPButton;
+	}
 }
