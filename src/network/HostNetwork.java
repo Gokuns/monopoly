@@ -1,17 +1,19 @@
 package network;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.ServerSocket;
-import java.util.ArrayList;
+import java.net.Socket;
 
 public class HostNetwork extends Thread{
 	ServerSocket serverSocket;
+	
 	protected final int port = 9999;
 	
 	public HostNetwork() {
 		try {
 			serverSocket = new ServerSocket(port);
-			run();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -20,7 +22,8 @@ public class HostNetwork extends Thread{
 	public void run() {
 		while(true) {
 			try {
-				serverSocket.accept();
+				Socket connection = serverSocket.accept();
+				System.out.println("new connection established");
 				// TODO handle connections
 			} catch (IOException e) {
 				e.printStackTrace();

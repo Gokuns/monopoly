@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+import network.ClientNetwork;
+import network.HostNetwork;
 import view.MainMenuFrame;
 
 public class MenuController implements ActionListener{
@@ -27,9 +29,12 @@ public class MenuController implements ActionListener{
 		JButton source = (JButton)e.getSource();
 		if(source.equals(hostGameButton)) {
 			menu.initHostAGameFrame();
+			HostNetwork hn = new HostNetwork();
+			hn.start();
 		}
 		else if(source.equals(joinAGameButton)) {
 			menu.initJoinAGameFrame();
+			ClientNetwork cn = new ClientNetwork("localhost");
 		}
 	}
 }

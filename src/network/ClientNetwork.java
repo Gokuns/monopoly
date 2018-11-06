@@ -11,7 +11,7 @@ public class ClientNetwork {
 	public ClientNetwork(String host) {
 		try {
 			socket = new Socket(host, port);
-			// TODO handle connections
+			System.out.println("connected to host");
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
