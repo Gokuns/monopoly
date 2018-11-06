@@ -1,8 +1,4 @@
-package Model;
-
-import Model.Dice.Die;
-import Model.Dice.RegularDie;
-import Model.Dice.SpeedDie;
+package Model.Dice;
 
 public class Cup {
 	Die regularDie1 = new RegularDie();
