@@ -7,6 +7,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Model.Dice.Cup;
+import controller.GameController;
+
 public class GameFrame extends JFrame {
 
 	private JPanel contentPane;
@@ -25,6 +28,12 @@ public class GameFrame extends JFrame {
 				}
 			}
 		});
+		GameController controller = GameController.getInstance();
+		controller.roll();
+		Cup cup = Cup.getInstance();
+		int a = 1;
+		//asd
+		a=1;
 	}
 
 	/**

@@ -11,10 +11,14 @@ public class Player {
 	private ArrayList<Card> cards;
 	private boolean isTurn;
 	private boolean inJail;
-	private boolean throwsDoubleDice;
+	private boolean rolledDouble;
 	private boolean hasMoved;
 	private boolean hasRolled;
 	private boolean isBankrupt;
+	private int doubleRollCounter;
+	private boolean rolledTriple;
+	private boolean rolledMrMonopoly;
+	private boolean rolledBus;
 
 	public Player (String name, int ID, Piece piece) {
 		this.name = name;
@@ -24,9 +28,13 @@ public class Player {
 		this.cards = new ArrayList<Card>();
 		this.isTurn = false;
 		this.inJail = false;
-		this.throwsDoubleDice = false;
+		this.rolledDouble = false;
 		this.hasRolled = false;
 		this.setBankrupt(false);
+		this.doubleRollCounter = 0;
+		this.rolledTriple = false;
+		this.rolledMrMonopoly = false;
+		this.rolledBus = false;
 	}
 
 	public String getName() {
@@ -94,11 +102,11 @@ public class Player {
 	}
 
 	public boolean isDoubleDice() {
-		return throwsDoubleDice;
+		return rolledDouble;
 	}
 
 	public void setDoubleDice(boolean doubleDice) {
-		this.throwsDoubleDice = doubleDice;
+		this.rolledDouble = doubleDice;
 	}
 
 	public boolean isMoved() {
@@ -123,6 +131,50 @@ public class Player {
 
 	public void setBankrupt(boolean isBankrupt) {
 		this.isBankrupt = isBankrupt;
+	}
+
+	public int getDoubleRollCounter() {
+		return doubleRollCounter;
+	}
+
+	public void setDoubleRollCounter(int doubleRollCounter) {
+		this.doubleRollCounter = doubleRollCounter;
+	}
+
+	public boolean isRolledTriple() {
+		return rolledTriple;
+	}
+
+	public void setRolledTriple(boolean rolledTriple) {
+		this.rolledTriple = rolledTriple;
+	}
+
+	/**
+	 * @return the rolledMrMonopoly
+	 */
+	public boolean isRolledMrMonopoly() {
+		return rolledMrMonopoly;
+	}
+
+	/**
+	 * @param rolledMrMonopoly the rolledMrMonopoly to set
+	 */
+	public void setRolledMrMonopoly(boolean rolledMrMonopoly) {
+		this.rolledMrMonopoly = rolledMrMonopoly;
+	}
+
+	/**
+	 * @return the rolledBus
+	 */
+	public boolean isRolledBus() {
+		return rolledBus;
+	}
+
+	/**
+	 * @param rolledBus the rolledBus to set
+	 */
+	public void setRolledBus(boolean rolledBus) {
+		this.rolledBus = rolledBus;
 	}
 	
 	

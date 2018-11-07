@@ -2,11 +2,10 @@ package Model.Dice;
 
 import java.util.Random;
 
-import Model.Dice.Die.faceValue;
-
 public class SpeedDie extends Die {
 
-	faceValue fValues[];
+	private faceValue fValues[];
+	private faceValue currentFaceValue;
 	
 	public SpeedDie() {
 		this.fValues = new faceValue[]{faceValue.ONE, faceValue.TWO, faceValue.THREE, faceValue.MRMONOPOLY, faceValue.MRMONOPOLY, faceValue.BUS};
@@ -18,7 +17,12 @@ public class SpeedDie extends Die {
 		Random rand = new Random();
 		int randIndex = rand.nextInt(6);
 		faceValue randVal = fValues[randIndex];
+		this.currentFaceValue = randVal;
 		return randVal;
+	}
+	
+	public faceValue getCurrentFaceValue() {
+		return currentFaceValue;
 	}
 	
 }

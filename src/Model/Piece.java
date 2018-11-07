@@ -8,6 +8,10 @@ public class Piece {
      private ImageIcon img;
      private Point pos;
      
+     public Piece() {
+    	 
+     }
+     
     /*
      Oriental = {
     		 "Price" : 120,
