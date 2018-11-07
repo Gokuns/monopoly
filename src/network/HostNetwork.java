@@ -15,7 +15,6 @@ public class HostNetwork extends Observable implements Runnable{
 			serverSocket = new ServerSocket(port);
 		} catch (IOException e) {
 			e.printStackTrace();
-			
 		}
 	}
 	
@@ -25,6 +24,7 @@ public class HostNetwork extends Observable implements Runnable{
 				Socket connection = serverSocket.accept();
 				setChanged();
 				notifyObservers(connection);
+				
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
