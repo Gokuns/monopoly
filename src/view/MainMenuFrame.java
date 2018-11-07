@@ -74,6 +74,10 @@ public class MainMenuFrame extends JFrame {
 			}
 		});
 	}
+	
+	public void clientConnectedToHost() {
+		hostGameFrame.clientConnected();
+	}
 
 	public void initJoinAGameFrame() {
 		setEnabled(false);
@@ -85,14 +89,6 @@ public class MainMenuFrame extends JFrame {
 				setEnabled(true);
 			}
 		});
-	}
-
-	public JButton getJoinAGameButton() {
-		return joinAGameButton;
-	}
-
-	public JButton getHostAGameButton() {
-		return hostAGameButton;
 	}
 
 	public JButton getJoinWithIPButton() {
@@ -109,4 +105,11 @@ public class MainMenuFrame extends JFrame {
 		joinGameFrame.getTextField().setEditable(false);
 	}
 
+	public JButton getJoinAGameButton() {
+		return joinAGameButton;
+	}
+
+	public JButton getHostAGameButton() {
+		return hostAGameButton;
+	}
 }

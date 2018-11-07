@@ -5,8 +5,10 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Observer;
+import java.util.Observable;
 
-public class HostNetwork extends Thread{
+public class HostNetwork extends Observable implements Runnable{
 	ServerSocket serverSocket;
 	
 	protected final int port = 9999;

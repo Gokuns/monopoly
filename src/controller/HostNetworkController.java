@@ -3,12 +3,14 @@ package controller;
 import network.HostNetwork;
 
 public class HostNetworkController {
-	HostNetwork network;
+	private HostNetwork network;
+	private MenuController menuController;
 
-	public HostNetworkController() {
+	public HostNetworkController(MenuController menuController) {
 		super();
+		this.menuController = menuController;
 		network = new HostNetwork();
-		network.start();
+		new Thread(network).start();
 	}
 	
 }

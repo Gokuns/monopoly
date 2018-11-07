@@ -17,7 +17,10 @@ public class HostGameFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JPanel monopolyLogoPanel;
-	private JLabel lblNewLabel;
+	private JLabel textLabel;
+	
+	private int connectedPlayers;
+	private JButton startGameButton;
 
 	/**
 	 * Create the frame.
@@ -32,11 +35,11 @@ public class HostGameFrame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnNewButton = new JButton("Start game");
-		btnNewButton.setEnabled(false);
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnNewButton.setBounds(145, 160, 150, 45);
-		contentPane.add(btnNewButton);
+		startGameButton = new JButton("Start game");
+		startGameButton.setEnabled(false);
+		startGameButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		startGameButton.setBounds(145, 160, 150, 45);
+		contentPane.add(startGameButton);
 		
 		try {
 			Image logoImage = ImageIO.read(new File("monopolyLogo.png"));
@@ -45,18 +48,37 @@ public class HostGameFrame extends JFrame {
 			monopolyLogoPanel.setBounds(45, 15, 350, 70);
 			contentPane.add(monopolyLogoPanel);
 			
-			lblNewLabel = new JLabel("Waiting for players...");
-			lblNewLabel.setHorizontalTextPosition(SwingConstants.CENTER);
-			lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-			lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
-			lblNewLabel.setBounds(12, 100, 420, 30);
-			contentPane.add(lblNewLabel);
+			textLabel = new JLabel("Waiting for players...");
+			textLabel.setHorizontalTextPosition(SwingConstants.CENTER);
+			textLabel.setHorizontalAlignment(SwingConstants.CENTER);
+			textLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
+			textLabel.setBounds(12, 100, 420, 30);
+			contentPane.add(textLabel);
 			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
+		
+		connectedPlayers = 0;
+		
 		setVisible(true);
 	}
 
+	public void clientConnected() {
+		connectedPlayers++;
+		setLabelText(connectedPlayers + " players connected.");
+		if(connectedPlayers>0) {
+			getStartGameButton().setEnabled(true);
+		}
+	}
+
+	public String getLabelText() {
+		return textLabel.getText();
+	}
+	public void setLabelText(String text) {
+		textLabel.setText(text);
+	}
+	public JButton getStartGameButton() {
+		return startGameButton;
+	}
 }

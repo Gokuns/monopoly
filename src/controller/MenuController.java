@@ -33,7 +33,7 @@ public class MenuController implements ActionListener{
 		JButton source = (JButton)e.getSource();
 		if(source.equals(hostGameButton)) {
 			menu.initHostAGameFrame();
-			hostNetworkController = new HostNetworkController();
+			hostNetworkController = new HostNetworkController(this);
 		}
 		else if(source.equals(joinAGameButton)) {
 			menu.initJoinAGameFrame();
@@ -42,7 +42,8 @@ public class MenuController implements ActionListener{
 		}
 		else if(source.equals(joinWithIPButton)) {
 			String IP = menu.getIP();
-			clientNetworkController = new ClientNetworkController(IP);
+			clientNetworkController = new ClientNetworkController(this);
+			clientNetworkController.initializeClientNetwork(IP);
 			menu.joinedWithIP();
 		}
 	}
