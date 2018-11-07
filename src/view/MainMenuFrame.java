@@ -75,8 +75,8 @@ public class MainMenuFrame extends JFrame {
 		});
 	}
 	
-	public void clientConnectedToHost() {
-		hostGameFrame.clientConnected();
+	public void clientConnectedToHost(int connectionCount) {
+		hostGameFrame.clientConnected(connectionCount);
 	}
 
 	public void initJoinAGameFrame() {

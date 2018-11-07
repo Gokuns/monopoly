@@ -26,7 +26,8 @@ public class HostNetwork extends Observable implements Runnable{
 		while(true) {
 			try {
 				Socket connection = serverSocket.accept();
-				System.out.println("new connection established");
+				setChanged();
+				notifyObservers(connection);
 				// TODO handle connections
 			} catch (IOException e) {
 				e.printStackTrace();

@@ -47,4 +47,12 @@ public class MenuController implements ActionListener{
 			menu.joinedWithIP();
 		}
 	}
+	
+	public void joinedWithIP() {
+		menu.joinedWithIP();
+	}
+	
+	public void clientJoinedToHost(int connectionCount) {
+		menu.clientConnectedToHost(connectionCount);
+	}
 }

@@ -19,7 +19,6 @@ public class HostGameFrame extends JFrame {
 	private JPanel monopolyLogoPanel;
 	private JLabel textLabel;
 	
-	private int connectedPlayers;
 	private JButton startGameButton;
 
 	/**
@@ -59,15 +58,12 @@ public class HostGameFrame extends JFrame {
 			e.printStackTrace();
 		}
 		
-		connectedPlayers = 0;
-		
 		setVisible(true);
 	}
 
-	public void clientConnected() {
-		connectedPlayers++;
-		setLabelText(connectedPlayers + " players connected.");
-		if(connectedPlayers>0) {
+	public void clientConnected(int connectionCount) {
+		setLabelText(connectionCount + " players connected.");
+		if(connectionCount>0) {
 			getStartGameButton().setEnabled(true);
 		}
 	}
