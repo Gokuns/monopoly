@@ -11,7 +11,8 @@ import view.MainMenuFrame;
 
 public class MenuController implements ActionListener{
 	
-	
+	private HostNetworkController hostNetworkController;
+	private ClientNetworkController clientNetworkController;
 	
 	private JButton hostGameButton;
 	private JButton joinAGameButton;
@@ -32,16 +33,22 @@ public class MenuController implements ActionListener{
 		JButton source = (JButton)e.getSource();
 		if(source.equals(hostGameButton)) {
 			menu.initHostAGameFrame();
+			hostNetworkController = new HostNetworkController();
 		}
 		else if(source.equals(joinAGameButton)) {
 			menu.initJoinAGameFrame();
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			joinWithIPButton = menu.getJoinWithIPButton();
 			joinWithIPButton.addActionListener(this);
 		}
 		else if(source.equals(joinWithIPButton)) {
-			
+			String IP = menu.getIP();
+			clientNetworkController = new ClientNetworkController(IP);
 		}
 	}
 }
-
-

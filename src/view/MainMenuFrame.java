@@ -115,4 +115,8 @@ public class MainMenuFrame extends JFrame {
 		return joinGameFrame.getJoinWithIPButton();
 	}
 	
+	public String getIP() {
+		return joinGameFrame.getTextFieldText();
+	}
+	
 }
