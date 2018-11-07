@@ -1,11 +1,8 @@
 package network;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Observer;
 import java.util.Observable;
 
 public class HostNetwork extends Observable implements Runnable{
@@ -28,7 +25,6 @@ public class HostNetwork extends Observable implements Runnable{
 				Socket connection = serverSocket.accept();
 				setChanged();
 				notifyObservers(connection);
-				// TODO handle connections
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
