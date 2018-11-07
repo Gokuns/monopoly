@@ -59,7 +59,22 @@ public class JoinGameFrame extends JFrame {
 	public String getTextFieldText() {
 		return textField.getText();
 	}
+	
+	public void setTextFieldText(String str) {
+		textField.setText(str);
+	}
+	
 	public JButton getJoinWithIPButton() {
 		return joinWithIPButton;
 	}
+
+	public JTextField getTextField() {
+		return textField;
+	}
+
+	public void setTextField(JTextField textField) {
+		this.textField = textField;
+	}
+	
+	
 }
