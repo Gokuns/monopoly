@@ -5,7 +5,6 @@ import java.util.Observable;
 import java.util.Observer;
 
 import domain.network.HostNetwork;
-import domain.network.HostNetworkControllerListener;
 
 public class HostNetworkController implements Observer{
 	private HostNetwork network;

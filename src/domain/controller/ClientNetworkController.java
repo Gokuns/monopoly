@@ -3,7 +3,6 @@ package domain.controller;
 import java.util.ArrayList;
 
 import domain.network.ClientNetwork;
-import domain.network.ClientNetworkControllerListener;
 
 public class ClientNetworkController {
 	private ClientNetwork network;

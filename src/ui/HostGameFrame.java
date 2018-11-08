@@ -14,7 +14,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import domain.controller.HostNetworkController;
-import domain.network.HostNetworkControllerListener;
+import domain.controller.HostNetworkControllerListener;
 
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;

@@ -13,7 +13,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import domain.controller.ClientNetworkController;
-import domain.network.ClientNetworkControllerListener;
+import domain.controller.ClientNetworkControllerListener;
 import sun.net.NetworkClient;
 
 import javax.swing.JLabel;
