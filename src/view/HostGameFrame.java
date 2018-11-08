@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
+import java.net.InetAddress;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
@@ -18,6 +19,7 @@ public class HostGameFrame extends JFrame {
 	private JPanel contentPane;
 	private JPanel monopolyLogoPanel;
 	private JLabel lblNewLabel;
+	private InetAddress ip;
 
 	/**
 	 * Create the frame.
@@ -26,7 +28,7 @@ public class HostGameFrame extends JFrame {
 		setTitle("Host Game");
 		setResizable(false);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 450, 350);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -52,11 +54,16 @@ public class HostGameFrame extends JFrame {
 			lblNewLabel.setBounds(12, 100, 420, 30);
 			contentPane.add(lblNewLabel);
 			
+			ip = InetAddress.getLocalHost();
+			JLabel lblYourIp = new JLabel("Your IP :   "+ ip.getHostAddress());
+			lblYourIp.setFont(new Font("Tahoma", Font.BOLD, 18));
+			lblYourIp.setBounds(105, 246, 228, 35);
+			contentPane.add(lblYourIp);
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
 		setVisible(true);
 	}
-
 }
