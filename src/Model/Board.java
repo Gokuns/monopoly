@@ -46,8 +46,9 @@ public class Board {
 			currentPlayer.setRolledBus(true);
 		}
 			
-			
-			
+	}
+	
+	public void movePiece() {
 		
 	}
 
