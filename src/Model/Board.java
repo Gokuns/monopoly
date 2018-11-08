@@ -22,7 +22,8 @@ public class Board {
 			
 			board = new Board();
 			
-		}return board;
+		}
+		return board;
 		
 	}
 	
