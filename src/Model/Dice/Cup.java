@@ -4,16 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cup {
-	Die regularDie1;
-	Die regularDie2;
-	Die speedDie1;
+	
+	Die regularDie;
+	Die speedDie;
 	private static Cup cup;
 	private List<faceValue> faceValues;
 
 	private Cup() {
-		regularDie1 = new RegularDie();
-		regularDie2 = new RegularDie();
-		speedDie1 = new SpeedDie();
+		regularDie = RegularDie.getInstance();
+		speedDie = SpeedDie.getInstance();
 		faceValues = new ArrayList<faceValue>(){{add(faceValue.ONE);add(faceValue.ONE);add(faceValue.ONE);}};
 		
 	}
@@ -28,24 +27,27 @@ public class Cup {
 	
 	
 	public List<faceValue> rollCup() {
-		faceValue faceValue1 = regularDie1.roll();
-		faceValue faceValue2 = regularDie2.roll();
-		faceValue speedValue = speedDie1.roll();
-		faceValues.set(0, faceValue1);
-		faceValues.set(1, faceValue2);
+		regularDie.roll();
+		faceValue regularVal = regularDie.getCurrentFaceValue();
+		faceValues.set(0, regularVal);
+		
+		regularDie.roll();
+		regularVal = regularDie.getCurrentFaceValue();
+		faceValues.set(1, regularVal);
+		faceValue speedValue = speedDie.roll();
 		faceValues.set(2, speedValue);
 		return faceValues;
 		
 	}
 	
 	public List<Integer> convertFaceValueToInt() {
-		int first = regularDie1.getCurrentFaceValue().ordinal() + 1;
-		int second = regularDie2.getCurrentFaceValue().ordinal() + 1;
-		int speed = speedDie1.getCurrentFaceValue().ordinal() + 1;
+//		int first = regularDie1.getCurrentFaceValue().ordinal() + 1;
+//		int second = regularDie2.getCurrentFaceValue().ordinal() + 1;
+//		int speed = speedDie1.getCurrentFaceValue().ordinal() + 1;
 		List<Integer> result = new ArrayList<Integer>();
-		result.add(first);
-		result.add(second);
-		result.add(speed);
+//		result.add(first);
+//		result.add(second);
+//		result.add(speed);
 		return result;
 		
 	}

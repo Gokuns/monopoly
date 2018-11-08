@@ -6,9 +6,16 @@ public class RegularDie extends Die {
 	
 	private faceValue fValues[];
 	private faceValue currentFaceValue;
+	private static RegularDie regularDie;
 	
-	public RegularDie() {
+	private RegularDie() {
 		this.fValues = new faceValue[]{faceValue.ONE, faceValue.TWO, faceValue.THREE, faceValue.FOUR, faceValue.FIVE, faceValue.SIX};
+	}
+	
+	public static synchronized RegularDie getInstance(){
+		if(regularDie==null)
+			return new RegularDie();
+		return regularDie;
 	}
 
 	@Override

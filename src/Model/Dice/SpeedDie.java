@@ -4,11 +4,18 @@ import java.util.Random;
 
 public class SpeedDie extends Die {
 
+	private static SpeedDie speedDie;
 	private faceValue fValues[];
 	private faceValue currentFaceValue;
 	
-	public SpeedDie() {
+	private SpeedDie() {
 		this.fValues = new faceValue[]{faceValue.ONE, faceValue.TWO, faceValue.THREE, faceValue.MRMONOPOLY, faceValue.MRMONOPOLY, faceValue.BUS};
+	}
+	
+	public static synchronized SpeedDie getInstance(){
+		if(speedDie==null)
+			return new SpeedDie();
+		return speedDie;
 	}
 
 	@Override
