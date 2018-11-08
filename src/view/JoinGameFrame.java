@@ -14,6 +14,8 @@ import javax.swing.border.EmptyBorder;
 
 import controller.ClientNetworkController;
 import network.ClientNetworkControllerListener;
+import sun.net.NetworkClient;
+
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
@@ -22,16 +24,21 @@ import java.awt.event.ActionEvent;
 public class JoinGameFrame extends JFrame implements ClientNetworkControllerListener{
 
 	private JPanel contentPane;
-	private JTextField textField;
+	private JTextField IPTextField;
 	private JPanel monopolyLogoPanel;
 	private JButton joinWithIPButton;
-	private JTextField textField_1;
+	private JTextField portTextField;
 	private JLabel lblPort;
+	
+	private ClientNetworkController networkController;
 
 	/**
 	 * Create the frame.
 	 */
 	public JoinGameFrame() {
+		networkController = new ClientNetworkController();
+		networkController.addClientNetworkControllerListener(this);
+		
 		setTitle("Join Game");
 		setResizable(false);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -41,15 +48,15 @@ public class JoinGameFrame extends JFrame implements ClientNetworkControllerList
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		textField = new JTextField();
-		textField.setBounds(98, 102, 334, 44);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		IPTextField = new JTextField();
+		IPTextField.setBounds(98, 102, 334, 44);
+		contentPane.add(IPTextField);
+		IPTextField.setColumns(10);
 		
 		joinWithIPButton = new JButton("Join with IP");
 		joinWithIPButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				networkController.initializeClientNetwork(IPTextField.getText(), portTextField.getText());
 			}
 		});
 		joinWithIPButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -69,10 +76,10 @@ public class JoinGameFrame extends JFrame implements ClientNetworkControllerList
 			lblNewLabel.setBounds(12, 102, 74, 44);
 			contentPane.add(lblNewLabel);
 			
-			textField_1 = new JTextField();
-			textField_1.setColumns(10);
-			textField_1.setBounds(98, 153, 334, 44);
-			contentPane.add(textField_1);
+			portTextField = new JTextField();
+			portTextField.setColumns(10);
+			portTextField.setBounds(98, 153, 334, 44);
+			contentPane.add(portTextField);
 			
 			lblPort = new JLabel("Port:");
 			lblPort.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -88,8 +95,8 @@ public class JoinGameFrame extends JFrame implements ClientNetworkControllerList
 	}
 	
 	public void connected() {
-		textField.setText("Connected to host. Waiting for game to start.");
-		textField.setEditable(false);
+		IPTextField.setText("Connected to host. Waiting for game to start.");
+		IPTextField.setEditable(false);
 		joinWithIPButton.setEnabled(false);
 	}
 

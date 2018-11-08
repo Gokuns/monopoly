@@ -6,11 +6,10 @@ import java.net.UnknownHostException;
 
 public class ClientNetwork {
 	private Socket socket;
-	private final int port = 9999;
 	
-	public ClientNetwork(String host) {
+	public ClientNetwork(String host, String port) {
 		try {
-			socket = new Socket(host, port);
+			socket = new Socket(host, Integer.parseInt(port));
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

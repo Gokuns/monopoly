@@ -14,8 +14,8 @@ public class ClientNetworkController {
 		listeners = new ArrayList<ClientNetworkControllerListener>();
 	}
 	
-	public void initializeClientNetwork(String IP) {
-		network = new ClientNetwork(IP);
+	public void initializeClientNetwork(String IP, String port) {
+		network = new ClientNetwork(IP, port);
 	}
 	
 	public void addClientNetworkControllerListener(ClientNetworkControllerListener listener) {
