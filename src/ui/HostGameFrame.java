@@ -51,6 +51,9 @@ public class HostGameFrame extends JFrame implements HostNetworkControllerListen
 					hostGameButton.setEnabled(false);
 					textLabel.setText("Waiting for players");
 					portTextField.setEditable(false);
+				} else if(hostGameButton.getText().equals("Start Game")) {
+					GameFrame gf = new GameFrame();
+					gf.setVisible(true);
 				}
 			}
 		});
