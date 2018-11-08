@@ -13,12 +13,14 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-public class HostGameFrame extends JFrame {
+import controller.HostNetworkController;
+import network.HostNetworkControllerListener;
+
+public class HostGameFrame extends JFrame implements HostNetworkControllerListener{
 
 	private JPanel contentPane;
 	private JPanel monopolyLogoPanel;
 	private JLabel textLabel;
-	
 	private JButton startGameButton;
 
 	/**
@@ -57,7 +59,8 @@ public class HostGameFrame extends JFrame {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+		HostNetworkController hostNetworkController = new HostNetworkController();
+		hostNetworkController.addHostNetworkControllerListener(this);
 		setVisible(true);
 	}
 
@@ -76,5 +79,12 @@ public class HostGameFrame extends JFrame {
 	}
 	public JButton getStartGameButton() {
 		return startGameButton;
+	}
+
+	@Override
+	public void onNetworkEvent(HostNetworkController source, String eventName) {
+		if(eventName.equals("newConnection")) {
+			clientConnected(source.getConnectionCount());
+		}
 	}
 }

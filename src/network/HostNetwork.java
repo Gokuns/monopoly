@@ -24,11 +24,9 @@ public class HostNetwork extends Observable implements Runnable{
 				Socket connection = serverSocket.accept();
 				setChanged();
 				notifyObservers(connection);
-				
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
 	}
-	
 }

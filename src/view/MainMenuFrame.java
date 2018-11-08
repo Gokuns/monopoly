@@ -1,9 +1,9 @@
 package view;
 
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
 
@@ -13,18 +13,19 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import controller.ClientNetworkController;
+import controller.HostNetworkController;
+import controller.MainMenuController;
+import java.awt.event.ActionListener;
+
 public class MainMenuFrame extends JFrame {
 
 	private JPanel contentPane;
-	private JButton joinAGameButton;
-	private JButton hostAGameButton;
-	private JoinGameFrame joinGameFrame;
-	private HostGameFrame hostGameFrame;
 
 	/**
 	 * Create the frame.
 	 */
-	public MainMenuFrame() {
+	public MainMenuFrame() {		
 		setTitle("Monopoly");
 		setMinimumSize(new Dimension(800, 600));
 		setResizable(false);
@@ -50,66 +51,49 @@ public class MainMenuFrame extends JFrame {
 		panel.setBounds(300, 250, 200, 200);
 		contentPane.add(panel);
 
-		hostAGameButton = new JButton("Host a Game");
+		JButton hostAGameButton = new JButton("Host a Game");
+		hostAGameButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				initHostAGameFrame();
+			}
+		});
 		hostAGameButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		hostAGameButton.setBounds(0, 0, 200, 50);
 
-		joinAGameButton = new JButton("Join a Game");
+		JButton joinAGameButton = new JButton("Join a Game");
+		joinAGameButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				initJoinAGameFrame();
+			}
+		});
 		joinAGameButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		joinAGameButton.setBounds(0, 60, 200, 50);
 
 		panel.setLayout(null);
 		panel.add(hostAGameButton);
 		panel.add(joinAGameButton);
+		setVisible(true);
 	}
 
 	public void initHostAGameFrame() {
 		setEnabled(false);
-		hostGameFrame = new HostGameFrame();
+		HostGameFrame hostGameFrame = new HostGameFrame();
 		hostGameFrame.addWindowListener(new java.awt.event.WindowAdapter() {
 			@Override
 			public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-				hostGameFrame = null;
 				setEnabled(true);
 			}
 		});
-	}
-	
-	public void clientConnectedToHost(int connectionCount) {
-		hostGameFrame.clientConnected(connectionCount);
 	}
 
 	public void initJoinAGameFrame() {
 		setEnabled(false);
-		joinGameFrame = new JoinGameFrame();
+		JoinGameFrame joinGameFrame = new JoinGameFrame();
 		joinGameFrame.addWindowListener(new java.awt.event.WindowAdapter() {
 			@Override
 			public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-				joinGameFrame = null;
 				setEnabled(true);
 			}
 		});
-	}
-
-	public JButton getJoinWithIPButton() {
-		return joinGameFrame.getJoinWithIPButton();
-	}
-
-	public String getIP() {
-		return joinGameFrame.getTextFieldText();
-	}
-	
-	public void joinedWithIP() {
-		joinGameFrame.setTextFieldText("Connected to host, waiting for game to start.");
-		joinGameFrame.getJoinWithIPButton().setEnabled(false);
-		joinGameFrame.getTextField().setEditable(false);
-	}
-
-	public JButton getJoinAGameButton() {
-		return joinAGameButton;
-	}
-
-	public JButton getHostAGameButton() {
-		return hostAGameButton;
 	}
 }

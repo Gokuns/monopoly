@@ -11,7 +11,6 @@ public class Main {
 			public void run() {
 				try {
 					MainMenuFrame menu = new MainMenuFrame();
-					MenuController mainMenuController = new MenuController(menu);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

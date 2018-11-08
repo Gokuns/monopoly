@@ -12,7 +12,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-public class JoinGameFrame extends JFrame {
+import controller.ClientNetworkController;
+import network.ClientNetworkControllerListener;
+
+public class JoinGameFrame extends JFrame implements ClientNetworkControllerListener{
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -55,25 +58,18 @@ public class JoinGameFrame extends JFrame {
 		
 		setVisible(true);
 	}
-
-	public String getTextFieldText() {
-		return textField.getText();
-	}
 	
-	public void setTextFieldText(String str) {
-		textField.setText(str);
-	}
-	
-	public JButton getJoinWithIPButton() {
-		return joinWithIPButton;
+	public void connected() {
+		textField.setText("Connected to host. Waiting for game to start.");
+		textField.setEditable(false);
+		joinWithIPButton.setEnabled(false);
 	}
 
-	public JTextField getTextField() {
-		return textField;
-	}
-
-	public void setTextField(JTextField textField) {
-		this.textField = textField;
+	@Override
+	public void onNetworkEvent(ClientNetworkController source, String eventName) {
+		if(eventName.equals("connectedToHost")) {
+			connected();
+		}
 	}
 	
 	
