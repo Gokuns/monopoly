@@ -14,6 +14,10 @@ import javax.swing.border.EmptyBorder;
 
 import controller.ClientNetworkController;
 import network.ClientNetworkControllerListener;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class JoinGameFrame extends JFrame implements ClientNetworkControllerListener{
 
@@ -21,6 +25,8 @@ public class JoinGameFrame extends JFrame implements ClientNetworkControllerList
 	private JTextField textField;
 	private JPanel monopolyLogoPanel;
 	private JButton joinWithIPButton;
+	private JTextField textField_1;
+	private JLabel lblPort;
 
 	/**
 	 * Create the frame.
@@ -36,13 +42,18 @@ public class JoinGameFrame extends JFrame implements ClientNetworkControllerList
 		contentPane.setLayout(null);
 		
 		textField = new JTextField();
-		textField.setBounds(12, 102, 420, 44);
+		textField.setBounds(98, 102, 334, 44);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
 		joinWithIPButton = new JButton("Join with IP");
+		joinWithIPButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
 		joinWithIPButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		joinWithIPButton.setBounds(145, 160, 150, 45);
+		joinWithIPButton.setBounds(145, 210, 150, 45);
 		contentPane.add(joinWithIPButton);
 		
 		try {
@@ -51,6 +62,23 @@ public class JoinGameFrame extends JFrame implements ClientNetworkControllerList
 			monopolyLogoPanel = new BackgroundImagePanel(logoImage);
 			monopolyLogoPanel.setBounds(45, 15, 350, 70);
 			contentPane.add(monopolyLogoPanel);
+			
+			JLabel lblNewLabel = new JLabel("Host IP:");
+			lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+			lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+			lblNewLabel.setBounds(12, 102, 74, 44);
+			contentPane.add(lblNewLabel);
+			
+			textField_1 = new JTextField();
+			textField_1.setColumns(10);
+			textField_1.setBounds(98, 153, 334, 44);
+			contentPane.add(textField_1);
+			
+			lblPort = new JLabel("Port:");
+			lblPort.setHorizontalAlignment(SwingConstants.RIGHT);
+			lblPort.setFont(new Font("Tahoma", Font.PLAIN, 18));
+			lblPort.setBounds(12, 153, 74, 44);
+			contentPane.add(lblPort);
 			
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -71,6 +99,4 @@ public class JoinGameFrame extends JFrame implements ClientNetworkControllerList
 			connected();
 		}
 	}
-	
-	
 }
