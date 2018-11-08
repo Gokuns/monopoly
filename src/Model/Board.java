@@ -38,7 +38,7 @@ public class Board {
 		if(firstDieVal == secondDieVal && secondDieVal == speedDieVal) {
 			currentPlayer.setRolledTriple(true);
 		}else if(firstDieVal == secondDieVal || firstDieVal==speedDieVal || secondDieVal==speedDieVal) {
-			currentPlayer.setDoubleDice(true);
+			currentPlayer.setRolledDouble(true);
 		}else if(speedDieVal.name().equals("MRMONOPOLY")) {
 			currentPlayer.setRolledMrMonopoly(true);
 		}else if(secondDieVal.name().equals("BUS")) {

@@ -101,12 +101,12 @@ public class Player {
 		this.inJail = inJail;
 	}
 
-	public boolean isDoubleDice() {
+	public boolean isRolledDouble() {
 		return rolledDouble;
 	}
 
-	public void setDoubleDice(boolean doubleDice) {
-		this.rolledDouble = doubleDice;
+	public void setRolledDouble(boolean rolledDouble) {
+		this.rolledDouble = rolledDouble;
 	}
 
 	public boolean isMoved() {
