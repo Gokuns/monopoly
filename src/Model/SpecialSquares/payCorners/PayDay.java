@@ -1,11 +1,11 @@
-package Model.SpecialSquares.PayCorners;
+package Model.SpecialSquares.payCorners;
 
 import Model.Player;
-import Model.SpecialSquares.PayCorner;;
+import Model.SpecialSquares.PayCorner;
 
-public class Bonus extends PayCorner{
+public class PayDay extends PayCorner{
 
-	public Bonus(String name, String description) {
+	public PayDay(String name, String description) {
 		super(name, description);
 		// TODO Auto-generated constructor stub
 	}

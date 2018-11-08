@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Model.SpecialSquares.FreeParking;
-import Model.SpecialSquares.PayCorners.Go;
+import Model.SpecialSquares.payCorners.Go;
 
 public class SquareFactory {
 	private static SquareFactory squareFactory;
