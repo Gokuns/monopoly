@@ -22,7 +22,8 @@ public class Board {
 			
 			board = new Board();
 			
-		}return board;
+		}
+		return board;
 		
 	}
 	
@@ -45,8 +46,9 @@ public class Board {
 			currentPlayer.setRolledBus(true);
 		}
 			
-			
-			
+	}
+	
+	public void movePiece() {
 		
 	}
 

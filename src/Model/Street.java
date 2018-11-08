@@ -3,21 +3,21 @@ package Model;
 import java.awt.Color;
 
 public class Street extends Property {
-	private Color color;
+	private String color;
 	private int houseCount;
 	private boolean hasHotel;
 	private boolean hasSkyscraper;
-	public Street(String name, int price, String description, Color color, int houseCount, boolean hasHotel, boolean hasSkyscraper, Deed deed) {
+	public Street(String name, int price, String description, String color, Deed deed) {
 		super(name, price, description, deed);
 		this.color = color;
-		this.houseCount = houseCount;
-		this.hasHotel = hasHotel;
-		this.hasSkyscraper = hasSkyscraper;
+		this.houseCount = 0;
+		this.hasHotel = false;
+		this.hasSkyscraper = false;
 	}
-	public Color getColor() {
+	public String getColor() {
 		return color;
 	}
-	public void setColor(Color color) {
+	public void setColor(String color) {
 		this.color = color;
 	}
 	public int getHouseCount() {
