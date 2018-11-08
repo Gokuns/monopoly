@@ -95,8 +95,10 @@ public class JoinGameFrame extends JFrame implements ClientNetworkControllerList
 	}
 	
 	public void connected() {
-		IPTextField.setText("Connected to host. Waiting for game to start.");
+		IPTextField.setText("Connected to host.");
 		IPTextField.setEditable(false);
+		portTextField.setText("Waiting for game to start.");
+		portTextField.setEditable(false);
 		joinWithIPButton.setEnabled(false);
 	}
 

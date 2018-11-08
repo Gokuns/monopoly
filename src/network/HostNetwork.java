@@ -8,11 +8,12 @@ import java.util.Observable;
 public class HostNetwork extends Observable implements Runnable{
 	ServerSocket serverSocket;
 	
-	protected final int port = 9999;
+	protected int port;
 	
-	public HostNetwork() {
+	public HostNetwork(String port) {
 		try {
-			serverSocket = new ServerSocket(port);
+			this.port = Integer.parseInt(port);
+			serverSocket = new ServerSocket(this.port);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

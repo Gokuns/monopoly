@@ -15,13 +15,17 @@ import javax.swing.border.EmptyBorder;
 
 import controller.HostNetworkController;
 import network.HostNetworkControllerListener;
+import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class HostGameFrame extends JFrame implements HostNetworkControllerListener{
 
 	private JPanel contentPane;
 	private JPanel monopolyLogoPanel;
 	private JLabel textLabel;
-	private JButton startGameButton;
+	private JButton hostGameButton;
+	private JTextField portTextField;
 
 	/**
 	 * Create the frame.
@@ -36,11 +40,22 @@ public class HostGameFrame extends JFrame implements HostNetworkControllerListen
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		startGameButton = new JButton("Start game");
-		startGameButton.setEnabled(false);
-		startGameButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		startGameButton.setBounds(145, 160, 150, 45);
-		contentPane.add(startGameButton);
+		hostGameButton = new JButton("Host Game");
+		hostGameButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(hostGameButton.getText()=="Host Game") {
+					HostNetworkController hostNetworkController = new HostNetworkController(portTextField.getText());
+					hostNetworkController.addHostNetworkControllerListener(HostGameFrame.this);
+					hostGameButton.setText("Start Game");
+					hostGameButton.setEnabled(false);
+					textLabel.setText("Waiting for players");
+					portTextField.setEditable(false);
+				}
+			}
+		});
+		hostGameButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		hostGameButton.setBounds(145, 200, 150, 45);
+		contentPane.add(hostGameButton);
 		
 		try {
 			Image logoImage = ImageIO.read(new File("monopolyLogo.png"));
@@ -49,18 +64,22 @@ public class HostGameFrame extends JFrame implements HostNetworkControllerListen
 			monopolyLogoPanel.setBounds(45, 15, 350, 70);
 			contentPane.add(monopolyLogoPanel);
 			
-			textLabel = new JLabel("Waiting for players...");
+			textLabel = new JLabel("Please enter a port number");
 			textLabel.setHorizontalTextPosition(SwingConstants.CENTER);
 			textLabel.setHorizontalAlignment(SwingConstants.CENTER);
 			textLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
 			textLabel.setBounds(12, 100, 420, 30);
 			contentPane.add(textLabel);
 			
+			portTextField = new JTextField();
+			portTextField.setBounds(145, 143, 150, 44);
+			contentPane.add(portTextField);
+			portTextField.setColumns(10);
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		HostNetworkController hostNetworkController = new HostNetworkController();
-		hostNetworkController.addHostNetworkControllerListener(this);
+		
 		setVisible(true);
 	}
 
@@ -78,7 +97,7 @@ public class HostGameFrame extends JFrame implements HostNetworkControllerListen
 		textLabel.setText(text);
 	}
 	public JButton getStartGameButton() {
-		return startGameButton;
+		return hostGameButton;
 	}
 
 	@Override

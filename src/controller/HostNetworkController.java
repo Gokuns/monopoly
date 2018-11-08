@@ -13,11 +13,11 @@ public class HostNetworkController implements Observer{
 	
 	private int connectionCount;
 
-	public HostNetworkController() {
+	public HostNetworkController(String port) {
 		super();
 		listeners = new ArrayList<HostNetworkControllerListener>();
 		connectionCount = 0;
-		network = new HostNetwork();
+		network = new HostNetwork(port);
 		network.addObserver(this);
 		new Thread(network).start();
 	}
@@ -25,6 +25,7 @@ public class HostNetworkController implements Observer{
 	@Override
 	public void update(Observable o, Object arg) {
 		connectionCount++;
+		publishNetworkEvent("newConnection");
 	}
 	
 	public void addHostNetworkControllerListener(HostNetworkControllerListener listener) {

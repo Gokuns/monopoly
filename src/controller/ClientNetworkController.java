@@ -16,6 +16,7 @@ public class ClientNetworkController {
 	
 	public void initializeClientNetwork(String IP, String port) {
 		network = new ClientNetwork(IP, port);
+		publishNetworkEvent("connectedToHost");
 	}
 	
 	public void addClientNetworkControllerListener(ClientNetworkControllerListener listener) {
