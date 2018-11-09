@@ -49,6 +49,17 @@ public class Board {
 	}
 	
 	public void movePiece() {
+		currentPlayer.getPiece();
+		
+	}
+	
+	private int calculateMovement() {
+		List<Integer> fValues = cup.convertFaceValueToInt();
+		int first = fValues.get(0);
+		int second = fValues.get(1);
+		int speed = fValues.get(2);
+		
+		return first + second + speed;
 		
 	}
 

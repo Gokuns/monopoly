@@ -41,13 +41,16 @@ public class Cup {
 	}
 	
 	public List<Integer> convertFaceValueToInt() {
-//		int first = regularDie1.getCurrentFaceValue().ordinal() + 1;
-//		int second = regularDie2.getCurrentFaceValue().ordinal() + 1;
-//		int speed = speedDie1.getCurrentFaceValue().ordinal() + 1;
+		int first = faceValues.get(0).ordinal()+1;
+		int second = faceValues.get(0).ordinal()+1;
+		int speed = 0;
+		if(faceValues.get(2).ordinal()<3) {
+		speed = faceValues.get(0).ordinal()+1;
+		}
 		List<Integer> result = new ArrayList<Integer>();
-//		result.add(first);
-//		result.add(second);
-//		result.add(speed);
+		result.add(first);
+		result.add(second);
+		result.add(speed);
 		return result;
 		
 	}

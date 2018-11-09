@@ -3,6 +3,7 @@ package domain.model;
 public abstract class Square {
 	private String name;
 	private String desciption;
+	protected boolean isTransit = false;
 	
 	public Square(String name, String description) {
 		this.name = name;

@@ -2,6 +2,8 @@ package domain.model;
 
 import java.util.ArrayList;
 
+import domain.model.specialSquares.payCorners.Go;
+
 public class Player {
 	private String name;
 	private int ID;
@@ -23,7 +25,7 @@ public class Player {
 	public Player (String name, int ID, Piece piece) {
 		this.name = name;
 		this.ID = ID;
-		this.piece = new Piece();
+		this.piece = new Piece(Go.getInstance());
 		this.propList = new ArrayList<Property>();
 		this.cards = new ArrayList<Card>();
 		this.isTurn = false;

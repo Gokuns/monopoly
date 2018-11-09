@@ -3,10 +3,11 @@ package domain.model;
 import java.util.ArrayList;
 
 import domain.model.dice.Cup;
+import domain.model.specialSquares.payCorners.Go;
 
 public class GameState {
 	private static GameState game;
-	private Player currentPlayer = new Player("Goko", 0, new Piece());
+	private Player currentPlayer = new Player("Goko", 0, new Piece(Go.getInstance()));
 	private int nPlayers;
 	private ArrayList<Player> playerList;
 	private ArrayList<Player> orderedPlayerList;
