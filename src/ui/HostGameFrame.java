@@ -27,11 +27,14 @@ public class HostGameFrame extends JFrame implements HostNetworkControllerListen
 	private JLabel textLabel;
 	private JButton hostGameButton;
 	private JTextField portTextField;
+	
+	private MainMenuFrame mainMenu;
 
 	/**
 	 * Create the frame.
 	 */
-	public HostGameFrame() {
+	public HostGameFrame(MainMenuFrame mainMenu) {
+		this.mainMenu = mainMenu;
 		setTitle("Host Game");
 		setResizable(false);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -52,8 +55,10 @@ public class HostGameFrame extends JFrame implements HostNetworkControllerListen
 					textLabel.setText("Waiting for players");
 					portTextField.setEditable(false);
 				} else if(hostGameButton.getText().equals("Start Game")) {
-					TestGameFrame gf = new TestGameFrame();
-					gf.setVisible(true);
+					GameFrame gameFrame = new GameFrame();
+					mainMenu.dispose();
+					dispose();
+					gameFrame.setVisible(true);
 				}
 			}
 		});
@@ -110,4 +115,6 @@ public class HostGameFrame extends JFrame implements HostNetworkControllerListen
 			clientConnected(source.getConnectionCount());
 		}
 	}
+	
+	
 }
