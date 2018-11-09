@@ -36,6 +36,7 @@ public class GameFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public GameFrame() {
+		setTitle("Monopoly");
 		gameController = GameController.getInstance();
 		setBounds(new Rectangle(0, 0, 1500, 1000));
 		setResizable(false);
