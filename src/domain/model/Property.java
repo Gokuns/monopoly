@@ -1,7 +1,6 @@
 package domain.model;
 
 public abstract class Property extends Square{
-	private String name;
 	private Player owner;
 	private int price;
 	private boolean isMortgaged;
@@ -14,15 +13,6 @@ public abstract class Property extends Square{
 		this.isMortgaged = false;
 		this.deed = deed;
 	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public Player getOwner() {
 		return owner;
 	}

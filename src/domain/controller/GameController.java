@@ -24,9 +24,14 @@ public class GameController {
 	
 	public void roll() {
 		board.rollCup();
-		System.out.println("Piece move Completed");
+		
 	}
 	
+	
+	public void move() {
+		board.movePiece();
+		System.out.println("Piece move Completed");
+	}
 	
 	
 }

@@ -72,10 +72,13 @@ public class Board {
 	public void movePiece() {
 		Square currentSquare = getPlayersSquare(currentPlayer);
 		iter = new SquareIterator(currentSquare, Squares);
-		for (int i=0;i<calculateMovement();i++) {
+		int movement = calculateMovement();
+		for (int i=0;i<movement;i++) {
 			currentSquare = iter.next();
 		}
-		System.out.println("Move Completed");
+		setPlayersSquare(currentPlayer,currentSquare);
+		System.out.println("Moved to " + getPlayersSquare(currentPlayer).getName());
+		
 		
 	}
 	
@@ -85,13 +88,18 @@ public class Board {
 		int first = fValues.get(0);
 		int second = fValues.get(1);
 		int speed = fValues.get(2);
-		
-		return first + second + speed;
+		int result = first + second + speed;
+		System.out.println(result);
+		return result;
 		
 	}
 	private Square getPlayersSquare(Player p) {
 		Piece piece = p.getPiece();
 		return piece.getCurrentSquare();
+	}
+	private void setPlayersSquare(Player p, Square s) {
+		Piece piece = p.getPiece();
+		piece.setCurrentSquare(s);
 	}
 
 }

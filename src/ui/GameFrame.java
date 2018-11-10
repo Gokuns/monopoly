@@ -74,6 +74,15 @@ public class GameFrame extends JFrame {
 			moveButton.setBounds(105, 225, 300, 40);
 			panel.add(moveButton);
 			
+			moveButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					gameController.move();
+					
+				}
+				
+				
+			});
+			
 			JLabel rollLabel = new JLabel("You rolled: X X X");
 			rollLabel.setHorizontalAlignment(SwingConstants.CENTER);
 			rollLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));

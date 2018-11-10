@@ -42,15 +42,18 @@ public class Cup {
 	
 	public List<Integer> convertFaceValueToInt() {
 		int first = faceValues.get(0).ordinal()+1;
-		int second = faceValues.get(0).ordinal()+1;
+		int second = faceValues.get(1).ordinal()+1;
 		int speed = 0;
 		if(faceValues.get(2).ordinal()<3) {
-		speed = faceValues.get(0).ordinal()+1;
+		speed = faceValues.get(2).ordinal()+1;
 		}
 		List<Integer> result = new ArrayList<Integer>();
 		result.add(first);
 		result.add(second);
 		result.add(speed);
+		System.out.println(first);
+		System.out.println(second);
+		System.out.println(speed);
 		return result;
 		
 	}
