@@ -23,5 +23,4 @@ public class Go extends PayCorner{
 		// TODO Auto-generated method stub
 		
 	}
-
 }

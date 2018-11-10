@@ -5,8 +5,8 @@ import domain.model.specialSquares.payCorners.Go;
 public class Piece {
 	private Square currentSquare;
      
-     public Piece(Square currentSquare) {
-     this.currentSquare = currentSquare;
+     public Piece() {
+      currentSquare = Go.getInstance();
      }
 
 	/**
@@ -21,14 +21,5 @@ public class Piece {
 	 */
 	public void setCurrentSquare(Square currentSquare) {
 		this.currentSquare = currentSquare;
-	}
-     
-    /*
-     Oriental = {
-    		 "Price" : 120,
-    		 "Rent" : 6,W
-    		 "1st house" : 12
-     }
-     */
-     
+	}  
 }

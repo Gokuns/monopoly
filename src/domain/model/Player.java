@@ -5,27 +5,28 @@ import java.util.ArrayList;
 import domain.model.specialSquares.payCorners.Go;
 
 public class Player {
-	private String name;
-	private int ID;
-	private int balance=3200;
-	private Piece piece;
-	private ArrayList<Property> propList;
-	private ArrayList<Card> cards;
-	private boolean isTurn;
-	private boolean inJail;
-	private boolean rolledDouble;
-	private boolean hasMoved;
-	private boolean hasRolled;
-	private boolean isBankrupt;
-	private int doubleRollCounter;
-	private boolean rolledTriple;
-	private boolean rolledMrMonopoly;
-	private boolean rolledBus;
+	private String name;  //Name of the player
+	private int ID;		//Identification number
+	private int balance=3200;		//starting money is initialized as 3200
+	private Piece piece;		//A game piece owned by the player
+	private ArrayList<Property> propList;		//Property list of the player
+	private ArrayList<Card> cards;		//Cards owned by the player
+	private boolean isTurn;		//true if its this player's turn
+	private boolean inJail;		//true if the player is in jail
+	private boolean rolledDouble;		//true if the player rolled double
+	private boolean hasMoved;		//true if the player made their move
+	private boolean hasRolled;		//true if the player rolled the dice
+	private boolean isBankrupt;		//true when the player is out of the game, disconnect, lose
+	private int doubleRollCounter;		//counts the time player rolls double, goes in jail if rolled 3 times in a row
+	private boolean rolledTriple;		//true if the player rolled triple
+	private boolean rolledMrMonopoly;		//true if the player rolled Mr Monopoly in speed die
+	private boolean rolledBus;		//true if the player rolled bus in speed die
+	
 
 	public Player (String name, int ID, Piece piece) {
 		this.name = name;
 		this.ID = ID;
-		this.piece = new Piece(Go.getInstance());
+		this.piece = new Piece();
 		this.propList = new ArrayList<Property>();
 		this.cards = new ArrayList<Card>();
 		this.isTurn = false;

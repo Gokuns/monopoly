@@ -7,7 +7,6 @@ public class TransitStation extends SpecialSquare{
 
 	public TransitStation(String name, String description) {
 		super(name, description);
-		isTransit = true;
 		// TODO Auto-generated constructor stub
 	}
 
