@@ -127,21 +127,45 @@ public class SquareIterator implements ISquareIteratator {
 	@Override
 	public Square outer() {
 		// TODO Auto-generated method stub
-		return null;
+		if(currentSquare == innerTransitPenns) {
+			currentSquare = middleTransitPenns;
+		}else if(currentSquare == innerTransitShort) {
+			currentSquare = middleTransitShort;
+		}else if(currentSquare == middleTransitReading) {
+			currentSquare = outerTransitReading;
+		}else if(currentSquare == middleTransitBnO) {
+			currentSquare = outerTransitBnO;
+		}
+		return currentSquare;
 	}
 	
 	public int outerIndex() {
-		return 0;
+		List<Square> layer= findLayer(currentSquare);
+		int result;
+		result = layer.indexOf(outer());
+		return result;
 	}
 
 	@Override
 	public Square inner() {
 		// TODO Auto-generated method stub
-		return null;
+		if(currentSquare == middleTransitPenns) {
+			currentSquare = innerTransitPenns;
+		}else if(currentSquare == middleTransitShort) {
+			currentSquare = innerTransitShort;
+		}else if(currentSquare == outerTransitReading) {
+			currentSquare = middleTransitReading;
+		}else if(currentSquare == outerTransitBnO) {
+			currentSquare = middleTransitBnO;
+		}
+		return currentSquare;
 	}
 	
 	public int innerIndex() {
-		return 0;
+		List<Square> layer= findLayer(currentSquare);
+		int result;
+		result = layer.indexOf(inner());
+		return result;
 	}
 	
 	public List<Square> findLayer(Square sq) {
