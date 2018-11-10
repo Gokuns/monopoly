@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import domain.controller.GameController;
+import domain.model.Board;
 import domain.model.dice.Cup;
 import domain.model.dice.faceValue;
 
@@ -36,7 +37,10 @@ public class GameFrame extends JFrame {
 					frame.setVisible(true);					
 				} catch (Exception e) {
 					e.printStackTrace();
-				}				
+				}	
+				Board board = Board.getInstance();
+				int i =5;
+				i = 4;
 			}
 		});
 		
