@@ -14,7 +14,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import domain.controller.HostNetworkController;
-import domain.network.HostNetworkControllerListener;
+import domain.controller.HostNetworkControllerListener;
 
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
@@ -27,11 +27,14 @@ public class HostGameFrame extends JFrame implements HostNetworkControllerListen
 	private JLabel textLabel;
 	private JButton hostGameButton;
 	private JTextField portTextField;
+	
+	private MainMenuFrame mainMenu;
 
 	/**
 	 * Create the frame.
 	 */
-	public HostGameFrame() {
+	public HostGameFrame(MainMenuFrame mainMenu) {
+		this.mainMenu = mainMenu;
 		setTitle("Host Game");
 		setResizable(false);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -51,6 +54,11 @@ public class HostGameFrame extends JFrame implements HostNetworkControllerListen
 					hostGameButton.setEnabled(false);
 					textLabel.setText("Waiting for players");
 					portTextField.setEditable(false);
+				} else if(hostGameButton.getText().equals("Start Game")) {
+					GameFrame gameFrame = new GameFrame();
+					mainMenu.dispose();
+					dispose();
+					gameFrame.setVisible(true);
 				}
 			}
 		});
@@ -107,4 +115,6 @@ public class HostGameFrame extends JFrame implements HostNetworkControllerListen
 			clientConnected(source.getConnectionCount());
 		}
 	}
+	
+	
 }

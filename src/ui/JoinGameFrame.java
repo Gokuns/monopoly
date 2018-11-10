@@ -13,7 +13,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import domain.controller.ClientNetworkController;
-import domain.network.ClientNetworkControllerListener;
+import domain.controller.ClientNetworkControllerListener;
 import sun.net.NetworkClient;
 
 import javax.swing.JLabel;
@@ -30,12 +30,16 @@ public class JoinGameFrame extends JFrame implements ClientNetworkControllerList
 	private JTextField portTextField;
 	private JLabel lblPort;
 	
+	private MainMenuFrame mainMenu;
+	
 	private ClientNetworkController networkController;
 
 	/**
 	 * Create the frame.
 	 */
-	public JoinGameFrame() {
+	public JoinGameFrame(MainMenuFrame mainMenu) {
+		this.mainMenu = mainMenu;
+		
 		networkController = new ClientNetworkController();
 		networkController.addClientNetworkControllerListener(this);
 		
