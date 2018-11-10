@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import domain.controller.GameController;
+import domain.model.Board;
 import domain.model.dice.Cup;
 import domain.model.dice.faceValue;
 

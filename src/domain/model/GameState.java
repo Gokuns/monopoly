@@ -3,6 +3,7 @@ package domain.model;
 import java.util.ArrayList;
 
 import domain.model.dice.Cup;
+import domain.model.specialSquares.payCorners.Go;
 
 public class GameState {
 	private static GameState game;
@@ -45,6 +46,10 @@ public class GameState {
 		}
 		
 		return nextPlayer;
+	}
+	
+	public Square getPlayerCurrentSquare() {
+		return currentPlayer.getPiece().getCurrentSquare();
 	}
 
 	public Player getCurrentPlayer() {

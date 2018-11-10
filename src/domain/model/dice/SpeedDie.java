@@ -14,7 +14,7 @@ public class SpeedDie extends Die {
 	
 	public static synchronized SpeedDie getInstance(){
 		if(speedDie==null)
-			return new SpeedDie();
+			speedDie = new SpeedDie();
 		return speedDie;
 	}
 
