@@ -32,7 +32,6 @@ public class SocketReader implements Runnable{
 		try {
 			while (true) {
 				line = bufferedReader.readLine();
-				System.out.println(line);
 				networkController.publishNetworkEvent(line);
 			}
 		} catch (IOException e) {
