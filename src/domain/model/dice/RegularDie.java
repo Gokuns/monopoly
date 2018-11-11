@@ -14,7 +14,7 @@ public class RegularDie extends Die {
 	
 	public static synchronized RegularDie getInstance(){
 		if(regularDie==null)
-			return new RegularDie();
+			regularDie = new RegularDie();
 		return regularDie;
 	}
 
