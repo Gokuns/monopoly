@@ -30,9 +30,6 @@ public class SocketReader implements Runnable{
 		}
 	}
 
-
-
-
 	public void run() {
 		BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
 		String line;

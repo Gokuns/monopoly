@@ -57,6 +57,7 @@ public class HostNetworkController implements Observer, NetworkController{
 		for (NetworkControllerListener listener : listeners) {
 			listener.onNetworkEvent(this, map);
 		}
+		sendMessageToPlayers(map);
 	}
 
 	public int getConnectionCount() {
