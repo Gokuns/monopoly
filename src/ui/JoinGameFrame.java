@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
@@ -107,14 +108,18 @@ public class JoinGameFrame extends JFrame implements ClientNetworkControllerList
 	}
 
 	@Override
-	public void onNetworkEvent(ClientNetworkController source, String eventName) {
-		if(eventName.equals("connectedToHost")) {
+	public void onNetworkEvent(ClientNetworkController source, HashMap<String, String> map) {
+		String type = map.get("type");
+		switch(type){
+		case "connectedToHost":
 			connected();
-		} else if(eventName.equals("gameStarted")) {
+			break;
+		case "gameStarted":
 			GameFrame gameFrame = new GameFrame();
 			mainMenu.dispose();
 			dispose();
 			gameFrame.setVisible(true);
+			break;
 		}
 	}
 }

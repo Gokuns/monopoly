@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
@@ -12,6 +13,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+
+import com.google.gson.Gson;
 
 import domain.controller.HostNetworkController;
 import domain.controller.HostNetworkControllerListener;
@@ -60,7 +63,7 @@ public class HostGameFrame extends JFrame implements HostNetworkControllerListen
 					mainMenu.dispose();
 					dispose();
 					gameFrame.setVisible(true);
-					hostNetworkController.sendToClients("gameStarted");
+					hostNetworkController.gameStarted();
 				}
 			}
 		});
@@ -112,8 +115,10 @@ public class HostGameFrame extends JFrame implements HostNetworkControllerListen
 	}
 
 	@Override
-	public void onNetworkEvent(HostNetworkController source, String eventName) {
-		if(eventName.equals("newConnection")) {
+	public void onNetworkEvent(HostNetworkController source, HashMap<String, String> map) {
+		String type = map.get("type");
+		switch(type){
+		case "newConnection":
 			clientConnected(source.getConnectionCount());
 		}
 	}

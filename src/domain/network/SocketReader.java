@@ -5,17 +5,24 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.Socket;
+import java.util.HashMap;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import domain.controller.ClientNetworkController;
 import domain.controller.NetworkEventPublisher;
 
 public class SocketReader implements Runnable{
-	InputStream inputStream;
-	NetworkEventPublisher networkController;
+	private InputStream inputStream;
+	private NetworkEventPublisher networkController;
+
+	private Gson gson;
 
 	public SocketReader(Socket socket, NetworkEventPublisher networkController) {
 		super();
 		try {
+			this.gson = new Gson();
 			this.networkController = networkController;
 			this.inputStream = socket.getInputStream();
 		} catch (IOException e) {
@@ -32,7 +39,10 @@ public class SocketReader implements Runnable{
 		try {
 			while (true) {
 				line = bufferedReader.readLine();
-				networkController.publishNetworkEvent(line);
+				if(line != null) {
+					HashMap<String, String> map = gson.fromJson(line, HashMap.class);
+					networkController.publishNetworkEvent(map);
+				}
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
