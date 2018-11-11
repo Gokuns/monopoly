@@ -47,7 +47,6 @@ public class HostNetworkController implements Observer, NetworkEventPublisher{
 	public void sendToClients(String command) {
 		for  (Socket s : network.getConnections()) {
 			try {
-				System.out.println("Sending #" + command + "#");
 				PrintWriter out = new PrintWriter(s.getOutputStream(), true);
 				out.write(command + "\n");
 				out.flush();
