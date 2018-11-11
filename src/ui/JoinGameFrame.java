@@ -110,6 +110,11 @@ public class JoinGameFrame extends JFrame implements ClientNetworkControllerList
 	public void onNetworkEvent(ClientNetworkController source, String eventName) {
 		if(eventName.equals("connectedToHost")) {
 			connected();
+		} else if(eventName.equals("gameStarted")) {
+			GameFrame gameFrame = new GameFrame();
+			mainMenu.dispose();
+			dispose();
+			gameFrame.setVisible(true);
 		}
 	}
 }

@@ -16,5 +16,8 @@ public class ClientNetwork {
 			e.printStackTrace();
 		}
 	}
-	
+
+	public Socket getSocket() {
+		return socket;
+	}
 }

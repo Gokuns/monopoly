@@ -7,13 +7,16 @@ import java.io.InputStreamReader;
 import java.net.Socket;
 
 import domain.controller.ClientNetworkController;
+import domain.controller.NetworkEventPublisher;
 
 public class SocketReader implements Runnable{
 	InputStream inputStream;
+	NetworkEventPublisher networkController;
 
-	public SocketReader(Socket socket) {
+	public SocketReader(Socket socket, NetworkEventPublisher networkController) {
 		super();
 		try {
+			this.networkController = networkController;
 			this.inputStream = socket.getInputStream();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -27,10 +30,10 @@ public class SocketReader implements Runnable{
 		BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
 		String line;
 		try {
-			while ((line = bufferedReader.readLine()) != null) {
-				if(line.equals("gameStarted")) {
-					ClientNetworkController
-				}
+			while (true) {
+				line = bufferedReader.readLine();
+				System.out.println(line);
+				networkController.publishNetworkEvent(line);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

@@ -28,6 +28,7 @@ public class HostGameFrame extends JFrame implements HostNetworkControllerListen
 	private JButton hostGameButton;
 	private JTextField portTextField;
 	
+	private HostNetworkController hostNetworkController;
 	private MainMenuFrame mainMenu;
 
 	/**
@@ -48,7 +49,7 @@ public class HostGameFrame extends JFrame implements HostNetworkControllerListen
 		hostGameButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(hostGameButton.getText()=="Host Game") {
-					HostNetworkController hostNetworkController = new HostNetworkController(portTextField.getText());
+					hostNetworkController = new HostNetworkController(portTextField.getText());
 					hostNetworkController.addHostNetworkControllerListener(HostGameFrame.this);
 					hostGameButton.setText("Start Game");
 					hostGameButton.setEnabled(false);
@@ -59,6 +60,7 @@ public class HostGameFrame extends JFrame implements HostNetworkControllerListen
 					mainMenu.dispose();
 					dispose();
 					gameFrame.setVisible(true);
+					hostNetworkController.sendToClients("gameStarted");
 				}
 			}
 		});
