@@ -11,6 +11,7 @@ import javax.swing.border.EmptyBorder;
 
 import domain.controller.GameController;
 import domain.model.Board;
+import domain.model.GameState;
 import domain.model.dice.Cup;
 import domain.model.dice.faceValue;
 
@@ -33,12 +34,14 @@ public class GameFrame extends JFrame {
 
 	private JPanel contentPane;
 	private GameController gameController;
+	private GameState game;
 	/**
 	 * Create the frame.
 	 */
 	public GameFrame() {
 		setTitle("Monopoly");
 		gameController = GameController.getInstance();
+		game = GameState.getInstance();
 		setBounds(new Rectangle(0, 0, 1500, 1000));
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -59,7 +62,7 @@ public class GameFrame extends JFrame {
 			contentPane.add(panel);
 			panel.setLayout(null);
 			
-			JLabel playerLabel = new JLabel("Player 1\r\n");
+			JLabel playerLabel = new JLabel(game.getCurrentPlayer().getName());
 			playerLabel.setHorizontalAlignment(SwingConstants.CENTER);
 			playerLabel.setFont(new Font("Tahoma", Font.PLAIN, 25));
 			playerLabel.setBounds(105, 0, 300, 100);
