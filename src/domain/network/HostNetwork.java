@@ -8,13 +8,13 @@ import java.util.Observable;
 
 public class HostNetwork extends Observable implements Runnable{
 	private ServerSocket serverSocket;
-	private ArrayList<Socket> connections;
+	private ArrayList<Socket> socketList;
 	
 	protected int port;
 	
 	public HostNetwork(String port) {
 		try {
-			connections = new ArrayList<Socket>();
+			socketList = new ArrayList<Socket>();
 			this.port = Integer.parseInt(port);
 			serverSocket = new ServerSocket(this.port);
 		} catch (IOException e) {
@@ -26,7 +26,7 @@ public class HostNetwork extends Observable implements Runnable{
 		while(true) {
 			try {
 				Socket connection = serverSocket.accept();
-				connections.add(connection);
+				socketList.add(connection);
 				setChanged();
 				notifyObservers(connection);
 			} catch (IOException e) {
@@ -35,7 +35,7 @@ public class HostNetwork extends Observable implements Runnable{
 		}
 	}
 
-	public ArrayList<Socket> getConnections() {
-		return connections;
+	public ArrayList<Socket> getSocketList() {
+		return socketList;
 	}
 }

@@ -18,7 +18,7 @@ import com.google.gson.Gson;
 
 import domain.controller.HostNetworkController;
 import domain.controller.NetworkControllerListener;
-import domain.controller.NetworkEventPublisher;
+import domain.controller.NetworkController;
 
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
@@ -116,7 +116,7 @@ public class HostGameFrame extends JFrame implements NetworkControllerListener{
 	}
 
 	@Override
-	public void onNetworkEvent(NetworkEventPublisher source, HashMap<String, String> map) {
+	public void onNetworkEvent(NetworkController source, HashMap<String, String> map) {
 		String type = map.get("type");
 		switch(type){
 		case "newConnection":

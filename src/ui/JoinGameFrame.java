@@ -15,7 +15,7 @@ import javax.swing.border.EmptyBorder;
 
 import domain.controller.ClientNetworkController;
 import domain.controller.NetworkControllerListener;
-import domain.controller.NetworkEventPublisher;
+import domain.controller.NetworkController;
 import sun.net.NetworkClient;
 
 import javax.swing.JLabel;
@@ -109,7 +109,7 @@ public class JoinGameFrame extends JFrame implements NetworkControllerListener{
 	}
 
 	@Override
-	public void onNetworkEvent(NetworkEventPublisher source, HashMap<String, String> map) {
+	public void onNetworkEvent(NetworkController source, HashMap<String, String> map) {
 		String type = map.get("type");
 		switch(type){
 		case "connectedToHost":

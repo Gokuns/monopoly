@@ -11,15 +11,15 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 import domain.controller.ClientNetworkController;
-import domain.controller.NetworkEventPublisher;
+import domain.controller.NetworkController;
 
 public class SocketReader implements Runnable{
 	private InputStream inputStream;
-	private NetworkEventPublisher networkController;
+	private NetworkController networkController;
 
 	private Gson gson;
 
-	public SocketReader(Socket socket, NetworkEventPublisher networkController) {
+	public SocketReader(Socket socket, NetworkController networkController) {
 		super();
 		try {
 			this.gson = new Gson();

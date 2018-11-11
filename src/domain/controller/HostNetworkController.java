@@ -15,7 +15,7 @@ import com.google.gson.Gson;
 import domain.network.HostNetwork;
 import domain.network.SocketReader;
 
-public class HostNetworkController implements Observer, NetworkEventPublisher{
+public class HostNetworkController implements Observer, NetworkController{
 	private HostNetwork network;
 	private List<NetworkControllerListener> listeners;
 	private List<SocketReader> socketReaders;
@@ -63,11 +63,12 @@ public class HostNetworkController implements Observer, NetworkEventPublisher{
 		return connectionCount;
 	}
 	
-	public void sendToClients(String message) {
-		for  (Socket s : network.getConnections()) {
+	public void sendMessageToPlayers(HashMap<String, String> map) {
+		for  (Socket s : network.getSocketList()) {
 			try {
+				String json = gson.toJson(map);
 				PrintWriter out = new PrintWriter(s.getOutputStream(), true);
-				out.println(message);
+				out.println(json);
 				out.flush();
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -78,7 +79,6 @@ public class HostNetworkController implements Observer, NetworkEventPublisher{
 	public void gameStarted() {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("type", "gameStarted");
-		String json = gson.toJson(map);
-		sendToClients(json);
+		sendMessageToPlayers(map);
 	}
 }

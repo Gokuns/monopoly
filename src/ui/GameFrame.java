@@ -12,7 +12,7 @@ import javax.swing.border.EmptyBorder;
 import domain.controller.GameController;
 import domain.controller.HostNetworkController;
 import domain.controller.NetworkControllerListener;
-import domain.controller.NetworkEventPublisher;
+import domain.controller.NetworkController;
 import domain.model.Board;
 import domain.model.GameState;
 import domain.model.dice.Cup;
@@ -39,19 +39,19 @@ public class GameFrame extends JFrame implements NetworkControllerListener{
 	private JPanel contentPane;
 	private GameController gameController;
 	private GameState game;
-	private NetworkEventPublisher networkController;
-	
+	private NetworkController networkController;
+
 	private JLabel rollLabel;
-	
+
 	/**
 	 * Create the frame.
 	 */
-	public GameFrame(NetworkEventPublisher networkController) {
+	public GameFrame(NetworkController networkController) {
 		setTitle("Monopoly");
-		
+
 		this.networkController = networkController;
 		networkController.addNetworkControllerListener(this);
-		
+
 		gameController = GameController.getInstance();
 		game = GameState.getInstance();
 		setBounds(new Rectangle(0, 0, 1500, 1000));
@@ -61,51 +61,51 @@ public class GameFrame extends JFrame implements NetworkControllerListener{
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		try {
 			Image logoImage = ImageIO.read(new File("monopolyBoard.png"));
 			logoImage = logoImage.getScaledInstance(932, 932, Image.SCALE_SMOOTH);
 			JPanel monopolyLogoPanel = new BackgroundImagePanel(logoImage);
 			monopolyLogoPanel.setBounds(20, 20, 932, 932);
 			contentPane.add(monopolyLogoPanel);
-			
+
 			JPanel panel = new JPanel();
 			panel.setBounds(972, 20, 510, 932);
 			contentPane.add(panel);
 			panel.setLayout(null);
-			
+
 			JLabel playerLabel = new JLabel(game.getCurrentPlayer().getName());
 			playerLabel.setHorizontalAlignment(SwingConstants.CENTER);
 			playerLabel.setFont(new Font("Tahoma", Font.PLAIN, 25));
 			playerLabel.setBounds(105, 0, 300, 100);
 			panel.add(playerLabel);
-			
+
 			JButton rollButton = new JButton("Roll");
 			rollButton.setBounds(105, 172, 300, 40);
-			
+
 			panel.add(rollButton);
-			
+
 			JButton moveButton = new JButton("Move");
 			moveButton.setBounds(105, 225, 300, 40);
 			panel.add(moveButton);
-			
+
 			moveButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					gameController.move();
-					
+
 				}
-				
-				
+
+
 			});
-			
+
 			rollLabel = new JLabel("You rolled: X X X");
 			rollLabel.setHorizontalAlignment(SwingConstants.CENTER);
 			rollLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 			rollLabel.setBounds(105, 278, 300, 40);
 			panel.add(rollLabel);
-			
+
 			rollButton.addActionListener(new ActionListener() {
-				
+
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					HashMap<String, String> map = new HashMap<String, String>();
@@ -119,7 +119,7 @@ public class GameFrame extends JFrame implements NetworkControllerListener{
 						map.put("faceValue" + i, faceValList.get(i).toString());
 					}
 					rollLabel.setText(str);
-					networkController.publishNetworkEvent(map);
+					networkController.sendMessageToPlayers(map);
 				}
 			});
 
@@ -129,16 +129,20 @@ public class GameFrame extends JFrame implements NetworkControllerListener{
 	}
 
 	@Override
-	public void onNetworkEvent(NetworkEventPublisher source, HashMap<String, String> map) {
+	public void onNetworkEvent(NetworkController source, HashMap<String, String> map) {
 		String type = map.get("type");
 		switch(type){
 		case "roll":
-			String str = "=>";
-			for(int i=0; i<3;i++) {
-				str += " " + map.get("faceValue"+i);
-			}
-			
-			rollLabel.setText(str);
+			EventQueue.invokeLater(new Runnable() {
+				@Override
+				public void run() {
+					String str = "=>";
+					for(int i=0; i<3;i++) {
+						str += " " + map.get("faceValue"+i);
+					}
+					rollLabel.setText(str);
+				}
+			});
 			break;
 		}
 	}
