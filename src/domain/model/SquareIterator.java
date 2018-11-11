@@ -127,44 +127,48 @@ public class SquareIterator implements ISquareIteratator {
 	@Override
 	public Square outer() {
 		// TODO Auto-generated method stub
-		if(currentSquare == innerTransitPenns) {
-			currentSquare = middleTransitPenns;
-		}else if(currentSquare == innerTransitShort) {
-			currentSquare = middleTransitShort;
-		}else if(currentSquare == middleTransitReading) {
-			currentSquare = outerTransitReading;
-		}else if(currentSquare == middleTransitBnO) {
-			currentSquare = outerTransitBnO;
+		if(hasOuter()){
+			if(currentSquare == innerTransitPenns) {
+				currentSquare = middleTransitPenns;
+			}else if(currentSquare == innerTransitShort) {
+				currentSquare = middleTransitShort;
+			}else if(currentSquare == middleTransitReading) {
+				currentSquare = outerTransitReading;
+			}else if(currentSquare == middleTransitBnO) {
+				currentSquare = outerTransitBnO;
+			}
+			return currentSquare;
 		}
-		return currentSquare;
+		return null; //if it doesnt have any outer.
 	}
 	
 	public int outerIndex() {
 		List<Square> layer= findLayer(currentSquare);
-		int result;
-		result = layer.indexOf(outer());
+		int result = layer.indexOf(outer());
 		return result;
 	}
 
 	@Override
 	public Square inner() {
 		// TODO Auto-generated method stub
-		if(currentSquare == middleTransitPenns) {
-			currentSquare = innerTransitPenns;
-		}else if(currentSquare == middleTransitShort) {
-			currentSquare = innerTransitShort;
-		}else if(currentSquare == outerTransitReading) {
-			currentSquare = middleTransitReading;
-		}else if(currentSquare == outerTransitBnO) {
-			currentSquare = middleTransitBnO;
+		if(hasInner()){
+			if(currentSquare == middleTransitPenns) {
+				currentSquare = innerTransitPenns;
+			}else if(currentSquare == middleTransitShort) {
+				currentSquare = innerTransitShort;
+			}else if(currentSquare == outerTransitReading) {
+				currentSquare = middleTransitReading;
+			}else if(currentSquare == outerTransitBnO) {
+				currentSquare = middleTransitBnO;
+			}
+			return currentSquare;
 		}
-		return currentSquare;
+		return null; //if it doesnt have any inner.
 	}
 	
 	public int innerIndex() {
 		List<Square> layer= findLayer(currentSquare);
-		int result;
-		result = layer.indexOf(inner());
+		int result = layer.indexOf(inner());
 		return result;
 	}
 	

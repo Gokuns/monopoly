@@ -95,7 +95,8 @@ public class Board {
 	}
 	private Square getPlayersSquare(Player p) {
 		Piece piece = p.getPiece();
-		return piece.getCurrentSquare();
+		Square playerSquare = piece.getCurrentSquare();
+		return playerSquare;
 	}
 	private void setPlayersSquare(Player p, Square s) {
 		Piece piece = p.getPiece();
