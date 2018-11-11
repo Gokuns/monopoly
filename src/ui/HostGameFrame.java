@@ -17,13 +17,14 @@ import javax.swing.border.EmptyBorder;
 import com.google.gson.Gson;
 
 import domain.controller.HostNetworkController;
-import domain.controller.HostNetworkControllerListener;
+import domain.controller.NetworkControllerListener;
+import domain.controller.NetworkEventPublisher;
 
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class HostGameFrame extends JFrame implements HostNetworkControllerListener{
+public class HostGameFrame extends JFrame implements NetworkControllerListener{
 
 	private JPanel contentPane;
 	private JPanel monopolyLogoPanel;
@@ -53,13 +54,13 @@ public class HostGameFrame extends JFrame implements HostNetworkControllerListen
 			public void actionPerformed(ActionEvent e) {
 				if(hostGameButton.getText()=="Host Game") {
 					hostNetworkController = new HostNetworkController(portTextField.getText());
-					hostNetworkController.addHostNetworkControllerListener(HostGameFrame.this);
+					hostNetworkController.addNetworkControllerListener(HostGameFrame.this);
 					hostGameButton.setText("Start Game");
 					hostGameButton.setEnabled(false);
 					textLabel.setText("Waiting for players");
 					portTextField.setEditable(false);
 				} else if(hostGameButton.getText().equals("Start Game")) {
-					GameFrame gameFrame = new GameFrame();
+					GameFrame gameFrame = new GameFrame(hostNetworkController);
 					mainMenu.dispose();
 					dispose();
 					gameFrame.setVisible(true);
@@ -115,11 +116,13 @@ public class HostGameFrame extends JFrame implements HostNetworkControllerListen
 	}
 
 	@Override
-	public void onNetworkEvent(HostNetworkController source, HashMap<String, String> map) {
+	public void onNetworkEvent(NetworkEventPublisher source, HashMap<String, String> map) {
 		String type = map.get("type");
 		switch(type){
 		case "newConnection":
-			clientConnected(source.getConnectionCount());
+			int connectionCount = Integer.parseInt(map.get("connectionCount"));
+			clientConnected(connectionCount);
+			break;
 		}
 	}
 	

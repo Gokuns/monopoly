@@ -24,7 +24,6 @@ public class GameController {
 	
 	public void roll() {
 		board.rollCup();
-		
 	}
 	
 	

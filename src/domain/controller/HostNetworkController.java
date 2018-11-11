@@ -4,17 +4,21 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
 import com.google.gson.Gson;
 
 import domain.network.HostNetwork;
+import domain.network.SocketReader;
 
 public class HostNetworkController implements Observer, NetworkEventPublisher{
 	private HostNetwork network;
-	private ArrayList<HostNetworkControllerListener> listeners;
+	private List<NetworkControllerListener> listeners;
+	private List<SocketReader> socketReaders;
 
 	private int connectionCount;
 	private Gson gson;
@@ -22,7 +26,10 @@ public class HostNetworkController implements Observer, NetworkEventPublisher{
 	public HostNetworkController(String port) {
 		super();
 		gson = new Gson();
-		listeners = new ArrayList<HostNetworkControllerListener>();
+		listeners = Collections.synchronizedList(
+				new ArrayList<NetworkControllerListener>());
+		socketReaders = Collections.synchronizedList(
+				new ArrayList<SocketReader>());
 		connectionCount = 0;
 		network = new HostNetwork(port);
 		network.addObserver(this);
@@ -33,16 +40,21 @@ public class HostNetworkController implements Observer, NetworkEventPublisher{
 	public void update(Observable o, Object arg) {
 		connectionCount++;
 		HashMap<String, String> map = new HashMap<String, String>();
+		Socket socket = (Socket)arg;
+		SocketReader socketReader = new SocketReader(socket, this);
+		socketReaders.add(socketReader);
+		new Thread(socketReader).start();
 		map.put("type", "newConnection");
+		map.put("connectionCount", connectionCount+"");
 		publishNetworkEvent(map);
 	}
 	
-	public void addHostNetworkControllerListener(HostNetworkControllerListener listener) {
+	public void addNetworkControllerListener(NetworkControllerListener listener) {
 		listeners.add(listener);
 	}
 	
 	public void publishNetworkEvent(HashMap<String, String> map) {
-		for (HostNetworkControllerListener listener : listeners) {
+		for (NetworkControllerListener listener : listeners) {
 			listener.onNetworkEvent(this, map);
 		}
 	}

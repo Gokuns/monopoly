@@ -10,6 +10,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import domain.controller.GameController;
+import domain.controller.HostNetworkController;
+import domain.controller.NetworkControllerListener;
+import domain.controller.NetworkEventPublisher;
 import domain.model.Board;
 import domain.model.GameState;
 import domain.model.dice.Cup;
@@ -20,6 +23,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -30,16 +34,24 @@ import java.awt.GridLayout;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 
-public class GameFrame extends JFrame {
+public class GameFrame extends JFrame implements NetworkControllerListener{
 
 	private JPanel contentPane;
 	private GameController gameController;
 	private GameState game;
+	private NetworkEventPublisher networkController;
+	
+	private JLabel rollLabel;
+	
 	/**
 	 * Create the frame.
 	 */
-	public GameFrame() {
+	public GameFrame(NetworkEventPublisher networkController) {
 		setTitle("Monopoly");
+		
+		this.networkController = networkController;
+		networkController.addNetworkControllerListener(this);
+		
 		gameController = GameController.getInstance();
 		game = GameState.getInstance();
 		setBounds(new Rectangle(0, 0, 1500, 1000));
@@ -86,7 +98,7 @@ public class GameFrame extends JFrame {
 				
 			});
 			
-			JLabel rollLabel = new JLabel("You rolled: X X X");
+			rollLabel = new JLabel("You rolled: X X X");
 			rollLabel.setHorizontalAlignment(SwingConstants.CENTER);
 			rollLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 			rollLabel.setBounds(105, 278, 300, 40);
@@ -96,20 +108,38 @@ public class GameFrame extends JFrame {
 				
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					// TODO Auto-generated method stub
-					
+					HashMap<String, String> map = new HashMap<String, String>();
+					map.put("type", "roll");
 					gameController.roll();
 					Cup cup = Cup.getInstance();
 					List<faceValue> faceValList = cup.getFaceValues();
 					String str = "=>";
-					for(int i=0; i<3;i++)
+					for(int i=0; i<3;i++) {
 						str += " " + faceValList.get(i).toString();
+						map.put("faceValue" + i, faceValList.get(i).toString());
+					}
 					rollLabel.setText(str);
+					networkController.publishNetworkEvent(map);
 				}
 			});
 
 		} catch (IOException e) {
 			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void onNetworkEvent(NetworkEventPublisher source, HashMap<String, String> map) {
+		String type = map.get("type");
+		switch(type){
+		case "roll":
+			String str = "=>";
+			for(int i=0; i<3;i++) {
+				str += " " + map.get("faceValue"+i);
+			}
+			
+			rollLabel.setText(str);
+			break;
 		}
 	}
 }

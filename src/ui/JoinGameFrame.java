@@ -14,7 +14,8 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import domain.controller.ClientNetworkController;
-import domain.controller.ClientNetworkControllerListener;
+import domain.controller.NetworkControllerListener;
+import domain.controller.NetworkEventPublisher;
 import sun.net.NetworkClient;
 
 import javax.swing.JLabel;
@@ -22,7 +23,7 @@ import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class JoinGameFrame extends JFrame implements ClientNetworkControllerListener{
+public class JoinGameFrame extends JFrame implements NetworkControllerListener{
 
 	private JPanel contentPane;
 	private JTextField IPTextField;
@@ -33,7 +34,7 @@ public class JoinGameFrame extends JFrame implements ClientNetworkControllerList
 	
 	private MainMenuFrame mainMenu;
 	
-	private ClientNetworkController networkController;
+	private ClientNetworkController clientNetworkController;
 
 	/**
 	 * Create the frame.
@@ -41,8 +42,8 @@ public class JoinGameFrame extends JFrame implements ClientNetworkControllerList
 	public JoinGameFrame(MainMenuFrame mainMenu) {
 		this.mainMenu = mainMenu;
 		
-		networkController = new ClientNetworkController();
-		networkController.addClientNetworkControllerListener(this);
+		clientNetworkController = new ClientNetworkController();
+		clientNetworkController.addNetworkControllerListener(this);
 		
 		setTitle("Join Game");
 		setResizable(false);
@@ -61,7 +62,7 @@ public class JoinGameFrame extends JFrame implements ClientNetworkControllerList
 		joinWithIPButton = new JButton("Join with IP");
 		joinWithIPButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				networkController.initializeClientNetwork(IPTextField.getText(), portTextField.getText());
+				clientNetworkController.initializeClientNetwork(IPTextField.getText(), portTextField.getText());
 			}
 		});
 		joinWithIPButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -108,14 +109,14 @@ public class JoinGameFrame extends JFrame implements ClientNetworkControllerList
 	}
 
 	@Override
-	public void onNetworkEvent(ClientNetworkController source, HashMap<String, String> map) {
+	public void onNetworkEvent(NetworkEventPublisher source, HashMap<String, String> map) {
 		String type = map.get("type");
 		switch(type){
 		case "connectedToHost":
 			connected();
 			break;
 		case "gameStarted":
-			GameFrame gameFrame = new GameFrame();
+			GameFrame gameFrame = new GameFrame(clientNetworkController);
 			mainMenu.dispose();
 			dispose();
 			gameFrame.setVisible(true);

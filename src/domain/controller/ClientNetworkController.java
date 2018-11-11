@@ -1,20 +1,23 @@
 package domain.controller;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 
 import domain.network.ClientNetwork;
 import domain.network.SocketReader;
 
 public class ClientNetworkController implements NetworkEventPublisher{
 	private ClientNetwork network;
-	private ArrayList<ClientNetworkControllerListener> listeners;
+	private List<NetworkControllerListener> listeners;
 	
 	private SocketReader socketReader;
 	
 	
 	public ClientNetworkController() {
-		listeners = new ArrayList<ClientNetworkControllerListener>();
+		listeners = Collections.synchronizedList(
+				new ArrayList<NetworkControllerListener>());
 	}
 	
 	public void initializeClientNetwork(String IP, String port) {
@@ -26,12 +29,13 @@ public class ClientNetworkController implements NetworkEventPublisher{
 		publishNetworkEvent(map);
 	}
 	
-	public void addClientNetworkControllerListener(ClientNetworkControllerListener listener) {
+	public void addNetworkControllerListener(NetworkControllerListener listener) {
 		listeners.add(listener);
 	}
 	
 	public void publishNetworkEvent(HashMap<String, String> map) {
-		for (ClientNetworkControllerListener listener : listeners) {
+		for (int i = 0; i < listeners.size(); i++) {
+			NetworkControllerListener listener = listeners.get(i);
 			listener.onNetworkEvent(this, map);
 		}
 	}
