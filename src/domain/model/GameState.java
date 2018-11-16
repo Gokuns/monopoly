@@ -7,10 +7,17 @@ import domain.model.specialSquares.payCorners.Go;
 
 public class GameState {
 	private static GameState game;
-	private Player currentPlayer = new Player("Player 1", 0, new Piece());
+	private Player player1 = new Player("Player 1", 0, new Piece());
+	private Player player2 = new Player("Player 2", 1, new Piece());
+	private Player player3 = new Player("Player 3", 2, new Piece());
+	private Player currentPlayer = player1;
 	private int nPlayers;
 	private ArrayList<Player> playerList;
-	private ArrayList<Player> orderedPlayerList;
+	private ArrayList<Player> orderedPlayerList = new ArrayList<Player>() {{
+	    add(player1);
+	    add(player2);
+	    add(player3);
+	}};
 	private static Board board = Board.getInstance();
 	private static Cup cup = Cup.getInstance();
 	
@@ -25,7 +32,9 @@ public class GameState {
 	
 	//2189139812390
 	
-	private Player getNextPlayer() {
+	
+	
+	public Player getNextPlayer() {
 		
 		int nPlayers = orderedPlayerList.size();
 		int currentPlayerID = currentPlayer.getID();

@@ -11,6 +11,7 @@ import domain.model.dice.faceValue;
 public class GameController {
 	private static GameController controller;
 	private Board board = Board.getInstance();
+	private GameState gameState = GameState.getInstance();
 	
 	
 	private GameController() {}
@@ -32,5 +33,10 @@ public class GameController {
 		System.out.println("Piece move Completed");
 	}
 	
+	public void endTurn() {
+		gameState.getCurrentPlayer().setTurn(false);
+		gameState.getNextPlayer().setTurn(true);
+		gameState.setCurrentPlayer(gameState.getNextPlayer());
+	}
 	
 }

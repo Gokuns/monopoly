@@ -79,6 +79,10 @@ public class GameFrame extends JFrame implements NetworkControllerListener{
 			playerLabel.setFont(new Font("Tahoma", Font.PLAIN, 25));
 			playerLabel.setBounds(105, 0, 300, 100);
 			panel.add(playerLabel);
+			
+			JButton endTurnButton = new JButton("End Turn");
+			endTurnButton.setBounds(105, 119, 300, 40);
+			panel.add(endTurnButton);
 
 			JButton rollButton = new JButton("Roll");
 			rollButton.setBounds(105, 172, 300, 40);
@@ -88,10 +92,23 @@ public class GameFrame extends JFrame implements NetworkControllerListener{
 			JButton moveButton = new JButton("Move");
 			moveButton.setBounds(105, 225, 300, 40);
 			panel.add(moveButton);
+			
+			endTurnButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					gameController.endTurn();
+					playerLabel.setText(game.getCurrentPlayer().getName());
+					//System.out.println("It is " + game.getCurrentPlayer().getName() +"'s turn");
 
+				}
+
+
+			});
+			
+			
 			moveButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					gameController.move();
+					
 
 				}
 

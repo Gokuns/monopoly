@@ -11,7 +11,6 @@ public class Board {
 	private GameState game = GameState.getInstance();
 	private static Board board;
 	List<List<Square>> Squares = new ArrayList<List<Square>>();
-	private Player currentPlayer = game.getCurrentPlayer();
 	private static Cup cup = Cup.getInstance();
 	private SquareIterator iter;
 	
@@ -28,6 +27,10 @@ public class Board {
 		return board;
 		
 	}
+	
+	
+	
+	
 	
 	private void initiateSquares() {
 		List<Square> layerOne = new ArrayList<Square>();
@@ -58,26 +61,26 @@ public class Board {
 		faceValue secondDieVal = diceValues.get(1);
 		faceValue speedDieVal = diceValues.get(2);
 		if(firstDieVal == secondDieVal && secondDieVal == speedDieVal) {
-			currentPlayer.setRolledTriple(true);
+			game.getCurrentPlayer().setRolledTriple(true);
 		}else if(firstDieVal == secondDieVal || firstDieVal==speedDieVal || secondDieVal==speedDieVal) {
-			currentPlayer.setRolledDouble(true);
+			game.getCurrentPlayer().setRolledDouble(true);
 		}else if(speedDieVal.name().equals("MRMONOPOLY")) {
-			currentPlayer.setRolledMrMonopoly(true);
+			game.getCurrentPlayer().setRolledMrMonopoly(true);
 		}else if(secondDieVal.name().equals("BUS")) {
-			currentPlayer.setRolledBus(true);
+			game.getCurrentPlayer().setRolledBus(true);
 		}
 			
 	}
 	
 	public void movePiece() {
-		Square currentSquare = getPlayersSquare(currentPlayer);
+		Square currentSquare = getPlayersSquare(game.getCurrentPlayer());
 		iter = new SquareIterator(currentSquare, Squares);
 		int movement = calculateMovement();
 		for (int i=0;i<movement;i++) {
 			currentSquare = iter.next();
 		}
-		setPlayersSquare(currentPlayer,currentSquare);
-		System.out.println("Moved to " + getPlayersSquare(currentPlayer).getName());
+		setPlayersSquare(game.getCurrentPlayer(),currentSquare);
+		System.out.println("Moved to " + getPlayersSquare(game.getCurrentPlayer()).getName());
 		
 		
 	}
