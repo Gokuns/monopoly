@@ -1,23 +1,8 @@
 package ui;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.Image;
-
-import javax.imageio.ImageIO;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
-import domain.controller.GameController;
-import domain.controller.HostNetworkController;
-import domain.controller.NetworkControllerListener;
-import domain.controller.NetworkController;
-import domain.model.Board;
-import domain.model.GameState;
-import domain.model.dice.Cup;
-import domain.model.dice.faceValue;
-
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -26,13 +11,20 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.BoxLayout;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.awt.Font;
+import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+
+import domain.controller.GameController;
+import domain.controller.NetworkController;
+import domain.controller.NetworkControllerListener;
+import domain.model.GameState;
+import domain.model.dice.Cup;
+import domain.model.dice.faceValue;
 
 public class GameFrame extends JFrame implements NetworkControllerListener{
 
@@ -42,6 +34,7 @@ public class GameFrame extends JFrame implements NetworkControllerListener{
 	private NetworkController networkController;
 
 	private JLabel rollLabel;
+	private JLabel playerLabel;
 
 	/**
 	 * Create the frame.
@@ -53,7 +46,9 @@ public class GameFrame extends JFrame implements NetworkControllerListener{
 		networkController.addNetworkControllerListener(this);
 
 		gameController = GameController.getInstance();
+		gameController.setNetworkController(networkController);
 		game = GameState.getInstance();
+		
 		setBounds(new Rectangle(0, 0, 1500, 1000));
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -74,7 +69,7 @@ public class GameFrame extends JFrame implements NetworkControllerListener{
 			contentPane.add(panel);
 			panel.setLayout(null);
 
-			JLabel playerLabel = new JLabel(game.getCurrentPlayer().getName());
+			playerLabel = new JLabel(game.getCurrentPlayer().getName());
 			playerLabel.setHorizontalAlignment(SwingConstants.CENTER);
 			playerLabel.setFont(new Font("Tahoma", Font.PLAIN, 25));
 			playerLabel.setBounds(105, 0, 300, 100);
@@ -144,6 +139,14 @@ public class GameFrame extends JFrame implements NetworkControllerListener{
 				}
 			});
 			break;
+		case "endTurn":
+			EventQueue.invokeLater(new Runnable() {
+				@Override
+				public void run() {
+					String str = map.get("currentPlayer");
+					playerLabel.setText(str);
+				}
+			});
 		}
 	}
 }

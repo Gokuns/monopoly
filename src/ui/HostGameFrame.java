@@ -125,6 +125,4 @@ public class HostGameFrame extends JFrame implements NetworkControllerListener{
 			break;
 		}
 	}
-	
-	
 }

@@ -16,7 +16,6 @@ import javax.swing.border.EmptyBorder;
 import domain.controller.ClientNetworkController;
 import domain.controller.NetworkControllerListener;
 import domain.controller.NetworkController;
-import sun.net.NetworkClient;
 
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
