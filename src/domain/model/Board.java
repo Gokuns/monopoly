@@ -13,6 +13,7 @@ public class Board {
 	List<List<Square>> Squares = new ArrayList<List<Square>>();
 	private static Cup cup = Cup.getInstance();
 	private SquareIterator iter;
+	private int poolBalance;
 	
 	private Board() {
 		initiateSquares();
@@ -104,6 +105,14 @@ public class Board {
 	private void setPlayersSquare(Player p, Square s) {
 		Piece piece = p.getPiece();
 		piece.setCurrentSquare(s);
+	}
+
+	public int getPoolBalance() {
+		return poolBalance;
+	}
+
+	public void setPoolBalance(int poolBalance) {
+		this.poolBalance = poolBalance;
 	}
 
 }
