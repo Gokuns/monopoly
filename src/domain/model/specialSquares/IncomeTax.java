@@ -3,11 +3,10 @@ package domain.model.specialSquares;
 import domain.model.Player;
 import domain.model.SpecialSquare;
 
-public class TransitStation extends SpecialSquare{
+public class IncomeTax extends SpecialSquare{
 
-	public TransitStation(String name, String description) {
+	public IncomeTax(String name, String description) {
 		super(name, description);
-		this.setTransit(true);
 		// TODO Auto-generated constructor stub
 	}
 
