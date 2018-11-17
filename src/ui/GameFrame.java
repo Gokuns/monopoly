@@ -23,6 +23,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -32,6 +33,8 @@ import javax.swing.BoxLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Font;
+import java.awt.Graphics;
+
 import javax.swing.SwingConstants;
 
 public class GameFrame extends JFrame implements NetworkControllerListener{
@@ -40,6 +43,8 @@ public class GameFrame extends JFrame implements NetworkControllerListener{
 	private GameController gameController;
 	private GameState game;
 	private NetworkController networkController;
+	private int numberOfPlayers;
+	ArrayList<Ball> balls = new ArrayList<Ball>();
 
 	private JLabel rollLabel;
 
@@ -54,7 +59,7 @@ public class GameFrame extends JFrame implements NetworkControllerListener{
 
 		gameController = GameController.getInstance();
 		game = GameState.getInstance();
-		setBounds(new Rectangle(0, 0, 1500, 1000));
+		setBounds(new Rectangle(0, 0, 1300, 800));
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		contentPane = new JPanel();
@@ -63,12 +68,31 @@ public class GameFrame extends JFrame implements NetworkControllerListener{
 		contentPane.setLayout(null);
 
 		try {
+			
+			numberOfPlayers = game.getOrderedPlayerList().size();
+			for(int i = 0;i<numberOfPlayers; i++) {
+				String x = "Piece" + Integer.toString(i);
+				Ball ballx = new Ball(x, i);
+				balls.add(ballx);
+				ballx.setBounds(585 - i*5 ,575, 30, 30);
+				contentPane.add(ballx);
+				//System.out.println(balls.get(i).getName());
+				
+			}
+			
+			//Ball ball1 = new Ball("ball1",3);
+			//balls.add(ball1);
+			//ball1.setBounds(585, 575, 30, 30);
+			//contentPane.add(ball1);
+			
+			//ball1.setBounds(575,575, 30, 30);
+			//contentPane.add(ball1);
 			Image logoImage = ImageIO.read(new File("monopolyBoard.png"));
-			logoImage = logoImage.getScaledInstance(932, 932, Image.SCALE_SMOOTH);
+			logoImage = logoImage.getScaledInstance(700, 700, Image.SCALE_SMOOTH);
 			JPanel monopolyLogoPanel = new BackgroundImagePanel(logoImage);
-			monopolyLogoPanel.setBounds(20, 20, 932, 932);
+			monopolyLogoPanel.setBounds(20, 20, 700, 700);
 			contentPane.add(monopolyLogoPanel);
-
+			
 			JPanel panel = new JPanel();
 			panel.setBounds(972, 20, 510, 932);
 			contentPane.add(panel);
@@ -77,20 +101,20 @@ public class GameFrame extends JFrame implements NetworkControllerListener{
 			JLabel playerLabel = new JLabel(game.getCurrentPlayer().getName());
 			playerLabel.setHorizontalAlignment(SwingConstants.CENTER);
 			playerLabel.setFont(new Font("Tahoma", Font.PLAIN, 25));
-			playerLabel.setBounds(105, 0, 300, 100);
+			playerLabel.setBounds(0, 0, 300, 100);
 			panel.add(playerLabel);
 			
 			JButton endTurnButton = new JButton("End Turn");
-			endTurnButton.setBounds(105, 119, 300, 40);
+			endTurnButton.setBounds(0, 119, 300, 40);
 			panel.add(endTurnButton);
 
 			JButton rollButton = new JButton("Roll");
-			rollButton.setBounds(105, 172, 300, 40);
+			rollButton.setBounds(0, 172, 300, 40);
 
 			panel.add(rollButton);
 
 			JButton moveButton = new JButton("Move");
-			moveButton.setBounds(105, 225, 300, 40);
+			moveButton.setBounds(0, 225, 300, 40);
 			panel.add(moveButton);
 			
 			endTurnButton.addActionListener(new ActionListener() {
@@ -118,7 +142,7 @@ public class GameFrame extends JFrame implements NetworkControllerListener{
 			rollLabel = new JLabel("You rolled: X X X");
 			rollLabel.setHorizontalAlignment(SwingConstants.CENTER);
 			rollLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
-			rollLabel.setBounds(105, 278, 300, 40);
+			rollLabel.setBounds(0, 278, 300, 40);
 			panel.add(rollLabel);
 
 			rollButton.addActionListener(new ActionListener() {
@@ -144,6 +168,8 @@ public class GameFrame extends JFrame implements NetworkControllerListener{
 			e.printStackTrace();
 		}
 	}
+	
+	
 
 	@Override
 	public void onNetworkEvent(NetworkController source, HashMap<String, String> map) {
