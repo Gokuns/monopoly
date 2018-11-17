@@ -476,6 +476,118 @@ public class DeedFactory {
 				put("hotelPrice", get("housePrice")*4+50);
 				put("skyPrice", get("hotelPrice")+50);
 			}});
+		}else if (name.equals("Dekalb") || name.equals("Young")) {
+			return new Deed("Street", new HashMap<String, Integer>(){{
+				put("rent",17);
+				put("oneHouse", 85);
+				put("twoHouse", 240);
+				put("threeHouse", 670);
+				put("fourHouse", 840);
+				put("hotel", 1025);
+				put("sky", 1525);
+				put("mortgage", 90);
+				put("housePrice", 100);
+				put("hotelPrice", get("housePrice")*4+100);
+				put("skyPrice", get("hotelPrice")+100);
+			}});
+		}else if (name.equals("Decatur") || name.equals("Peachtree")) {
+			return new Deed("Street", new HashMap<String, Integer>(){{
+				put("rent",20);
+				put("oneHouse", 100);
+				put("twoHouse", 300);
+				put("threeHouse", 750);
+				put("fourHouse", 925);
+				put("hotel", 1100);
+				put("sky", 1600);
+				put("mortgage", 100);
+				put("housePrice", 100);
+				put("hotelPrice", get("housePrice")*4+100);
+				put("skyPrice", get("hotelPrice")+100);
+			}});
+		}else if (name.equals("Randolph") || name.equals("LakeShore")) {
+			return new Deed("Street", new HashMap<String, Integer>(){{
+				put("rent",23);
+				put("oneHouse", 115);
+				put("twoHouse", 345);
+				put("threeHouse", 825);
+				put("fourHouse", 1010);
+				put("hotel", 1180);
+				put("sky", 2180);
+				put("mortgage", 110);
+				put("housePrice", 150);
+				put("hotelPrice", get("housePrice")*4+150);
+				put("skyPrice", get("hotelPrice")+150);
+			}});
+		}else if (name.equals("Wacker") || name.equals("Michigan")) {
+			return new Deed("Street", new HashMap<String, Integer>(){{
+				put("rent",26);
+				put("oneHouse", 130);
+				put("twoHouse", 390);
+				put("threeHouse", 900);
+				put("fourHouse", 1100);
+				put("hotel", 1275);
+				put("sky", 2275);
+				put("mortgage", 120);
+				put("housePrice", 150);
+				put("hotelPrice", get("housePrice")*4+150);
+				put("skyPrice", get("hotelPrice")+150);
+			}});
+		}else if (name.equals("SouthTemple") || name.equals("WestTemple")) {
+			return new Deed("Street", new HashMap<String, Integer>(){{
+				put("rent",32);
+				put("oneHouse", 160);
+				put("twoHouse", 470);
+				put("threeHouse", 1050);
+				put("fourHouse", 1250);
+				put("hotel", 1500);
+				put("sky", 2500);
+				put("mortgage", 130);
+				put("housePrice", 200);
+				put("hotelPrice", get("housePrice")*4+200);
+				put("skyPrice", get("hotelPrice")+200);
+			}});
+		}else if (name.equals("NorthTemple") || name.equals("TempleSquare")) {
+			return new Deed("Street", new HashMap<String, Integer>(){{
+				put("rent",38);
+				put("oneHouse", 170);
+				put("twoHouse", 520);
+				put("threeHouse", 1125);
+				put("fourHouse", 1425);
+				put("hotel", 1275);
+				put("sky", 1650);
+				put("mortgage", 140);
+				put("housePrice", 200);
+				put("hotelPrice", get("housePrice")*4+200);
+				put("skyPrice", get("hotelPrice")+200);
+			}});
+		}else if (name.equals("South") || name.equals("Broad")) {
+			return new Deed("Street", new HashMap<String, Integer>(){{
+				put("rent",45);
+				put("oneHouse", 210);
+				put("twoHouse", 575);
+				put("threeHouse", 1300);
+				put("fourHouse", 1600);
+				put("hotel", 1800);
+				put("sky", 3300);
+				put("mortgage", 150);
+				put("housePrice", 250);
+				put("hotelPrice", get("housePrice")*4+250);
+				put("skyPrice", get("hotelPrice")+250);
+			}});
+		}else if (name.equals("Walnut") || name.equals("Market")) {
+			return new Deed("Street", new HashMap<String, Integer>(){{
+				put("rent",55);
+				put("oneHouse", 225);
+				put("twoHouse", 630);
+				put("threeHouse", 1450);
+				put("fourHouse", 1750);
+				put("hotel", 2050);
+				put("sky", 3550);
+				put("mortgage", 160);
+				put("housePrice", 250);
+				put("hotelPrice", get("housePrice")*4+250);
+				put("skyPrice", get("hotelPrice")+250);
+			}});
 		}
 		
 		
