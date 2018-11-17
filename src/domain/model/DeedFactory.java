@@ -2,16 +2,16 @@ package domain.model;
 
 import java.util.HashMap;
 
-public class DeedFactiory {
-	private static DeedFactiory deedFactory;
+public class DeedFactory {
+	private static DeedFactory deedFactory;
 	
-	private DeedFactiory() {
+	private DeedFactory() {
 		
 	}
 	
-	public static synchronized DeedFactiory getInstance() {
+	public static synchronized DeedFactory getInstance() {
 		if(deedFactory == null) {
-			deedFactory = new DeedFactiory();
+			deedFactory = new DeedFactory();
 		}
 		return deedFactory;
 	}

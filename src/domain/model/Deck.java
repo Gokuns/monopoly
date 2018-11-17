@@ -26,11 +26,6 @@ public class Deck {
 		}
 	}
 	
-	private Card draw(){
-		Card card = cards.get(0);
-		return card;
-	}
-	
 	private void initializeCommunityCards(List<Card> cards){
 		Card c = new PayHospitalBillsCard();
 		cards.add(c);
@@ -44,5 +39,26 @@ public class Deck {
 	private void initializeRoll3Cards(List<Card> cards){
 		Card c = new Roll3Card(faceValue.ONE, faceValue.TWO, faceValue.THREE);
 		cards.add(c);
+	}
+	
+	public List<Card> getCards() {
+		return cards;
+	}
+
+	public void setCards(List<Card> cards) {
+		this.cards = cards;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	private Card draw(){
+		Card card = cards.get(0);
+		return card;
 	}
 }
