@@ -4,6 +4,7 @@ import java.util.List;
 
 import domain.model.chanceCards.GoToJailCard;
 import domain.model.communityChestCards.PayHospitalBillsCard;
+import domain.model.dice.faceValue;
 import domain.model.specialSquares.ChanceAction;
 import domain.model.specialSquares.CommunityChest;
 
@@ -41,7 +42,7 @@ public class Deck {
 	}
 	
 	private void initializeRoll3Cards(List<Card> cards){
-		Card c = new PayHospitalBillsCard();
+		Card c = new Roll3Card(faceValue.ONE, faceValue.TWO, faceValue.THREE);
 		cards.add(c);
 	}
 }
