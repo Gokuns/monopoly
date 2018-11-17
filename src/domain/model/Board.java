@@ -10,7 +10,7 @@ import domain.model.specialSquares.payCorners.Go;
 public class Board {
 	private GameState game = GameState.getInstance();
 	private static Board board;
-	List<List<Square>> Squares = new ArrayList<List<Square>>();
+	private List<List<Square>> Squares = new ArrayList<List<Square>>();
 	private static Cup cup = Cup.getInstance();
 	private SquareIterator iter;
 	private int poolBalance;
@@ -86,6 +86,11 @@ public class Board {
 		
 	}
 	
+	public void movePiece(Square squareToMove) {
+		setPlayersSquare(game.getCurrentPlayer(),squareToMove);
+		System.out.println("Moved to " + getPlayersSquare(game.getCurrentPlayer()).getName());
+	}
+	
 	private int calculateMovement() {
 
 		List<Integer> fValues = cup.convertFaceValueToInt();
@@ -114,5 +119,13 @@ public class Board {
 	public void setPoolBalance(int poolBalance) {
 		this.poolBalance = poolBalance;
 	}
+	
+	public List<List<Square>> getSquares() {
+		return Squares;
+	}
+
+	public void setSquares(List<List<Square>> squares) {
+		Squares = squares;
+	}	
 
 }

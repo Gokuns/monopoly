@@ -2,7 +2,8 @@ package domain.model;
 
 import java.util.List;
 
-import domain.model.communityChestCards.payHospitalBills;
+import domain.model.chanceCards.GoToJailCard;
+import domain.model.communityChestCards.PayHospitalBillsCard;
 import domain.model.specialSquares.ChanceAction;
 import domain.model.specialSquares.CommunityChest;
 
@@ -30,17 +31,17 @@ public class Deck {
 	}
 	
 	private void initializeCommunityCards(List<Card> cards){
-		Card c = new payHospitalBills();
+		Card c = new PayHospitalBillsCard();
 		cards.add(c);
 	}
 	
 	private void initializeChanceCards(List<Card> cards){
-		Card c = new payHospitalBills();
+		Card c = new GoToJailCard();
 		cards.add(c);
 	}
 	
 	private void initializeRoll3Cards(List<Card> cards){
-		Card c = new payHospitalBills();
+		Card c = new PayHospitalBillsCard();
 		cards.add(c);
 	}
 }

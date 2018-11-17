@@ -5,7 +5,7 @@ import domain.model.CommunityChestCard;
 import domain.model.GameState;
 import domain.model.Player;
 
-public class payHospitalBills extends CommunityChestCard{
+public class PayHospitalBillsCard extends CommunityChestCard{
 
 	
 	@Override
