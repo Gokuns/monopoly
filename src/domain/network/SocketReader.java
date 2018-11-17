@@ -16,7 +16,7 @@ import domain.controller.NetworkController;
 public class SocketReader implements Runnable{
 	private InputStream inputStream;
 	private NetworkController networkController;
-
+	private Socket socket;
 	private Gson gson;
 
 	public SocketReader(Socket socket, NetworkController networkController) {
@@ -38,7 +38,8 @@ public class SocketReader implements Runnable{
 				line = bufferedReader.readLine();
 				if(line != null) {
 					HashMap<String, String> map = gson.fromJson(line, HashMap.class);
-					networkController.publishNetworkEvent(map);
+					System.out.println(map.get("type"));
+					networkController.handleMessage(map);
 				}
 			}
 		} catch (IOException e) {

@@ -1,6 +1,7 @@
 package domain.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import domain.model.dice.Cup;
 import domain.model.specialSquares.payCorners.Go;
@@ -9,10 +10,11 @@ public class GameState {
 	private static GameState game;
 	private Player currentPlayer = new Player("Player 1", 0, new Piece());
 	private int nPlayers;
-	private ArrayList<Player> playerList;
+	private ArrayList<Player> playerList = new ArrayList<Player>();
 	private ArrayList<Player> orderedPlayerList;
 	private static Board board = Board.getInstance();
 	private static Cup cup = Cup.getInstance();
+	private ArrayList<GameStateListener> listeners = new ArrayList<GameStateListener>();
 	
 	private GameState() {}
 	
@@ -23,6 +25,15 @@ public class GameState {
 		return game;
 	}
 	
+	public void addListener(GameStateListener listener) {
+		listeners.add(listener);
+	}
+	
+	public void publish(HashMap<String, String> map) {
+		for(GameStateListener listener : listeners) {
+			listener.update(this, map);
+		}
+	}
 	
 	
 	private Player getNextPlayer() {

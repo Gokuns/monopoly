@@ -17,30 +17,44 @@ public class ClientNetworkController implements NetworkController{
 	private ClientNetwork network;
 	private List<NetworkControllerListener> listeners;
 	private Gson gson;
+	private GameController gameController;
 	
 	private SocketReader socketReader;
 	
 	
 	public ClientNetworkController() {
+		gameController = GameController.getInstance();
 		gson = new Gson();
 		listeners = Collections.synchronizedList(
 				new ArrayList<NetworkControllerListener>());
 	}
 	
-	public void initializeClientNetwork(String IP, String port) {
+	public void initializeClientNetwork(String IP, String port, String username) {
 		network = new ClientNetwork(IP, port);
 		socketReader = new SocketReader(network.getSocket(), this);
 		new Thread(socketReader).start();
 		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("type", "connectedToHost");
-		publishNetworkEvent(map);
+		map.put("type", "newConnection");
+		map.put("username", username);
+		sendMessageToPlayers(map);
+		publishToListeners(map);
 	}
 	
 	public void addNetworkControllerListener(NetworkControllerListener listener) {
 		listeners.add(listener);
 	}
 	
-	public void publishNetworkEvent(HashMap<String, String> map) {
+	public void handleMessage(HashMap<String, String> map) {
+		String type = map.get("type");
+		switch(type){
+		case "gameStarted":
+			publishToListeners(map);
+			break;
+		}
+		
+	}
+		
+	public void publishToListeners(HashMap<String, String> map) {
 		for (int i = 0; i < listeners.size(); i++) {
 			NetworkControllerListener listener = listeners.get(i);
 			listener.onNetworkEvent(this, map);
