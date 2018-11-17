@@ -654,10 +654,10 @@ public class DeedFactory {
 				put("eightUtility", 150);
 				put("mortgage", 75);
 			}});
+		}else {
+			System.out.println("Deeds name is wrong");
+			return null;
 		}
-		
-		
-		else return null;
 		
 	}
 	
