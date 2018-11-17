@@ -56,7 +56,7 @@ public class Roll3Card extends Card{
 			}
 			
 			playerRoll3Cards.remove(r3Card);//removal of the roll3Card from player's inventory upon usage.
-			
+			p.setRoll3Cards(playerRoll3Cards);
 		}
 		
 		
