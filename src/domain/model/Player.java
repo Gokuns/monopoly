@@ -1,7 +1,10 @@
 package domain.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import domain.model.specialSquares.ChanceAction;
+import domain.model.specialSquares.CommunityChest;
 import domain.model.specialSquares.payCorners.Go;
 
 public class Player {
@@ -21,6 +24,8 @@ public class Player {
 	private boolean rolledTriple;		//true if the player rolled triple
 	private boolean rolledMrMonopoly;		//true if the player rolled Mr Monopoly in speed die
 	private boolean rolledBus;		//true if the player rolled bus in speed die
+	private List<ChanceAction> chanceCards; //chance action cards belonging to the player
+	private List<CommunityChest> communityCards; //community chest cards belonging to the player
 	
 
 	public Player (String name, int ID, Piece piece) {
