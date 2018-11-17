@@ -5,8 +5,6 @@ import java.util.List;
 import domain.model.chanceCards.GoToJailCard;
 import domain.model.communityChestCards.PayHospitalBillsCard;
 import domain.model.dice.faceValue;
-import domain.model.specialSquares.ChanceAction;
-import domain.model.specialSquares.CommunityChest;
 
 public class Deck {
 	
@@ -58,7 +56,7 @@ public class Deck {
 	}
 
 	private Card draw(){
-		Card card = cards.get(0);
+		Card card = cards.get(0);//draw from the top
 		return card;
 	}
 }

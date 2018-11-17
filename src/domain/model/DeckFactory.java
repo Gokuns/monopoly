@@ -11,7 +11,7 @@ public class DeckFactory {
 	
 	public static synchronized DeckFactory getInstance(){
 		if(deckFactory == null){
-			return new DeckFactory();
+			deckFactory = new DeckFactory();
 		}
 		return deckFactory;
 	}
