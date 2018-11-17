@@ -33,8 +33,6 @@ public class SquareFactory {
 			return new RollThree("Roll3", "Draw a roll three card.");
 		}else if(name.equals("Community Chest")){
 			return new CommunityChest("Community Chest", "Draw a community chest card.");
-		}else if(name.equals("")){
-			return new FreeParking("freeParking", "You can stay here for free!!!");
 		}else if(name.equals("Chance")){
 			return new ChanceAction("Chance", "Draw a chance action card.");
 		}else if(name.equals("Transit")){
