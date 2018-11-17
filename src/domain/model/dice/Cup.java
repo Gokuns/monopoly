@@ -65,5 +65,22 @@ public class Cup {
 	public void setFaceValues(List<faceValue> faceValues) {
 		this.faceValues = faceValues;
 	}
+	
+	public List<faceValue> roll3Dice(){
+		
+		regularDie.roll();
+		faceValue regularVal = regularDie.getCurrentFaceValue();
+		faceValues.set(0, regularVal);
+		
+		regularDie.roll();
+		regularVal = regularDie.getCurrentFaceValue();
+		faceValues.set(1, regularVal);
+		
+		regularDie.roll();
+		regularVal = regularDie.getCurrentFaceValue();
+		faceValues.set(2, regularVal);
+		
+		return faceValues;
+	}
 
 }

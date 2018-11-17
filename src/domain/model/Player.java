@@ -24,8 +24,9 @@ public class Player {
 	private boolean rolledTriple;		//true if the player rolled triple
 	private boolean rolledMrMonopoly;		//true if the player rolled Mr Monopoly in speed die
 	private boolean rolledBus;		//true if the player rolled bus in speed die
-	private List<ChanceAction> chanceCards; //chance action cards belonging to the player
-	private List<CommunityChest> communityCards; //community chest cards belonging to the player
+	private List<ChanceCard> chanceCards; //chance action cards belonging to the player
+	private List<CommunityChestCard> communityCards; //community chest cards belonging to the player
+	private List<Roll3Card> roll3Card; //community chest cards belonging to the player
 	
 
 	public Player (String name, int ID, Piece piece) {
@@ -183,6 +184,30 @@ public class Player {
 	 */
 	public void setRolledBus(boolean rolledBus) {
 		this.rolledBus = rolledBus;
+	}
+
+	public List<Roll3Card> getRoll3Card() {
+		return roll3Card;
+	}
+
+	public void setRoll3Card(List<Roll3Card> roll3Card) {
+		this.roll3Card = roll3Card;
+	}
+
+	public List<CommunityChestCard> getCommunityCards() {
+		return communityCards;
+	}
+
+	public void setCommunityCards(List<CommunityChestCard> communityCards) {
+		this.communityCards = communityCards;
+	}
+
+	public List<ChanceCard> getChanceCards() {
+		return chanceCards;
+	}
+
+	public void setChanceCards(List<ChanceCard> chanceCards) {
+		this.chanceCards = chanceCards;
 	}
 	
 	
