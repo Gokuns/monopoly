@@ -26,7 +26,7 @@ public class Player {
 	private boolean rolledBus;		//true if the player rolled bus in speed die
 	private List<ChanceCard> chanceCards; //chance action cards belonging to the player
 	private List<CommunityChestCard> communityCards; //community chest cards belonging to the player
-	private List<Roll3Card> roll3Card; //community chest cards belonging to the player
+	private List<Roll3Card> roll3Cards; //roll 3 cards belonging to the player
 	
 
 	public Player (String name, int ID, Piece piece) {
@@ -186,12 +186,12 @@ public class Player {
 		this.rolledBus = rolledBus;
 	}
 
-	public List<Roll3Card> getRoll3Card() {
-		return roll3Card;
+	public List<Roll3Card> getRoll3Cards() {
+		return roll3Cards;
 	}
 
-	public void setRoll3Card(List<Roll3Card> roll3Card) {
-		this.roll3Card = roll3Card;
+	public void setRoll3Cards(List<Roll3Card> roll3Cards) {
+		this.roll3Cards = roll3Cards;
 	}
 
 	public List<CommunityChestCard> getCommunityCards() {
