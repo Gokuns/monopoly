@@ -588,6 +588,48 @@ public class DeedFactory {
 				put("hotelPrice", get("housePrice")*4+250);
 				put("skyPrice", get("hotelPrice")+250);
 			}});
+		}else if (name.equals("Mulholland")) {
+			return new Deed("Street", new HashMap<String, Integer>(){{
+				put("rent",70);
+				put("oneHouse", 350);
+				put("twoHouse", 750);
+				put("threeHouse", 1600);
+				put("fourHouse", 1850);
+				put("hotel", 2100);
+				put("sky", 3600);
+				put("mortgage", 175);
+				put("housePrice", 300);
+				put("hotelPrice", get("housePrice")*4+300);
+				put("skyPrice", get("hotelPrice")+300);
+			}});
+		}else if (name.equals("Ventura")) {
+			return new Deed("Street", new HashMap<String, Integer>(){{
+				put("rent",80);
+				put("oneHouse", 400);
+				put("twoHouse", 825);
+				put("threeHouse", 1800);
+				put("fourHouse", 2175);
+				put("hotel", 2550);
+				put("sky", 4050);
+				put("mortgage", 200);
+				put("housePrice", 300);
+				put("hotelPrice", get("housePrice")*4+300);
+				put("skyPrice", get("hotelPrice")+300);
+			}});
+		}else if (name.equals("Rodeo")) {
+			return new Deed("Street", new HashMap<String, Integer>(){{
+				put("rent",90);
+				put("oneHouse", 450);
+				put("twoHouse", 900);
+				put("threeHouse", 2000);
+				put("fourHouse", 2500);
+				put("hotel", 3000);
+				put("sky", 4500);
+				put("mortgage", 250);
+				put("housePrice", 300);
+				put("hotelPrice", get("housePrice")*4+300);
+				put("skyPrice", get("hotelPrice")+300);
+			}});
 		}
 		
 		
