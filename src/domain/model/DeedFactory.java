@@ -630,6 +630,30 @@ public class DeedFactory {
 				put("hotelPrice", get("housePrice")*4+300);
 				put("skyPrice", get("hotelPrice")+300);
 			}});
+		}else if (name.equals("CheckerCab") || name.equals("BlacknWhiteCab") ||
+				name.equals("YellowCab") || name.equals("UteCab")) {
+			return new Deed("CabCompany", new HashMap<String, Integer>(){{
+				put("rent", 30);
+				put("twoCab", 60);
+				put("threeCab", 120);
+				put("fourCab", 240);
+				put("mortgage", 150);
+			}});
+		}else if (name.equals("WaterWorks") || name.equals("CableCompany") ||
+				name.equals("ElectricCompany") || name.equals("InternetServiceProvider") ||
+				name.equals("GasCompany") || name.equals("TelephoneCompany") ||
+				name.equals("TrashCollector") || name.equals("SewageSystem")) {
+			return new Deed("UtilityCompany", new HashMap<String, Integer>(){{
+				put("oneUtility", 4);
+				put("twoUtility", 10);
+				put("threeUtility", 20);
+				put("fourUtility", 40);
+				put("fiveUtility", 80);
+				put("sixUtility", 100);
+				put("sevenUtility", 120);
+				put("eightUtility", 150);
+				put("mortgage", 75);
+			}});
 		}
 		
 		
