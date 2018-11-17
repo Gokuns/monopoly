@@ -47,21 +47,7 @@ public class DeedFactory {
 				put("hotelPrice", get("housePrice")*4+50);
 				put("skyPrice", get("hotelPrice")+50);
 			}});
-		}else if (name.equals("Oriental")) {
-			return new Deed("Street", new HashMap<String, Integer>(){{
-				put("rent",6);
-				put("oneHouse", 30);
-				put("twoHouse", 90);
-				put("threeHouse", 270);
-				put("fourHouse", 400);
-				put("hotel", 550);
-				put("sky", 1050);
-				put("mortgage", 50);
-				put("housePrice", 50);
-				put("hotelPrice", get("housePrice")*4+50);
-				put("skyPrice", get("hotelPrice")+50);
-			}});
-		}else if (name.equals("Vermont")) {
+		}else if (name.equals("Oriental") || name.equals("Vermont")) {
 			return new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",6);
 				put("oneHouse", 30);
@@ -447,6 +433,48 @@ public class DeedFactory {
 				put("housePrice", 100);
 				put("hotelPrice", get("housePrice")*4+100);
 				put("skyPrice", get("hotelPrice")+100);
+			}});
+		}else if (name.equals("Kirby") || name.equals("Cullen")) {
+			return new Deed("Street", new HashMap<String, Integer>(){{
+				put("rent",14);
+				put("oneHouse", 70);
+				put("twoHouse", 200);
+				put("threeHouse", 880);
+				put("fourHouse", 750);
+				put("hotel", 950);
+				put("sky", 1450);
+				put("mortgage", 80);
+				put("housePrice", 100);
+				put("hotelPrice", get("housePrice")*4+100);
+				put("skyPrice", get("hotelPrice")+100);
+			}});
+		}else if (name.equals("Canal")) {
+			return new Deed("Street", new HashMap<String, Integer>(){{
+				put("rent",5);
+				put("oneHouse", 25);
+				put("twoHouse", 80);
+				put("threeHouse", 225);
+				put("fourHouse", 360);
+				put("hotel", 600);
+				put("sky", 1000);
+				put("mortgage", 50);
+				put("housePrice", 50);
+				put("hotelPrice", get("housePrice")*4+50);
+				put("skyPrice", get("hotelPrice")+50);
+			}});
+		}else if (name.equals("Magazine") || name.equals("Bourbon")) {
+			return new Deed("Street", new HashMap<String, Integer>(){{
+				put("rent",8);
+				put("oneHouse", 40);
+				put("twoHouse", 100);
+				put("threeHouse", 300);
+				put("fourHouse", 450);
+				put("hotel", 600);
+				put("sky", 1100);
+				put("mortgage", 60);
+				put("housePrice", 50);
+				put("hotelPrice", get("housePrice")*4+50);
+				put("skyPrice", get("hotelPrice")+50);
 			}});
 		}
 		
