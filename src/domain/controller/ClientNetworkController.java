@@ -11,12 +11,13 @@ import java.util.List;
 import com.google.gson.Gson;
 
 import domain.model.GameState;
+import domain.model.GameStateListener;
 import domain.model.Piece;
 import domain.model.Player;
 import domain.network.ClientNetwork;
 import domain.network.SocketReader;
 
-public class ClientNetworkController implements NetworkController{
+public class ClientNetworkController implements NetworkController, GameStateListener{
 	private ClientNetwork network;
 	private List<NetworkControllerListener> listeners;
 	
@@ -36,6 +37,7 @@ public class ClientNetworkController implements NetworkController{
 		network = new ClientNetwork(IP, port);
 		socketReader = new SocketReader(network.getSocket(), this);
 		new Thread(socketReader).start();
+		gameState.addNetworkListener(this);
 		
 		Player localPlayer = new Player(username, 0, new Piece());
 		gameController.setLocalPlayer(localPlayer);
@@ -56,6 +58,9 @@ public class ClientNetworkController implements NetworkController{
 		case "gameStarted":
 			gameController.initializePlayers(map);
 			publishToListeners(map);
+			break;
+		case "roll":
+			gameState.publishToUIListeners(map);
 			break;
 		}
 	}
@@ -78,5 +83,10 @@ public class ClientNetworkController implements NetworkController{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public void update(GameState source, HashMap<String, String> map) {
+		sendMessageToPlayers(map);
 	}
 }

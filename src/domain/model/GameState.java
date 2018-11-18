@@ -8,25 +8,24 @@ import domain.model.dice.Cup;
 
 public class GameState {
 	private static GameState game;
-	private Player player1 = new Player("Player 1", 0, new Piece());
-	private Player player2 = new Player("Player 2", 1, new Piece());
-	private Player player3 = new Player("Player 3", 2, new Piece());
-	private Player currentPlayer = player1;
+//	private Player player1 = new Player("Player 1", 0, new Piece());
+//	private Player player2 = new Player("Player 2", 1, new Piece());
+//	private Player player3 = new Player("Player 3", 2, new Piece());
+	private Player currentPlayer;
 	private int nPlayers;
 	private ArrayList<Player> playerList = new ArrayList<Player>();
+	private ArrayList<Player> orderedPlayerList = new ArrayList<Player>();
+//	@SuppressWarnings("serial")
+//	private ArrayList<Player> orderedPlayerList = new ArrayList<Player>() {{
+//	    add(player1);
+//	    add(player2);
+//	    add(player3);
+//	}};
 	
-	@SuppressWarnings("serial")
-	private ArrayList<Player> orderedPlayerList = new ArrayList<Player>() {{
-	    add(player1);
-	    add(player2);
-	    add(player3);
-	}};
-	
-	@SuppressWarnings("unused")
 	private static Board board = Board.getInstance();
-	@SuppressWarnings("unused")
 	private static Cup cup = Cup.getInstance();
-	private ArrayList<GameStateListener> listeners = new ArrayList<GameStateListener>();
+	private ArrayList<GameStateListener> networkListeners = new ArrayList<GameStateListener>();
+	private ArrayList<GameStateListener> UIListeners = new ArrayList<GameStateListener>();
 	
 	private GameState() {}
 	
@@ -38,12 +37,22 @@ public class GameState {
 	}
 	
 	//2189139812390
-	public void addListener(GameStateListener listener) {
-		listeners.add(listener);
+	public void addNetworkListener(GameStateListener listener) {
+		networkListeners.add(listener);
 	}
 	
-	public void publish(HashMap<String, String> map) {
-		for(GameStateListener listener : listeners) {
+	public void addUIListener(GameStateListener listener) {
+		UIListeners.add(listener);
+	}
+	
+	public void publishToNetworkListeners(HashMap<String, String> map) {
+		for(GameStateListener listener : networkListeners) {
+			listener.update(this, map);
+		}
+	}
+	
+	public void publishToUIListeners(HashMap<String, String> map) {
+		for(GameStateListener listener : UIListeners) {
 			listener.update(this, map);
 		}
 	}
@@ -61,7 +70,6 @@ public class GameState {
 				break;
 			}
 		}
-		
 		if(currentPlayerIndex == nPlayers - 1) {
 			nextPlayer = orderedPlayerList.get(0);
 		}else {

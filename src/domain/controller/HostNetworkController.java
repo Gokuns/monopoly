@@ -31,7 +31,7 @@ public class HostNetworkController implements NetworkController, GameStateListen
 
 	public HostNetworkController(String port) {
 		super();
-		gameState.addListener(this);
+		gameState.addNetworkListener(this);
 		gson = new Gson();
 		listeners = Collections.synchronizedList(
 				new ArrayList<NetworkControllerListener>());
@@ -65,6 +65,10 @@ public class HostNetworkController implements NetworkController, GameStateListen
 			map.put("connectionCount", Integer.toString(connectionCount));
 			publishToListeners(map);
 			break;
+		case "roll":
+			gameState.publishToUIListeners(map);
+			sendMessageToPlayers(map);
+			break;
 		}
 	}
 
@@ -94,6 +98,7 @@ public class HostNetworkController implements NetworkController, GameStateListen
 	public void gameStarted(String playerName) {
 		Player localPlayer = new Player(playerName, 0, new Piece());
 		gameController.setLocalPlayer(localPlayer);
+		gameState.setCurrentPlayer(localPlayer);
 		ArrayList<Player> playerList = gameState.getPlayerList();
 		playerList.add(localPlayer);
 		HashMap<String, String> map = new HashMap<String, String>();
@@ -106,6 +111,7 @@ public class HostNetworkController implements NetworkController, GameStateListen
 			map.put("player"+i+"Name", p.getName());
 			map.put("player"+i+"ID", Integer.toString(p.getID()));
 		}
+		gameState.setOrderedPlayerList(playerList);
 		sendMessageToPlayers(map);
 	}
 

@@ -1,6 +1,5 @@
 package ui;
 
-//import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Image;
@@ -9,8 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
-//import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
@@ -21,33 +20,11 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import domain.controller.GameController;
-//import domain.controller.NetworkControllerListener;
 import domain.controller.NetworkController;
 import domain.model.GameState;
 import domain.model.GameStateListener;
-//import domain.model.dice.Cup;
-//import domain.model.dice.faceValue;
-
-//import java.awt.Rectangle;
-//import java.awt.event.ActionEvent;
-//import java.awt.event.ActionListener;
-//import java.awt.event.MouseAdapter;
-//import java.awt.event.MouseEvent;
-//import java.io.File;
-//import java.io.IOException;
 import java.util.ArrayList;
-//import java.util.HashMap;
-//import java.util.List;
 
-//import javax.swing.JButton;
-//import javax.swing.JLabel;
-//import javax.swing.BoxLayout;
-//import java.awt.FlowLayout;
-//import java.awt.GridLayout;
-//import java.awt.Font;
-//import java.awt.Graphics;
-
-//import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
 public class GameFrame extends JFrame implements GameStateListener{
@@ -55,10 +32,8 @@ public class GameFrame extends JFrame implements GameStateListener{
 	private JPanel contentPane;
 	private GameController gameController;
 	private GameState gameState;
-	@SuppressWarnings("unused")
-	private NetworkController networkController;
 	private int numberOfPlayers;
-	ArrayList<Ball> balls;
+	private ArrayList<Ball> balls;
 	private BoardLayers boardLayers;
 	private JLabel playerLabel;
 	private JLabel rollLabel;
@@ -70,11 +45,10 @@ public class GameFrame extends JFrame implements GameStateListener{
 	public GameFrame(NetworkController networkController) {
 		setTitle("Monopoly");
 
-
 		gameController = GameController.getInstance();
 		gameController.setNetworkController(networkController);
 		gameState = GameState.getInstance();
-		gameState.addListener(this);
+		gameState.addUIListener(this);
 
 		setBounds(new Rectangle(0, 0, 1300, 800));
 		setResizable(false);
@@ -85,11 +59,9 @@ public class GameFrame extends JFrame implements GameStateListener{
 		contentPane.setLayout(null);
 
 		try {
-			
 			numberOfPlayers = gameState.getPlayerList().size();
 			boardLayers = new BoardLayers();
 			balls = new ArrayList<Ball>();
-			
 			
 			for(int i = 0;i<numberOfPlayers; i++) {
 				String x = "Piece" + Integer.toString(i);
@@ -120,7 +92,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 			contentPane.add(panel);
 			panel.setLayout(null);
 
-			playerLabel = new JLabel(gameState.getCurrentPlayer().getName());
+			playerLabel = new JLabel("Player X");
 			playerLabel.setHorizontalAlignment(SwingConstants.CENTER);
 			playerLabel.setFont(new Font("Tahoma", Font.PLAIN, 25));
 			playerLabel.setBounds(0, 0, 300, 100);
@@ -197,8 +169,6 @@ public class GameFrame extends JFrame implements GameStateListener{
 			e.printStackTrace();
 		}
 	}
-	
-	
 
 	@Override
 	public void update(GameState source, HashMap<String, String> map) {
