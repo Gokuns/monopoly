@@ -40,7 +40,7 @@ public class Ball extends JPanel {
 			G.setColor(Color.PINK);
 		}
 		
-		G.fillOval(0, 0, 25, 25);
+		G.fillRect(0, 0, 25, 25);
 	}
 
 	public String getName() {

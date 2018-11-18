@@ -54,9 +54,8 @@ public class GameController {
 		gameState.setOrderedPlayerList(playerList);
 		gameState.setCurrentPlayer(playerList.get(0));
 		HashMap<String, String> endTurnMap = new HashMap<String, String>();
-		endTurnMap.put("type", "initUI");
+		endTurnMap.put("type", "gameStarted");
 		endTurnMap.put("currentPlayer", gameState.getCurrentPlayer().getName());
-		gameState.publishToNetworkListeners(endTurnMap);
 		gameState.publishToUIListeners(endTurnMap);
 	}
 	
