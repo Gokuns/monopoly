@@ -92,16 +92,16 @@ public class BoardLayers {
 	}
 	
 	public SquareCoordinates getSquareCoordinates(Square square) {
-		int layer = 1;
+		int layer = 0;
 		int number = 1;
 		if(square.getName().substring(3).equals("1st layer")) {
-			layer = 1;
+			layer = 0;
 		}
 		else if(square.getName().substring(3).equals("2nd layer")) {
-			layer = 2;
+			layer = 1;
 		}
 		else if(square.getName().substring(3).equals("3rd layer")){
-			layer = 3;
+			layer = 2;
 		}
 		char aChar = square.getName().charAt(0);
 		number =  aChar - '0';

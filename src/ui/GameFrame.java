@@ -23,6 +23,7 @@ import domain.controller.GameController;
 import domain.controller.NetworkController;
 import domain.model.GameState;
 import domain.model.GameStateListener;
+import domain.model.Square;
 //import java.util.ArrayList;
 
 
@@ -59,20 +60,10 @@ public class GameFrame extends JFrame implements GameStateListener{
 		contentPane.setLayout(null);
 
 		try {
-			numberOfPlayers = gameState.getPlayerList().size();
+	
 			boardLayers = new BoardLayers();
 			balls = new ArrayList<Ball>();
-			
-			for(int i = 0;i<numberOfPlayers; i++) {
-				String x = "Piece" + Integer.toString(i);
-				Ball ballx = new Ball(x, i);
-				ballx.setBounds(585 - i*5 ,575, 30, 30);
-				balls.add(ballx);
-				contentPane.add(ballx);
-				//System.out.println(balls.get(i).getName());
-				
-			}
-			
+	
 			//Ball ball1 = new Ball("ball1",3);
 			//balls.add(ball1);
 			//ball1.setBounds(585, 575, 30, 30);
@@ -80,6 +71,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 			
 			//ball1.setBounds(575,575, 30, 30);
 			//contentPane.add(ball1);
+			initializeBalls();
 			Image logoImage = ImageIO.read(new File("monopolyBoard.png"));
 			logoImage = logoImage.getScaledInstance(700, 700, Image.SCALE_SMOOTH);
 			JPanel monopolyLogoPanel = new BackgroundImagePanel(logoImage);
@@ -126,14 +118,13 @@ public class GameFrame extends JFrame implements GameStateListener{
 			
 			moveButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					gameController.move();
-					int index = gameState.getOrderedPlayerList().indexOf(gameState.getCurrentPlayer());
-					SquareCoordinates current = boardLayers.getSquareCoordinates(gameState.getPlayerCurrentSquare());
-					int x = current.getX() - 15;
-					int y = current.getY() - 15;
-					balls.get(index).setLocation(x-index*5, y);
-
-
+					
+					Square currentSq = gameState.getPlayerCurrentSquare();
+					System.out.println(currentSq.getName());
+					//SquareCoordinates current = boardLayers.getSquareCoordinates(gameState.getPlayerCurrentSquare());
+					//System.out.println(current.getX() +" "+ current.getY());
+					//gameController.move();
+					//moveUIPiece();
 				}
 			});
 
@@ -168,6 +159,29 @@ public class GameFrame extends JFrame implements GameStateListener{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void initializeBalls() {
+		
+		numberOfPlayers = gameState.getOrderedPlayerList().size();
+		for(int i = 0;i<numberOfPlayers; i++) {
+			String x = "Piece" + Integer.toString(i);
+			Ball ballx = new Ball(x, i);
+			ballx.setBounds(585 - i*5 ,575, 30, 30);
+			balls.add(ballx);
+			contentPane.add(ballx);
+			//System.out.println(balls.get(i).getName());
+		}
+	}
+	
+	public void moveUIPiece() {
+		
+		int index = gameState.getOrderedPlayerList().indexOf(gameState.getCurrentPlayer());
+		SquareCoordinates current = boardLayers.getSquareCoordinates(gameState.getPlayerCurrentSquare());
+		int x = current.getX() - 15;
+		int y = current.getY() - 15;
+		balls.get(index).setLocation(x-index*5, y);
+		
 	}
 
 	@Override
