@@ -3,13 +3,18 @@ package domain.model;
 public abstract class Square {
 	private String name;
 	private String desciption;
+
+	private boolean isTransitOuter = false;
+	private boolean isTransitInner = false;
+
 	private boolean isTransit;
+
 	
 	public Square(String name, String description) {
 		this.name = name;
 		this.desciption = description;
-	}
 
+	}
 	public String getName() {
 		return name;
 	}
