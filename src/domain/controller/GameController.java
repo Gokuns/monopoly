@@ -6,6 +6,7 @@ import java.util.List;
 
 import domain.model.Board;
 import domain.model.GameState;
+import domain.model.Piece;
 import domain.model.Player;
 import domain.model.dice.Cup;
 import domain.model.dice.faceValue;
@@ -37,11 +38,16 @@ public class GameController {
 		}
 	}
 	
-	public void initializePlayers(int playerCount) {
-		gameState.setnPlayers(playerCount);
-		ArrayList<Player> playerList = new ArrayList<Player>();
+	public void initializePlayers(HashMap<String, String> map) {
+		ArrayList<Player> playerList = gameState.getPlayerList();
+		int playerCount = Integer.parseInt(map.get("playerCount"));
 		for(int i=0; i<playerCount; i++) {
-			
+			String key = "player" + i + "Name";
+			String username = map.get(key);
+			key = "player" + i + "ID";
+			int ID = Integer.parseInt(map.get(key));
+			Player p = new Player(username, ID, new Piece());
+			playerList.add(p);
 		}
 	}
 	

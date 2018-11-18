@@ -45,6 +45,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 		gameController = GameController.getInstance();
 		gameController.setNetworkController(networkController);
 		gameState = GameState.getInstance();
+		gameState.addListener(this);
 
 		setBounds(new Rectangle(0, 0, 1500, 1000));
 		setResizable(false);
@@ -97,6 +98,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					gameController.roll();
+					System.out.println(gameState.getPlayerList().toString());
 				}
 			});
 
