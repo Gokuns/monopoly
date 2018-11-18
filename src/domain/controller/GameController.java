@@ -59,7 +59,6 @@ public class GameController {
 		gameState.publishToUIListeners(endTurnMap);
 	}
 	
-	
 	public void move() {
 		board.movePiece();
 		System.out.println("Piece move Completed");
