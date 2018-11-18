@@ -44,7 +44,7 @@ public class SquareFactory {
 	}
 
 	public Square createSquare(String name) {
-		if(name.equals("Roll3")) {
+		if(name.equals("Roll Three")) {
 			return new RollThree("Roll3", "Draw a roll three card.");
 		}
 		else if(name.equals("Community Chest")){
