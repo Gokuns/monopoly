@@ -107,10 +107,10 @@ public class HostNetworkController implements NetworkController, GameStateListen
 		map.put("playerCount", Integer.toString(connectionCount+1));
 		map.put("player"+0+"Name", localPlayer.getName());
 		map.put("player"+0+"ID", Integer.toString(localPlayer.getID()));
-		for(int i = 1; i < connectionCount + 1; i++) {
+		for(int i = 0; i < connectionCount; i++) {
 			Player p = playerList.get(i);
-			map.put("player"+i+"Name", p.getName());
-			map.put("player"+i+"ID", Integer.toString(p.getID()));
+			map.put("player"+(i+1)+"Name", p.getName());
+			map.put("player"+(i+1)+"ID", Integer.toString(p.getID()));
 		}
 		gameState.setOrderedPlayerList(playerList);
 		gameState.publishToUIListeners(map);

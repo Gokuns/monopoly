@@ -158,7 +158,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 	}
 	
 	public void initializeBalls() {
-		
+		System.out.println("Balls initializing");
 		numberOfPlayers = gameState.getOrderedPlayerList().size();
 		for(int i = 0;i<numberOfPlayers; i++) {
 			String x = "Piece" + Integer.toString(i);
@@ -213,6 +213,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 				public void run() {
 					String str = map.get("currentPlayer");
 					playerLabel.setText(str);
+					initializeBalls();
 				}
 			});
 			break;

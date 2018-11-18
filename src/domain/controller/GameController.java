@@ -56,7 +56,6 @@ public class GameController {
 		HashMap<String, String> endTurnMap = new HashMap<String, String>();
 		endTurnMap.put("type", "gameStarted");
 		endTurnMap.put("currentPlayer", gameState.getCurrentPlayer().getName());
-		gameState.publishToNetworkListeners(endTurnMap);
 		gameState.publishToUIListeners(endTurnMap);
 	}
 	
