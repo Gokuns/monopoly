@@ -41,7 +41,7 @@ public class Board {
 			String name = i +", 1st layer";
 			layerOne.add(new Street(name,100+i,"","",null,1,i));
 		}
-		for (int i=0; i<40;i++) {
+		for (int i=1; i<40;i++) {
 			String name = i +", 2nd layer";
 			layerTwo.add(new Street(name,100+i,"","",null,2,i));
 		}
