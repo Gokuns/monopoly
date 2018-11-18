@@ -24,6 +24,7 @@ import domain.controller.NetworkController;
 import domain.model.Board;
 import domain.model.GameState;
 import domain.model.GameStateListener;
+import domain.model.Player;
 import domain.model.Square;
 //import java.util.ArrayList;
 
@@ -193,6 +194,54 @@ public class GameFrame extends JFrame implements GameStateListener{
 					String str = "=>";
 					for(int i=0; i<3;i++) {
 						str += " " + map.get("faceValue"+i);
+					}
+					rollLabel.setText(str);
+				}
+			});
+			break;
+		case "roll3":
+			EventQueue.invokeLater(new Runnable() {
+				@Override
+				public void run() {
+					String str = "=>";
+					for(String pName:map.keySet()){
+						if(!pName.equals("type")){
+							String award = map.get(pName);
+							str += " / " + pName + " has won $" + award + ".";
+						}
+								
+					}
+					rollLabel.setText(str);
+				}
+			});
+			break;
+		case "payHospitalBill":
+			EventQueue.invokeLater(new Runnable() {
+				@Override
+				public void run() {
+					String str = "=>";
+					for(String name:map.keySet()){
+						if(!name.equals("type")){
+							String balance = map.get(name);
+							str += " / " + " Balance of " + name + " has been updated to $"  + balance + ".";
+						}
+								
+					}
+					rollLabel.setText(str);
+				}
+			});
+			break;
+		case "goToJail":
+			EventQueue.invokeLater(new Runnable() {
+				@Override
+				public void run() {
+					String str = "=>";
+					for(String name:map.keySet()){
+						if(!name.equals("type")){
+							String info = map.get(name);
+							str += name + " " + info;
+						}
+								
 					}
 					rollLabel.setText(str);
 				}
