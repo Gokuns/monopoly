@@ -30,9 +30,9 @@ import domain.model.Square;
 
 @SuppressWarnings("serial")
 public class GameFrame extends JFrame implements GameStateListener{
-
-	private JPanel contentPane;
+	
 	private JPanel monopolyLogoPanel;
+	private JPanel contentPane;
 	private GameController gameController;
 	private GameState gameState;
 	private int numberOfPlayers;
