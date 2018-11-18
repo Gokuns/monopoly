@@ -56,6 +56,9 @@ public class ClientNetworkController implements NetworkController{
 			gameController.initializePlayers(map);
 			publishToListeners(map);
 			break;
+		case "roll":
+			gameState.publish(map);
+			break;
 		}
 	}
 		

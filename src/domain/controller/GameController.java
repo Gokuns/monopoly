@@ -35,6 +35,7 @@ public class GameController {
 		for(int i=0; i<3;i++) {
 			map.put("faceValue" + i, faceValList.get(i).toString());
 		}
+		gameState.publish(map);
 	}
 	
 	public void initializePlayers(HashMap<String, String> map) {
@@ -48,6 +49,12 @@ public class GameController {
 			Player p = new Player(username, ID, new Piece());
 			playerList.add(p);
 		}
+		gameState.setOrderedPlayerList(playerList);
+		gameState.setCurrentPlayer(playerList.get(0));
+		HashMap<String, String> endTurnMap = new HashMap<String, String>();
+		endTurnMap.put("type", "endTurn");
+		endTurnMap.put("currentPlayer", gameState.getCurrentPlayer().getName());
+		gameState.publish(endTurnMap);
 	}
 	
 	
