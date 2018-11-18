@@ -55,6 +55,7 @@ public class Board {
 		}else if(secondDieVal.name().equals("BUS")) {
 			game.getCurrentPlayer().setRolledBus(true);
 		}
+		game.getCurrentPlayer().setRolled(true);
 			
 	}
 	
@@ -62,8 +63,14 @@ public class Board {
 		Square currentSquare = getPlayersSquare(game.getCurrentPlayer());
 		iter = new SquareIterator(currentSquare, Squares);
 		int movement = calculateMovement();
+		boolean even = movement%2 == 0;
 		for (int i=0;i<movement;i++) {
-			currentSquare = iter.next();
+			if(currentSquare.isTransit())  {
+				if(even){
+					if(iter.hasInner()) currentSquare = iter.inner();
+					else currentSquare = iter.outer();
+				}
+			}else currentSquare = iter.next();
 		}
 		
 		Square landedOn = currentSquare;
@@ -76,7 +83,7 @@ public class Board {
 		}
 		
 		System.out.println("Moved to " + getPlayersSquare(game.getCurrentPlayer()).getName());
-		
+		currentPlayer.setMoved(true);
 		
 	}
 	
