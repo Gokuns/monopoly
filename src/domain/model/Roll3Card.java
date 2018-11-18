@@ -1,5 +1,6 @@
 package domain.model;
 
+import java.util.HashMap;
 import java.util.List;
 
 import domain.model.dice.Cup;
@@ -26,12 +27,32 @@ public class Roll3Card extends Card{
 		
 		List<Player> playerList = game.getPlayerList();
 		
+		HashMap<String, String> mapForUITransfer = new HashMap<String, String>();
+		mapForUITransfer.put("type", "roll3");
+		
 		for(Player p:playerList){//award all the players except currentPlayer.
+			int oldBalance = p.getBalance();
 			if(!p.equals(currentPlayer))
 				awardPlayer(p, roll3Dice, 1000);
+			int newBalance = p.getBalance();
+			Integer award = newBalance - oldBalance;
+			String playerName = p.getName();
+			if(award != 0)
+				mapForUITransfer.put(playerName, award.toString());
+				
 		}
+		
+		int oldBalance = currentPlayer.getBalance();
+		
 		awardPlayer(currentPlayer, roll3Dice, 1500);//award currentPlayer
 		
+		int newBalance = currentPlayer.getBalance();
+		Integer award = newBalance - oldBalance;
+		String playerName = currentPlayer.getName();
+		if(award != 0)
+			mapForUITransfer.put(playerName, award.toString());
+		
+		game.publishToUIListeners(mapForUITransfer);//displays player names and their corresponding awards in UI.
 	}
 	
 	private void awardPlayer(Player p, List<faceValue> roll3Dice, int threeMatchPrice){
