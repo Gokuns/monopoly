@@ -3,9 +3,9 @@ package domain.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import domain.model.specialSquares.ChanceAction;
-import domain.model.specialSquares.CommunityChest;
-import domain.model.specialSquares.payCorners.Go;
+//import domain.model.specialSquares.ChanceAction;
+//import domain.model.specialSquares.CommunityChest;
+//import domain.model.specialSquares.payCorners.Go;
 
 public class Player {
 	private String name;  //Name of the player

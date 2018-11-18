@@ -3,7 +3,7 @@ package domain.model;
 import java.util.ArrayList;
 
 import domain.model.dice.Cup;
-import domain.model.specialSquares.payCorners.Go;
+//import domain.model.specialSquares.payCorners.Go;
 
 public class GameState {
 	private static GameState game;
@@ -13,12 +13,17 @@ public class GameState {
 	private Player currentPlayer = player1;
 	private int nPlayers;
 	private ArrayList<Player> playerList;
+	
+	@SuppressWarnings("serial")
 	private ArrayList<Player> orderedPlayerList = new ArrayList<Player>() {{
 	    add(player1);
 	    add(player2);
 	    add(player3);
 	}};
+	
+	@SuppressWarnings("unused")
 	private static Board board = Board.getInstance();
+	@SuppressWarnings("unused")
 	private static Cup cup = Cup.getInstance();
 	
 	private GameState() {}

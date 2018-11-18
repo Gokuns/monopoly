@@ -1,24 +1,26 @@
 package domain.model;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+
+//
+//import java.util.ArrayList;
+//import java.util.HashMap;
+//import java.util.List;
 
 import domain.model.specialSquares.ChanceAction;
 import domain.model.specialSquares.CommunityChest;
 import domain.model.specialSquares.FreeParking;
-import domain.model.specialSquares.IncomeTax;
+//import domain.model.specialSquares.IncomeTax;
 import domain.model.specialSquares.Jail;
 import domain.model.specialSquares.RollThree;
 import domain.model.specialSquares.TransitStation;
-import domain.model.specialSquares.payCorners.Go;
+//import domain.model.specialSquares.payCorners.Go;
 
 public class SquareFactory {
 	private static SquareFactory squareFactory;
-	private DeedFactory deedFactory;
+	//private DeedFactory deedFactory;
 	
 	private SquareFactory() {
-		this.deedFactory = DeedFactory.getInstance();
+		//this.deedFactory = DeedFactory.getInstance();
 	}
 	
 	public static synchronized SquareFactory getInstance() {

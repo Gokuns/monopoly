@@ -55,6 +55,7 @@ public class Deck {
 		this.type = type;
 	}
 
+	@SuppressWarnings("unused")
 	private Card draw(){
 		Card card = cards.get(0);//draw from the top
 		return card;

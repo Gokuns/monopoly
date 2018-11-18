@@ -10,6 +10,7 @@ public class Main {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					@SuppressWarnings("unused")
 					MainMenuFrame menu = new MainMenuFrame();
 				} catch (Exception e) {
 					e.printStackTrace();

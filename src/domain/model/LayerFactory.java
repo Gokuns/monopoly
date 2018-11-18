@@ -23,6 +23,7 @@ public class LayerFactory {
 		return layerFactory;
 	}
 	
+	@SuppressWarnings("serial")
 	public List<Square> createLayer(String type) {
 		List<Square> result = new ArrayList<Square>();
 		if(type.equals("inner")) {

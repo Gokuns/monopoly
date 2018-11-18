@@ -1,6 +1,6 @@
 package ui;
 
-import java.awt.BorderLayout;
+//import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Image;
 
@@ -10,10 +10,10 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import domain.controller.GameController;
-import domain.controller.HostNetworkController;
+//import domain.controller.HostNetworkController;
 import domain.controller.NetworkControllerListener;
 import domain.controller.NetworkController;
-import domain.model.Board;
+//import domain.model.Board;
 import domain.model.GameState;
 import domain.model.dice.Cup;
 import domain.model.dice.faceValue;
@@ -29,19 +29,21 @@ import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.BoxLayout;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
+//import javax.swing.BoxLayout;
+//import java.awt.FlowLayout;
+//import java.awt.GridLayout;
 import java.awt.Font;
-import java.awt.Graphics;
+//import java.awt.Graphics;
 
 import javax.swing.SwingConstants;
 
+@SuppressWarnings("serial")
 public class GameFrame extends JFrame implements NetworkControllerListener{
 
 	private JPanel contentPane;
 	private GameController gameController;
 	private GameState game;
+	@SuppressWarnings("unused")
 	private NetworkController networkController;
 	private int numberOfPlayers;
 	ArrayList<Ball> balls = new ArrayList<Ball>();

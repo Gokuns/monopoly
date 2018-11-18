@@ -10,6 +10,7 @@ public class Cup {
 	private static Cup cup;
 	private List<faceValue> faceValues;
 
+	@SuppressWarnings("serial")
 	private Cup() {
 		regularDie = RegularDie.getInstance();
 		speedDie = SpeedDie.getInstance();

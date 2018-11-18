@@ -16,6 +16,7 @@ import domain.controller.GameController;
 import domain.model.dice.Cup;
 import domain.model.dice.faceValue;
 
+@SuppressWarnings("serial")
 public class TestGameFrame extends JFrame {
 
 	private GameController controller;

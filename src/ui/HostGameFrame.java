@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-import com.google.gson.Gson;
+//import com.google.gson.Gson;
 
 import domain.controller.HostNetworkController;
 import domain.controller.NetworkControllerListener;
@@ -24,6 +24,7 @@ import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+@SuppressWarnings("serial")
 public class HostGameFrame extends JFrame implements NetworkControllerListener{
 
 	private JPanel contentPane;
@@ -33,6 +34,7 @@ public class HostGameFrame extends JFrame implements NetworkControllerListener{
 	private JTextField portTextField;
 	
 	private HostNetworkController hostNetworkController;
+	@SuppressWarnings("unused")
 	private MainMenuFrame mainMenu;
 
 	/**

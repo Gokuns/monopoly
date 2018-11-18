@@ -5,6 +5,7 @@ import java.awt.Image;
 
 import javax.swing.JPanel;
 
+@SuppressWarnings("serial")
 public class BackgroundImagePanel extends JPanel{
 	private Image img;
 	

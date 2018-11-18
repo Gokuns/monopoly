@@ -22,6 +22,7 @@ import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+@SuppressWarnings("serial")
 public class JoinGameFrame extends JFrame implements NetworkControllerListener{
 
 	private JPanel contentPane;
