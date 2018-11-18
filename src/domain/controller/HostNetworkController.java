@@ -31,7 +31,7 @@ public class HostNetworkController implements NetworkController, GameStateListen
 
 	public HostNetworkController(String port) {
 		super();
-		gameState.addListener(this);
+		gameState.addNetworkListener(this);
 		gson = new Gson();
 		listeners = Collections.synchronizedList(
 				new ArrayList<NetworkControllerListener>());
@@ -66,7 +66,7 @@ public class HostNetworkController implements NetworkController, GameStateListen
 			publishToListeners(map);
 			break;
 		case "roll":
-			gameState.publish(map);
+			gameState.publishToUIListeners(map);
 			sendMessageToPlayers(map);
 			break;
 		}

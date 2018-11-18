@@ -46,7 +46,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 		gameController = GameController.getInstance();
 		gameController.setNetworkController(networkController);
 		gameState = GameState.getInstance();
-		gameState.addListener(this);
+		gameState.addUIListener(this);
 
 		setBounds(new Rectangle(0, 0, 1300, 800));
 		setResizable(false);
