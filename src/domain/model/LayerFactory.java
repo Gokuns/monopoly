@@ -40,7 +40,7 @@ public class LayerFactory {
 			result.add(squareFactory.createSquare("Transit"));
 			result.add(squareFactory.createSquare("Fifth Avenue"));
 			result.add(squareFactory.createSquare("Madison Avenue"));
-			result.add(squareFactory.createSquare("RollThree"));
+			result.add(squareFactory.createSquare("Roll Three"));
 			result.add(squareFactory.createSquare(""));
 			result.add(squareFactory.createSquare(""));
 			result.add(squareFactory.createSquare(""));
