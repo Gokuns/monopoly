@@ -89,20 +89,6 @@ public class DeedFactory {
 				put("hotelPrice", get("housePrice")*4+100);
 				put("skyPrice", get("hotelPrice")+100);
 			}});
-		}else if (name.equals("States")) {
-			return new Deed("Street", new HashMap<String, Integer>(){{
-				put("rent",10);
-				put("oneHouse", 50);
-				put("twoHouse", 150);
-				put("threeHouse", 450);
-				put("fourHouse", 625);
-				put("hotel", 750);
-				put("sky", 1250);
-				put("mortgage", 70);
-				put("housePrice", 100);
-				put("hotelPrice", get("housePrice")*4+100);
-				put("skyPrice", get("hotelPrice")+100);
-			}});
 		}else if (name.equals("Virginia")) {
 			return new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",12);
