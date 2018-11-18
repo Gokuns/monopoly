@@ -72,6 +72,7 @@ public class ClientNetworkController implements NetworkController, GameStateList
 			break;
 		case "endTurn":
 			gameState.publishToUIListeners(map);
+			gameState.setCurrentPlayer(gameState.getNextPlayer());
 			break;
 		}
 	}

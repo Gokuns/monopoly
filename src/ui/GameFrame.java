@@ -116,7 +116,6 @@ public class GameFrame extends JFrame implements GameStateListener{
 			endTurnButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					gameController.endTurn();
-					//System.out.println("It is " + game.getCurrentPlayer().getName() +"'s turn");
 				}
 			});
 
@@ -127,6 +126,9 @@ public class GameFrame extends JFrame implements GameStateListener{
 					//Square currentSq = gameState.getPlayerCurrentSquare();
 					gameController.move();
 					moveUIPiece();
+					rollButton.setEnabled(false);
+					moveButton.setEnabled(false);
+					endTurnButton.setEnabled(true);
 				}
 			});
 
@@ -154,7 +156,8 @@ public class GameFrame extends JFrame implements GameStateListener{
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					gameController.roll();
-					System.out.println(gameState.getPlayerList().toString());
+					rollButton.setEnabled(false);
+					moveButton.setEnabled(true);
 				}
 			});
 
@@ -270,8 +273,8 @@ public class GameFrame extends JFrame implements GameStateListener{
 					int currentID = Integer.parseInt(map.get("currentPlayerID"));
 					if(localID == currentID) {
 						rollButton.setEnabled(true);
-						moveButton.setEnabled(true);
-						endTurnButton.setEnabled(true);
+						moveButton.setEnabled(false);
+						endTurnButton.setEnabled(false);
 					} else
 					{
 						rollButton.setEnabled(false);
@@ -291,8 +294,8 @@ public class GameFrame extends JFrame implements GameStateListener{
 					int currentID = Integer.parseInt(map.get("currentPlayerID"));
 					if(localID == currentID) {
 						rollButton.setEnabled(true);
-						moveButton.setEnabled(true);
-						endTurnButton.setEnabled(true);
+						moveButton.setEnabled(false);
+						endTurnButton.setEnabled(false);
 					} else
 					{
 						rollButton.setEnabled(false);

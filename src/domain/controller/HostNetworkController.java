@@ -81,6 +81,7 @@ public class HostNetworkController implements NetworkController, GameStateListen
 			break;
 		case "endTurn":
 			gameState.publishToUIListeners(map);
+			gameState.setCurrentPlayer(gameState.getNextPlayer());
 			sendMessageToPlayers(map);
 			break;
 		}

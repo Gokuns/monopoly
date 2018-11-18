@@ -64,9 +64,6 @@ public class GameController {
 		board.movePiece();
 		System.out.println("Piece move Completed");
 		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("type", "endTurn");
-		map.put("currentPlayer", gameState.getCurrentPlayer().getName());
-		networkController.sendMessageToPlayers(map);
 	}
 
 
