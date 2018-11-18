@@ -1,9 +1,10 @@
 package domain.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import domain.model.dice.Cup;
-import domain.model.specialSquares.payCorners.Go;
+//import domain.model.specialSquares.payCorners.Go;
 
 public class GameState {
 	private static GameState game;
@@ -12,14 +13,20 @@ public class GameState {
 	private Player player3 = new Player("Player 3", 2, new Piece());
 	private Player currentPlayer = player1;
 	private int nPlayers;
-	private ArrayList<Player> playerList;
+	private ArrayList<Player> playerList = new ArrayList<Player>();
+	
+	@SuppressWarnings("serial")
 	private ArrayList<Player> orderedPlayerList = new ArrayList<Player>() {{
 	    add(player1);
 	    add(player2);
 	    add(player3);
 	}};
+	
+	@SuppressWarnings("unused")
 	private static Board board = Board.getInstance();
+	@SuppressWarnings("unused")
 	private static Cup cup = Cup.getInstance();
+	private ArrayList<GameStateListener> listeners = new ArrayList<GameStateListener>();
 	
 	private GameState() {}
 	
@@ -31,6 +38,15 @@ public class GameState {
 	}
 	
 	//2189139812390
+	public void addListener(GameStateListener listener) {
+		listeners.add(listener);
+	}
+	
+	public void publish(HashMap<String, String> map) {
+		for(GameStateListener listener : listeners) {
+			listener.update(this, map);
+		}
+	}
 	
 	
 	

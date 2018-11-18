@@ -1,5 +1,7 @@
 package domain.model;
 
-public class Card {
-
+public abstract class Card {
+	
+	protected abstract void action();
+	
 }

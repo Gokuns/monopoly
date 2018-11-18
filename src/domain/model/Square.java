@@ -3,10 +3,14 @@ package domain.model;
 public abstract class Square {
 	private String name;
 	private String desciption;
+<<<<<<< src/domain/model/Square.java
 	private int layer;
 	private int number;
 	private boolean isTransitOuter = false;
 	private boolean isTransitInner = false;
+=======
+	private boolean isTransit;
+>>>>>>> src/domain/model/Square.java
 	
 	public Square(String name, String description, int layer, int number) {
 		this.name = name;
@@ -58,31 +62,19 @@ public abstract class Square {
 	}
 
 	/**
-	 * @return the isTransitOuter
+	 * @return the isTransit
 	 */
-	public boolean isTransitOuter() {
-		return isTransitOuter;
+	public boolean isTransit() {
+		return isTransit;
 	}
 
 	/**
-	 * @param isTransitOuter the isTransitOuter to set
+	 * @param isTransit the isTransit to set
 	 */
-	public void setTransitOuter(boolean isTransitOuter) {
-		this.isTransitOuter = isTransitOuter;
+	public void setTransit(boolean isTransit) {
+		this.isTransit = isTransit;
 	}
 
-	/**
-	 * @return the isTransitInner
-	 */
-	public boolean isTransitInner() {
-		return isTransitInner;
-	}
 
-	/**
-	 * @param isTransitInner the isTransitInner to set
-	 */
-	public void setTransitInner(boolean isTransitInner) {
-		this.isTransitInner = isTransitInner;
-	}
 	
 }

@@ -12,54 +12,68 @@ import java.util.Observer;
 
 import com.google.gson.Gson;
 
+import domain.model.GameState;
+import domain.model.GameStateListener;
+import domain.model.Piece;
+import domain.model.Player;
 import domain.network.HostNetwork;
 import domain.network.SocketReader;
 
-public class HostNetworkController implements Observer, NetworkController{
+public class HostNetworkController implements NetworkController, GameStateListener{
 	private HostNetwork network;
 	private List<NetworkControllerListener> listeners;
 	private List<SocketReader> socketReaders;
+	private GameController gameController = GameController.getInstance();
+	private GameState gameState = GameState.getInstance();
 
 	private int connectionCount;
 	private Gson gson;
 
 	public HostNetworkController(String port) {
 		super();
+		gameState.addListener(this);
 		gson = new Gson();
 		listeners = Collections.synchronizedList(
 				new ArrayList<NetworkControllerListener>());
 		socketReaders = Collections.synchronizedList(
 				new ArrayList<SocketReader>());
 		connectionCount = 0;
-		network = new HostNetwork(port);
-		network.addObserver(this);
+		network = new HostNetwork(port, this);
 		new Thread(network).start();
 	}
 
-	@Override
-	public void update(Observable o, Object arg) {
+	public void newConnection(Socket socket) {
 		connectionCount++;
-		HashMap<String, String> map = new HashMap<String, String>();
-		Socket socket = (Socket)arg;
 		SocketReader socketReader = new SocketReader(socket, this);
 		socketReaders.add(socketReader);
 		new Thread(socketReader).start();
-		map.put("type", "newConnection");
-		map.put("connectionCount", connectionCount+"");
-		publishNetworkEvent(map);
 	}
 	
 	public void addNetworkControllerListener(NetworkControllerListener listener) {
 		listeners.add(listener);
 	}
 	
-	public void publishNetworkEvent(HashMap<String, String> map) {
+	public void handleMessage(HashMap<String, String> map) {
+		String type = map.get("type");
+		switch(type){
+		case "newConnection":
+			System.out.println("Connection received.");
+			String username = map.get("username");
+			int ID = connectionCount;
+			Player client = new Player(username, ID, new Piece());
+			gameState.getPlayerList().add(client);
+			map.put("connectionCount", Integer.toString(connectionCount));
+			publishToListeners(map);
+			break;
+		}
+	}
+
+	public void publishToListeners(HashMap<String, String> map) {
 		for (NetworkControllerListener listener : listeners) {
 			listener.onNetworkEvent(this, map);
 		}
-		sendMessageToPlayers(map);
 	}
-
+	
 	public int getConnectionCount() {
 		return connectionCount;
 	}
@@ -77,9 +91,26 @@ public class HostNetworkController implements Observer, NetworkController{
 		}
 	}
 	
-	public void gameStarted() {
+	public void gameStarted(String playerName) {
+		Player localPlayer = new Player(playerName, 0, new Piece());
+		gameController.setLocalPlayer(localPlayer);
+		ArrayList<Player> playerList = gameState.getPlayerList();
+		playerList.add(localPlayer);
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("type", "gameStarted");
+		map.put("playerCount", Integer.toString(connectionCount+1));
+		map.put("player"+0+"Name", localPlayer.getName());
+		map.put("player"+0+"ID", Integer.toString(localPlayer.getID()));
+		for(int i = 0; i < connectionCount + 1; i++) {
+			Player p = playerList.get(i);
+			map.put("player"+i+"Name", p.getName());
+			map.put("player"+i+"ID", Integer.toString(p.getID()));
+		}
+		sendMessageToPlayers(map);
+	}
+
+	@Override
+	public void update(GameState source, HashMap<String, String> map) {
 		sendMessageToPlayers(map);
 	}
 }

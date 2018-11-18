@@ -10,37 +10,56 @@ import java.util.List;
 
 import com.google.gson.Gson;
 
+import domain.model.GameState;
+import domain.model.Piece;
+import domain.model.Player;
 import domain.network.ClientNetwork;
 import domain.network.SocketReader;
 
 public class ClientNetworkController implements NetworkController{
 	private ClientNetwork network;
 	private List<NetworkControllerListener> listeners;
-	private Gson gson;
 	
+	private Gson gson = new Gson();
+	private GameController gameController = GameController.getInstance();
+	private GameState gameState = GameState.getInstance();
 	private SocketReader socketReader;
 	
 	
 	public ClientNetworkController() {
-		gson = new Gson();
 		listeners = Collections.synchronizedList(
 				new ArrayList<NetworkControllerListener>());
 	}
 	
-	public void initializeClientNetwork(String IP, String port) {
+	public void initializeClientNetwork(String IP, String port, String username) {
 		network = new ClientNetwork(IP, port);
 		socketReader = new SocketReader(network.getSocket(), this);
 		new Thread(socketReader).start();
+		
+		Player localPlayer = new Player(username, 0, new Piece());
+		gameController.setLocalPlayer(localPlayer);
 		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("type", "connectedToHost");
-		publishNetworkEvent(map);
+		map.put("type", "newConnection");
+		map.put("username", username);
+		sendMessageToPlayers(map);
+		publishToListeners(map);
 	}
 	
 	public void addNetworkControllerListener(NetworkControllerListener listener) {
 		listeners.add(listener);
 	}
 	
-	public void publishNetworkEvent(HashMap<String, String> map) {
+	public void handleMessage(HashMap<String, String> map) {
+		String type = map.get("type");
+		switch(type){
+		case "gameStarted":
+			gameController.initializePlayers(map);
+			publishToListeners(map);
+			break;
+		}
+	}
+		
+	public void publishToListeners(HashMap<String, String> map) {
 		for (int i = 0; i < listeners.size(); i++) {
 			NetworkControllerListener listener = listeners.get(i);
 			listener.onNetworkEvent(this, map);

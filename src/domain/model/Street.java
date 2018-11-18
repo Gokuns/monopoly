@@ -1,6 +1,6 @@
 package domain.model;
 
-import java.awt.Color;
+//import java.awt.Color;
 
 public class Street extends Property {
 	private String color;

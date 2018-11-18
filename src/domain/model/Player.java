@@ -1,8 +1,11 @@
 package domain.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import domain.model.specialSquares.payCorners.Go;
+//import domain.model.specialSquares.ChanceAction;
+//import domain.model.specialSquares.CommunityChest;
+//import domain.model.specialSquares.payCorners.Go;
 
 public class Player {
 	private String name;  //Name of the player
@@ -21,6 +24,9 @@ public class Player {
 	private boolean rolledTriple;		//true if the player rolled triple
 	private boolean rolledMrMonopoly;		//true if the player rolled Mr Monopoly in speed die
 	private boolean rolledBus;		//true if the player rolled bus in speed die
+	private List<ChanceCard> chanceCards; //chance action cards belonging to the player
+	private List<CommunityChestCard> communityCards; //community chest cards belonging to the player
+	private List<Roll3Card> roll3Cards; //roll 3 cards belonging to the player
 	
 
 	public Player (String name, int ID, Piece piece) {
@@ -178,6 +184,30 @@ public class Player {
 	 */
 	public void setRolledBus(boolean rolledBus) {
 		this.rolledBus = rolledBus;
+	}
+
+	public List<Roll3Card> getRoll3Cards() {
+		return roll3Cards;
+	}
+
+	public void setRoll3Cards(List<Roll3Card> roll3Cards) {
+		this.roll3Cards = roll3Cards;
+	}
+
+	public List<CommunityChestCard> getCommunityCards() {
+		return communityCards;
+	}
+
+	public void setCommunityCards(List<CommunityChestCard> communityCards) {
+		this.communityCards = communityCards;
+	}
+
+	public List<ChanceCard> getChanceCards() {
+		return chanceCards;
+	}
+
+	public void setChanceCards(List<ChanceCard> chanceCards) {
+		this.chanceCards = chanceCards;
 	}
 	
 	

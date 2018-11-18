@@ -1,16 +1,26 @@
 package domain.model;
 
-import java.util.ArrayList;
-import java.util.List;
 
+//
+//import java.util.ArrayList;
+//import java.util.HashMap;
+//import java.util.List;
+
+import domain.model.specialSquares.ChanceAction;
+import domain.model.specialSquares.CommunityChest;
 import domain.model.specialSquares.FreeParking;
-import domain.model.specialSquares.payCorners.Go;
+//import domain.model.specialSquares.IncomeTax;
+import domain.model.specialSquares.Jail;
+import domain.model.specialSquares.RollThree;
+import domain.model.specialSquares.TransitStation;
+//import domain.model.specialSquares.payCorners.Go;
 
 public class SquareFactory {
 	private static SquareFactory squareFactory;
+	//private DeedFactory deedFactory;
 	
 	private SquareFactory() {
-		
+		//this.deedFactory = DeedFactory.getInstance();
 	}
 	
 	public static synchronized SquareFactory getInstance() {
@@ -20,6 +30,7 @@ public class SquareFactory {
 		return squareFactory;
 	}
 	
+<<<<<<< src/domain/model/SquareFactory.java
 	public List<List<Square>> createSquares() {
 		List<List<Square>> squares = new ArrayList<>();
 		Square FreePark = new FreeParking("Free Parking", "desc2",1,3);
@@ -34,6 +45,20 @@ public class SquareFactory {
 		layer1.add(FreePark);
 		squares.add(layer1);
 		return squares;
+=======
+	public Square createSquare(String name) {
+		if(name.equals("Roll3")) {
+			return new RollThree("Roll3", "Draw a roll three card.");
+		}else if(name.equals("Community Chest")){
+			return new CommunityChest("Community Chest", "Draw a community chest card.");
+		}else if(name.equals("Chance")){
+			return new ChanceAction("Chance", "Draw a chance action card.");
+		}else if(name.equals("Transit")){
+			return new TransitStation("Transit", "You can transfer to another layer from here.");
+		}else if(name.equals("Jail")){
+			return new Jail("Jail", "Stay in or visit the jail.");
+		}else
+			return new FreeParking(name, "You can stay here for free!!!");
+		}
+>>>>>>> src/domain/model/SquareFactory.java
 	}
-
-}

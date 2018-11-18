@@ -1,7 +1,7 @@
 package domain.model;
 
-import java.util.ArrayList;
-import java.util.Iterator;
+//import java.util.ArrayList;
+//import java.util.Iterator;
 import java.util.List;
 
 public class SquareIterator implements ISquareIteratator {
@@ -113,15 +113,31 @@ public class SquareIterator implements ISquareIteratator {
 	@Override
 	public boolean hasOuter() {
 		// TODO Auto-generated method stub
-		if(currentSquare.isTransitOuter()) return true;
-		else return false;
+
+		if(currentSquare == innerTransitPenns) {
+			return true;
+		}else if(currentSquare == innerTransitShort) {
+			return true;
+		}else if(currentSquare == middleTransitReading) {
+			return true;
+		}else if(currentSquare == middleTransitBnO) {
+			return true;
+		}else return false;
 	}
 
 	@Override
 	public boolean hasInner() {
 		// TODO Auto-generated method stub
-		if(currentSquare.isTransitInner()) return true;
-		else return false;
+		if(currentSquare == middleTransitPenns) {
+			return true;
+		}else if(currentSquare == middleTransitShort) {
+			return true;
+		}else if(currentSquare == outerTransitReading) {
+			return true;
+		}else if(currentSquare == outerTransitBnO) {
+			return true;
+		}else
+		return false;
 	}
 
 	@Override
