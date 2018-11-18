@@ -90,27 +90,11 @@ public class BoardLayers {
 		layerList.add(layerthree);
 		
 	}
-	
-	public SquareCoordinates getSquareCoordinates(Square square) {
-		int layer = 0;
-		int number = 1;
-		if(square.getName().substring(3).equals("1st layer")) {
-			layer = 0;
-		}
-		else if(square.getName().substring(3).equals("2nd layer")) {
-			layer = 1;
-		}
-		else if(square.getName().substring(3).equals("3rd layer")){
-			layer = 2;
-		}
-		char aChar = square.getName().charAt(0);
-		number =  aChar - '0';
+
+	public SquareCoordinates getSquareCoordinates(int layer, int number) {
 		return layerList.get(layer).get(number);
 	}
 	
-	
-	
-
 	public ArrayList<SquareCoordinates> getLayerone() {
 		return layerone;
 	}

@@ -21,6 +21,7 @@ import javax.swing.border.EmptyBorder;
 
 import domain.controller.GameController;
 import domain.controller.NetworkController;
+import domain.model.Board;
 import domain.model.GameState;
 import domain.model.GameStateListener;
 import domain.model.Square;
@@ -38,6 +39,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 	private BoardLayers boardLayers;
 	private JLabel playerLabel;
 	private JLabel rollLabel;
+	private Board board;
 
 
 	/**
@@ -45,7 +47,8 @@ public class GameFrame extends JFrame implements GameStateListener{
 	 */
 	public GameFrame(NetworkController networkController) {
 		setTitle("Monopoly");
-
+		
+		board = Board.getInstance();
 		gameController = GameController.getInstance();
 		gameController.setNetworkController(networkController);
 		gameState = GameState.getInstance();
@@ -71,7 +74,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 			
 			//ball1.setBounds(575,575, 30, 30);
 			//contentPane.add(ball1);
-			initializeBalls();
+			//initializeBalls();
 			Image logoImage = ImageIO.read(new File("monopolyBoard.png"));
 			logoImage = logoImage.getScaledInstance(700, 700, Image.SCALE_SMOOTH);
 			JPanel monopolyLogoPanel = new BackgroundImagePanel(logoImage);
@@ -115,12 +118,9 @@ public class GameFrame extends JFrame implements GameStateListener{
 			moveButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					
-					Square currentSq = gameState.getPlayerCurrentSquare();
-					System.out.println(currentSq.getName());
-					//SquareCoordinates current = boardLayers.getSquareCoordinates(gameState.getPlayerCurrentSquare());
-					//System.out.println(current.getX() +" "+ current.getY());
-					//gameController.move();
-					//moveUIPiece();
+					//Square currentSq = gameState.getPlayerCurrentSquare();
+					gameController.move();
+					moveUIPiece();
 				}
 			});
 
@@ -173,7 +173,9 @@ public class GameFrame extends JFrame implements GameStateListener{
 	public void moveUIPiece() {
 		
 		int index = gameState.getOrderedPlayerList().indexOf(gameState.getCurrentPlayer());
-		SquareCoordinates current = boardLayers.getSquareCoordinates(gameState.getPlayerCurrentSquare());
+		int layer = board.getSquareLayerIndex(gameState.getPlayerCurrentSquare());
+		int number = board.getSquareIndex(gameState.getPlayerCurrentSquare());
+		SquareCoordinates current = boardLayers.getSquareCoordinates(layer, number);
 		int x = current.getX() - 15;
 		int y = current.getY() - 15;
 		balls.get(index).setLocation(x-index*5, y);
