@@ -57,7 +57,7 @@ public class GameController {
 		endTurnMap.put("type", "endTurn");
 		endTurnMap.put("currentPlayer", gameState.getCurrentPlayer().getName());
 		gameState.publishToNetworkListeners(endTurnMap);
-		gameState.publishToNetworkListeners(endTurnMap);
+		gameState.publishToUIListeners(endTurnMap);
 	}
 	
 	
@@ -66,7 +66,7 @@ public class GameController {
 		System.out.println("Piece move Completed");
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("type", "endTurn");
-		map.put("currentPlayer", GameState.getInstance().getCurrentPlayer().getName());
+		map.put("currentPlayer", gameState.getCurrentPlayer().getName());
 		networkController.sendMessageToPlayers(map);
 	}
 
