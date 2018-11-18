@@ -602,8 +602,8 @@ public class DeedFactory {
 				put("hotelPrice", get("housePrice")*4+300);
 				put("skyPrice", get("hotelPrice")+300);
 			}});
-		}else if (name.equals("CheckerCab") || name.equals("BlacknWhiteCab") ||
-				name.equals("YellowCab") || name.equals("UteCab")) {
+		}else if (name.equals("Checker Cab Co.") || name.equals("Black n WhiteCab Co.") ||
+				name.equals("Yellow Cab Co.") || name.equals("Ute Cab Co.")) {
 			return new Deed("CabCompany", new HashMap<String, Integer>(){{
 				put("rent", 30);
 				put("twoCab", 60);
@@ -611,10 +611,10 @@ public class DeedFactory {
 				put("fourCab", 240);
 				put("mortgage", 150);
 			}});
-		}else if (name.equals("WaterWorks") || name.equals("CableCompany") ||
-				name.equals("ElectricCompany") || name.equals("InternetServiceProvider") ||
-				name.equals("GasCompany") || name.equals("TelephoneCompany") ||
-				name.equals("TrashCollector") || name.equals("SewageSystem")) {
+		}else if (name.equals("Water Works") || name.equals("Cable Company") ||
+				name.equals("Electric Company") || name.equals("Internet Service Provider") ||
+				name.equals("Gas Company") || name.equals("Telephone Company") ||
+				name.equals("Trash Collector") || name.equals("Sewage System")) {
 			return new Deed("UtilityCompany", new HashMap<String, Integer>(){{
 				put("oneUtility", 4);
 				put("twoUtility", 10);
