@@ -42,6 +42,6 @@ public class SquareFactory {
 		}else if(name.equals("Jail")){
 			return new Jail("Jail", "Stay in or visit the jail.");
 		}else
-			return new FreeParking("freeParking", "You can stay here for free!!!");
+			return new FreeParking(name, "You can stay here for free!!!");
 		}
 	}
