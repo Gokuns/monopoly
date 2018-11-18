@@ -1,12 +1,12 @@
 package domain.model;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+//import java.util.HashMap;
 import java.util.List;
 
-import domain.model.specialSquares.CommunityChest;
-import domain.model.specialSquares.IncomeTax;
-import domain.model.specialSquares.TransitStation;
+//import domain.model.specialSquares.CommunityChest;
+//import domain.model.specialSquares.IncomeTax;
+//import domain.model.specialSquares.TransitStation;
 import domain.model.specialSquares.payCorners.Go;
 
 public class LayerFactory {
@@ -25,7 +25,6 @@ public class LayerFactory {
 		return layerFactory;
 	}
 	
-	@SuppressWarnings("serial")
 	public List<Square> createLayer(String type) {
 		List<Square> result = new ArrayList<Square>();
 		if(type.equals("inner")) {
