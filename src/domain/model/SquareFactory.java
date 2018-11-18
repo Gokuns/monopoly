@@ -21,6 +21,7 @@ import domain.model.specialSquares.LuxuryTax;
 import domain.model.specialSquares.ReverseDirection;
 import domain.model.specialSquares.RollThree;
 import domain.model.specialSquares.SqueezePlay;
+import domain.model.specialSquares.StockExchange;
 import domain.model.specialSquares.Subway;
 import domain.model.specialSquares.TransitStation;
 //import domain.model.specialSquares.payCorners.Go;
@@ -43,20 +44,20 @@ public class SquareFactory {
 	}
 
 	public Square createSquare(String name) {
-		if(name.equals("Roll3")) {
-			return new RollThree("Roll3", "Draw a roll three card.");
+		if(name.equals("Roll Three")) {
+			return new RollThree(name, "Draw a roll three card.");
 		}
 		else if(name.equals("Community Chest")){
-			return new CommunityChest("Community Chest", "Draw a community chest card.");
+			return new CommunityChest(name, "Draw a community chest card.");
 		}
 		else if(name.equals("Chance")){
-			return new ChanceAction("Chance", "Draw a chance action card.");
+			return new ChanceAction(name, "Draw a chance action card.");
 		}
 		else if(name.equals("Transit")){
-			return new TransitStation("Transit", "You can transfer to another layer from here.");
+			return new TransitStation("Transit Station", "You can transfer to another layer from here.");
 		}
 		else if(name.equals("Jail")){
-			return new Jail("Jail", "Stay in or visit the jail.");
+			return new Jail(name, "Stay in or visit the jail.");
 		}
 		else if(name.equals("Mediterranean Avenue")){
 			return new Street(name, 60,  "A nice place to buy.", "Purple", deedFactory.createDeed(name));
@@ -232,10 +233,13 @@ public class SquareFactory {
 			return new PayDay(name,  "A pay corner");
 		}
 		else if(name.equals("Subway")){
-			return new Subway(name,  "A pay corner");
+			return new Subway(name,  "Travel to any street next turn.");
 		}
 		else if(name.equals("Birthday Gift")){
-			return new BirthdayGift(name,  "A pay corner");
+			return new BirthdayGift(name,  "You get 50% of the pool");
+		}
+		else if(name.equals("Stock Exchange")){
+			return new StockExchange(name,  "A pay corner");
 		}
 		
 

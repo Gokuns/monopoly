@@ -53,6 +53,7 @@ public class Roll3Card extends Card{
 			mapForUITransfer.put(playerName, award.toString());
 		
 		game.publishToUIListeners(mapForUITransfer);//displays player names and their corresponding awards in UI.
+		game.publishToNetworkListeners(mapForUITransfer);//publish the mapping to the network.
 	}
 	
 	private void awardPlayer(Player p, List<faceValue> roll3Dice, int threeMatchPrice){
@@ -79,7 +80,6 @@ public class Roll3Card extends Card{
 			playerRoll3Cards.remove(r3Card);//removal of the roll3Card from player's inventory upon usage.
 			p.setRoll3Cards(playerRoll3Cards);
 		}
-		
 		
 		p.setBalance(newBalance);
 	}

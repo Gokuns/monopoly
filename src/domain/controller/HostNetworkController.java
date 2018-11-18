@@ -67,6 +67,18 @@ public class HostNetworkController implements NetworkController, GameStateListen
 			gameState.publishToUIListeners(map);
 			sendMessageToPlayers(map);
 			break;
+		case "roll3":
+			gameState.publishToUIListeners(map);
+			sendMessageToPlayers(map);
+			break;
+		case "payHospitalBill":
+			gameState.publishToUIListeners(map);
+			sendMessageToPlayers(map);
+			break;
+		case "goToJail":
+			gameState.publishToUIListeners(map);
+			sendMessageToPlayers(map);
+			break;
 		}
 	}
 

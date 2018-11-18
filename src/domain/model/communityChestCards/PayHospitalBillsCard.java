@@ -32,6 +32,7 @@ public class PayHospitalBillsCard extends CommunityChestCard{
 		mapForUITransfer.put("Pool", ((Integer) newPoolBalance).toString());
 		
 		game.publishToUIListeners(mapForUITransfer);////displays player&pool balances in UI.
+		game.publishToNetworkListeners(mapForUITransfer);//publish the mapping to the network.
 	}
 
 	
