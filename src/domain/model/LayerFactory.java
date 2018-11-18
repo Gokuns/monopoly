@@ -33,9 +33,9 @@ public class LayerFactory {
 			
 		}else if(type.equals("middle")) {
 			result.add(Go.getInstance());
-			result.add(squareFactory.createSquare(""));
+			result.add(squareFactory.createSquare("Mediterranean"));
 			result.add(squareFactory.createSquare("Community Chest"));
-			result.add(squareFactory.createSquare(""));
+			result.add(squareFactory.createSquare("Baltic"));
 			result.add(squareFactory.createSquare(""));
 			result.add(squareFactory.createSquare("Transit"));
 			result.add(squareFactory.createSquare(""));
