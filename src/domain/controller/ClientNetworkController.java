@@ -70,6 +70,9 @@ public class ClientNetworkController implements NetworkController, GameStateList
 		case "goToJail":
 			gameState.publishToUIListeners(map);
 			break;
+		case "endTurn":
+			gameState.publishToUIListeners(map);
+			break;
 		}
 	}
 		
