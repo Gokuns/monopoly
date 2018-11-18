@@ -134,7 +134,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 
 			rollLabel = new JLabel("You rolled: X X X");
 			rollLabel.setHorizontalAlignment(SwingConstants.CENTER);
-			rollLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+			rollLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
 			rollLabel.setBounds(0, 278, 300, 40);
 			panel.add(rollLabel);
 
