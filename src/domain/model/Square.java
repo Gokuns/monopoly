@@ -8,6 +8,7 @@ public abstract class Square {
 	private boolean isTransitOuter = false;
 	@SuppressWarnings("unused")
 	private boolean isTransitInner = false;
+	private boolean isSpecialSquare = false;
 
 	private boolean isTransit;
 
@@ -45,6 +46,12 @@ public abstract class Square {
 	 */
 	public void setTransit(boolean isTransit) {
 		this.isTransit = isTransit;
+	}
+	public boolean isSpecialSquare() {
+		return isSpecialSquare;
+	}
+	public void setSpecialSquare(boolean isSpecialSquare) {
+		this.isSpecialSquare = isSpecialSquare;
 	}
 
 

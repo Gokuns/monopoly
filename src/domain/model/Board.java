@@ -77,7 +77,16 @@ public class Board {
 		for (int i=0;i<movement;i++) {
 			currentSquare = iter.next();
 		}
-		setPlayersSquare(game.getCurrentPlayer(),currentSquare);
+		
+		Square landedOn = currentSquare;
+		Player currentPlayer = game.getCurrentPlayer();
+		
+		setPlayersSquare(currentPlayer,landedOn);
+		
+		if(landedOn.isSpecialSquare()){
+			((SpecialSquare) landedOn).action(currentPlayer);
+		}
+		
 		System.out.println("Moved to " + getPlayersSquare(game.getCurrentPlayer()).getName());
 		
 		

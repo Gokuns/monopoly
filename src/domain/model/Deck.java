@@ -54,10 +54,10 @@ public class Deck {
 	public void setType(String type) {
 		this.type = type;
 	}
-
-	@SuppressWarnings("unused")
-	private Card draw(){//drawing a card from the top of the deck.
+	
+	public Card draw(){//drawing a card from the top of the deck & conducting its corresponding action.
 		Card card = cards.get(0);
+		card.action();
 		return card;
 	}
 }
