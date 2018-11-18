@@ -60,9 +60,9 @@ public class GameFrame extends JFrame implements GameStateListener{
 	private int numberOfPlayers;
 	ArrayList<Ball> balls;
 	private BoardLayers boardLayers;
-	private JLabel rollLabel;
-	private JLabel coords;
 	private JLabel playerLabel;
+	private JLabel rollLabel;
+
 
 	/**
 	 * Create the frame.
@@ -71,11 +71,6 @@ public class GameFrame extends JFrame implements GameStateListener{
 		setTitle("Monopoly");
 
 
-		this.networkController = networkController;
-		networkController.addNetworkControllerListener(this);
-		
-		boardLayers = new BoardLayers();
-		balls = new ArrayList<Ball>();
 		gameController = GameController.getInstance();
 		gameController.setNetworkController(networkController);
 		gameState = GameState.getInstance();
@@ -90,9 +85,8 @@ public class GameFrame extends JFrame implements GameStateListener{
 		contentPane.setLayout(null);
 
 		try {
-						
-			numberOfPlayers = game.getOrderedPlayerList().size();
-			numberOfPlayers = gameState.getOrderedPlayerList().size();
+			
+
 			for(int i = 0;i<numberOfPlayers; i++) {
 				String x = "Piece" + Integer.toString(i);
 				Ball ballx = new Ball(x, i);
@@ -157,13 +151,6 @@ public class GameFrame extends JFrame implements GameStateListener{
 			moveButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					gameController.move();
-
-					int index = game.getOrderedPlayerList().indexOf(game.getCurrentPlayer());
-					int layer = game.getPlayerCurrentSquare().getLayer();
-					int number = game.getPlayerCurrentSquare().getNumber();
-					int x = boardLayers.getSquareCoordinates(layer-1, number).getX() - 15;
-					int y = boardLayers.getSquareCoordinates(layer-1, number).getY() - 15;
-					balls.get(index).setLocation(x-index*5, y);
 
 				}
 			});
