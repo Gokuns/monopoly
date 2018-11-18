@@ -22,7 +22,9 @@ public class GameState {
 //	    add(player3);
 //	}};
 	
+	@SuppressWarnings("unused")
 	private static Board board = Board.getInstance();
+	@SuppressWarnings("unused")
 	private static Cup cup = Cup.getInstance();
 	private ArrayList<GameStateListener> networkListeners = new ArrayList<GameStateListener>();
 	private ArrayList<GameStateListener> UIListeners = new ArrayList<GameStateListener>();
