@@ -86,12 +86,16 @@ public class GameFrame extends JFrame implements GameStateListener{
 
 		try {
 			
-
+			numberOfPlayers = gameState.getPlayerList().size();
+			boardLayers = new BoardLayers();
+			balls = new ArrayList<Ball>();
+			
+			
 			for(int i = 0;i<numberOfPlayers; i++) {
 				String x = "Piece" + Integer.toString(i);
 				Ball ballx = new Ball(x, i);
-				balls.add(ballx);
 				ballx.setBounds(585 - i*5 ,575, 30, 30);
+				balls.add(ballx);
 				contentPane.add(ballx);
 				//System.out.println(balls.get(i).getName());
 				
