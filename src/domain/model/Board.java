@@ -29,10 +29,6 @@ public class Board {
 		
 	}
 	
-	
-	
-	
-	
 	private void initiateSquares() {
 		List<Square> layerOne = new ArrayList<Square>();
 		List<Square> layerTwo = new ArrayList<Square>();
