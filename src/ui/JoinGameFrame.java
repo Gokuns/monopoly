@@ -14,9 +14,9 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import domain.controller.ClientNetworkController;
-import domain.controller.GameController;
+//import domain.controller.GameController;
 import domain.controller.NetworkControllerListener;
-import domain.model.GameState;
+//import domain.model.GameState;
 import domain.controller.NetworkController;
 
 import javax.swing.JLabel;

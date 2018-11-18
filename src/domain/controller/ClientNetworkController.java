@@ -22,6 +22,7 @@ public class ClientNetworkController implements NetworkController{
 	
 	private Gson gson = new Gson();
 	private GameController gameController = GameController.getInstance();
+	@SuppressWarnings("unused")
 	private GameState gameState = GameState.getInstance();
 	private SocketReader socketReader;
 	

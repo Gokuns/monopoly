@@ -16,6 +16,7 @@ public class GameController {
 	private Board board = Board.getInstance();
 	private GameState gameState = GameState.getInstance();
 	private NetworkController networkController;
+	@SuppressWarnings("unused")
 	private Player localPlayer;
 	private GameController() {}
 	

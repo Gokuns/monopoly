@@ -4,7 +4,9 @@ public abstract class Square {
 	private String name;
 	private String desciption;
 
+	@SuppressWarnings("unused")
 	private boolean isTransitOuter = false;
+	@SuppressWarnings("unused")
 	private boolean isTransitInner = false;
 
 	private boolean isTransit;

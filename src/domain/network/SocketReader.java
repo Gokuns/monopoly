@@ -16,6 +16,7 @@ import domain.controller.NetworkController;
 public class SocketReader implements Runnable{
 	private InputStream inputStream;
 	private NetworkController networkController;
+	@SuppressWarnings("unused")
 	private Socket socket;
 	private Gson gson;
 
