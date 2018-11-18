@@ -48,8 +48,6 @@ public class GameState {
 		}
 	}
 	
-	
-	
 	public Player getNextPlayer() {
 		
 		int nPlayers = orderedPlayerList.size();
