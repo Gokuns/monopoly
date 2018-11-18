@@ -151,6 +151,13 @@ public class GameFrame extends JFrame implements GameStateListener{
 			moveButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					gameController.move();
+					int index = gameState.getOrderedPlayerList().indexOf(gameState.getCurrentPlayer());
+					int layer = gameState.getPlayerCurrentSquare().getLayer();
+					int number = gameState.getPlayerCurrentSquare().getNumber();
+					int x = boardLayers.getSquareCoordinates(layer-1, number).getX() - 15;
+					int y = boardLayers.getSquareCoordinates(layer-1, number).getY() - 15;
+					balls.get(index).setLocation(x-index*5, y);
+
 
 				}
 			});

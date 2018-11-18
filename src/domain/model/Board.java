@@ -38,7 +38,7 @@ public class Board {
 		List<Square> layerTwo = new ArrayList<Square>();
 		List<Square> layerThree = new ArrayList<Square>();
 		layerTwo.add(Go.getInstance());
-		for (int i=0; i<25;i++) {
+		for (int i=0; i<24;i++) {
 			String name = i +", 1st layer";
 			layerOne.add(new Street(name,100+i,"","",null));
 		}
@@ -46,7 +46,7 @@ public class Board {
 			String name = i +", 2nd layer";
 			layerTwo.add(new Street(name,100+i,"","",null));
 		}
-		for (int i=0; i<55;i++) {
+		for (int i=0; i<56;i++) {
 			String name = i +", 3rd layer";
 			layerThree.add(new Street(name,100+i,"","",null));
 		}
