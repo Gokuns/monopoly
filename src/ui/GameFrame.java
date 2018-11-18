@@ -32,6 +32,7 @@ import domain.model.Square;
 public class GameFrame extends JFrame implements GameStateListener{
 
 	private JPanel contentPane;
+	private JPanel monopolyLogoPanel;
 	private GameController gameController;
 	private GameState gameState;
 	private int numberOfPlayers;
@@ -47,7 +48,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 	 */
 	public GameFrame(NetworkController networkController) {
 		setTitle("Monopoly");
-		
+
 		board = Board.getInstance();
 		gameController = GameController.getInstance();
 		gameController.setNetworkController(networkController);
@@ -63,25 +64,25 @@ public class GameFrame extends JFrame implements GameStateListener{
 		contentPane.setLayout(null);
 
 		try {
-	
+
 			boardLayers = new BoardLayers();
 			balls = new ArrayList<Ball>();
-	
+
 			//Ball ball1 = new Ball("ball1",3);
 			//balls.add(ball1);
 			//ball1.setBounds(585, 575, 30, 30);
 			//contentPane.add(ball1);
-			
+
 			//ball1.setBounds(575,575, 30, 30);
 			//contentPane.add(ball1);
 			//initializeBalls();
 			Image logoImage = ImageIO.read(new File("monopolyBoard.png"));
 			logoImage = logoImage.getScaledInstance(700, 700, Image.SCALE_SMOOTH);
-			JPanel monopolyLogoPanel = new BackgroundImagePanel(logoImage);
+			monopolyLogoPanel = new BackgroundImagePanel(logoImage);
 			monopolyLogoPanel.setBounds(20, 20, 700, 700);
 			//monopolyLogoPanel.setVisible(false);
 			contentPane.add(monopolyLogoPanel);
-			
+
 			JPanel panel = new JPanel();
 			panel.setBounds(972, 20, 510, 932);
 			contentPane.add(panel);
@@ -92,8 +93,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 			playerLabel.setFont(new Font("Tahoma", Font.PLAIN, 25));
 			playerLabel.setBounds(0, 0, 300, 100);
 			panel.add(playerLabel);
-			
-			
+
 			JButton endTurnButton = new JButton("End Turn");
 			endTurnButton.setBounds(0, 119, 300, 40);
 			panel.add(endTurnButton);
@@ -106,18 +106,18 @@ public class GameFrame extends JFrame implements GameStateListener{
 			JButton moveButton = new JButton("Move");
 			moveButton.setBounds(0, 225, 300, 40);
 			panel.add(moveButton);
-			
+
 			endTurnButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					gameController.endTurn();
 					//System.out.println("It is " + game.getCurrentPlayer().getName() +"'s turn");
 				}
 			});
-			
-			
+
+
 			moveButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					
+
 					//Square currentSq = gameState.getPlayerCurrentSquare();
 					gameController.move();
 					moveUIPiece();
@@ -129,21 +129,21 @@ public class GameFrame extends JFrame implements GameStateListener{
 			rollLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 			rollLabel.setBounds(0, 278, 300, 40);
 			panel.add(rollLabel);
-			
+
 			/*
 			coords = new JLabel("You rolled: X X X");
 			coords.setHorizontalAlignment(SwingConstants.CENTER);
 			coords.setFont(new Font("Tahoma", Font.PLAIN, 20));
 			coords.setBounds(0, 400, 300, 40);
 			panel.add(coords);
-			
+
 			contentPane.addMouseListener(new MouseAdapter(){
 				public void mouseClicked(MouseEvent e) {
 					coords.setText("X = " + e.getX() + ", Y = " + e.getY());
 				}
 			});
-			*/
-			
+			 */
+
 			rollButton.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
@@ -156,24 +156,31 @@ public class GameFrame extends JFrame implements GameStateListener{
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void initializeBalls() {
-		System.out.println("Balls initializing");
-		numberOfPlayers = gameState.getOrderedPlayerList().size();
-		for(int i = 0;i<numberOfPlayers; i++) {
-			System.out.println("Ball "+i);
-			String x = "Piece" + Integer.toString(i);
-			Ball ballx = new Ball(x, i);
-			ballx.setBounds(585 - i*5 ,575, 30, 30);
-			balls.add(ballx);
-			contentPane.add(ballx);
-			repaint();
-			//System.out.println(balls.get(i).getName());
-		}
+		EventQueue.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				System.out.println("Balls initializing");
+
+				numberOfPlayers = gameState.getOrderedPlayerList().size();
+				for(int i = 0;i<numberOfPlayers; i++) {
+					System.out.println("Ball "+i);
+					String x = "Piece" + Integer.toString(i);
+					Ball ballx = new Ball(x, i);
+					ballx.setBounds(565 - i*5 ,555, 30, 30);
+					balls.add(ballx);
+					monopolyLogoPanel.add(ballx);
+					repaint();
+					//System.out.println(balls.get(i).getName());
+				}
+			}
+		});
+
 	}
-	
+
 	public void moveUIPiece() {
-		
+
 		int index = gameState.getOrderedPlayerList().indexOf(gameState.getCurrentPlayer());
 		int layer = board.getSquareLayerIndex(gameState.getPlayerCurrentSquare());
 		int number = board.getSquareIndex(gameState.getPlayerCurrentSquare());
@@ -181,7 +188,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 		int x = current.getX() - 15;
 		int y = current.getY() - 15;
 		balls.get(index).setLocation(x-index*5, y);
-		
+
 	}
 
 	@Override
