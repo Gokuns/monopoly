@@ -41,16 +41,17 @@ public class LayerFactory {
 			result.add(squareFactory.createSquare("Fifth Avenue"));
 			result.add(squareFactory.createSquare("Madison Avenue"));
 			result.add(squareFactory.createSquare("Roll Three"));
-			result.add(squareFactory.createSquare(""));
-			result.add(squareFactory.createSquare(""));
-			result.add(squareFactory.createSquare(""));
-			result.add(squareFactory.createSquare(""));
-			result.add(squareFactory.createSquare(""));
-			result.add(squareFactory.createSquare(""));
-			result.add(squareFactory.createSquare(""));
-			result.add(squareFactory.createSquare(""));
-			result.add(squareFactory.createSquare(""));
-			result.add(squareFactory.createSquare(""));
+			result.add(squareFactory.createSquare("Wall Street"));
+			result.add(squareFactory.createSquare("Tax Refund"));
+			result.add(squareFactory.createSquare("Gas Company"));
+			result.add(squareFactory.createSquare("Chance"));
+			result.add(squareFactory.createSquare("Florida Avenue"));
+			result.add(squareFactory.createSquare("Holland Tunnel"));
+			result.add(squareFactory.createSquare("Miami Avenue"));
+			result.add(squareFactory.createSquare("Biscayne Avenue"));
+			result.add(squareFactory.createSquare("Transit"));
+			result.add(squareFactory.createSquare("Reverse Direction"));
+			result.add(squareFactory.createSquare("Lombard Street"));
 			
 			
 		}else if(type.equals("middle")) {
@@ -95,7 +96,62 @@ public class LayerFactory {
 			result.add(squareFactory.createSquare("Luxury Tax"));
 			result.add(squareFactory.createSquare("Boardwalk"));
 		}else if(type.equals("outer")) {
-			
+			result.add(squareFactory.createSquare("Stock Exchange"));
+			result.add(squareFactory.createSquare("Lake Street"));
+			result.add(squareFactory.createSquare("Community Chest"));
+			result.add(squareFactory.createSquare("Nicollet Avenue"));
+			result.add(squareFactory.createSquare("Hennepin Avenue"));
+			result.add(squareFactory.createSquare("Bus Ticket"));
+			result.add(squareFactory.createSquare("Checker Cab Co."));
+			result.add(squareFactory.createSquare("Reading Railroad"));
+			result.add(squareFactory.createSquare("Esplanade Avenue"));
+			result.add(squareFactory.createSquare("Canal Street"));
+			result.add(squareFactory.createSquare("Chance"));
+			result.add(squareFactory.createSquare("Cable Company"));
+			result.add(squareFactory.createSquare("Magazine Street"));
+			result.add(squareFactory.createSquare("Bourbon Street"));
+			result.add(squareFactory.createSquare("Holland Tunnel"));
+			result.add(squareFactory.createSquare("Auction"));
+			result.add(squareFactory.createSquare("Katy Freeway"));
+			result.add(squareFactory.createSquare("Westheimer Road"));
+			result.add(squareFactory.createSquare("Internet Service Provider"));
+			result.add(squareFactory.createSquare("Kirby Drive"));
+			result.add(squareFactory.createSquare("Cullen Boulevard"));
+			result.add(squareFactory.createSquare("Chance"));
+			result.add(squareFactory.createSquare("Black n White Cab Co."));
+			result.add(squareFactory.createSquare("Dekalb Avenue"));
+			result.add(squareFactory.createSquare("Community Chest"));
+			result.add(squareFactory.createSquare("Andrew Young Intl Boulevard"));
+			result.add(squareFactory.createSquare("Decatur Street"));
+			result.add(squareFactory.createSquare("Peachtree Street"));
+			result.add(squareFactory.createSquare("Pay Day"));
+			result.add(squareFactory.createSquare("Randolph Street"));
+			result.add(squareFactory.createSquare("Chance"));
+			result.add(squareFactory.createSquare("Lake Shore Drive"));
+			result.add(squareFactory.createSquare("Wacker Drive"));
+			result.add(squareFactory.createSquare("Michigan Avenue"));
+			result.add(squareFactory.createSquare("Yellow Cab Co."));
+			result.add(squareFactory.createSquare("BnO Railroad"));
+			result.add(squareFactory.createSquare("Community Chest"));
+			result.add(squareFactory.createSquare("South Temple"));
+			result.add(squareFactory.createSquare("West Temple"));
+			result.add(squareFactory.createSquare("Trash Collector"));
+			result.add(squareFactory.createSquare("North Temple"));
+			result.add(squareFactory.createSquare("Temple Square"));
+			result.add(squareFactory.createSquare("Sumbway"));
+			result.add(squareFactory.createSquare("South Street"));
+			result.add(squareFactory.createSquare("Broad Street"));
+			result.add(squareFactory.createSquare("Walnut Street"));
+			result.add(squareFactory.createSquare("Community Chest"));
+			result.add(squareFactory.createSquare("Market Street"));
+			result.add(squareFactory.createSquare("Bus Ticket"));
+			result.add(squareFactory.createSquare("Sewage System"));
+			result.add(squareFactory.createSquare("Ute Cab Co."));
+			result.add(squareFactory.createSquare("Birthday Gift"));
+			result.add(squareFactory.createSquare("Muholland Drive"));
+			result.add(squareFactory.createSquare("Ventura Boulevard"));
+			result.add(squareFactory.createSquare("Chance"));
+			result.add(squareFactory.createSquare("Rode Drive"));
 		}
 		return result;
 	}
