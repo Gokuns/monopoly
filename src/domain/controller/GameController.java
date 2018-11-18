@@ -53,10 +53,11 @@ public class GameController {
 		}
 		gameState.setOrderedPlayerList(playerList);
 		gameState.setCurrentPlayer(playerList.get(0));
-		HashMap<String, String> endTurnMap = new HashMap<String, String>();
-		endTurnMap.put("type", "gameStarted");
-		endTurnMap.put("currentPlayer", gameState.getCurrentPlayer().getName());
-		gameState.publishToUIListeners(endTurnMap);
+		HashMap<String, String> gameStartedMap = new HashMap<String, String>();
+		gameStartedMap.put("type", "gameStarted");
+		gameStartedMap.put("currentPlayer", gameState.getCurrentPlayer().getName());
+		gameStartedMap.put("currentPlayerID", Integer.toString(gameState.getCurrentPlayer().getID()));
+		gameState.publishToUIListeners(gameStartedMap);
 	}
 	
 	public void move() {
@@ -80,11 +81,15 @@ public class GameController {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("type", "endTurn");
 		map.put("currentPlayer", gameState.getCurrentPlayer().getName());
+		map.put("currentPlayerID", Integer.toString(gameState.getCurrentPlayer().getID()));
 		gameState.publishToNetworkListeners(map);
 		gameState.publishToUIListeners(map);
 		
 	}
-	
+
+	public Player getLocalPlayer() {
+		return localPlayer;
+	}
 
 	public void setLocalPlayer(Player localPlayer) {
 		this.localPlayer = localPlayer;

@@ -43,6 +43,11 @@ public class GameFrame extends JFrame implements GameStateListener{
 	private JLabel rollLabel;
 	private Board board;
 
+	private JButton rollButton;
+	private JButton endTurnButton;
+	private JButton moveButton;
+	
+
 
 	/**
 	 * Create the frame.
@@ -95,16 +100,16 @@ public class GameFrame extends JFrame implements GameStateListener{
 			playerLabel.setBounds(0, 0, 300, 100);
 			panel.add(playerLabel);
 
-			JButton endTurnButton = new JButton("End Turn");
+			endTurnButton = new JButton("End Turn");
 			endTurnButton.setBounds(0, 119, 300, 40);
 			panel.add(endTurnButton);
 
-			JButton rollButton = new JButton("Roll");
+			rollButton = new JButton("Roll");
 			rollButton.setBounds(0, 172, 300, 40);
 
 			panel.add(rollButton);
 
-			JButton moveButton = new JButton("Move");
+			moveButton = new JButton("Move");
 			moveButton.setBounds(0, 225, 300, 40);
 			panel.add(moveButton);
 
@@ -181,7 +186,6 @@ public class GameFrame extends JFrame implements GameStateListener{
 	}
 
 	public void moveUIPiece() {
-
 		int index = gameState.getOrderedPlayerList().indexOf(gameState.getCurrentPlayer());
 		int layer = board.getSquareLayerIndex(gameState.getPlayerCurrentSquare());
 		int number = board.getSquareIndex(gameState.getPlayerCurrentSquare());
@@ -262,6 +266,18 @@ public class GameFrame extends JFrame implements GameStateListener{
 				public void run() {
 					String str = map.get("currentPlayer");
 					playerLabel.setText(str);
+					int localID = gameController.getLocalPlayer().getID();
+					int currentID = Integer.parseInt(map.get("currentPlayerID"));
+					if(localID == currentID) {
+						rollButton.setEnabled(true);
+						moveButton.setEnabled(true);
+						endTurnButton.setEnabled(true);
+					} else
+					{
+						rollButton.setEnabled(false);
+						moveButton.setEnabled(false);
+						endTurnButton.setEnabled(false);
+					}
 				}
 			});
 			break;
@@ -271,7 +287,18 @@ public class GameFrame extends JFrame implements GameStateListener{
 				public void run() {
 					String str = map.get("currentPlayer");
 					playerLabel.setText(str);
-					initializeBalls();
+					initializeBalls();int localID = gameController.getLocalPlayer().getID();
+					int currentID = Integer.parseInt(map.get("currentPlayerID"));
+					if(localID == currentID) {
+						rollButton.setEnabled(true);
+						moveButton.setEnabled(true);
+						endTurnButton.setEnabled(true);
+					} else
+					{
+						rollButton.setEnabled(false);
+						moveButton.setEnabled(false);
+						endTurnButton.setEnabled(false);
+					}
 				}
 			});
 			break;

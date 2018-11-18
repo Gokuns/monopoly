@@ -38,7 +38,7 @@ public class ClientNetworkController implements NetworkController, GameStateList
 		new Thread(socketReader).start();
 		gameState.addNetworkListener(this);
 		
-		Player localPlayer = new Player(username, 0, new Piece());
+		Player localPlayer = new Player(username, 1, new Piece());
 		gameController.setLocalPlayer(localPlayer);
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("type", "newConnection");

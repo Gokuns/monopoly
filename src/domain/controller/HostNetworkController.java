@@ -105,6 +105,7 @@ public class HostNetworkController implements NetworkController, GameStateListen
 		map.put("playerCount", Integer.toString(connectionCount+1));
 		map.put("player"+0+"Name", localPlayer.getName());
 		map.put("player"+0+"ID", Integer.toString(localPlayer.getID()));
+		map.put("currentPlayerID", "0");
 		for(int i = 0; i < connectionCount; i++) {
 			Player p = playerList.get(i);
 			map.put("player"+(i+1)+"Name", p.getName());
