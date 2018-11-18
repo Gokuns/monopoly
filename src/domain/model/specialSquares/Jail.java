@@ -5,8 +5,8 @@ import domain.model.SpecialSquare;
 
 public class Jail extends SpecialSquare{
 
-	public Jail(String name, String description) {
-		super(name, description);
+	public Jail(String name, String description, int layer, int number) {
+		super(name, description, layer, number);
 		// TODO Auto-generated constructor stub
 	}
 

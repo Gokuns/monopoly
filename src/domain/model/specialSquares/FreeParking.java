@@ -5,8 +5,8 @@ import domain.model.SpecialSquare;
 
 public class FreeParking extends SpecialSquare{
 
-	public FreeParking(String name, String description) {
-		super(name, description);
+	public FreeParking(String name, String description, int layer, int number) {
+		super(name, description, layer, number);
 		// TODO Auto-generated constructor stub
 	}
 

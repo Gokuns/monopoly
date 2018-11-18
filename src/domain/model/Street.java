@@ -7,8 +7,9 @@ public class Street extends Property {
 	private int houseCount;
 	private boolean hasHotel;
 	private boolean hasSkyscraper;
-	public Street(String name, int price, String description, String color, Deed deed) {
-		super(name, price, description, deed);
+	public Street(String name, int price, String description, String color, Deed deed, int layer, int number)
+	{
+		super(name, price, description, deed, layer, number);
 		this.color = color;
 		this.houseCount = 0;
 		this.hasHotel = false;
