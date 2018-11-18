@@ -55,8 +55,8 @@ public class ClientNetworkController implements NetworkController, GameStateList
 		String type = map.get("type");
 		switch(type){
 		case "gameStarted":
-			gameController.initializePlayers(map);
 			publishToListeners(map);
+			gameController.initializePlayers(map);
 			break;
 		case "roll":
 			gameState.publishToUIListeners(map);
