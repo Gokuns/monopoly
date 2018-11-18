@@ -23,7 +23,6 @@ public class ClientNetworkController implements NetworkController, GameStateList
 	
 	private Gson gson = new Gson();
 	private GameController gameController = GameController.getInstance();
-	@SuppressWarnings("unused")
 	private GameState gameState = GameState.getInstance();
 	private SocketReader socketReader;
 	
