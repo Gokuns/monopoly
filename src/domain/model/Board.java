@@ -1,6 +1,7 @@
 package domain.model;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import domain.model.dice.Cup;
@@ -85,6 +86,25 @@ public class Board {
 	public void movePiece(Square squareToMove) {
 		setPlayersSquare(game.getCurrentPlayer(),squareToMove);
 		System.out.println("Moved to " + getPlayersSquare(game.getCurrentPlayer()).getName());
+	}
+	
+	public int getSquareLayerIndex(Square sq) {
+		int result=-1;
+	if(Squares.get(0).contains(sq)) result =0;
+	else if(Squares.get(1).contains(sq)) result = 1;
+	else if(Squares.get(2).contains(sq)) result = 2;
+	return result;
+	}
+	
+	public int getSquareIndex(Square sq) {
+		List<Square> layer = Squares.get(getSquareLayerIndex(sq));
+		int result=-1;
+		for(int i=0;i<layer.size();i++) {
+			if(layer.get(i).equals(sq)) {
+				result = i;
+			}
+		}
+		return result;
 	}
 	
 	private int calculateMovement() {

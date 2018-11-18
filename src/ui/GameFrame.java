@@ -107,12 +107,8 @@ public class GameFrame extends JFrame implements GameStateListener{
 			endTurnButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					gameController.endTurn();
-					playerLabel.setText(gameState.getCurrentPlayer().getName());
 					//System.out.println("It is " + game.getCurrentPlayer().getName() +"'s turn");
-
 				}
-
-
 			});
 			
 			
@@ -208,6 +204,16 @@ public class GameFrame extends JFrame implements GameStateListener{
 					playerLabel.setText(str);
 				}
 			});
+			break;
+		case "gameStarted":
+			EventQueue.invokeLater(new Runnable() {
+				@Override
+				public void run() {
+					String str = map.get("currentPlayer");
+					playerLabel.setText(str);
+				}
+			});
+			break;
 		}
 	}
 }
