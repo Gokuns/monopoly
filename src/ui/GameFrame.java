@@ -191,7 +191,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 				}
 			});
 			break;
-		case "initUI":
+		case "gameStarted":
 			EventQueue.invokeLater(new Runnable() {
 				@Override
 				public void run() {
