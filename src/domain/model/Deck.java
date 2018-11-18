@@ -24,17 +24,17 @@ public class Deck {
 		}
 	}
 	
-	private void initializeCommunityCards(List<Card> cards){
+	private void initializeCommunityCards(List<Card> cards){//creating & adding a sample community chest card to the deck
 		Card c = new PayHospitalBillsCard();
 		cards.add(c);
 	}
 	
-	private void initializeChanceCards(List<Card> cards){
+	private void initializeChanceCards(List<Card> cards){//creating & adding a sample chance action card to the deck
 		Card c = new GoToJailCard();
 		cards.add(c);
 	}
 	
-	private void initializeRoll3Cards(List<Card> cards){
+	private void initializeRoll3Cards(List<Card> cards){//creating & adding a sample roll three card to the deck
 		Card c = new Roll3Card(faceValue.ONE, faceValue.TWO, faceValue.THREE);
 		cards.add(c);
 	}
@@ -56,8 +56,8 @@ public class Deck {
 	}
 
 	@SuppressWarnings("unused")
-	private Card draw(){
-		Card card = cards.get(0);//draw from the top
+	private Card draw(){//drawing a card from the top of the deck.
+		Card card = cards.get(0);
 		return card;
 	}
 }
