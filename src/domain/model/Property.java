@@ -6,8 +6,8 @@ public abstract class Property extends Square{
 	private boolean isMortgaged;
 	private Deed deed;
 
-	public Property(String name, int price, String description, Deed deed) {
-		super(name,description);
+	public Property(String name, int price, String description, Deed deed,int layer, int number) {
+		super(name,description, layer, number);
 		this.price = price;
 		this.owner=null;
 		this.isMortgaged = false;

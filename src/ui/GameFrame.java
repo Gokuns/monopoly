@@ -21,6 +21,8 @@ import domain.model.dice.faceValue;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -44,9 +46,11 @@ public class GameFrame extends JFrame implements NetworkControllerListener{
 	private GameState game;
 	private NetworkController networkController;
 	private int numberOfPlayers;
-	ArrayList<Ball> balls = new ArrayList<Ball>();
+	ArrayList<Ball> balls;
+	private BoardLayers boardLayers;
 
 	private JLabel rollLabel;
+	private JLabel coords;
 
 	/**
 	 * Create the frame.
@@ -56,7 +60,9 @@ public class GameFrame extends JFrame implements NetworkControllerListener{
 
 		this.networkController = networkController;
 		networkController.addNetworkControllerListener(this);
-
+		
+		boardLayers = new BoardLayers();
+		balls = new ArrayList<Ball>();
 		gameController = GameController.getInstance();
 		game = GameState.getInstance();
 		setBounds(new Rectangle(0, 0, 1300, 800));
@@ -68,6 +74,7 @@ public class GameFrame extends JFrame implements NetworkControllerListener{
 		contentPane.setLayout(null);
 
 		try {
+			
 			
 			numberOfPlayers = game.getOrderedPlayerList().size();
 			for(int i = 0;i<numberOfPlayers; i++) {
@@ -91,6 +98,7 @@ public class GameFrame extends JFrame implements NetworkControllerListener{
 			logoImage = logoImage.getScaledInstance(700, 700, Image.SCALE_SMOOTH);
 			JPanel monopolyLogoPanel = new BackgroundImagePanel(logoImage);
 			monopolyLogoPanel.setBounds(20, 20, 700, 700);
+			//monopolyLogoPanel.setVisible(false);
 			contentPane.add(monopolyLogoPanel);
 			
 			JPanel panel = new JPanel();
@@ -103,6 +111,7 @@ public class GameFrame extends JFrame implements NetworkControllerListener{
 			playerLabel.setFont(new Font("Tahoma", Font.PLAIN, 25));
 			playerLabel.setBounds(0, 0, 300, 100);
 			panel.add(playerLabel);
+			
 			
 			JButton endTurnButton = new JButton("End Turn");
 			endTurnButton.setBounds(0, 119, 300, 40);
@@ -132,8 +141,12 @@ public class GameFrame extends JFrame implements NetworkControllerListener{
 			moveButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					gameController.move();
-					
-
+					int index = game.getOrderedPlayerList().indexOf(game.getCurrentPlayer());
+					int layer = game.getPlayerCurrentSquare().getLayer();
+					int number = game.getPlayerCurrentSquare().getNumber();
+					int x = boardLayers.getSquareCoordinates(layer-1, number).getX() - 15;
+					int y = boardLayers.getSquareCoordinates(layer-1, number).getY() - 15;
+					balls.get(index).setLocation(x-index*5, y);
 				}
 
 
@@ -144,7 +157,21 @@ public class GameFrame extends JFrame implements NetworkControllerListener{
 			rollLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 			rollLabel.setBounds(0, 278, 300, 40);
 			panel.add(rollLabel);
-
+			
+			/*
+			coords = new JLabel("You rolled: X X X");
+			coords.setHorizontalAlignment(SwingConstants.CENTER);
+			coords.setFont(new Font("Tahoma", Font.PLAIN, 20));
+			coords.setBounds(0, 400, 300, 40);
+			panel.add(coords);
+			
+			contentPane.addMouseListener(new MouseAdapter(){
+				public void mouseClicked(MouseEvent e) {
+					coords.setText("X = " + e.getX() + ", Y = " + e.getY());
+				}
+			});
+			*/
+			
 			rollButton.addActionListener(new ActionListener() {
 
 				@Override

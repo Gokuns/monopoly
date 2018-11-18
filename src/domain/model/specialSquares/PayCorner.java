@@ -7,8 +7,8 @@ public abstract class PayCorner extends SpecialSquare{
 
 
 
-	public PayCorner(String name, String description) {
-		super(name, description);
+	public PayCorner(String name, String description, int layer, int number) {
+		super(name, description, layer, number);
 		// TODO Auto-generated constructor stub
 	}
 

@@ -37,17 +37,17 @@ public class Board {
 		List<Square> layerTwo = new ArrayList<Square>();
 		List<Square> layerThree = new ArrayList<Square>();
 		layerTwo.add(Go.getInstance());
-		for (int i=0; i<25;i++) {
+		for (int i=0; i<24;i++) {
 			String name = i +", 1st layer";
-			layerOne.add(new Street(name,100+i,"","",null));
+			layerOne.add(new Street(name,100+i,"","",null,1,i));
 		}
-		for (int i=1; i<40;i++) {
+		for (int i=0; i<40;i++) {
 			String name = i +", 2nd layer";
-			layerTwo.add(new Street(name,100+i,"","",null));
+			layerTwo.add(new Street(name,100+i,"","",null,2,i));
 		}
-		for (int i=0; i<55;i++) {
+		for (int i=0; i<56;i++) {
 			String name = i +", 3rd layer";
-			layerThree.add(new Street(name,100+i,"","",null));
+			layerThree.add(new Street(name,100+i,"","",null,3,i));
 		}
 		Squares.add(layerOne);
 		Squares.add(layerTwo);

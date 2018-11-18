@@ -5,8 +5,8 @@ import domain.model.SpecialSquare;
 
 public class HollandTunnel extends SpecialSquare{
 
-	public HollandTunnel(String name, String description) {
-		super(name, description);
+	public HollandTunnel(String name, String description,  int layer, int number) {
+		super(name, description, layer, number);
 		// TODO Auto-generated constructor stub
 	}
 

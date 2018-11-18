@@ -5,8 +5,8 @@ import domain.model.SpecialSquare;
 
 public class ChanceAction extends SpecialSquare{
 
-	public ChanceAction(String name, String description) {
-		super(name, description);
+	public ChanceAction(String name, String description, int layer, int number) {
+		super(name, description, layer, number);
 		// TODO Auto-generated constructor stub
 	}
 

@@ -5,8 +5,8 @@ import domain.model.specialSquares.PayCorner;;
 
 public class Bonus extends PayCorner{
 
-	public Bonus(String name, String description) {
-		super(name, description);
+	public Bonus(String name, String description, int layer, int number) {
+		super(name, description, layer, number);
 		// TODO Auto-generated constructor stub
 	}
 

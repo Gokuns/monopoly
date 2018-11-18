@@ -15,7 +15,7 @@ public class Ball extends JPanel {
 		this.color = color;
 	}
 	
-	public void paint(Graphics G) {
+	public void paintComponent(Graphics G) {
 		
 		if(getColor() == 0) {
 			G.setColor(Color.BLACK);
