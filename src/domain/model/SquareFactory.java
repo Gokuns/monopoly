@@ -21,6 +21,7 @@ import domain.model.specialSquares.LuxuryTax;
 import domain.model.specialSquares.ReverseDirection;
 import domain.model.specialSquares.RollThree;
 import domain.model.specialSquares.SqueezePlay;
+import domain.model.specialSquares.StockExchange;
 import domain.model.specialSquares.Subway;
 import domain.model.specialSquares.TransitStation;
 //import domain.model.specialSquares.payCorners.Go;
@@ -232,10 +233,13 @@ public class SquareFactory {
 			return new PayDay(name,  "A pay corner");
 		}
 		else if(name.equals("Subway")){
-			return new Subway(name,  "A pay corner");
+			return new Subway(name,  "Travel to any street next turn.");
 		}
 		else if(name.equals("Birthday Gift")){
-			return new BirthdayGift(name,  "A pay corner");
+			return new BirthdayGift(name,  "You get 50% of the pool");
+		}
+		else if(name.equals("Stock Exchange")){
+			return new StockExchange(name,  "A pay corner");
 		}
 		
 
