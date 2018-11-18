@@ -1,5 +1,6 @@
 package domain.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import domain.model.chanceCards.GoToJailCard;
@@ -14,6 +15,7 @@ public class Deck {
 	public Deck(String type){
 		
 		this.type = type;
+		this.cards = new ArrayList<Card>();
 		
 		if(type.equals("chance")){
 			initializeChanceCards(cards);
