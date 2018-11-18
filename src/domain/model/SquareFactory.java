@@ -45,39 +45,27 @@ public class SquareFactory {
 			return new Street(name, 60,  "A nice place to buy.", "Purple", deedFactory.createDeed(name));
 		}else if(name.equals("Baltic Avenue")){
 			return new Street(name, 60,  "A nice place to buy.", "Purple", deedFactory.createDeed(name));
-		}else if(name.equals("Oriental Avenue")){
-			return new Street(name, 100,  "A nice place to buy.", "Light Blue", deedFactory.createDeed(name));
-		}else if(name.equals("Vermont Avenue")){
+		}else if(name.equals("Oriental Avenue") || name.equals("Vermont Avenue")){
 			return new Street(name, 100,  "A nice place to buy.", "Light Blue", deedFactory.createDeed(name));
 		}else if(name.equals("Connecticut Avenue")){
 			return new Street(name, 120,  "A nice place to buy.", "Light Blue", deedFactory.createDeed(name));
-		}else if(name.equals("St. Charles Place")){
-			return new Street(name, 140,  "A nice place to buy.", "Magenta", deedFactory.createDeed(name));
-		}else if(name.equals("States Avenue")){
+		}else if(name.equals("St. Charles Place") || name.equals("States Avenue")){
 			return new Street(name, 140,  "A nice place to buy.", "Magenta", deedFactory.createDeed(name));
 		}else if(name.equals("Virginia Avenue")){
 			return new Street(name, 160,  "A nice place to buy.", "Magenta", deedFactory.createDeed(name));
-		}else if(name.equals("St. James Place")){
-			return new Street(name, 180,  "A nice place to buy.", "Orange", deedFactory.createDeed(name));
-		}else if(name.equals("Tennessee Avenue")){
+		}else if(name.equals("St. James Place") || name.equals("Tennessee Avenue")){
 			return new Street(name, 180,  "A nice place to buy.", "Orange", deedFactory.createDeed(name));
 		}else if(name.equals("New York Avenue")){
 			return new Street(name, 200,  "A nice place to buy.", "Orange", deedFactory.createDeed(name));
-		}else if(name.equals("Kentucky Avenue")){
-			return new Street(name, 220,  "A nice place to buy.", "Red", deedFactory.createDeed(name));
-		}else if(name.equals("Indiana Avenue")){
+		}else if(name.equals("Kentucky Avenue") || name.equals("Indiana Avenue")){
 			return new Street(name, 220,  "A nice place to buy.", "Red", deedFactory.createDeed(name));
 		}else if(name.equals("Illinois Avenue")){
 			return new Street(name, 240,  "A nice place to buy.", "Red", deedFactory.createDeed(name));
-		}else if(name.equals("Atlantic Avenue")){
-			return new Street(name, 260,  "A nice place to buy.", "Yellow", deedFactory.createDeed(name));
-		}else if(name.equals("Ventnor Avenue")){
+		}else if(name.equals("Atlantic Avenue") || name.equals("Ventnor Avenue")){
 			return new Street(name, 260,  "A nice place to buy.", "Yellow", deedFactory.createDeed(name));
 		}else if(name.equals("Marvin Garden")){
 			return new Street(name, 260,  "A nice place to buy.", "Yellow", deedFactory.createDeed(name));
-		}else if(name.equals("Pacific Avenue")){
-			return new Street(name, 300,  "A nice place to buy.", "Dark Green", deedFactory.createDeed(name));
-		}else if(name.equals("North Carolina Avenue")){
+		}else if(name.equals("Pacific Avenue") || name.equals("North Carolina Avenue")){
 			return new Street(name, 300,  "A nice place to buy.", "Dark Green", deedFactory.createDeed(name));
 		}else if(name.equals("Pennsylvania Avenue")){
 			return new Street(name, 320,  "A nice place to buy.", "Dark Green", deedFactory.createDeed(name));
@@ -87,18 +75,21 @@ public class SquareFactory {
 			return new Street(name, 400,  "A nice place to buy.", "Dark Green", deedFactory.createDeed(name));
 		}else if(name.equals("Transit")){
 			return new TransitStation(name,  "Passengers wishing to use the metrobus line should change at Sisli Mecidiyekoy or Gayrettepe stations.");
-		}else if(name.equals("Pennsylvania Railroad")){
-			return new Railroad(name, 200,  "A nice place to buy.", deedFactory.createDeed(name));
-		}else if(name.equals("Reading Railroad")){
-			return new Railroad(name, 200,  "A nice place to buy.", deedFactory.createDeed(name));
-		}else if(name.equals("BnO Raidroad")){
-			return new Railroad(name, 200,  "A nice place to buy.", deedFactory.createDeed(name));
-		}else if(name.equals("Short Railroad")){
+		}else if (name.equals("Pennsylvania Railroad") || name.equals("Reading Railroad") ||
+				name.equals("BnO Raidroad") || name.equals("Short Railroad")){
 			return new Railroad(name, 200,  "A nice place to buy.", deedFactory.createDeed(name));
 		}else if(name.equals("Biscayne Avenue")){
 			return new Street(name, 150,  "A nice place to buy.", "Dark Green", deedFactory.createDeed(name));
-		}else if(name.equals("Miami Avenue")){
+		}else if(name.equals("Miami Avenue") || name.equals("Florida Avenue")){
 			return new Street(name, 150,  "A nice place to buy.", "Dark Green", deedFactory.createDeed(name));
+		}else if(name.equals("Lombard Street") || name.equals("The Embarcadero")){
+			return new Street(name, 210,  "A nice place to buy.", "White", deedFactory.createDeed(name));
+		}else if(name.equals("Fisherman's Wharf")){
+			return new Street(name, 250,  "A nice place to buy.", "White", deedFactory.createDeed(name));
+		}else if(name.equals("Beacon Street") || name.equals("Boylston Street")){
+			return new Street(name, 330,  "A nice place to buy.", "Black", deedFactory.createDeed(name));
+		}else if(name.equals("Newbury Street")){
+			return new Street(name, 380,  "A nice place to buy.", "Black", deedFactory.createDeed(name));
 		}
 		
 		else
