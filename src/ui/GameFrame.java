@@ -116,10 +116,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 				public void actionPerformed(ActionEvent e) {
 					gameController.endTurn();
 					//System.out.println("It is " + game.getCurrentPlayer().getName() +"'s turn");
-
 				}
-
-
 			});
 			
 			
