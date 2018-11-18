@@ -6,14 +6,18 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Observable;
 
-public class HostNetwork extends Observable implements Runnable{
+import domain.controller.HostNetworkController;
+
+public class HostNetwork implements Runnable{
 	private ServerSocket serverSocket;
 	private ArrayList<Socket> socketList;
+	private HostNetworkController hostNetworkController;
 	
 	protected int port;
 	
-	public HostNetwork(String port) {
+	public HostNetwork(String port, HostNetworkController hostNetworkController) {
 		try {
+			this.hostNetworkController = hostNetworkController;
 			socketList = new ArrayList<Socket>();
 			this.port = Integer.parseInt(port);
 			serverSocket = new ServerSocket(this.port);
@@ -25,10 +29,9 @@ public class HostNetwork extends Observable implements Runnable{
 	public void run() {
 		while(true) {
 			try {
-				Socket connection = serverSocket.accept();
-				socketList.add(connection);
-				setChanged();
-				notifyObservers(connection);
+				Socket socket = serverSocket.accept();
+				socketList.add(socket);
+				hostNetworkController.newConnection(socket);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

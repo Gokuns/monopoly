@@ -14,8 +14,6 @@ public class BackgroundImagePanel extends JPanel{
 		this.img = img;
 	}
 
-
-
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
