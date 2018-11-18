@@ -52,7 +52,6 @@ public class Board {
 		Squares.add(layerOne);
 		Squares.add(layerTwo);
 		Squares.add(layerThree);
-		
 	}
 	
 	public void rollCup() {
