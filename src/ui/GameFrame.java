@@ -193,9 +193,10 @@ public class GameFrame extends JFrame implements GameStateListener{
 		int layer = board.getSquareLayerIndex(gameState.getPlayerCurrentSquare());
 		int number = board.getSquareIndex(gameState.getPlayerCurrentSquare());
 		SquareCoordinates current = boardLayers.getSquareCoordinates(layer, number);
-		int x = current.getX() - 15;
-		int y = current.getY() - 15;
+		int x = current.getX() - 30;
+		int y = current.getY() - 30;
 		balls.get(index).setLocation(x-index*5, y);
+		balls.get(index).repaint();
 
 	}
 
