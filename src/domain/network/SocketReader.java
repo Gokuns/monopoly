@@ -40,7 +40,6 @@ public class SocketReader implements Runnable{
 				if(line != null) {
 					@SuppressWarnings("unchecked")
 					HashMap<String, String> map = gson.fromJson(line, HashMap.class);
-					System.out.println(map.get("type"));
 					networkController.handleMessage(map);
 				}
 			}

@@ -15,6 +15,7 @@ public class Board {
 	private static Cup cup = Cup.getInstance();
 	private SquareIterator iter;
 	private int poolBalance;
+	private LayerFactory layerFactory = LayerFactory.getInstance();
 	
 	private Board() {
 		initiateSquares();
@@ -31,22 +32,9 @@ public class Board {
 	}
 	
 	private void initiateSquares() {
-		List<Square> layerOne = new ArrayList<Square>();
-		List<Square> layerTwo = new ArrayList<Square>();
-		List<Square> layerThree = new ArrayList<Square>();
-		layerTwo.add(Go.getInstance());
-		for (int i=0; i<24;i++) {
-			String name = i +", 1st layer";
-			layerOne.add(new Street(name,100+i,"","",null));
-		}
-		for (int i=1; i<40;i++) {
-			String name = i +", 2nd layer";
-			layerTwo.add(new Street(name,100+i,"","",null));
-		}
-		for (int i=0; i<56;i++) {
-			String name = i +", 3rd layer";
-			layerThree.add(new Street(name,100+i,"","",null));
-		}
+		List<Square> layerOne = layerFactory.createLayer("inner");
+		List<Square> layerTwo = layerFactory.createLayer("middle");
+		List<Square> layerThree = layerFactory.createLayer("outer");
 		Squares.add(layerOne);
 		Squares.add(layerTwo);
 		Squares.add(layerThree);
@@ -77,7 +65,16 @@ public class Board {
 		for (int i=0;i<movement;i++) {
 			currentSquare = iter.next();
 		}
-		setPlayersSquare(game.getCurrentPlayer(),currentSquare);
+		
+		Square landedOn = currentSquare;
+		Player currentPlayer = game.getCurrentPlayer();
+		
+		setPlayersSquare(currentPlayer,landedOn);
+		
+		if(landedOn.isSpecialSquare()){
+			((SpecialSquare) landedOn).action(currentPlayer);
+		}
+		
 		System.out.println("Moved to " + getPlayersSquare(game.getCurrentPlayer()).getName());
 		
 		

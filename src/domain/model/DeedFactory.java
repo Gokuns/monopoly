@@ -280,7 +280,7 @@ public class DeedFactory {
 				put("hotelPrice", get("housePrice")*4+50);
 				put("skyPrice", get("hotelPrice")+50);
 			}});
-		}else if (name.equals("Lombard") || name.equals("Embarcadero")) {
+		}else if (name.equals("Lombard Street") || name.equals("The Embarcadero")) {
 			return new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",17);
 				put("oneHouse", 85);
@@ -294,7 +294,7 @@ public class DeedFactory {
 				put("hotelPrice", get("housePrice")*4+100);
 				put("skyPrice", get("hotelPrice")+100);
 			}});
-		}else if (name.equals("Fishermans")) {
+		}else if (name.equals("Fisherman's Wharf")) {
 			return new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",21);
 				put("oneHouse", 105);
@@ -308,7 +308,7 @@ public class DeedFactory {
 				put("hotelPrice", get("housePrice")*4+100);
 				put("skyPrice", get("hotelPrice")+100);
 			}});
-		}else if (name.equals("Beacon") || name.equals("Boylston")) {
+		}else if (name.equals("Beacon Street") || name.equals("Boylston Street")) {
 			return new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",30);
 				put("oneHouse", 160);
@@ -322,7 +322,7 @@ public class DeedFactory {
 				put("hotelPrice", get("housePrice")*4+200);
 				put("skyPrice", get("hotelPrice")+200);
 			}});
-		}else if (name.equals("Newbury")) {
+		}else if (name.equals("Newbury Street")) {
 			return new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",40);
 				put("oneHouse", 185);
@@ -336,7 +336,7 @@ public class DeedFactory {
 				put("hotelPrice", get("housePrice")*4+200);
 				put("skyPrice", get("hotelPrice")+200);
 			}});
-		}else if (name.equals("Fifth") || name.equals("Madison")) {
+		}else if (name.equals("Fifth Avenue") || name.equals("Madison Avenue")) {
 			return new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",60);
 				put("oneHouse", 220);
@@ -350,7 +350,7 @@ public class DeedFactory {
 				put("hotelPrice", get("housePrice")*4+300);
 				put("skyPrice", get("hotelPrice")+300);
 			}});
-		}else if (name.equals("Wall")) {
+		}else if (name.equals("Wall Street")) {
 			return new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",80);
 				put("oneHouse", 300);
@@ -364,7 +364,7 @@ public class DeedFactory {
 				put("hotelPrice", get("housePrice")*4+300);
 				put("skyPrice", get("hotelPrice")+300);
 			}});
-		}else if (name.equals("Lake") || name.equals("Nicollet")) {
+		}else if (name.equals("Lake Street") || name.equals("Nicollet Avenue")) {
 			return new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",1);
 				put("oneHouse", 5);
@@ -378,7 +378,7 @@ public class DeedFactory {
 				put("hotelPrice", get("housePrice")*4+50);
 				put("skyPrice", get("hotelPrice")+50);
 			}});
-		}else if (name.equals("Hennepin")) {
+		}else if (name.equals("Hennepin Avenue")) {
 			return new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",3);
 				put("oneHouse", 15);
@@ -392,7 +392,7 @@ public class DeedFactory {
 				put("hotelPrice", get("housePrice")*4+50);
 				put("skyPrice", get("hotelPrice")+50);
 			}});
-		}else if (name.equals("Esplanade")) {
+		}else if (name.equals("Esplanade Avenue") || name.equals("Canal Street")) {
 			return new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",5);
 				put("oneHouse", 25);
@@ -406,49 +406,7 @@ public class DeedFactory {
 				put("hotelPrice", get("housePrice")*4+50);
 				put("skyPrice", get("hotelPrice")+50);
 			}});
-		}else if (name.equals("Katy") || name.equals("WestHeimer")) {
-			return new Deed("Street", new HashMap<String, Integer>(){{
-				put("rent",11);
-				put("oneHouse", 55);
-				put("twoHouse", 160);
-				put("threeHouse", 475);
-				put("fourHouse", 650);
-				put("hotel", 800);
-				put("sky", 1300);
-				put("mortgage", 70);
-				put("housePrice", 100);
-				put("hotelPrice", get("housePrice")*4+100);
-				put("skyPrice", get("hotelPrice")+100);
-			}});
-		}else if (name.equals("Kirby") || name.equals("Cullen")) {
-			return new Deed("Street", new HashMap<String, Integer>(){{
-				put("rent",14);
-				put("oneHouse", 70);
-				put("twoHouse", 200);
-				put("threeHouse", 880);
-				put("fourHouse", 750);
-				put("hotel", 950);
-				put("sky", 1450);
-				put("mortgage", 80);
-				put("housePrice", 100);
-				put("hotelPrice", get("housePrice")*4+100);
-				put("skyPrice", get("hotelPrice")+100);
-			}});
-		}else if (name.equals("Canal")) {
-			return new Deed("Street", new HashMap<String, Integer>(){{
-				put("rent",5);
-				put("oneHouse", 25);
-				put("twoHouse", 80);
-				put("threeHouse", 225);
-				put("fourHouse", 360);
-				put("hotel", 600);
-				put("sky", 1000);
-				put("mortgage", 50);
-				put("housePrice", 50);
-				put("hotelPrice", get("housePrice")*4+50);
-				put("skyPrice", get("hotelPrice")+50);
-			}});
-		}else if (name.equals("Magazine") || name.equals("Bourbon")) {
+		}else if (name.equals("Magazine Street") || name.equals("Bourbon Street")) {
 			return new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",8);
 				put("oneHouse", 40);
@@ -462,7 +420,35 @@ public class DeedFactory {
 				put("hotelPrice", get("housePrice")*4+50);
 				put("skyPrice", get("hotelPrice")+50);
 			}});
-		}else if (name.equals("Dekalb") || name.equals("Young")) {
+		}else if (name.equals("Katy Freeway") || name.equals("WestHeimer Road")) {
+			return new Deed("Street", new HashMap<String, Integer>(){{
+				put("rent",11);
+				put("oneHouse", 55);
+				put("twoHouse", 160);
+				put("threeHouse", 475);
+				put("fourHouse", 650);
+				put("hotel", 800);
+				put("sky", 1300);
+				put("mortgage", 70);
+				put("housePrice", 100);
+				put("hotelPrice", get("housePrice")*4+100);
+				put("skyPrice", get("hotelPrice")+100);
+			}});
+		}else if (name.equals("Kirby Drive") || name.equals("Cullen Boulevard")) {
+			return new Deed("Street", new HashMap<String, Integer>(){{
+				put("rent",14);
+				put("oneHouse", 70);
+				put("twoHouse", 200);
+				put("threeHouse", 880);
+				put("fourHouse", 750);
+				put("hotel", 950);
+				put("sky", 1450);
+				put("mortgage", 80);
+				put("housePrice", 100);
+				put("hotelPrice", get("housePrice")*4+100);
+				put("skyPrice", get("hotelPrice")+100);
+			}});
+		}else if (name.equals("Dekalb Avenue") || name.equals("Andrew Young Intl Boulevard")) {
 			return new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",17);
 				put("oneHouse", 85);
@@ -476,7 +462,7 @@ public class DeedFactory {
 				put("hotelPrice", get("housePrice")*4+100);
 				put("skyPrice", get("hotelPrice")+100);
 			}});
-		}else if (name.equals("Decatur") || name.equals("Peachtree")) {
+		}else if (name.equals("Decatur Street") || name.equals("Peachtree Street")) {
 			return new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",20);
 				put("oneHouse", 100);
@@ -490,7 +476,7 @@ public class DeedFactory {
 				put("hotelPrice", get("housePrice")*4+100);
 				put("skyPrice", get("hotelPrice")+100);
 			}});
-		}else if (name.equals("Randolph") || name.equals("LakeShore")) {
+		}else if (name.equals("Randolph Street") || name.equals("Lake Shore Drive")) {
 			return new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",23);
 				put("oneHouse", 115);
@@ -504,7 +490,7 @@ public class DeedFactory {
 				put("hotelPrice", get("housePrice")*4+150);
 				put("skyPrice", get("hotelPrice")+150);
 			}});
-		}else if (name.equals("Wacker") || name.equals("Michigan")) {
+		}else if (name.equals("Wacker Drive") || name.equals("Michigan Avenue")) {
 			return new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",26);
 				put("oneHouse", 130);
@@ -518,7 +504,7 @@ public class DeedFactory {
 				put("hotelPrice", get("housePrice")*4+150);
 				put("skyPrice", get("hotelPrice")+150);
 			}});
-		}else if (name.equals("SouthTemple") || name.equals("WestTemple")) {
+		}else if (name.equals("South Temple") || name.equals("West Temple")) {
 			return new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",32);
 				put("oneHouse", 160);
@@ -532,7 +518,7 @@ public class DeedFactory {
 				put("hotelPrice", get("housePrice")*4+200);
 				put("skyPrice", get("hotelPrice")+200);
 			}});
-		}else if (name.equals("NorthTemple") || name.equals("TempleSquare")) {
+		}else if (name.equals("North Temple") || name.equals("Temple Square")) {
 			return new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",38);
 				put("oneHouse", 170);
@@ -546,7 +532,7 @@ public class DeedFactory {
 				put("hotelPrice", get("housePrice")*4+200);
 				put("skyPrice", get("hotelPrice")+200);
 			}});
-		}else if (name.equals("South") || name.equals("Broad")) {
+		}else if (name.equals("South Street") || name.equals("Broad Street")) {
 			return new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",45);
 				put("oneHouse", 210);
@@ -560,7 +546,7 @@ public class DeedFactory {
 				put("hotelPrice", get("housePrice")*4+250);
 				put("skyPrice", get("hotelPrice")+250);
 			}});
-		}else if (name.equals("Walnut") || name.equals("Market")) {
+		}else if (name.equals("Walnut Street") || name.equals("Market Street")) {
 			return new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",55);
 				put("oneHouse", 225);
@@ -574,7 +560,7 @@ public class DeedFactory {
 				put("hotelPrice", get("housePrice")*4+250);
 				put("skyPrice", get("hotelPrice")+250);
 			}});
-		}else if (name.equals("Mulholland")) {
+		}else if (name.equals("Mulholland Drive")) {
 			return new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",70);
 				put("oneHouse", 350);
@@ -588,7 +574,7 @@ public class DeedFactory {
 				put("hotelPrice", get("housePrice")*4+300);
 				put("skyPrice", get("hotelPrice")+300);
 			}});
-		}else if (name.equals("Ventura")) {
+		}else if (name.equals("Ventura Boulevard")) {
 			return new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",80);
 				put("oneHouse", 400);
@@ -602,7 +588,7 @@ public class DeedFactory {
 				put("hotelPrice", get("housePrice")*4+300);
 				put("skyPrice", get("hotelPrice")+300);
 			}});
-		}else if (name.equals("Rodeo")) {
+		}else if (name.equals("Rodeo Drive")) {
 			return new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",90);
 				put("oneHouse", 450);
@@ -616,8 +602,8 @@ public class DeedFactory {
 				put("hotelPrice", get("housePrice")*4+300);
 				put("skyPrice", get("hotelPrice")+300);
 			}});
-		}else if (name.equals("CheckerCab") || name.equals("BlacknWhiteCab") ||
-				name.equals("YellowCab") || name.equals("UteCab")) {
+		}else if (name.equals("Checker Cab Co.") || name.equals("Black n WhiteCab Co.") ||
+				name.equals("Yellow Cab Co.") || name.equals("Ute Cab Co.")) {
 			return new Deed("CabCompany", new HashMap<String, Integer>(){{
 				put("rent", 30);
 				put("twoCab", 60);
@@ -625,10 +611,10 @@ public class DeedFactory {
 				put("fourCab", 240);
 				put("mortgage", 150);
 			}});
-		}else if (name.equals("WaterWorks") || name.equals("CableCompany") ||
-				name.equals("ElectricCompany") || name.equals("InternetServiceProvider") ||
-				name.equals("GasCompany") || name.equals("TelephoneCompany") ||
-				name.equals("TrashCollector") || name.equals("SewageSystem")) {
+		}else if (name.equals("Water Works") || name.equals("Cable Company") ||
+				name.equals("Electric Company") || name.equals("Internet Service Provider") ||
+				name.equals("Gas Company") || name.equals("Telephone Company") ||
+				name.equals("Trash Collector") || name.equals("Sewage System")) {
 			return new Deed("UtilityCompany", new HashMap<String, Integer>(){{
 				put("oneUtility", 4);
 				put("twoUtility", 10);

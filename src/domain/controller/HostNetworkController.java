@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-//import java.util.Observable;
-//import java.util.Observer;
 
 import com.google.gson.Gson;
 
@@ -69,6 +67,23 @@ public class HostNetworkController implements NetworkController, GameStateListen
 			gameState.publishToUIListeners(map);
 			sendMessageToPlayers(map);
 			break;
+		case "roll3":
+			gameState.publishToUIListeners(map);
+			sendMessageToPlayers(map);
+			break;
+		case "payHospitalBill":
+			gameState.publishToUIListeners(map);
+			sendMessageToPlayers(map);
+			break;
+		case "goToJail":
+			gameState.publishToUIListeners(map);
+			sendMessageToPlayers(map);
+			break;
+		case "endTurn":
+			gameState.publishToUIListeners(map);
+			gameState.setCurrentPlayer(gameState.getNextPlayer());
+			sendMessageToPlayers(map);
+			break;
 		}
 	}
 
@@ -107,6 +122,7 @@ public class HostNetworkController implements NetworkController, GameStateListen
 		map.put("playerCount", Integer.toString(connectionCount+1));
 		map.put("player"+0+"Name", localPlayer.getName());
 		map.put("player"+0+"ID", Integer.toString(localPlayer.getID()));
+		map.put("currentPlayerID", "0");
 		for(int i = 0; i < connectionCount; i++) {
 			Player p = playerList.get(i);
 			map.put("player"+(i+1)+"Name", p.getName());

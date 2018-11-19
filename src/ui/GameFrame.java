@@ -24,15 +24,16 @@ import domain.controller.NetworkController;
 import domain.model.Board;
 import domain.model.GameState;
 import domain.model.GameStateListener;
+import domain.model.Player;
 import domain.model.Square;
 //import java.util.ArrayList;
 
 
 @SuppressWarnings("serial")
 public class GameFrame extends JFrame implements GameStateListener{
-	
-	private JPanel monopolyLogoPanel;
+
 	private JPanel contentPane;
+	private JPanel monopolyLogoPanel;
 	private GameController gameController;
 	private GameState gameState;
 	private int numberOfPlayers;
@@ -41,6 +42,11 @@ public class GameFrame extends JFrame implements GameStateListener{
 	private JLabel playerLabel;
 	private JLabel rollLabel;
 	private Board board;
+
+	private JButton rollButton;
+	private JButton endTurnButton;
+	private JButton moveButton;
+	
 
 
 	/**
@@ -94,23 +100,22 @@ public class GameFrame extends JFrame implements GameStateListener{
 			playerLabel.setBounds(0, 0, 300, 100);
 			panel.add(playerLabel);
 
-			JButton endTurnButton = new JButton("End Turn");
+			endTurnButton = new JButton("End Turn");
 			endTurnButton.setBounds(0, 119, 300, 40);
 			panel.add(endTurnButton);
 
-			JButton rollButton = new JButton("Roll");
+			rollButton = new JButton("Roll");
 			rollButton.setBounds(0, 172, 300, 40);
 
 			panel.add(rollButton);
 
-			JButton moveButton = new JButton("Move");
+			moveButton = new JButton("Move");
 			moveButton.setBounds(0, 225, 300, 40);
 			panel.add(moveButton);
 
 			endTurnButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					gameController.endTurn();
-					//System.out.println("It is " + game.getCurrentPlayer().getName() +"'s turn");
 				}
 			});
 
@@ -121,12 +126,15 @@ public class GameFrame extends JFrame implements GameStateListener{
 					//Square currentSq = gameState.getPlayerCurrentSquare();
 					gameController.move();
 					moveUIPiece();
+					rollButton.setEnabled(false);
+					moveButton.setEnabled(false);
+					endTurnButton.setEnabled(true);
 				}
 			});
 
 			rollLabel = new JLabel("You rolled: X X X");
 			rollLabel.setHorizontalAlignment(SwingConstants.CENTER);
-			rollLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+			rollLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
 			rollLabel.setBounds(0, 278, 300, 40);
 			panel.add(rollLabel);
 
@@ -148,7 +156,8 @@ public class GameFrame extends JFrame implements GameStateListener{
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					gameController.roll();
-					System.out.println(gameState.getPlayerList().toString());
+					rollButton.setEnabled(false);
+					moveButton.setEnabled(true);
 				}
 			});
 
@@ -180,7 +189,6 @@ public class GameFrame extends JFrame implements GameStateListener{
 	}
 
 	public void moveUIPiece() {
-
 		int index = gameState.getOrderedPlayerList().indexOf(gameState.getCurrentPlayer());
 		int layer = board.getSquareLayerIndex(gameState.getPlayerCurrentSquare());
 		int number = board.getSquareIndex(gameState.getPlayerCurrentSquare());
@@ -207,12 +215,72 @@ public class GameFrame extends JFrame implements GameStateListener{
 				}
 			});
 			break;
+		case "roll3":
+			EventQueue.invokeLater(new Runnable() {
+				@Override
+				public void run() {
+					String str = "=>";
+					for(String pName:map.keySet()){
+						if(!pName.equals("type")){
+							String award = map.get(pName);
+							str += " / " + pName + " has won $" + award + ".";
+						}
+								
+					}
+					rollLabel.setText(str);
+				}
+			});
+			break;
+		case "payHospitalBill":
+			EventQueue.invokeLater(new Runnable() {
+				@Override
+				public void run() {
+					String str = "=>";
+					for(String name:map.keySet()){
+						if(!name.equals("type")){
+							String balance = map.get(name);
+							str += " / " + " Balance of " + name + " has been updated to $"  + balance + ".";
+						}
+								
+					}
+					rollLabel.setText(str);
+				}
+			});
+			break;
+		case "goToJail":
+			EventQueue.invokeLater(new Runnable() {
+				@Override
+				public void run() {
+					String str = "=>";
+					for(String name:map.keySet()){
+						if(!name.equals("type")){
+							String info = map.get(name);
+							str += name + " " + info;
+						}
+								
+					}
+					rollLabel.setText(str);
+				}
+			});
+			break;
 		case "endTurn":
 			EventQueue.invokeLater(new Runnable() {
 				@Override
 				public void run() {
 					String str = map.get("currentPlayer");
 					playerLabel.setText(str);
+					int localID = gameController.getLocalPlayer().getID();
+					int currentID = Integer.parseInt(map.get("currentPlayerID"));
+					if(localID == currentID) {
+						rollButton.setEnabled(true);
+						moveButton.setEnabled(false);
+						endTurnButton.setEnabled(false);
+					} else
+					{
+						rollButton.setEnabled(false);
+						moveButton.setEnabled(false);
+						endTurnButton.setEnabled(false);
+					}
 				}
 			});
 			break;
@@ -222,7 +290,18 @@ public class GameFrame extends JFrame implements GameStateListener{
 				public void run() {
 					String str = map.get("currentPlayer");
 					playerLabel.setText(str);
-					initializeBalls();
+					initializeBalls();int localID = gameController.getLocalPlayer().getID();
+					int currentID = Integer.parseInt(map.get("currentPlayerID"));
+					if(localID == currentID) {
+						rollButton.setEnabled(true);
+						moveButton.setEnabled(false);
+						endTurnButton.setEnabled(false);
+					} else
+					{
+						rollButton.setEnabled(false);
+						moveButton.setEnabled(false);
+						endTurnButton.setEnabled(false);
+					}
 				}
 			});
 			break;
