@@ -15,8 +15,8 @@ public class GameController {
 	private static GameController controller;
 	private Board board = Board.getInstance();
 	private GameState gameState = GameState.getInstance();
-	private NetworkController networkController;
 	@SuppressWarnings("unused")
+	private NetworkController networkController;
 	private Player localPlayer;
 	private GameController() {}
 	
@@ -61,7 +61,9 @@ public class GameController {
 	}
 	
 	public void move() {
-		board.movePiece();
+		gameState = GameState.getInstance();
+		board = Board.getInstance();
+		board.movePiece(gameState.getCurrentPlayer());
 		System.out.println("Piece move Completed");
 		HashMap<String, String> map = new HashMap<String, String>();
 	}
@@ -72,9 +74,10 @@ public class GameController {
 	}
 	
 	public void endTurn() {
+		gameState = GameState.getInstance();
 		gameState.getCurrentPlayer().setTurn(false);
-		gameState.getNextPlayer().setTurn(true);
 		gameState.setCurrentPlayer(gameState.getNextPlayer());
+		gameState.getCurrentPlayer().setTurn(true);
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("type", "endTurn");
 		map.put("currentPlayer", gameState.getCurrentPlayer().getName());

@@ -59,8 +59,7 @@ public class Board {
 			
 	}
 	
-	public void movePiece() {
-		Player currentPlayer = game.getCurrentPlayer();
+	public void movePiece(Player currentPlayer) {
 		Square currentSquare = getPlayersSquare(currentPlayer);
 		iter = new SquareIterator(currentSquare, Squares);
 		int movement = calculateMovement();
