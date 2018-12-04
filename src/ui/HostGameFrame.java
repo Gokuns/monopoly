@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
+import java.net.InetAddress;
 import java.util.HashMap;
 
 import javax.imageio.ImageIO;
@@ -31,6 +32,7 @@ public class HostGameFrame extends JFrame implements NetworkControllerListener{
 	private JPanel contentPane;
 	private JPanel monopolyLogoPanel;
 	
+	private JLabel yourIPAdress;
 	private JLabel portTextLabel;
 	private JLabel usernameTextLabel;
 	private JTextField portTextField;
@@ -46,7 +48,7 @@ public class HostGameFrame extends JFrame implements NetworkControllerListener{
 	 * Create the frame.
 	 */
 	public HostGameFrame(MainMenuFrame mainMenu) {
-		setBounds(new Rectangle(100, 100, 450, 400));
+		setBounds(new Rectangle(100, 100, 430, 480));
 		setResizable(false);
 		this.mainMenu = mainMenu;
 		setTitle("Host Game");
@@ -114,6 +116,13 @@ public class HostGameFrame extends JFrame implements NetworkControllerListener{
 			usernameTextLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			usernameTextLabel.setBounds(12, 198, 420, 30);
 			contentPane.add(usernameTextLabel);
+			
+			yourIPAdress = new JLabel(InetAddress.getLocalHost().getHostAddress());
+			yourIPAdress.setHorizontalTextPosition(SwingConstants.CENTER);
+			yourIPAdress.setHorizontalAlignment(SwingConstants.CENTER);
+			yourIPAdress.setFont(new Font("Tahoma", Font.PLAIN, 18));
+			yourIPAdress.setBounds(10, 360, 420, 30);
+			contentPane.add(yourIPAdress);
 			
 		} catch (IOException e) {
 			e.printStackTrace();
