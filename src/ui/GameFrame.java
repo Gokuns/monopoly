@@ -2,6 +2,7 @@ package ui;
 
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
@@ -19,14 +20,13 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import com.google.gson.Gson;
+
 import domain.controller.GameController;
 import domain.controller.NetworkController;
 import domain.model.Board;
 import domain.model.GameState;
 import domain.model.GameStateListener;
-import domain.model.Player;
-import domain.model.Square;
-//import java.util.ArrayList;
 
 
 @SuppressWarnings("serial")
@@ -85,6 +85,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 			Image logoImage = ImageIO.read(new File("monopolyBoard.png"));
 			logoImage = logoImage.getScaledInstance(700, 700, Image.SCALE_SMOOTH);
 			monopolyLogoPanel = new BackgroundImagePanel(logoImage);
+			monopolyLogoPanel.setLayout(null);
 			monopolyLogoPanel.setBounds(20, 20, 700, 700);
 			//monopolyLogoPanel.setVisible(false);
 			contentPane.add(monopolyLogoPanel);
@@ -134,7 +135,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 
 			rollLabel = new JLabel("You rolled: X X X");
 			rollLabel.setHorizontalAlignment(SwingConstants.CENTER);
-			rollLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+			rollLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
 			rollLabel.setBounds(0, 278, 300, 40);
 			panel.add(rollLabel);
 
@@ -193,10 +194,11 @@ public class GameFrame extends JFrame implements GameStateListener{
 		int layer = board.getSquareLayerIndex(gameState.getPlayerCurrentSquare());
 		int number = board.getSquareIndex(gameState.getPlayerCurrentSquare());
 		SquareCoordinates current = boardLayers.getSquareCoordinates(layer, number);
-		int x = current.getX() - 15;
-		int y = current.getY() - 15;
+		int x = current.getX() - 30;
+		int y = current.getY() - 30;
 		balls.get(index).setLocation(x-index*5, y);
-
+	//	balls.get(index).repaint();
+		repaint();
 	}
 
 	@Override
