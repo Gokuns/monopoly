@@ -18,9 +18,9 @@ public class DeedFactory {
 	
 	@SuppressWarnings("serial")
 	public Deed createDeed(String name) {
-		
+		Deed result;
 		if (name.equals("Mediterranean Avenue")) {
-			return new Deed("Street", new HashMap<String, Integer>(){{
+			result = new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",2);
 				put("oneHouse", 10);
 				put("twoHouse", 30);
@@ -34,7 +34,7 @@ public class DeedFactory {
 				put("skyPrice", get("hotelPrice")+50);
 			}});
 		}else if (name.equals("Baltic Avenue")) {
-			return new Deed("Street", new HashMap<String, Integer>(){{
+			result = new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",4);
 				put("oneHouse", 20);
 				put("twoHouse", 60);
@@ -48,7 +48,7 @@ public class DeedFactory {
 				put("skyPrice", get("hotelPrice")+50);
 			}});
 		}else if (name.equals("Oriental Avenue") || name.equals("Vermont Avenue")) {
-			return new Deed("Street", new HashMap<String, Integer>(){{
+			result = new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",6);
 				put("oneHouse", 30);
 				put("twoHouse", 90);
@@ -62,7 +62,7 @@ public class DeedFactory {
 				put("skyPrice", get("hotelPrice")+50);
 			}});
 		}else if (name.equals("Connecticut Avenue")) {
-			return new Deed("Street", new HashMap<String, Integer>(){{
+			result = new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",8);
 				put("oneHouse", 40);
 				put("twoHouse", 100);
@@ -76,7 +76,7 @@ public class DeedFactory {
 				put("skyPrice", get("hotelPrice")+50);
 			}});
 		}else if (name.equals("St. Charles Place") || name.equals("States Avenue")) {
-			return new Deed("Street", new HashMap<String, Integer>(){{
+			result = new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",10);
 				put("oneHouse", 50);
 				put("twoHouse", 150);
@@ -90,7 +90,7 @@ public class DeedFactory {
 				put("skyPrice", get("hotelPrice")+100);
 			}});
 		}else if (name.equals("Virginia Avenue")) {
-			return new Deed("Street", new HashMap<String, Integer>(){{
+			result = new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",12);
 				put("oneHouse", 60);
 				put("twoHouse", 180);
@@ -104,7 +104,7 @@ public class DeedFactory {
 				put("skyPrice", get("hotelPrice")+100);
 			}});
 		}else if (name.equals("St. James Place") || name.equals("Tennessee Avenue")) {
-			return new Deed("Street", new HashMap<String, Integer>(){{
+			result = new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",14);
 				put("oneHouse", 70);
 				put("twoHouse", 200);
@@ -118,7 +118,7 @@ public class DeedFactory {
 				put("skyPrice", get("hotelPrice")+100);
 			}});
 		}else if (name.equals("New York Avenue")) {
-			return new Deed("Street", new HashMap<String, Integer>(){{
+			result = new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",16);
 				put("oneHouse", 80);
 				put("twoHouse", 220);
@@ -132,7 +132,7 @@ public class DeedFactory {
 				put("skyPrice", get("hotelPrice")+100);
 			}});
 		}else if (name.equals("Kentucky Avenue") || name.equals("Indiana Avenue")) {
-			return new Deed("Street", new HashMap<String, Integer>(){{
+			result = new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",18);
 				put("oneHouse", 90);
 				put("twoHouse", 250);
@@ -146,7 +146,7 @@ public class DeedFactory {
 				put("skyPrice", get("hotelPrice")+150);
 			}});
 		}else if (name.equals("Illinois Avenue")) {
-			return new Deed("Street", new HashMap<String, Integer>(){{
+			result = new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",20);
 				put("oneHouse", 100);
 				put("twoHouse", 300);
@@ -160,7 +160,7 @@ public class DeedFactory {
 				put("skyPrice", get("hotelPrice")+150);
 			}});
 		}else if (name.equals("Atlantic Avenue") || name.equals("Ventnor Avenue")) {
-			return new Deed("Street", new HashMap<String, Integer>(){{
+			result = new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",22);
 				put("oneHouse", 110);
 				put("twoHouse", 330);
@@ -174,7 +174,7 @@ public class DeedFactory {
 				put("skyPrice", get("hotelPrice")+150);
 			}});
 		}else if (name.equals("Marvin Garden")) {
-			return new Deed("Street", new HashMap<String, Integer>(){{
+			result = new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",24);
 				put("oneHouse", 120);
 				put("twoHouse", 350);
@@ -188,7 +188,7 @@ public class DeedFactory {
 				put("skyPrice", get("hotelPrice")+150);
 			}});
 		}else if (name.equals("Pacific Avenue") || name.equals("North Carolina Avenue")) {
-			return new Deed("Street", new HashMap<String, Integer>(){{
+			result = new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",26);
 				put("oneHouse", 130);
 				put("twoHouse", 390);
@@ -202,7 +202,7 @@ public class DeedFactory {
 				put("skyPrice", get("hotelPrice")+200);
 			}});
 		}else if (name.equals("Pennsylvania Avenue")) {
-			return new Deed("Street", new HashMap<String, Integer>(){{
+			result = new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",28);
 				put("oneHouse", 150);
 				put("twoHouse", 450);
@@ -216,7 +216,7 @@ public class DeedFactory {
 				put("skyPrice", get("hotelPrice")+200);
 			}});
 		}else if (name.equals("Park Place")) {
-			return new Deed("Street", new HashMap<String, Integer>(){{
+			result = new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",35);
 				put("oneHouse", 175);
 				put("twoHouse", 500);
@@ -230,7 +230,7 @@ public class DeedFactory {
 				put("skyPrice", get("hotelPrice")+200);
 			}});
 		}else if (name.equals("Boardwalk")) {
-			return new Deed("Street", new HashMap<String, Integer>(){{
+			result = new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",50);
 				put("oneHouse", 200);
 				put("twoHouse", 600);
@@ -245,7 +245,7 @@ public class DeedFactory {
 			}});
 		}else if (name.equals("Pennsylvania Railroad") || name.equals("Reading Railroad") ||
 				name.equals("BnO Raidroad") || name.equals("Short Railroad")) {
-			return new Deed("RailRoad", new HashMap<String, Integer>(){{
+			result = new Deed("RailRoad", new HashMap<String, Integer>(){{
 				put("rent",25);
 				put("twoRailRoad", 50);
 				put("threeRailRoad", 100);
@@ -253,7 +253,7 @@ public class DeedFactory {
 				put("morgage", 100);
 			}});
 		}else if (name.equals("Biscayne Avenue")) {
-			return new Deed("Street", new HashMap<String, Integer>(){{
+			result = new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",11);
 				put("oneHouse", 55);
 				put("twoHouse", 160);
@@ -267,7 +267,7 @@ public class DeedFactory {
 				put("skyPrice", get("hotelPrice")+50);
 			}});
 		}else if (name.equals("Miami Avenue") || name.equals("Florida Avenue")) {
-			return new Deed("Street", new HashMap<String, Integer>(){{
+			result = new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",9);
 				put("oneHouse", 45);
 				put("twoHouse", 120);
@@ -281,7 +281,7 @@ public class DeedFactory {
 				put("skyPrice", get("hotelPrice")+50);
 			}});
 		}else if (name.equals("Lombard Street") || name.equals("The Embarcadero")) {
-			return new Deed("Street", new HashMap<String, Integer>(){{
+			result = new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",17);
 				put("oneHouse", 85);
 				put("twoHouse", 240);
@@ -295,7 +295,7 @@ public class DeedFactory {
 				put("skyPrice", get("hotelPrice")+100);
 			}});
 		}else if (name.equals("Fisherman's Wharf")) {
-			return new Deed("Street", new HashMap<String, Integer>(){{
+			result = new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",21);
 				put("oneHouse", 105);
 				put("twoHouse", 320);
@@ -309,7 +309,7 @@ public class DeedFactory {
 				put("skyPrice", get("hotelPrice")+100);
 			}});
 		}else if (name.equals("Beacon Street") || name.equals("Boylston Street")) {
-			return new Deed("Street", new HashMap<String, Integer>(){{
+			result = new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",30);
 				put("oneHouse", 160);
 				put("twoHouse", 470);
@@ -323,7 +323,7 @@ public class DeedFactory {
 				put("skyPrice", get("hotelPrice")+200);
 			}});
 		}else if (name.equals("Newbury Street")) {
-			return new Deed("Street", new HashMap<String, Integer>(){{
+			result = new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",40);
 				put("oneHouse", 185);
 				put("twoHouse", 550);
@@ -337,7 +337,7 @@ public class DeedFactory {
 				put("skyPrice", get("hotelPrice")+200);
 			}});
 		}else if (name.equals("Fifth Avenue") || name.equals("Madison Avenue")) {
-			return new Deed("Street", new HashMap<String, Integer>(){{
+			result = new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",60);
 				put("oneHouse", 220);
 				put("twoHouse", 650);
@@ -351,7 +351,7 @@ public class DeedFactory {
 				put("skyPrice", get("hotelPrice")+300);
 			}});
 		}else if (name.equals("Wall Street")) {
-			return new Deed("Street", new HashMap<String, Integer>(){{
+			result = new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",80);
 				put("oneHouse", 300);
 				put("twoHouse", 800);
@@ -365,7 +365,7 @@ public class DeedFactory {
 				put("skyPrice", get("hotelPrice")+300);
 			}});
 		}else if (name.equals("Lake Street") || name.equals("Nicollet Avenue")) {
-			return new Deed("Street", new HashMap<String, Integer>(){{
+			result = new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",1);
 				put("oneHouse", 5);
 				put("twoHouse", 15);
@@ -379,7 +379,7 @@ public class DeedFactory {
 				put("skyPrice", get("hotelPrice")+50);
 			}});
 		}else if (name.equals("Hennepin Avenue")) {
-			return new Deed("Street", new HashMap<String, Integer>(){{
+			result = new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",3);
 				put("oneHouse", 15);
 				put("twoHouse", 45);
@@ -393,7 +393,7 @@ public class DeedFactory {
 				put("skyPrice", get("hotelPrice")+50);
 			}});
 		}else if (name.equals("Esplanade Avenue") || name.equals("Canal Street")) {
-			return new Deed("Street", new HashMap<String, Integer>(){{
+			result = new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",5);
 				put("oneHouse", 25);
 				put("twoHouse", 80);
@@ -407,7 +407,7 @@ public class DeedFactory {
 				put("skyPrice", get("hotelPrice")+50);
 			}});
 		}else if (name.equals("Magazine Street") || name.equals("Bourbon Street")) {
-			return new Deed("Street", new HashMap<String, Integer>(){{
+			result = new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",8);
 				put("oneHouse", 40);
 				put("twoHouse", 100);
@@ -421,7 +421,7 @@ public class DeedFactory {
 				put("skyPrice", get("hotelPrice")+50);
 			}});
 		}else if (name.equals("Katy Freeway") || name.equals("WestHeimer Road")) {
-			return new Deed("Street", new HashMap<String, Integer>(){{
+			result = new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",11);
 				put("oneHouse", 55);
 				put("twoHouse", 160);
@@ -435,7 +435,7 @@ public class DeedFactory {
 				put("skyPrice", get("hotelPrice")+100);
 			}});
 		}else if (name.equals("Kirby Drive") || name.equals("Cullen Boulevard")) {
-			return new Deed("Street", new HashMap<String, Integer>(){{
+			result = new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",14);
 				put("oneHouse", 70);
 				put("twoHouse", 200);
@@ -449,7 +449,7 @@ public class DeedFactory {
 				put("skyPrice", get("hotelPrice")+100);
 			}});
 		}else if (name.equals("Dekalb Avenue") || name.equals("Andrew Young Intl Boulevard")) {
-			return new Deed("Street", new HashMap<String, Integer>(){{
+			result = new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",17);
 				put("oneHouse", 85);
 				put("twoHouse", 240);
@@ -463,7 +463,7 @@ public class DeedFactory {
 				put("skyPrice", get("hotelPrice")+100);
 			}});
 		}else if (name.equals("Decatur Street") || name.equals("Peachtree Street")) {
-			return new Deed("Street", new HashMap<String, Integer>(){{
+			result = new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",20);
 				put("oneHouse", 100);
 				put("twoHouse", 300);
@@ -477,7 +477,7 @@ public class DeedFactory {
 				put("skyPrice", get("hotelPrice")+100);
 			}});
 		}else if (name.equals("Randolph Street") || name.equals("Lake Shore Drive")) {
-			return new Deed("Street", new HashMap<String, Integer>(){{
+			result = new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",23);
 				put("oneHouse", 115);
 				put("twoHouse", 345);
@@ -491,7 +491,7 @@ public class DeedFactory {
 				put("skyPrice", get("hotelPrice")+150);
 			}});
 		}else if (name.equals("Wacker Drive") || name.equals("Michigan Avenue")) {
-			return new Deed("Street", new HashMap<String, Integer>(){{
+			result = new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",26);
 				put("oneHouse", 130);
 				put("twoHouse", 390);
@@ -505,7 +505,7 @@ public class DeedFactory {
 				put("skyPrice", get("hotelPrice")+150);
 			}});
 		}else if (name.equals("South Temple") || name.equals("West Temple")) {
-			return new Deed("Street", new HashMap<String, Integer>(){{
+			result = new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",32);
 				put("oneHouse", 160);
 				put("twoHouse", 470);
@@ -519,7 +519,7 @@ public class DeedFactory {
 				put("skyPrice", get("hotelPrice")+200);
 			}});
 		}else if (name.equals("North Temple") || name.equals("Temple Square")) {
-			return new Deed("Street", new HashMap<String, Integer>(){{
+			result = new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",38);
 				put("oneHouse", 170);
 				put("twoHouse", 520);
@@ -533,7 +533,7 @@ public class DeedFactory {
 				put("skyPrice", get("hotelPrice")+200);
 			}});
 		}else if (name.equals("South Street") || name.equals("Broad Street")) {
-			return new Deed("Street", new HashMap<String, Integer>(){{
+			result = new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",45);
 				put("oneHouse", 210);
 				put("twoHouse", 575);
@@ -547,7 +547,7 @@ public class DeedFactory {
 				put("skyPrice", get("hotelPrice")+250);
 			}});
 		}else if (name.equals("Walnut Street") || name.equals("Market Street")) {
-			return new Deed("Street", new HashMap<String, Integer>(){{
+			result = new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",55);
 				put("oneHouse", 225);
 				put("twoHouse", 630);
@@ -561,7 +561,7 @@ public class DeedFactory {
 				put("skyPrice", get("hotelPrice")+250);
 			}});
 		}else if (name.equals("Mulholland Drive")) {
-			return new Deed("Street", new HashMap<String, Integer>(){{
+			result = new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",70);
 				put("oneHouse", 350);
 				put("twoHouse", 750);
@@ -575,7 +575,7 @@ public class DeedFactory {
 				put("skyPrice", get("hotelPrice")+300);
 			}});
 		}else if (name.equals("Ventura Boulevard")) {
-			return new Deed("Street", new HashMap<String, Integer>(){{
+			result = new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",80);
 				put("oneHouse", 400);
 				put("twoHouse", 825);
@@ -589,7 +589,7 @@ public class DeedFactory {
 				put("skyPrice", get("hotelPrice")+300);
 			}});
 		}else if (name.equals("Rodeo Drive")) {
-			return new Deed("Street", new HashMap<String, Integer>(){{
+			result = new Deed("Street", new HashMap<String, Integer>(){{
 				put("rent",90);
 				put("oneHouse", 450);
 				put("twoHouse", 900);
@@ -604,7 +604,7 @@ public class DeedFactory {
 			}});
 		}else if (name.equals("Checker Cab Co.") || name.equals("Black n WhiteCab Co.") ||
 				name.equals("Yellow Cab Co.") || name.equals("Ute Cab Co.")) {
-			return new Deed("CabCompany", new HashMap<String, Integer>(){{
+			result = new Deed("CabCompany", new HashMap<String, Integer>(){{
 				put("rent", 30);
 				put("twoCab", 60);
 				put("threeCab", 120);
@@ -615,7 +615,7 @@ public class DeedFactory {
 				name.equals("Electric Company") || name.equals("Internet Service Provider") ||
 				name.equals("Gas Company") || name.equals("Telephone Company") ||
 				name.equals("Trash Collector") || name.equals("Sewage System")) {
-			return new Deed("UtilityCompany", new HashMap<String, Integer>(){{
+			result = new Deed("UtilityCompany", new HashMap<String, Integer>(){{
 				put("oneUtility", 4);
 				put("twoUtility", 10);
 				put("threeUtility", 20);
@@ -626,11 +626,12 @@ public class DeedFactory {
 				put("eightUtility", 150);
 				put("mortgage", 75);
 			}});
+			
 		}else {
 			System.out.println("Deeds name is wrong");
 			return null;
 		}
-		
+		return result;
 	}
 	
 }
