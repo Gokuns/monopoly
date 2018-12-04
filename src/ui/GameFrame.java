@@ -116,7 +116,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 
 			endTurnButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					gameController.endTurn();
+					gameController.endTurn(false);
 				}
 			});
 

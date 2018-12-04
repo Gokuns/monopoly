@@ -19,14 +19,14 @@ public class GameController {
 	private NetworkController networkController;
 	private Player localPlayer;
 	private GameController() {}
-	
+
 	public static synchronized GameController getInstance() {
 		if(controller == null) {
 			controller = new GameController();
 		}
 		return controller;
 	}
-	
+
 	public void roll() {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("type", "roll");
@@ -39,7 +39,7 @@ public class GameController {
 		gameState.publishToNetworkListeners(map);
 		gameState.publishToUIListeners(map);
 	}
-	
+
 	public void initializePlayers(HashMap<String, String> map) {
 		ArrayList<Player> playerList = gameState.getPlayerList();
 		int playerCount = Integer.parseInt(map.get("playerCount"));
@@ -59,7 +59,7 @@ public class GameController {
 		gameStartedMap.put("currentPlayerID", Integer.toString(gameState.getCurrentPlayer().getID()));
 		gameState.publishToUIListeners(gameStartedMap);
 	}
-	
+
 	public void move() {
 		gameState = GameState.getInstance();
 		board = Board.getInstance();
@@ -72,8 +72,8 @@ public class GameController {
 	public void setNetworkController(NetworkController networkController) {
 		this.networkController = networkController;
 	}
-	
-	public void endTurn() {
+
+	public void endTurn(boolean isNetworkCommand) {
 		gameState = GameState.getInstance();
 		gameState.getCurrentPlayer().setTurn(false);
 		gameState.setCurrentPlayer(gameState.getNextPlayer());
@@ -82,9 +82,11 @@ public class GameController {
 		map.put("type", "endTurn");
 		map.put("currentPlayer", gameState.getCurrentPlayer().getName());
 		map.put("currentPlayerID", Integer.toString(gameState.getCurrentPlayer().getID()));
-		gameState.publishToNetworkListeners(map);
+		if(!isNetworkCommand) {
+			gameState.publishToNetworkListeners(map);
+		}
 		gameState.publishToUIListeners(map);
-		
+
 	}
 
 	public Player getLocalPlayer() {
@@ -93,5 +95,14 @@ public class GameController {
 
 	public void setLocalPlayer(Player localPlayer) {
 		this.localPlayer = localPlayer;
+	}
+
+	public void initializeLocalPlayer(String username, int ID, boolean isLocal) {
+		initializeLocalPlayer(username, ID);
+	}
+
+	public void initializeLocalPlayer(String username, int ID) {
+		Player player = new Player(username, ID, new Piece());
+		localPlayer = player;
 	}
 }
