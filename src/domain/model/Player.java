@@ -27,6 +27,7 @@ public class Player {
 	private List<ChanceCard> chanceCards; //chance action cards belonging to the player
 	private List<CommunityChestCard> communityCards; //community chest cards belonging to the player
 	private List<Roll3Card> roll3Cards; //roll 3 cards belonging to the player
+	private boolean changingLayer; //true when the player is changing the layer.
 	
 
 	public Player (String name, int ID, Piece piece) {
@@ -44,6 +45,7 @@ public class Player {
 		this.rolledTriple = false;
 		this.rolledMrMonopoly = false;
 		this.rolledBus = false;
+		this.setChangingLayer(false);
 	}
 
 	public String getName() {
@@ -208,6 +210,20 @@ public class Player {
 
 	public void setChanceCards(List<ChanceCard> chanceCards) {
 		this.chanceCards = chanceCards;
+	}
+
+	/**
+	 * @return the changingLayer
+	 */
+	public boolean isChangingLayer() {
+		return changingLayer;
+	}
+
+	/**
+	 * @param changingLayer the changingLayer to set
+	 */
+	public void setChangingLayer(boolean changingLayer) {
+		this.changingLayer = changingLayer;
 	}
 	
 	

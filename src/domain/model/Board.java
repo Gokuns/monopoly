@@ -60,21 +60,26 @@ public class Board {
 	}
 	
 	public void movePiece() {
-		Square currentSquare = getPlayersSquare(game.getCurrentPlayer());
+		Player currentPlayer = game.getCurrentPlayer();
+		Square currentSquare = getPlayersSquare(currentPlayer);
 		iter = new SquareIterator(currentSquare, Squares);
 		int movement = calculateMovement();
 		boolean even = movement%2 == 0;
 		for (int i=0;i<movement;i++) {
-			if(currentSquare.isTransit())  {
+			if(currentSquare.isTransit() && currentPlayer.isChangingLayer()==false)  {
 				if(even){
+					currentPlayer.setChangingLayer(true);
 					if(iter.hasInner()) currentSquare = iter.inner();
 					else currentSquare = iter.outer();
-				}
-			}else currentSquare = iter.next();
+				}else currentSquare = iter.next();
+				
+			}else {
+				currentPlayer.setChangingLayer(false);
+				currentSquare = iter.next();
+			}
 		}
 		
 		Square landedOn = currentSquare;
-		Player currentPlayer = game.getCurrentPlayer();
 		
 		setPlayersSquare(currentPlayer,landedOn);
 		
