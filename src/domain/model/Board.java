@@ -77,11 +77,7 @@ public class Board {
 		}
 		
 		Square landedOn = currentSquare;
-		setPlayersSquare(currentPlayer,landedOn);
-		if(landedOn.isSpecialSquare()){
-			((SpecialSquare) landedOn).action(currentPlayer);
-		}
-		
+		setPlayersSquare(currentPlayer,landedOn);		
 		System.out.println("Moved to " + getPlayersSquare(game.getCurrentPlayer()).getName());
 		currentPlayer.setMoved(true);
 		return landedOn;
@@ -91,7 +87,7 @@ public class Board {
 	
 	public void movePiece(Square squareToMove) {
 		setPlayersSquare(game.getCurrentPlayer(),squareToMove);
-		System.out.println("Moved to " + getPlayersSquare(game.getCurrentPlayer()).getName());
+		System.out.println("Transported to " + getPlayersSquare(game.getCurrentPlayer()).getName());
 	}
 	
 	public int getSquareLayerIndex(Square sq) {

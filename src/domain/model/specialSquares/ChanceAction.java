@@ -13,7 +13,7 @@ public class ChanceAction extends SpecialSquare{
 	}
 
 	@Override
-	protected String action(Player p) {
+	public String action(Player p) {
 		// TODO Auto-generated method stub
 		Deck chanceDeck = new Deck("chance");
 		Card c = chanceDeck.draw();

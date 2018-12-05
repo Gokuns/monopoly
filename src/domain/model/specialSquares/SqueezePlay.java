@@ -11,7 +11,7 @@ public class SqueezePlay extends SpecialSquare {
 	}
 
 	@Override
-	protected String action(Player p) {
+	public String action(Player p) {
 		return null;
 		// TODO Auto-generated method stub
 

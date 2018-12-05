@@ -13,7 +13,7 @@ public class CommunityChest extends SpecialSquare{
 	}
 
 	@Override
-	protected String action(Player p) {
+	public String action(Player p) {
 		// TODO Auto-generated method stub
 		Deck communtityDeck = new Deck("community");
 		Card c = communtityDeck.draw();

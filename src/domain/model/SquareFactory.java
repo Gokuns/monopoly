@@ -11,7 +11,6 @@ import domain.model.specialSquares.BusTicket;
 
 import domain.model.specialSquares.ChanceAction;
 import domain.model.specialSquares.CommunityChest;
-import domain.model.specialSquares.FreeParking;
 import domain.model.specialSquares.GoToJail;
 import domain.model.specialSquares.HollandTunnel;
 import domain.model.specialSquares.IncomeTax;
@@ -23,7 +22,6 @@ import domain.model.specialSquares.RollThree;
 import domain.model.specialSquares.SqueezePlay;
 import domain.model.specialSquares.StockExchange;
 import domain.model.specialSquares.Subway;
-import domain.model.specialSquares.TransitStation;
 //import domain.model.specialSquares.payCorners.Go;
 import domain.model.specialSquares.payCorners.Bonus;
 import domain.model.specialSquares.payCorners.PayDay;
@@ -53,9 +51,6 @@ public class SquareFactory {
 		}
 		else if(name.equals("Chance")){
 			result = new ChanceAction(name, "Draw a chance action card.");
-		}
-		else if(name.equals("Transit")){
-			result = new TransitStation("Transit Station", "You can transfer to another layer from here.");
 		}
 		else if(name.equals("Jail")){
 			result = new Jail(name, "Stay in or visit the jail.");

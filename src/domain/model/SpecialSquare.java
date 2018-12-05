@@ -9,5 +9,5 @@ public abstract class SpecialSquare extends Square {
 		// TODO Auto-generated constructor stub
 	}
 	
-	protected abstract String action(Player p);
+	public abstract String action(Player p);
 }
