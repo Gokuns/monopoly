@@ -304,6 +304,14 @@ public class GameFrame extends JFrame implements GameStateListener{
 				}
 			});
 			break;
+		case "card":
+			EventQueue.invokeLater(new Runnable() {
+				@Override
+				public void run() {
+					
+				}
+			});
+			break;
 		}
 	}
 }

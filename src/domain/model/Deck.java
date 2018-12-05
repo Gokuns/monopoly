@@ -27,17 +27,17 @@ public class Deck {
 	}
 	
 	private void initializeCommunityCards(List<Card> cards){//creating & adding a sample community chest card to the deck
-		Card c = new PayHospitalBillsCard();
+		Card c = new PayHospitalBillsCard("Pay hospital bills.\nPay $100 ");
 		cards.add(c);
 	}
 	
 	private void initializeChanceCards(List<Card> cards){//creating & adding a sample chance action card to the deck
-		Card c = new GoToJailCard();
+		Card c = new GoToJailCard("Chance card\n Go immidiately to Jail.");
 		cards.add(c);
 	}
 	
 	private void initializeRoll3Cards(List<Card> cards){//creating & adding a sample roll three card to the deck
-		Card c = new Roll3Card(faceValue.ONE, faceValue.TWO, faceValue.THREE);
+		Card c = new Roll3Card(faceValue.ONE, faceValue.TWO, faceValue.THREE, "1\t2\t3\t");
 		cards.add(c);
 	}
 	

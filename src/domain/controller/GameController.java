@@ -8,6 +8,7 @@ import domain.model.Board;
 import domain.model.GameState;
 import domain.model.Piece;
 import domain.model.Player;
+import domain.model.Square;
 import domain.model.dice.Cup;
 import domain.model.dice.faceValue;
 
@@ -61,9 +62,13 @@ public class GameController {
 	public void move() {
 		gameState = GameState.getInstance();
 		board = Board.getInstance();
-		board.movePiece(gameState.getCurrentPlayer());
+		Player currentP = gameState.getCurrentPlayer();
+		Square landedSquare = board.movePiece(currentP);
 		System.out.println("Piece move Completed");
 		HashMap<String, String> map = new HashMap<String, String>();
+		if(landedSquare.isSpecialSquare()) {
+			map.put("type", "special");
+		}
 	}
 
 

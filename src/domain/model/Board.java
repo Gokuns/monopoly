@@ -59,7 +59,7 @@ public class Board {
 			
 	}
 	
-	public void movePiece(Player currentPlayer) {
+	public Square movePiece(Player currentPlayer) {
 		Square currentSquare = getPlayersSquare(currentPlayer);
 		iter = new SquareIterator(currentSquare, Squares);
 		int movement = calculateMovement();
@@ -88,8 +88,10 @@ public class Board {
 		
 		System.out.println("Moved to " + getPlayersSquare(game.getCurrentPlayer()).getName());
 		currentPlayer.setMoved(true);
+		return landedOn;
 		
 	}
+	
 	
 	public void movePiece(Square squareToMove) {
 		setPlayersSquare(game.getCurrentPlayer(),squareToMove);

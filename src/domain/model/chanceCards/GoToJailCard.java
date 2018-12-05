@@ -10,6 +10,13 @@ import domain.model.Player;
 import domain.model.Square;
 
 public class GoToJailCard extends ChanceCard{
+	
+	
+
+	public GoToJailCard(String d) {
+		super(d);
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	protected void action() {

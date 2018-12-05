@@ -10,6 +10,11 @@ import domain.model.Player;
 public class PayHospitalBillsCard extends CommunityChestCard{
 
 	
+	public PayHospitalBillsCard(String d) {
+		super(d);
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
 	protected void action() {
 		// TODO Auto-generated method stub

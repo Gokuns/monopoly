@@ -11,7 +11,8 @@ public class PayDay extends PayCorner{
 	}
 
 	@Override
-	protected void action(Player p) {
+	protected String action(Player p) {
+		return null;
 		// TODO Auto-generated method stub
 		
 	}

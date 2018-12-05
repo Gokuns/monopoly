@@ -1,5 +1,6 @@
 package domain.model.specialSquares;
 
+import domain.model.Card;
 import domain.model.Deck;
 import domain.model.Player;
 import domain.model.SpecialSquare;
@@ -12,10 +13,11 @@ public class RollThree extends SpecialSquare{
 	}
 
 	@Override
-	protected void action(Player p) {
+	protected String action(Player p) {
 		// TODO Auto-generated method stub
 		Deck roll3Deck = new Deck("roll3");
-		roll3Deck.draw();
+		Card c =roll3Deck.draw();
+		return c.getDesc();
 	}
 
 }

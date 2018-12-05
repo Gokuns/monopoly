@@ -1,5 +1,6 @@
 package domain.model.specialSquares;
 
+import domain.model.Card;
 import domain.model.Deck;
 import domain.model.Player;
 import domain.model.SpecialSquare;
@@ -12,10 +13,11 @@ public class ChanceAction extends SpecialSquare{
 	}
 
 	@Override
-	protected void action(Player p) {
+	protected String action(Player p) {
 		// TODO Auto-generated method stub
 		Deck chanceDeck = new Deck("chance");
-		chanceDeck.draw();
+		Card c = chanceDeck.draw();
+		return c.getDesc();
 	}
 
 }

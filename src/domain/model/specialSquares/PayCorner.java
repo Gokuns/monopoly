@@ -13,6 +13,6 @@ public abstract class PayCorner extends SpecialSquare{
 	}
 
 	@Override
-	protected abstract void action(Player p);
+	protected abstract String action(Player p);
 
 }

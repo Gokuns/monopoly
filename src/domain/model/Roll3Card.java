@@ -10,7 +10,8 @@ public class Roll3Card extends Card{
 	
 	List<faceValue> roll3Values;
 	
-	public Roll3Card(faceValue fVal1, faceValue fVal2, faceValue fVal3){
+	public Roll3Card(faceValue fVal1, faceValue fVal2, faceValue fVal3, String desc){
+		super(desc);
 		roll3Values.add(fVal1);
 		roll3Values.add(fVal2);
 		roll3Values.add(fVal3);
