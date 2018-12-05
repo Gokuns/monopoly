@@ -1,7 +1,5 @@
 package domain.controller;
 
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -9,7 +7,6 @@ import java.util.List;
 
 import domain.model.GameState;
 import domain.model.GameStateListener;
-import domain.model.Piece;
 import domain.model.Player;
 import domain.network.HostNetwork;
 

@@ -1,6 +1,5 @@
 package domain.network;
 
-import java.net.Socket;
 import java.util.HashMap;
 
 import com.google.gson.Gson;

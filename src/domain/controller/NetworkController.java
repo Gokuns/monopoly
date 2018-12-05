@@ -1,6 +1,5 @@
 package domain.controller;
 
-import java.net.Socket;
 import java.util.HashMap;
 
 public abstract class NetworkController {
