@@ -8,13 +8,13 @@ public class Cup {
 	Die regularDie;
 	Die speedDie;
 	private static Cup cup;
-	private List<faceValue> faceValues;
+	private List<FaceValue> faceValues;
 
 	@SuppressWarnings("serial")
 	private Cup() {
 		regularDie = RegularDie.getInstance();
 		speedDie = SpeedDie.getInstance();
-		faceValues = new ArrayList<faceValue>(){{add(faceValue.ONE);add(faceValue.ONE);add(faceValue.ONE);}};
+		faceValues = new ArrayList<FaceValue>(){{add(FaceValue.ONE);add(FaceValue.ONE);add(FaceValue.ONE);}};
 		
 	}
 	
@@ -27,15 +27,15 @@ public class Cup {
 	}
 	
 	
-	public List<faceValue> rollCup() {
+	public List<FaceValue> rollCup() {
 		regularDie.roll();
-		faceValue regularVal = regularDie.getCurrentFaceValue();
+		FaceValue regularVal = regularDie.getCurrentFaceValue();
 		faceValues.set(0, regularVal);
 		
 		regularDie.roll();
 		regularVal = regularDie.getCurrentFaceValue();
 		faceValues.set(1, regularVal);
-		faceValue speedValue = speedDie.roll();
+		FaceValue speedValue = speedDie.roll();
 		faceValues.set(2, speedValue);
 		return faceValues;
 		
@@ -59,18 +59,18 @@ public class Cup {
 		
 	}
 	
-	public List<faceValue> getFaceValues() {
+	public List<FaceValue> getFaceValues() {
 		return faceValues;
 	}
 
-	public void setFaceValues(List<faceValue> faceValues) {
+	public void setFaceValues(List<FaceValue> faceValues) {
 		this.faceValues = faceValues;
 	}
 	
-	public List<faceValue> roll3Dice(){
+	public List<FaceValue> roll3Dice(){
 		
 		regularDie.roll();
-		faceValue regularVal = regularDie.getCurrentFaceValue();
+		FaceValue regularVal = regularDie.getCurrentFaceValue();
 		faceValues.set(0, regularVal);
 		
 		regularDie.roll();

@@ -25,7 +25,6 @@ import domain.model.Board;
 import domain.model.GameState;
 import domain.model.GameStateListener;
 
-
 @SuppressWarnings("serial")
 public class GameFrame extends JFrame implements GameStateListener{
 
@@ -43,8 +42,6 @@ public class GameFrame extends JFrame implements GameStateListener{
 	private JButton rollButton;
 	private JButton endTurnButton;
 	private JButton moveButton;
-	
-
 
 	/**
 	 * Create the frame.
@@ -66,102 +63,72 @@ public class GameFrame extends JFrame implements GameStateListener{
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
+		boardLayers = new BoardLayers();
+		balls = new ArrayList<Ball>();
+
 		try {
-
-			boardLayers = new BoardLayers();
-			balls = new ArrayList<Ball>();
-
-			//Ball ball1 = new Ball("ball1",3);
-			//balls.add(ball1);
-			//ball1.setBounds(585, 575, 30, 30);
-			//contentPane.add(ball1);
-
-			//ball1.setBounds(575,575, 30, 30);
-			//contentPane.add(ball1);
-			//initializeBalls();
 			Image logoImage = ImageIO.read(new File("monopolyBoard.png"));
 			logoImage = logoImage.getScaledInstance(700, 700, Image.SCALE_SMOOTH);
 			monopolyLogoPanel = new BackgroundImagePanel(logoImage);
 			monopolyLogoPanel.setLayout(null);
 			monopolyLogoPanel.setBounds(20, 20, 700, 700);
-			//monopolyLogoPanel.setVisible(false);
 			contentPane.add(monopolyLogoPanel);
-
-			JPanel panel = new JPanel();
-			panel.setBounds(972, 20, 510, 932);
-			contentPane.add(panel);
-			panel.setLayout(null);
-
-			playerLabel = new JLabel("Player X");
-			playerLabel.setHorizontalAlignment(SwingConstants.CENTER);
-			playerLabel.setFont(new Font("Tahoma", Font.PLAIN, 25));
-			playerLabel.setBounds(0, 0, 300, 100);
-			panel.add(playerLabel);
-
-			endTurnButton = new JButton("End Turn");
-			endTurnButton.setBounds(0, 119, 300, 40);
-			panel.add(endTurnButton);
-
-			rollButton = new JButton("Roll");
-			rollButton.setBounds(0, 172, 300, 40);
-
-			panel.add(rollButton);
-
-			moveButton = new JButton("Move");
-			moveButton.setBounds(0, 225, 300, 40);
-			panel.add(moveButton);
-
-			endTurnButton.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					gameController.endTurn(true);
-				}
-			});
-
-
-			moveButton.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-
-					//Square currentSq = gameState.getPlayerCurrentSquare();
-					gameController.move();
-					moveUIPiece();
-					rollButton.setEnabled(false);
-					moveButton.setEnabled(false);
-					endTurnButton.setEnabled(true);
-				}
-			});
-
-			rollLabel = new JLabel("You rolled: X X X");
-			rollLabel.setHorizontalAlignment(SwingConstants.CENTER);
-			rollLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
-			rollLabel.setBounds(0, 278, 300, 40);
-			panel.add(rollLabel);
-
-			/*
-			coords = new JLabel("You rolled: X X X");
-			coords.setHorizontalAlignment(SwingConstants.CENTER);
-			coords.setFont(new Font("Tahoma", Font.PLAIN, 20));
-			coords.setBounds(0, 400, 300, 40);
-			panel.add(coords);
-
-			contentPane.addMouseListener(new MouseAdapter(){
-				public void mouseClicked(MouseEvent e) {
-					coords.setText("X = " + e.getX() + ", Y = " + e.getY());
-				}
-			});
-			 */
-
-			rollButton.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					gameController.roll();
-					rollButton.setEnabled(false);
-					moveButton.setEnabled(true);
-				}
-			});
-
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
+		JPanel panel = new JPanel();
+		panel.setBounds(972, 20, 510, 932);
+		contentPane.add(panel);
+		panel.setLayout(null);
+
+		playerLabel = new JLabel("Player X");
+		playerLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		playerLabel.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		playerLabel.setBounds(0, 0, 300, 100);
+		panel.add(playerLabel);
+
+		endTurnButton = new JButton("End Turn");
+		endTurnButton.setBounds(0, 119, 300, 40);
+		panel.add(endTurnButton);
+
+		rollButton = new JButton("Roll");
+		rollButton.setBounds(0, 172, 300, 40);
+		panel.add(rollButton);
+
+		moveButton = new JButton("Move");
+		moveButton.setBounds(0, 225, 300, 40);
+		panel.add(moveButton);
+
+		endTurnButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gameController.endTurn(true);
+			}
+		});
+
+		moveButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gameController.move(true);
+				rollButton.setEnabled(false);
+				moveButton.setEnabled(false);
+				endTurnButton.setEnabled(true);
+			}
+		});
+
+		rollLabel = new JLabel("You rolled: X X X");
+		rollLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		rollLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		rollLabel.setBounds(0, 278, 300, 40);
+		panel.add(rollLabel);
+
+		rollButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				gameController.roll();
+				rollButton.setEnabled(false);
+				moveButton.setEnabled(true);
+			}
+		});
 	}
 
 	public void initializeBalls() {
@@ -179,22 +146,16 @@ public class GameFrame extends JFrame implements GameStateListener{
 					balls.add(ballx);
 					monopolyLogoPanel.add(ballx);
 					repaint();
-					//System.out.println(balls.get(i).getName());
 				}
 			}
 		});
-
 	}
 
-	public void moveUIPiece() {
-		int index = gameState.getOrderedPlayerList().indexOf(gameState.getCurrentPlayer());
-		int layer = board.getSquareLayerIndex(gameState.getPlayerCurrentSquare());
-		int number = board.getSquareIndex(gameState.getPlayerCurrentSquare());
+	public void moveUIPiece(int playerIndex, int layer, int number) {
 		SquareCoordinates current = boardLayers.getSquareCoordinates(layer, number);
 		int x = current.getX() - 30;
 		int y = current.getY() - 30;
-		balls.get(index).setLocation(x-index*5, y);
-	//	balls.get(index).repaint();
+		balls.get(playerIndex).setLocation(x - playerIndex * 5, y);
 		repaint();
 	}
 
@@ -224,7 +185,6 @@ public class GameFrame extends JFrame implements GameStateListener{
 							String award = map.get(pName);
 							str += " / " + pName + " has won $" + award + ".";
 						}
-								
 					}
 					rollLabel.setText(str);
 				}
@@ -240,7 +200,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 							String balance = map.get(name);
 							str += " / " + " Balance of " + name + " has been updated to $"  + balance + ".";
 						}
-								
+
 					}
 					rollLabel.setText(str);
 				}
@@ -256,7 +216,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 							String info = map.get(name);
 							str += name + " " + info;
 						}
-								
+
 					}
 					rollLabel.setText(str);
 				}
@@ -312,6 +272,12 @@ public class GameFrame extends JFrame implements GameStateListener{
 				}
 			});
 			break;
+		case "move":
+			int playerIndex = Integer.parseInt(map.get("ID"));
+			int layer = Integer.parseInt(map.get("layer"));
+			int number = Integer.parseInt(map.get("number"));
+			System.out.println(layer + "-" + number);
+			moveUIPiece(playerIndex, layer, number);
 		}
 	}
 }

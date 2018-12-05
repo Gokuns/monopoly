@@ -10,7 +10,7 @@ import domain.model.Piece;
 import domain.model.Player;
 import domain.model.Square;
 import domain.model.dice.Cup;
-import domain.model.dice.faceValue;
+import domain.model.dice.FaceValue;
 
 public class GameController {
 	private static GameController controller;
@@ -33,7 +33,7 @@ public class GameController {
 		map.put("type", "roll");
 		board.rollCup();
 		Cup cup = Cup.getInstance();
-		List<faceValue> faceValList = cup.getFaceValues();
+		List<FaceValue> faceValList = cup.getFaceValues();
 		for(int i=0; i<3;i++) {
 			map.put("faceValue" + i, faceValList.get(i).toString());
 		}
@@ -59,14 +59,25 @@ public class GameController {
 		gameState.publishToUIListeners(gameStartedMap);
 	}
 
-	public void move() {
+	public void move(boolean isLocalCommand) {
 		gameState = GameState.getInstance();
 		board = Board.getInstance();
 		Player currentP = gameState.getCurrentPlayer();
 		Square landedSquare = board.movePiece(currentP);
 		System.out.println("Piece move Completed");
 		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("type", "move");
+		map.put("ID", GameState.getInstance().getCurrentPlayer().getID()+"");
+		map.put("layer", Board.getInstance().getSquareLayerIndex(
+				GameState.getInstance().getPlayerCurrentSquare())+"");
+		map.put("number", Board.getInstance().getSquareIndex(
+				GameState.getInstance().getPlayerCurrentSquare())+"");
+		GameState.getInstance().publishToUIListeners(map);
+		if(isLocalCommand) {
+			gameState.publishToNetworkListeners(map);
+		}
 		if(landedSquare.isSpecialSquare()) {
+			HashMap<String, String> specialMap = new HashMap<String, String>();
 			map.put("type", "special");
 		}
 	}
@@ -102,5 +113,13 @@ public class GameController {
 	public void initializeLocalPlayer(String username, int ID) {
 		Player player = new Player(username, ID, new Piece());
 		localPlayer = player;
+	}
+
+	public void setDice(List<String> faceValueStrings) {
+		List<FaceValue> faceValues = new ArrayList<FaceValue>();
+		for(String str : faceValueStrings) {
+			faceValues.add(FaceValue.valueOf(str));
+		}
+		Cup.getInstance().setFaceValues(faceValues);
 	}
 }

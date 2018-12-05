@@ -1,12 +1,10 @@
 package domain.model;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import domain.model.dice.Cup;
-import domain.model.dice.faceValue;
-import domain.model.specialSquares.payCorners.Go;
+import domain.model.dice.FaceValue;
 
 public class Board {
 	private GameState game = GameState.getInstance();
@@ -42,10 +40,10 @@ public class Board {
 	}
 	
 	public void rollCup() {
-		List<faceValue> diceValues = cup.rollCup();
-		faceValue firstDieVal = diceValues.get(0);
-		faceValue secondDieVal = diceValues.get(1);
-		faceValue speedDieVal = diceValues.get(2);
+		List<FaceValue> diceValues = cup.rollCup();
+		FaceValue firstDieVal = diceValues.get(0);
+		FaceValue secondDieVal = diceValues.get(1);
+		FaceValue speedDieVal = diceValues.get(2);
 		if(firstDieVal == secondDieVal && secondDieVal == speedDieVal) {
 			game.getCurrentPlayer().setRolledTriple(true);
 		}else if(firstDieVal == secondDieVal || firstDieVal==speedDieVal || secondDieVal==speedDieVal) {
@@ -79,9 +77,7 @@ public class Board {
 		}
 		
 		Square landedOn = currentSquare;
-		
 		setPlayersSquare(currentPlayer,landedOn);
-		
 		if(landedOn.isSpecialSquare()){
 			((SpecialSquare) landedOn).action(currentPlayer);
 		}

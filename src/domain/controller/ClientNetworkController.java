@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
+import domain.model.Board;
 import domain.model.GameState;
 import domain.model.GameStateListener;
 import domain.network.ClientNetwork;
@@ -45,6 +46,11 @@ public class ClientNetworkController extends NetworkController implements GameSt
 			gameController.initializePlayers(map);
 			break;
 		case "roll":
+			List<String> faceValues = new ArrayList<String>();
+			for(int i=0; i<3; i++) {
+				faceValues.add(map.get("faceValue" + i));
+			}
+			GameController.getInstance().setDice(faceValues);
 			gameState.publishToUIListeners(map);
 			break;
 		case "roll3":
@@ -57,9 +63,10 @@ public class ClientNetworkController extends NetworkController implements GameSt
 			gameState.publishToUIListeners(map);
 			break;
 		case "endTurn":
-			gameState.publishToUIListeners(map);
 			gameController.endTurn(false);
 			break;
+		case "move":
+			gameController.move(false);
 		}
 	}
 		

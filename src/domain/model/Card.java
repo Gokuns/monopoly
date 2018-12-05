@@ -1,6 +1,6 @@
 package domain.model;
 
-import domain.model.dice.faceValue;
+import domain.model.dice.FaceValue;
 
 public abstract class Card {
 	private String desc;
