@@ -77,11 +77,7 @@ public class Board {
 		}
 		
 		Square landedOn = currentSquare;
-		setPlayersSquare(currentPlayer,landedOn);
-		if(landedOn.isSpecialSquare()){
-			((SpecialSquare) landedOn).action(currentPlayer);
-		}
-		
+		setPlayersSquare(currentPlayer,landedOn);		
 		System.out.println("Moved to " + getPlayersSquare(game.getCurrentPlayer()).getName());
 		currentPlayer.setMoved(true);
 		return landedOn;

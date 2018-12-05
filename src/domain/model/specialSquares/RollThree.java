@@ -13,7 +13,7 @@ public class RollThree extends SpecialSquare{
 	}
 
 	@Override
-	protected String action(Player p) {
+	public String action(Player p) {
 		// TODO Auto-generated method stub
 		Deck roll3Deck = new Deck("roll3");
 		Card c =roll3Deck.draw();

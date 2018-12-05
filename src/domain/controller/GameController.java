@@ -8,6 +8,7 @@ import domain.model.Board;
 import domain.model.GameState;
 import domain.model.Piece;
 import domain.model.Player;
+import domain.model.SpecialSquare;
 import domain.model.Square;
 import domain.model.dice.Cup;
 import domain.model.dice.FaceValue;
@@ -78,7 +79,14 @@ public class GameController {
 		}
 		if(landedSquare.isSpecialSquare()) {
 			HashMap<String, String> specialMap = new HashMap<String, String>();
-			map.put("type", "special");
+			specialMap.put("type", "special");
+			String desc = ((SpecialSquare) landedSquare).action(currentP);
+			specialMap.put("description", desc);
+			GameState.getInstance().publishToUIListeners(specialMap);
+			if(isLocalCommand) {
+				gameState.publishToNetworkListeners(specialMap);
+			}
+			
 		}
 	}
 
