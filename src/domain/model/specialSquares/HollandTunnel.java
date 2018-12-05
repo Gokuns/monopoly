@@ -1,7 +1,7 @@
 package domain.model.specialSquares;
 
-import domain.model.Player;
-import domain.model.SpecialSquare;
+import domain.model.Players.Player;
+import domain.model.squares.SpecialSquare;
 
 public class HollandTunnel extends SpecialSquare{
 

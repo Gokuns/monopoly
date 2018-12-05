@@ -1,8 +1,10 @@
-package domain.model;
+package domain.model.cards;
 
 import java.util.HashMap;
 import java.util.List;
 
+import domain.model.GameState;
+import domain.model.Players.Player;
 import domain.model.dice.Cup;
 import domain.model.dice.FaceValue;
 

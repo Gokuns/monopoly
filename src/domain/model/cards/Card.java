@@ -1,4 +1,4 @@
-package domain.model;
+package domain.model.cards;
 
 import domain.model.dice.FaceValue;
 

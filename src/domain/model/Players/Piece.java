@@ -1,6 +1,7 @@
-package domain.model;
+package domain.model.Players;
 
 import domain.model.specialSquares.payCorners.Go;
+import domain.model.squares.Square;
 
 public class Piece {
 	private Square currentSquare;

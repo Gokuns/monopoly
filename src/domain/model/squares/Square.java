@@ -1,4 +1,4 @@
-package domain.model;
+package domain.model.squares;
 
 public abstract class Square {
 	private String name;
@@ -12,12 +12,12 @@ public abstract class Square {
 
 	private boolean isTransit;
 
-	
 	public Square(String name, String description) {
 		this.name = name;
 		this.desciption = description;
 
 	}
+
 	public String getName() {
 		return name;
 	}
@@ -42,18 +42,19 @@ public abstract class Square {
 	}
 
 	/**
-	 * @param isTransit the isTransit to set
+	 * @param isTransit
+	 *            the isTransit to set
 	 */
 	public void setTransit(boolean isTransit) {
 		this.isTransit = isTransit;
 	}
+
 	public boolean isSpecialSquare() {
 		return isSpecialSquare;
 	}
+
 	public void setSpecialSquare(boolean isSpecialSquare) {
 		this.isSpecialSquare = isSpecialSquare;
 	}
 
-
-	
 }

@@ -1,4 +1,4 @@
-package domain.model;
+package domain.model.cards;
 
 public abstract class ChanceCard extends Card{
 

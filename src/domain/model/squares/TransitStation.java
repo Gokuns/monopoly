@@ -1,6 +1,6 @@
-package domain.model;
+package domain.model.squares;
 
-public class TransitStation extends Square{
+public class TransitStation extends Square {
 
 	public TransitStation(String name, String description) {
 		super(name, description);

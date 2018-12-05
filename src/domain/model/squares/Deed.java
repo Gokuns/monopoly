@@ -1,13 +1,13 @@
-package domain.model;
+package domain.model.squares;
 
 import java.util.HashMap;
 
 public class Deed {
-	
+
 	private String type;
 	private HashMap<String, Integer> values;
-	
-	public Deed(String type, HashMap<String, Integer> values){
+
+	public Deed(String type, HashMap<String, Integer> values) {
 
 		this.setValues(values);
 	}
@@ -20,7 +20,8 @@ public class Deed {
 	}
 
 	/**
-	 * @param type the type to set
+	 * @param type
+	 *            the type to set
 	 */
 	public void setType(String type) {
 		this.type = type;
@@ -34,10 +35,11 @@ public class Deed {
 	}
 
 	/**
-	 * @param values the values to set
+	 * @param values
+	 *            the values to set
 	 */
 	public void setValues(HashMap<String, Integer> values) {
 		this.values = values;
 	}
-	
+
 }

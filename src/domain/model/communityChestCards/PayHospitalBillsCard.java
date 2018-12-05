@@ -3,9 +3,9 @@ package domain.model.communityChestCards;
 import java.util.HashMap;
 
 import domain.model.Board;
-import domain.model.CommunityChestCard;
 import domain.model.GameState;
-import domain.model.Player;
+import domain.model.Players.Player;
+import domain.model.cards.CommunityChestCard;
 
 public class PayHospitalBillsCard extends CommunityChestCard{
 

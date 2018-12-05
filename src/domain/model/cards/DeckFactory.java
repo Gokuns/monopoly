@@ -1,4 +1,4 @@
-package domain.model;
+package domain.model.cards;
 
 //import java.util.List;
 

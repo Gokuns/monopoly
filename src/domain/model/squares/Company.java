@@ -1,6 +1,6 @@
-package domain.model;
+package domain.model.squares;
 
-public class Company extends Property{
+public class Company extends Property {
 
 	public Company(String name, int price, String description, Deed deed) {
 		super(name, price, description, deed);

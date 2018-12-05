@@ -1,7 +1,13 @@
-package domain.model;
+package domain.model.Players;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import domain.model.cards.Card;
+import domain.model.cards.ChanceCard;
+import domain.model.cards.CommunityChestCard;
+import domain.model.cards.Roll3Card;
+import domain.model.squares.Property;
 
 //import domain.model.specialSquares.ChanceAction;
 //import domain.model.specialSquares.CommunityChest;
