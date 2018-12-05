@@ -1,7 +1,5 @@
 package ui;
 
-//import java.util.ArrayList;
-
 public class SquareCoordinates {
 
 	private int x;

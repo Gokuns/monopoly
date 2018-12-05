@@ -15,8 +15,6 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-//import com.google.gson.Gson;
-
 import domain.controller.HostNetworkController;
 import domain.controller.NetworkControllerListener;
 import domain.controller.NetworkController;
@@ -62,7 +60,9 @@ public class HostGameFrame extends JFrame implements NetworkControllerListener{
 		hostGameButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(hostGameButton.getText()=="Host Game") {
-					hostNetworkController = new HostNetworkController(portTextField.getText());
+					hostNetworkController = new HostNetworkController(
+							portTextField.getText(),
+							usernameTextField.getText());
 					hostNetworkController.addNetworkControllerListener(HostGameFrame.this);
 					
 					portTextLabel.setText("Waiting for players");

@@ -116,5 +116,10 @@ public class GameState {
 	public void setOrderedPlayerList(ArrayList<Player> orderedPlayerList) {
 		this.orderedPlayerList = orderedPlayerList;
 	}
+
+	public void addPlayer(String username, int ID) {
+		Player p = new Player(username, ID, new Piece());
+		playerList.add(p);
+	}
 	
 }

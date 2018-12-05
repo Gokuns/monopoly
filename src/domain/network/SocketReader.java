@@ -8,23 +8,17 @@ import java.net.Socket;
 import java.util.HashMap;
 
 import com.google.gson.Gson;
-//import com.google.gson.JsonObject;
-
-//import domain.controller.ClientNetworkController;
-import domain.controller.NetworkController;
 
 public class SocketReader implements Runnable{
 	private InputStream inputStream;
-	private NetworkController networkController;
-	@SuppressWarnings("unused")
-	private Socket socket;
+	private Network network;
 	private Gson gson;
 
-	public SocketReader(Socket socket, NetworkController networkController) {
+	public SocketReader(Socket socket, Network network) {
 		super();
 		try {
 			this.gson = new Gson();
-			this.networkController = networkController;
+			this.network = network;
 			this.inputStream = socket.getInputStream();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -40,7 +34,7 @@ public class SocketReader implements Runnable{
 				if(line != null) {
 					@SuppressWarnings("unchecked")
 					HashMap<String, String> map = gson.fromJson(line, HashMap.class);
-					networkController.handleMessage(map);
+					network.handleMessage(map);
 				}
 			}
 		} catch (IOException e) {

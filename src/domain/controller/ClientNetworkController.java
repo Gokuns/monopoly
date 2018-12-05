@@ -1,30 +1,20 @@
 package domain.controller;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-import com.google.gson.Gson;
-
 import domain.model.GameState;
 import domain.model.GameStateListener;
-import domain.model.Piece;
-import domain.model.Player;
 import domain.network.ClientNetwork;
-import domain.network.SocketReader;
 
-public class ClientNetworkController implements NetworkController, GameStateListener{
+public class ClientNetworkController extends NetworkController implements GameStateListener{
 	private ClientNetwork network;
 	private List<NetworkControllerListener> listeners;
 	
-	private Gson gson = new Gson();
 	private GameController gameController = GameController.getInstance();
 	private GameState gameState = GameState.getInstance();
-	private SocketReader socketReader;
 	
 	
 	public ClientNetworkController() {
@@ -33,13 +23,9 @@ public class ClientNetworkController implements NetworkController, GameStateList
 	}
 	
 	public void initializeClientNetwork(String IP, String port, String username) {
-		network = new ClientNetwork(IP, port);
-		socketReader = new SocketReader(network.getSocket(), this);
-		new Thread(socketReader).start();
-		gameState.addNetworkListener(this);
-		
-		Player localPlayer = new Player(username, 1, new Piece());
-		gameController.setLocalPlayer(localPlayer);
+		network = new ClientNetwork(this, IP, port);
+		GameState.getInstance().addNetworkListener(this);
+		GameController.getInstance().initializeLocalPlayer(username, 1);
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("type", "newConnection");
 		map.put("username", username);
@@ -72,7 +58,7 @@ public class ClientNetworkController implements NetworkController, GameStateList
 			break;
 		case "endTurn":
 			gameState.publishToUIListeners(map);
-			gameState.setCurrentPlayer(gameState.getNextPlayer());
+			gameController.endTurn(false);
 			break;
 		}
 	}
@@ -86,15 +72,7 @@ public class ClientNetworkController implements NetworkController, GameStateList
 
 	@Override
 	public void sendMessageToPlayers(HashMap<String, String> map) {
-		try {
-			String json = gson.toJson(map);
-			Socket socket = network.getSocket();
-			PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-			out.println(json);
-			out.flush();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		network.sendMessageToPlayers(map);
 	}
 
 	@Override

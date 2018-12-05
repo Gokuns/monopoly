@@ -3,8 +3,6 @@ package ui;
 import java.util.ArrayList;
 import java.util.List;
 
-import domain.model.Square;
-
 public class BoardLayers {
 	
 	private ArrayList<SquareCoordinates> layerone;

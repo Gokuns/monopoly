@@ -2,7 +2,6 @@ package ui;
 
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
@@ -19,8 +18,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-
-import com.google.gson.Gson;
 
 import domain.controller.GameController;
 import domain.controller.NetworkController;
@@ -116,7 +113,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 
 			endTurnButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					gameController.endTurn();
+					gameController.endTurn(true);
 				}
 			});
 
