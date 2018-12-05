@@ -3,10 +3,10 @@ package domain.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import domain.model.Players.Piece;
-import domain.model.Players.Player;
 import domain.model.dice.Cup;
 import domain.model.dice.FaceValue;
+import domain.model.players.Piece;
+import domain.model.players.Player;
 import domain.model.squares.LayerFactory;
 import domain.model.squares.Square;
 import domain.model.squares.SquareIterator;

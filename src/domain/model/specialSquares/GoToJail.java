@@ -1,7 +1,7 @@
 package domain.model.specialSquares;
 
-import domain.model.Players.Player;
 import domain.model.cards.Deck;
+import domain.model.players.Player;
 import domain.model.squares.SpecialSquare;
 
 public class GoToJail extends SpecialSquare{

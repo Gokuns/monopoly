@@ -1,4 +1,4 @@
-package domain.model.Players;
+package domain.model.players;
 
 import java.util.ArrayList;
 import java.util.List;

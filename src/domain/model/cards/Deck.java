@@ -3,8 +3,8 @@ package domain.model.cards;
 import java.util.ArrayList;
 import java.util.List;
 
-import domain.model.chanceCards.GoToJailCard;
-import domain.model.communityChestCards.PayHospitalBillsCard;
+import domain.model.cards.chanceCards.GoToJailCard;
+import domain.model.cards.communityChestCards.PayHospitalBillsCard;
 import domain.model.dice.FaceValue;
 
 public class Deck {

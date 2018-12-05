@@ -6,10 +6,10 @@ import java.util.List;
 
 import domain.model.Board;
 import domain.model.GameState;
-import domain.model.Players.Piece;
-import domain.model.Players.Player;
 import domain.model.dice.Cup;
 import domain.model.dice.FaceValue;
+import domain.model.players.Piece;
+import domain.model.players.Player;
 import domain.model.squares.SpecialSquare;
 import domain.model.squares.Square;
 
@@ -79,7 +79,7 @@ public class GameController {
 				gameState.publishToNetworkListeners(specialMap);
 			}
 
-			moveCommand(isLocalCommand);
+			moveCommand(false);
 		}
 
 	}

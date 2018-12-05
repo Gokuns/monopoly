@@ -1,11 +1,11 @@
-package domain.model.communityChestCards;
+package domain.model.cards.communityChestCards;
 
 import java.util.HashMap;
 
 import domain.model.Board;
 import domain.model.GameState;
-import domain.model.Players.Player;
 import domain.model.cards.CommunityChestCard;
+import domain.model.players.Player;
 
 public class PayHospitalBillsCard extends CommunityChestCard{
 

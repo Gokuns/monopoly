@@ -1,6 +1,6 @@
 package domain.model.squares;
 
-import domain.model.Players.Player;
+import domain.model.players.Player;
 
 public abstract class SpecialSquare extends Square {
 

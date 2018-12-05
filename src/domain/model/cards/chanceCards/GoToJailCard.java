@@ -1,12 +1,12 @@
-package domain.model.chanceCards;
+package domain.model.cards.chanceCards;
 
 import java.util.HashMap;
 import java.util.List;
 
 import domain.model.Board;
 import domain.model.GameState;
-import domain.model.Players.Player;
 import domain.model.cards.ChanceCard;
+import domain.model.players.Player;
 import domain.model.squares.Square;
 
 public class GoToJailCard extends ChanceCard{

@@ -1,6 +1,6 @@
 package domain.model.specialSquares.payCorners;
 
-import domain.model.Players.Player;
+import domain.model.players.Player;
 import domain.model.specialSquares.PayCorner;;
 
 public class Bonus extends PayCorner{

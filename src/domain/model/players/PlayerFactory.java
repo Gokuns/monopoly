@@ -1,4 +1,4 @@
-package domain.model.Players;
+package domain.model.players;
 
 public class PlayerFactory {
 	
