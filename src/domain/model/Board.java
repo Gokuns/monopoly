@@ -87,7 +87,7 @@ public class Board {
 	
 	public void movePiece(Square squareToMove) {
 		setPlayersSquare(game.getCurrentPlayer(),squareToMove);
-		System.out.println("Moved to " + getPlayersSquare(game.getCurrentPlayer()).getName());
+		System.out.println("Transported to " + getPlayersSquare(game.getCurrentPlayer()).getName());
 	}
 	
 	public int getSquareLayerIndex(Square sq) {

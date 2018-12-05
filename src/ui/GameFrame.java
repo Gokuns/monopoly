@@ -15,6 +15,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
@@ -234,8 +235,11 @@ public class GameFrame extends JFrame implements GameStateListener{
 				endTurnButton.setEnabled(false);
 			}
 			break;
-		case "card":
-
+		case "special":
+			
+			JOptionPane.showMessageDialog(this.getContentPane(),
+				    map.get("description"));
+			
 			break;
 		case "move":
 			int playerIndex = Integer.parseInt(map.get("ID"));
