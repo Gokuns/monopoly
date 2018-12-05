@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-import domain.model.Board;
 import domain.model.GameState;
 import domain.model.GameStateListener;
 import domain.network.ClientNetwork;
