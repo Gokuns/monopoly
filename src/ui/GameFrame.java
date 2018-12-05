@@ -21,7 +21,6 @@ import javax.swing.border.EmptyBorder;
 
 import domain.controller.GameController;
 import domain.controller.NetworkController;
-import domain.model.Board;
 import domain.model.GameState;
 import domain.model.GameStateListener;
 
@@ -37,7 +36,6 @@ public class GameFrame extends JFrame implements GameStateListener{
 	private BoardLayers boardLayers;
 	private JLabel playerLabel;
 	private JLabel rollLabel;
-	private Board board;
 
 	private JButton rollButton;
 	private JButton endTurnButton;
@@ -49,7 +47,6 @@ public class GameFrame extends JFrame implements GameStateListener{
 	public GameFrame(NetworkController networkController) {
 		setTitle("Monopoly");
 
-		board = Board.getInstance();
 		gameController = GameController.getInstance();
 		gameController.setNetworkController(networkController);
 		gameState = GameState.getInstance();
@@ -78,7 +75,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 		}
 
 		JPanel panel = new JPanel();
-		panel.setBounds(972, 20, 510, 932);
+		panel.setBounds(860, 20, 300, 700);
 		contentPane.add(panel);
 		panel.setLayout(null);
 
@@ -89,15 +86,15 @@ public class GameFrame extends JFrame implements GameStateListener{
 		panel.add(playerLabel);
 
 		endTurnButton = new JButton("End Turn");
-		endTurnButton.setBounds(0, 119, 300, 40);
+		endTurnButton.setBounds(0, 225, 300, 40);
 		panel.add(endTurnButton);
 
 		rollButton = new JButton("Roll");
-		rollButton.setBounds(0, 172, 300, 40);
+		rollButton.setBounds(0, 119, 300, 40);
 		panel.add(rollButton);
 
 		moveButton = new JButton("Move");
-		moveButton.setBounds(0, 225, 300, 40);
+		moveButton.setBounds(0, 172, 300, 40);
 		panel.add(moveButton);
 
 		endTurnButton.addActionListener(new ActionListener() {
@@ -187,7 +184,6 @@ public class GameFrame extends JFrame implements GameStateListener{
 					String balance = map.get(name);
 					hospitalStr += " / " + " Balance of " + name + " has been updated to $"  + balance + ".";
 				}
-
 			}
 			rollLabel.setText(hospitalStr);
 			break;
