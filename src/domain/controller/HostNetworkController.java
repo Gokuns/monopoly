@@ -42,7 +42,11 @@ public class HostNetworkController extends NetworkController implements GameStat
 			publishToListeners(map);
 			break;
 		case "roll":
-			gameState.publishToUIListeners(map);
+			List<String> faceValues = new ArrayList<String>();
+			for(int i=0; i<3; i++) {
+				faceValues.add(map.get("faceValue" + i));
+			}
+			GameController.getInstance().setDice(faceValues);
 			relayMessageToPlayers(map);
 			break;
 		case "roll3":
@@ -61,6 +65,9 @@ public class HostNetworkController extends NetworkController implements GameStat
 			GameController.getInstance().endTurn(false);
 			relayMessageToPlayers(map);
 			break;
+		case "move":
+			GameController.getInstance().move(false);
+			relayMessageToPlayers(map);
 		}
 	}
 

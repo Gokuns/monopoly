@@ -1,5 +1,5 @@
 package domain.model.dice;
 
-public enum faceValue{
+public enum FaceValue{
 	ONE, TWO, THREE, FOUR, FIVE, SIX, MRMONOPOLY, BUS;
 }

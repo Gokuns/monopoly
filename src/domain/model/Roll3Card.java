@@ -4,13 +4,13 @@ import java.util.HashMap;
 import java.util.List;
 
 import domain.model.dice.Cup;
-import domain.model.dice.faceValue;
+import domain.model.dice.FaceValue;
 
 public class Roll3Card extends Card{
 	
-	List<faceValue> roll3Values;
+	List<FaceValue> roll3Values;
 	
-	public Roll3Card(faceValue fVal1, faceValue fVal2, faceValue fVal3){
+	public Roll3Card(FaceValue fVal1, FaceValue fVal2, FaceValue fVal3){
 		roll3Values.add(fVal1);
 		roll3Values.add(fVal2);
 		roll3Values.add(fVal3);
@@ -23,7 +23,7 @@ public class Roll3Card extends Card{
 		Player currentPlayer = game.getCurrentPlayer();
 		
 		Cup cup = Cup.getInstance();
-		List<faceValue> roll3Dice = cup.roll3Dice();
+		List<FaceValue> roll3Dice = cup.roll3Dice();
 		
 		List<Player> playerList = game.getPlayerList();
 		
@@ -56,7 +56,7 @@ public class Roll3Card extends Card{
 		game.publishToNetworkListeners(mapForUITransfer);//publish the mapping to the network.
 	}
 	
-	private void awardPlayer(Player p, List<faceValue> roll3Dice, int threeMatchPrice){
+	private void awardPlayer(Player p, List<FaceValue> roll3Dice, int threeMatchPrice){
 		
 		int newBalance = p.getBalance();
 		
@@ -66,7 +66,7 @@ public class Roll3Card extends Card{
 		int twoMatchPrice = 200;
 		
 		for(Roll3Card r3Card:playerRoll3Cards){
-			List<faceValue> fValList = r3Card.roll3Values;
+			List<FaceValue> fValList = r3Card.roll3Values;
 			int nOfMatch = nOfMatch(roll3Dice, fValList);
 			
 			if(nOfMatch == 3){
@@ -84,10 +84,10 @@ public class Roll3Card extends Card{
 		p.setBalance(newBalance);
 	}
 
-	private int nOfMatch(List<faceValue> roll3Dice, List<faceValue> fValList){
+	private int nOfMatch(List<FaceValue> roll3Dice, List<FaceValue> fValList){
 		int nOfMatch = 0;
 		
-		for(faceValue fVal:fValList){
+		for(FaceValue fVal:fValList){
 			if(roll3Dice.contains(fVal))
 				nOfMatch++;
 		}

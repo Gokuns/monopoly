@@ -5,7 +5,7 @@ import java.util.List;
 
 import domain.model.chanceCards.GoToJailCard;
 import domain.model.communityChestCards.PayHospitalBillsCard;
-import domain.model.dice.faceValue;
+import domain.model.dice.FaceValue;
 
 public class Deck {
 	
@@ -37,7 +37,7 @@ public class Deck {
 	}
 	
 	private void initializeRoll3Cards(List<Card> cards){//creating & adding a sample roll three card to the deck
-		Card c = new Roll3Card(faceValue.ONE, faceValue.TWO, faceValue.THREE);
+		Card c = new Roll3Card(FaceValue.ONE, FaceValue.TWO, FaceValue.THREE);
 		cards.add(c);
 	}
 	

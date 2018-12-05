@@ -14,7 +14,7 @@ import javax.swing.border.EmptyBorder;
 
 import domain.controller.GameController;
 import domain.model.dice.Cup;
-import domain.model.dice.faceValue;
+import domain.model.dice.FaceValue;
 
 @SuppressWarnings("serial")
 public class TestGameFrame extends JFrame {
@@ -78,7 +78,7 @@ public class TestGameFrame extends JFrame {
 				
 				controller.roll();
 				Cup cup = Cup.getInstance();
-				List<faceValue> faceValList = cup.getFaceValues();
+				List<FaceValue> faceValList = cup.getFaceValues();
 				String str = "=>";
 				for(int i=0; i<3;i++)
 					str += " " + faceValList.get(i).toString();
