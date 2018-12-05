@@ -9,9 +9,9 @@ import domain.model.cards.CommunityChestCard;
 import domain.model.cards.Roll3Card;
 import domain.model.squares.Property;
 
-//import domain.model.specialSquares.ChanceAction;
-//import domain.model.specialSquares.CommunityChest;
-//import domain.model.specialSquares.payCorners.Go;
+//import domain.model.squares.specialSquares.ChanceAction;
+//import domain.model.squares.specialSquares.CommunityChest;
+//import domain.model.squares.specialSquares.payCorners.Go;
 
 public class Player {
 	private String name;  //Name of the player

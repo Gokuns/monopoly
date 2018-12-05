@@ -1,11 +1,11 @@
-package domain.model.specialSquares.payCorners;
+package domain.model.squares.specialSquares;
 
 import domain.model.players.Player;
-import domain.model.specialSquares.PayCorner;
+import domain.model.squares.SpecialSquare;
 
-public class PayDay extends PayCorner{
+public class LuxuryTax extends SpecialSquare {
 
-	public PayDay(String name, String description) {
+	public LuxuryTax(String name, String description) {
 		super(name, description);
 		// TODO Auto-generated constructor stub
 	}
@@ -14,7 +14,7 @@ public class PayDay extends PayCorner{
 	public String action(Player p) {
 		return null;
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

@@ -4,10 +4,7 @@ import java.util.ArrayList;
 //import java.util.HashMap;
 import java.util.List;
 
-//import domain.model.specialSquares.CommunityChest;
-//import domain.model.specialSquares.IncomeTax;
-//import domain.model.specialSquares.TransitStation;
-import domain.model.specialSquares.payCorners.Go;
+import domain.model.squares.specialSquares.payCorners.Go;
 
 public class LayerFactory {
 	private static LayerFactory layerFactory;

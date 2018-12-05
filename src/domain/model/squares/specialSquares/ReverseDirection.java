@@ -1,11 +1,11 @@
-package domain.model.specialSquares;
+package domain.model.squares.specialSquares;
 
 import domain.model.players.Player;
 import domain.model.squares.SpecialSquare;
 
-public class SqueezePlay extends SpecialSquare {
+public class ReverseDirection extends SpecialSquare{
 
-	public SqueezePlay(String name, String description) {
+	public ReverseDirection(String name, String description) {
 		super(name, description);
 		// TODO Auto-generated constructor stub
 	}
@@ -14,7 +14,7 @@ public class SqueezePlay extends SpecialSquare {
 	public String action(Player p) {
 		return null;
 		// TODO Auto-generated method stub
-
+		
 	}
 
 }

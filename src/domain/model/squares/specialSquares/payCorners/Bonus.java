@@ -1,12 +1,11 @@
-package domain.model.specialSquares;
+package domain.model.squares.specialSquares.payCorners;
 
-import domain.model.cards.Deck;
 import domain.model.players.Player;
-import domain.model.squares.SpecialSquare;
+import domain.model.squares.specialSquares.PayCorner;;
 
-public class GoToJail extends SpecialSquare{
+public class Bonus extends PayCorner{
 
-	public GoToJail(String name, String description) {
+	public Bonus(String name, String description) {
 		super(name, description);
 		// TODO Auto-generated constructor stub
 	}
@@ -15,7 +14,6 @@ public class GoToJail extends SpecialSquare{
 	public String action(Player p) {
 		return null;
 		// TODO Auto-generated method stub
-		
 		
 	}
 

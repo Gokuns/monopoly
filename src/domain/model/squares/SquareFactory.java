@@ -1,29 +1,21 @@
 package domain.model.squares;
 
-import domain.model.specialSquares.BirthdayGift;
-import domain.model.specialSquares.BusTicket;
-
-//
-//import java.util.ArrayList;
-//import java.util.HashMap;
-//import java.util.List;
-
-import domain.model.specialSquares.ChanceAction;
-import domain.model.specialSquares.CommunityChest;
-import domain.model.specialSquares.GoToJail;
-import domain.model.specialSquares.HollandTunnel;
-import domain.model.specialSquares.IncomeTax;
-//import domain.model.specialSquares.IncomeTax;
-import domain.model.specialSquares.Jail;
-import domain.model.specialSquares.LuxuryTax;
-import domain.model.specialSquares.ReverseDirection;
-import domain.model.specialSquares.RollThree;
-import domain.model.specialSquares.SqueezePlay;
-import domain.model.specialSquares.StockExchange;
-import domain.model.specialSquares.Subway;
-//import domain.model.specialSquares.payCorners.Go;
-import domain.model.specialSquares.payCorners.Bonus;
-import domain.model.specialSquares.payCorners.PayDay;
+import domain.model.squares.specialSquares.BirthdayGift;
+import domain.model.squares.specialSquares.BusTicket;
+import domain.model.squares.specialSquares.ChanceAction;
+import domain.model.squares.specialSquares.CommunityChest;
+import domain.model.squares.specialSquares.GoToJail;
+import domain.model.squares.specialSquares.HollandTunnel;
+import domain.model.squares.specialSquares.IncomeTax;
+import domain.model.squares.specialSquares.Jail;
+import domain.model.squares.specialSquares.LuxuryTax;
+import domain.model.squares.specialSquares.ReverseDirection;
+import domain.model.squares.specialSquares.RollThree;
+import domain.model.squares.specialSquares.SqueezePlay;
+import domain.model.squares.specialSquares.StockExchange;
+import domain.model.squares.specialSquares.Subway;
+import domain.model.squares.specialSquares.payCorners.Bonus;
+import domain.model.squares.specialSquares.payCorners.PayDay;
 
 public class SquareFactory {
 	private static SquareFactory squareFactory;

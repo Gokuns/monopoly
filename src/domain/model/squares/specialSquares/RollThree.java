@@ -1,4 +1,4 @@
-package domain.model.specialSquares;
+package domain.model.squares.specialSquares;
 
 import domain.model.cards.Card;
 import domain.model.cards.Deck;

@@ -1,7 +1,7 @@
-package domain.model.specialSquares.payCorners;
+package domain.model.squares.specialSquares.payCorners;
 
 import domain.model.players.Player;
-import domain.model.specialSquares.PayCorner;
+import domain.model.squares.specialSquares.PayCorner;
 
 public class Go extends PayCorner{
 	
