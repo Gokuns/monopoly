@@ -164,113 +164,78 @@ public class GameFrame extends JFrame implements GameStateListener{
 		String type = map.get("type");
 		switch(type){
 		case "roll":
-			EventQueue.invokeLater(new Runnable() {
-				@Override
-				public void run() {
-					String str = "=>";
-					for(int i=0; i<3;i++) {
-						str += " " + map.get("faceValue"+i);
-					}
-					rollLabel.setText(str);
-				}
-			});
+			String rollStr = "=>";
+			for(int i=0; i<3;i++) {
+				rollStr += " " + map.get("faceValue"+i);
+			}
+			rollLabel.setText(rollStr);
 			break;
 		case "roll3":
-			EventQueue.invokeLater(new Runnable() {
-				@Override
-				public void run() {
-					String str = "=>";
-					for(String pName:map.keySet()){
-						if(!pName.equals("type")){
-							String award = map.get(pName);
-							str += " / " + pName + " has won $" + award + ".";
-						}
-					}
-					rollLabel.setText(str);
+			String roll3Str = "=>";
+			for(String pName:map.keySet()){
+				if(!pName.equals("type")){
+					String award = map.get(pName);
+					roll3Str += " / " + pName + " has won $" + award + ".";
 				}
-			});
+			}
+			rollLabel.setText(roll3Str);
 			break;
 		case "payHospitalBill":
-			EventQueue.invokeLater(new Runnable() {
-				@Override
-				public void run() {
-					String str = "=>";
-					for(String name:map.keySet()){
-						if(!name.equals("type")){
-							String balance = map.get(name);
-							str += " / " + " Balance of " + name + " has been updated to $"  + balance + ".";
-						}
-
-					}
-					rollLabel.setText(str);
+			String hospitalStr = "=>";
+			for(String name:map.keySet()){
+				if(!name.equals("type")){
+					String balance = map.get(name);
+					hospitalStr += " / " + " Balance of " + name + " has been updated to $"  + balance + ".";
 				}
-			});
+
+			}
+			rollLabel.setText(hospitalStr);
 			break;
 		case "goToJail":
-			EventQueue.invokeLater(new Runnable() {
-				@Override
-				public void run() {
-					String str = "=>";
-					for(String name:map.keySet()){
-						if(!name.equals("type")){
-							String info = map.get(name);
-							str += name + " " + info;
-						}
-
-					}
-					rollLabel.setText(str);
+			String jailStr = "=>";
+			for(String name:map.keySet()){
+				if(!name.equals("type")){
+					String info = map.get(name);
+					jailStr += name + " " + info;
 				}
-			});
+
+			}
+			rollLabel.setText(jailStr);
 			break;
 		case "endTurn":
-			EventQueue.invokeLater(new Runnable() {
-				@Override
-				public void run() {
-					String str = map.get("currentPlayer");
-					playerLabel.setText(str);
-					int localID = gameController.getLocalPlayer().getID();
-					int currentID = Integer.parseInt(map.get("currentPlayerID"));
-					if(localID == currentID) {
-						rollButton.setEnabled(true);
-						moveButton.setEnabled(false);
-						endTurnButton.setEnabled(false);
-					} else
-					{
-						rollButton.setEnabled(false);
-						moveButton.setEnabled(false);
-						endTurnButton.setEnabled(false);
-					}
-				}
-			});
+			String endTurnStr = map.get("currentPlayer");
+			playerLabel.setText(endTurnStr);
+			int localID = gameController.getLocalPlayer().getID();
+			int currentID = Integer.parseInt(map.get("currentPlayerID"));
+			if(localID == currentID) {
+				rollButton.setEnabled(true);
+				moveButton.setEnabled(false);
+				endTurnButton.setEnabled(false);
+			} else
+			{
+				rollButton.setEnabled(false);
+				moveButton.setEnabled(false);
+				endTurnButton.setEnabled(false);
+			}
 			break;
 		case "gameStarted":
-			EventQueue.invokeLater(new Runnable() {
-				@Override
-				public void run() {
-					String str = map.get("currentPlayer");
-					playerLabel.setText(str);
-					initializeBalls();int localID = gameController.getLocalPlayer().getID();
-					int currentID = Integer.parseInt(map.get("currentPlayerID"));
-					if(localID == currentID) {
-						rollButton.setEnabled(true);
-						moveButton.setEnabled(false);
-						endTurnButton.setEnabled(false);
-					} else
-					{
-						rollButton.setEnabled(false);
-						moveButton.setEnabled(false);
-						endTurnButton.setEnabled(false);
-					}
-				}
-			});
+			String currentPlayerStr = map.get("currentPlayer");
+			playerLabel.setText(currentPlayerStr);
+			initializeBalls();
+			if(GameController.getInstance().getLocalPlayer().getID() == 
+					Integer.parseInt(map.get("currentPlayerID"))) {
+				rollButton.setEnabled(true);
+				moveButton.setEnabled(false);
+				endTurnButton.setEnabled(false);
+			} else
+			{
+				rollButton.setEnabled(false);
+				moveButton.setEnabled(false);
+				endTurnButton.setEnabled(false);
+			}
 			break;
 		case "card":
-			EventQueue.invokeLater(new Runnable() {
-				@Override
-				public void run() {
-					
-				}
-			});
+
 			break;
 		case "move":
 			int playerIndex = Integer.parseInt(map.get("ID"));
