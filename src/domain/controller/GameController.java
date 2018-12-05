@@ -44,10 +44,8 @@ public class GameController {
 		ArrayList<Player> playerList = gameState.getPlayerList();
 		int playerCount = Integer.parseInt(map.get("playerCount"));
 		for(int i=0; i<playerCount; i++) {
-			String key = "player" + i + "Name";
-			String username = map.get(key);
-			key = "player" + i + "ID";
-			int ID = Integer.parseInt(map.get(key));
+			String username = map.get("player" + i + "Name");
+			int ID = Integer.parseInt(map.get("player" + i + "ID"));
 			Player p = new Player(username, ID, new Piece());
 			playerList.add(p);
 		}
@@ -73,7 +71,7 @@ public class GameController {
 		this.networkController = networkController;
 	}
 
-	public void endTurn(boolean isNetworkCommand) {
+	public void endTurn(boolean isLocalCommand) {
 		gameState = GameState.getInstance();
 		gameState.getCurrentPlayer().setTurn(false);
 		gameState.setCurrentPlayer(gameState.getNextPlayer());
@@ -82,11 +80,10 @@ public class GameController {
 		map.put("type", "endTurn");
 		map.put("currentPlayer", gameState.getCurrentPlayer().getName());
 		map.put("currentPlayerID", Integer.toString(gameState.getCurrentPlayer().getID()));
-		if(!isNetworkCommand) {
+		gameState.publishToUIListeners(map);
+		if(isLocalCommand) {
 			gameState.publishToNetworkListeners(map);
 		}
-		gameState.publishToUIListeners(map);
-
 	}
 
 	public Player getLocalPlayer() {
@@ -95,10 +92,6 @@ public class GameController {
 
 	public void setLocalPlayer(Player localPlayer) {
 		this.localPlayer = localPlayer;
-	}
-
-	public void initializeLocalPlayer(String username, int ID, boolean isLocal) {
-		initializeLocalPlayer(username, ID);
 	}
 
 	public void initializeLocalPlayer(String username, int ID) {

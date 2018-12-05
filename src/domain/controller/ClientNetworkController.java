@@ -58,7 +58,7 @@ public class ClientNetworkController extends NetworkController implements GameSt
 			break;
 		case "endTurn":
 			gameState.publishToUIListeners(map);
-			gameController.endTurn(true);
+			gameController.endTurn(false);
 			break;
 		}
 	}

@@ -2,6 +2,7 @@ package domain.network;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -40,13 +41,11 @@ public class HostNetwork extends Network implements Runnable{
 		}
 	}
 
-	public List<Socket> getSocketList() {
-		return socketList;
-	}
 
 	public void sendMessageToPlayers(HashMap<String, String> map) {
-		for  (Socket s : getSocketList()) {
+		for  (Socket s : socketList) {
 			try {
+				map.put("source", s.getLocalAddress().getHostAddress());
 				String json = gson.toJson(map);
 				PrintWriter out = new PrintWriter(s.getOutputStream(), true);
 				out.println(json);
@@ -58,9 +57,14 @@ public class HostNetwork extends Network implements Runnable{
 	}
 
 	public void relayMessageToPlayers(HashMap<String, String> map) {
-		for  (Socket s : getSocketList()) {
+		for  (Socket s : socketList) {
 			try {
+//				System.out.println("inet host = "+s.getInetAddress().getHostAddress());
+//				System.out.println("inet localhost = "+lastSenderIP);
+//				System.out.println(s.getLocalAddress().getHostAddress());
+//				System.out.println(s.getLocalSocketAddress());
 				if(!s.getInetAddress().getHostAddress().equals(lastSenderIP)) {
+					map.put("source", s.getLocalAddress().getHostAddress());
 					String json = gson.toJson(map);
 					PrintWriter out = new PrintWriter(s.getOutputStream(), true);
 					out.println(json);
