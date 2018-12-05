@@ -1,6 +1,7 @@
-package domain.model.squares;
+package domain.model.squares.properties;
 
 import domain.model.players.Player;
+import domain.model.squares.Square;
 
 public abstract class Property extends Square {
 	private Player owner;

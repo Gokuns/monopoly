@@ -1,5 +1,10 @@
 package domain.model.squares;
 
+import domain.model.squares.properties.CabCo;
+import domain.model.squares.properties.Company;
+import domain.model.squares.properties.DeedFactory;
+import domain.model.squares.properties.Railroad;
+import domain.model.squares.properties.Street;
 import domain.model.squares.specialSquares.BirthdayGift;
 import domain.model.squares.specialSquares.BusTicket;
 import domain.model.squares.specialSquares.ChanceAction;

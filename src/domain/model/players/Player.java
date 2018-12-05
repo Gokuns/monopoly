@@ -7,7 +7,7 @@ import domain.model.cards.Card;
 import domain.model.cards.ChanceCard;
 import domain.model.cards.CommunityChestCard;
 import domain.model.cards.Roll3Card;
-import domain.model.squares.Property;
+import domain.model.squares.properties.Property;
 
 //import domain.model.squares.specialSquares.ChanceAction;
 //import domain.model.squares.specialSquares.CommunityChest;

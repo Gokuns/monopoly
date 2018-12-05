@@ -1,6 +1,6 @@
-package domain.model.squares;
+package domain.model.squares.properties;
 
-import domain.model.squares.Property;
+import domain.model.squares.properties.Property;
 
 public class CabCo extends Property {
 

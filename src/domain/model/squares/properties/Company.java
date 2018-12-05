@@ -1,4 +1,4 @@
-package domain.model.squares;
+package domain.model.squares.properties;
 
 public class Company extends Property {
 
