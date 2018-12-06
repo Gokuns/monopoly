@@ -28,6 +28,7 @@ import domain.model.GameStateListener;
 @SuppressWarnings("serial")
 public class GameFrame extends JFrame implements GameStateListener{
 
+	private JPanel panel;
 	private JPanel contentPane;
 	private JPanel monopolyLogoPanel;
 	private GameController gameController;
@@ -66,7 +67,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 
 		try {
 			Image logoImage = ImageIO.read(new File("monopolyBoard.png"));
-			logoImage = logoImage.getScaledInstance(700, 700, Image.SCALE_SMOOTH);
+			//logoImage = logoImage.getScaledInstance(700, 700, Image.SCALE_SMOOTH);
 			monopolyLogoPanel = new BackgroundImagePanel(logoImage);
 			monopolyLogoPanel.setLayout(null);
 			monopolyLogoPanel.setBounds(20, 20, 700, 700);
@@ -74,8 +75,9 @@ public class GameFrame extends JFrame implements GameStateListener{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
-		JPanel panel = new JPanel();
+		
+		System.out.println(monopolyLogoPanel.getWidth() +" , " + monopolyLogoPanel.getHeight());
+		panel = new JPanel();
 		panel.setBounds(860, 20, 300, 700);
 		contentPane.add(panel);
 		panel.setLayout(null);
@@ -134,13 +136,14 @@ public class GameFrame extends JFrame implements GameStateListener{
 			@Override
 			public void run() {
 				System.out.println("Balls initializing");
-
+				int coorX = boardLayers.getSquareCoordinates(1, 0).getX();
+				int coorY = boardLayers.getSquareCoordinates(1, 0).getY();
 				numberOfPlayers = gameState.getOrderedPlayerList().size();
 				for(int i = 0;i<numberOfPlayers; i++) {
 					System.out.println("Ball "+i);
 					String x = "Piece" + Integer.toString(i);
 					Ball ballx = new Ball(x, i);
-					ballx.setBounds(565 - i*5 ,555, 30, 30);
+					ballx.setBounds(coorX + i*6 ,coorY, 15, 15); //    4
 					balls.add(ballx);
 					monopolyLogoPanel.add(ballx);
 					repaint();
@@ -151,9 +154,11 @@ public class GameFrame extends JFrame implements GameStateListener{
 
 	public void moveUIPiece(int playerIndex, int layer, int number) {
 		SquareCoordinates current = boardLayers.getSquareCoordinates(layer, number);
-		int x = current.getX() - 30;
-		int y = current.getY() - 30;
-		balls.get(playerIndex).setLocation(x - playerIndex * 5, y);
+		System.out.println("It should go to layer "+ layer+" , square index = "+number);
+		int x = current.getX();
+		int y = current.getY();
+		balls.get(playerIndex).setLocation(x + playerIndex * 6, y);
+		System.out.println("It goes here : x = " +x+" , y = "+y);
 		repaint();
 	}
 
@@ -238,6 +243,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 			
 			break;
 		case "move":
+			
 			int playerIndex = Integer.parseInt(map.get("ID"));
 			int layer = Integer.parseInt(map.get("layer"));
 			int number = Integer.parseInt(map.get("number"));
