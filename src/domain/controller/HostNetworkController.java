@@ -47,6 +47,7 @@ public class HostNetworkController extends NetworkController implements GameStat
 				faceValues.add(map.get("faceValue" + i));
 			}
 			GameController.getInstance().setDice(faceValues);
+			GameState.getInstance().publishToUIListeners(map);
 			relayMessageToPlayers(map);
 			break;
 		case "roll3":
