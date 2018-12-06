@@ -67,20 +67,17 @@ public class Board {
 		iter = new SquareIterator(currentSquare, Squares);
 		int movement = calculateMovement();
 		boolean even = movement%2 == 0;
-		for (int i=0;i<movement;i++) {
-			if(currentSquare.isTransit() && currentPlayer.isChangingLayer()==false)  {
-				if(even){
-					currentPlayer.setChangingLayer(true);
-					if(iter.hasInner()) currentSquare = iter.inner();
-					else currentSquare = iter.outer();
-				}else currentSquare = iter.next();
-				
-			}else {
-				currentPlayer.setChangingLayer(false);
-				currentSquare = iter.next();
+		if(currentSquare.isTransit() && currentPlayer.isChangingLayer()==false)  {
+			if(even){
+				currentPlayer.setChangingLayer(true);
+				if(iter.hasInner()) currentSquare = iter.inner();
+				else currentSquare = iter.outer();
 			}
 		}
-		
+		else currentPlayer.setChangingLayer(false);
+		for (int i=0;i<movement;i++) {
+			currentSquare = iter.next();
+		}
 		Square landedOn = currentSquare;
 		setPlayersSquare(currentPlayer,landedOn);		
 		System.out.println("Moved to " + getPlayersSquare(game.getCurrentPlayer()).getName());
