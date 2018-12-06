@@ -10,7 +10,7 @@ public abstract class Square {
 	private boolean isTransitInner = false;
 	private boolean isSpecialSquare = false;
 
-	private boolean isTransit;
+	private boolean isTransit = false;
 
 	public Square(String name, String description) {
 		this.name = name;
