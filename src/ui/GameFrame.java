@@ -67,7 +67,6 @@ public class GameFrame extends JFrame implements GameStateListener{
 
 		try {
 			Image logoImage = ImageIO.read(new File("monopolyBoard.png"));
-			//logoImage = logoImage.getScaledInstance(700, 700, Image.SCALE_SMOOTH);
 			monopolyLogoPanel = new BackgroundImagePanel(logoImage);
 			monopolyLogoPanel.setLayout(null);
 			monopolyLogoPanel.setBounds(20, 20, 700, 700);
@@ -154,11 +153,9 @@ public class GameFrame extends JFrame implements GameStateListener{
 
 	public void moveUIPiece(int playerIndex, int layer, int number) {
 		SquareCoordinates current = boardLayers.getSquareCoordinates(layer, number);
-		System.out.println("It should go to layer "+ layer+" , square index = "+number);
 		int x = current.getX();
 		int y = current.getY();
 		balls.get(playerIndex).setLocation(x + playerIndex * 6, y);
-		System.out.println("It goes here : x = " +x+" , y = "+y);
 		repaint();
 	}
 
