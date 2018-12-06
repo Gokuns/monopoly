@@ -5,6 +5,11 @@ import java.util.List;
 
 import domain.model.dice.Cup;
 import domain.model.dice.FaceValue;
+import domain.model.players.Piece;
+import domain.model.players.Player;
+import domain.model.squares.LayerFactory;
+import domain.model.squares.Square;
+import domain.model.squares.SquareIterator;
 
 public class Board {
 	private GameState game = GameState.getInstance();

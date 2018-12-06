@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import domain.model.dice.Cup;
+import domain.model.players.Piece;
+import domain.model.players.Player;
+import domain.model.squares.Square;
 
 public class GameState {
 	private static GameState game;

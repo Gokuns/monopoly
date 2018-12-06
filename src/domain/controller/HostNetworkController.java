@@ -7,7 +7,7 @@ import java.util.List;
 
 import domain.model.GameState;
 import domain.model.GameStateListener;
-import domain.model.Player;
+import domain.model.players.Player;
 import domain.network.HostNetwork;
 
 public class HostNetworkController extends NetworkController implements GameStateListener{
