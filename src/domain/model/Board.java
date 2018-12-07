@@ -73,6 +73,7 @@ public class Board {
 					currentPlayer.setChangingLayer(true);
 					if(iter.hasInner()) currentSquare = iter.inner();
 					else currentSquare = iter.outer();
+					currentSquare = iter.next();
 				}else currentSquare = iter.next();
 				
 			}else {
