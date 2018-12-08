@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.imageio.ImageIO;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -42,6 +44,14 @@ public class GameFrame extends JFrame implements GameStateListener{
 	private JButton rollButton;
 	private JButton endTurnButton;
 	private JButton moveButton;
+	
+	private Image dieImage1;
+	private Image dieImage2;
+	private Image dieImage3;
+	
+	private JLabel picLabel1;
+	private JLabel picLabel2;
+	private JLabel picLabel3;
 
 	/**
 	 * Create the frame.
@@ -75,12 +85,34 @@ public class GameFrame extends JFrame implements GameStateListener{
 			e.printStackTrace();
 		}
 		
+		
+		try {
+			dieImage1 = ImageIO.read(new File("imgDice/1.png"));
+			dieImage2 = ImageIO.read(new File("imgDice/1.png"));
+			dieImage3 = ImageIO.read(new File("imgDice/1.png"));
+
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		picLabel1 = new JLabel(new ImageIcon(dieImage1));
+		picLabel2 = new JLabel(new ImageIcon(dieImage2));
+		picLabel3 = new JLabel(new ImageIcon(dieImage3));
+		
+		picLabel1.setBounds(60, 320, 50, 50);
+		picLabel2.setBounds(120, 320, 50, 50);
+		picLabel3.setBounds(180, 320, 50, 50);
+		
 		System.out.println(monopolyLogoPanel.getWidth() +" , " + monopolyLogoPanel.getHeight());
 		panel = new JPanel();
 		panel.setBounds(860, 20, 300, 700);
 		contentPane.add(panel);
 		panel.setLayout(null);
 
+		panel.add(picLabel1);
+		panel.add(picLabel2);
+		panel.add(picLabel3);
+		
 		playerLabel = new JLabel("Player X");
 		playerLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		playerLabel.setFont(new Font("Tahoma", Font.PLAIN, 25));
@@ -114,7 +146,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 			}
 		});
 
-		rollLabel = new JLabel("You rolled: X X X");
+		rollLabel = new JLabel("You rolled: ");
 		rollLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		rollLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		rollLabel.setBounds(0, 278, 300, 40);
@@ -164,11 +196,36 @@ public class GameFrame extends JFrame implements GameStateListener{
 		String type = map.get("type");
 		switch(type){
 		case "roll":
-			String rollStr = "=>";
+			String rollStr;
 			for(int i=0; i<3;i++) {
-				rollStr += " " + map.get("faceValue"+i);
+				rollStr = map.get("faceValue"+i);
+				switch(rollStr) {
+				case "ONE":
+					pickDieImage(i, "1");
+					break;
+				case "TWO":
+					pickDieImage(i, "2");
+					break;
+				case "THREE":
+					pickDieImage(i, "3");
+					break;
+				case "FOUR":
+					pickDieImage(i, "4");
+					break;
+				case "FIVE":
+					pickDieImage(i, "5");
+					break;
+				case "SIX":
+					pickDieImage(i, "6");
+					break;
+				case "MRMONOPOLY":
+					pickDieImage(i, "mrmonopoly");
+					break;
+				case "BUS":
+					pickDieImage(i, "bus");
+					break;
+				}		
 			}
-			rollLabel.setText(rollStr);
 			break;
 		case "roll3":
 			String roll3Str = "=>";
@@ -246,6 +303,36 @@ public class GameFrame extends JFrame implements GameStateListener{
 			int number = Integer.parseInt(map.get("number"));
 			System.out.println(layer + "-" + number);
 			moveUIPiece(playerIndex, layer, number);
+		}
+	}
+	
+	public void pickDieImage(int i, String s) {
+		if(i == 0) {
+			try {
+				dieImage1 = ImageIO.read(new File("imgDice/"+s+".png"));
+				picLabel1.setIcon(new ImageIcon(dieImage1));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		else if(i == 1) {
+			try {
+				dieImage2 = ImageIO.read(new File("imgDice/"+s+".png"));
+				picLabel2.setIcon(new ImageIcon(dieImage2));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		else {
+			try {
+				dieImage3 = ImageIO.read(new File("imgDice/"+s+".png"));
+				picLabel3.setIcon(new ImageIcon(dieImage3));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 }
