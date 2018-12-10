@@ -16,69 +16,74 @@ public class BoardLayers {
 		layertwo = new ArrayList<SquareCoordinates>();
 		layerthree = new ArrayList<SquareCoordinates>();
 
-	// short lines = 38 , long lines = 78
 		//layer1 initialization
-		layerone.add(new SquareCoordinates(451,451));
-		for(int i=0;i<5;i++) {
-			layerone.add(new SquareCoordinates(413-38*i, 451));
-		}
-		layerone.add(new SquareCoordinates(183, 451));
-		for(int i=0;i<5;i++) {
-			layerone.add(new SquareCoordinates(183, 413-38*i));
-		}
-		layerone.add(new SquareCoordinates(183, 183));
-		layerone.add(new SquareCoordinates(261, 183));
-		for(int i=0;i<5;i++) {
-			layerone.add(new SquareCoordinates(299+38*i, 183));
-		}
-		layerone.add(new SquareCoordinates(451, 261));
+		layerone.add(new SquareCoordinates(510,515));
+		layerone.add(new SquareCoordinates(455,515));
 		for(int i=0;i<4;i++) {
-			layerone.add(new SquareCoordinates(451, 299+38*i));
+			layerone.add(new SquareCoordinates(420-40*i, 515));
+		}
+		layerone.add(new SquareCoordinates(240, 515));
+		for(int i=0;i<6;i++) {
+			layerone.add(new SquareCoordinates(240, 450-40*i));
+		}
+		for(int i=0;i<5;i++) {
+			layerone.add(new SquareCoordinates(300+40*i, 230));
+		}
+		layerone.add(new SquareCoordinates(520, 230));
+		for(int i=0;i<5;i++) {
+			layerone.add(new SquareCoordinates(520, 290+40*i));
 		}
 		//layer1 initialized
 		
 		//layer2 initialization
 		
-		layertwo.add(new SquareCoordinates(533, 533));
+		layertwo.add(new SquareCoordinates(600, 590));
 		for(int i=0;i<9;i++) {
-			layertwo.add(new SquareCoordinates(495-38*i, 533));
+			layertwo.add(new SquareCoordinates(540-40*i, 590));
 		}
-		layertwo.add(new SquareCoordinates(113, 533));
+		layertwo.add(new SquareCoordinates(175, 590));
 		for(int i=0;i<9;i++) {
-			layertwo.add(new SquareCoordinates(113, 495-38*i));
+			layertwo.add(new SquareCoordinates(165, 530-40*i));
 		}
-		layertwo.add(new SquareCoordinates(113, 113));
-		layertwo.add(new SquareCoordinates(191, 113));
+		layertwo.add(new SquareCoordinates(165, 150));
 		for(int i=0;i<9;i++) {
-			layertwo.add(new SquareCoordinates(229+38*i, 113));
+			layertwo.add(new SquareCoordinates(220+40*i, 150));
 		}
-		layertwo.add(new SquareCoordinates(533, 191));
-		for(int i=0;i<8;i++) {
-			layertwo.add(new SquareCoordinates(533, 229+38*i));
+		layertwo.add(new SquareCoordinates(600, 150));
+		for(int i=0;i<9;i++) {
+			layertwo.add(new SquareCoordinates(600, 210+40*i));
 		}
 		// layer2 initialized
 		
-		// layer3 initialization   +4
+		// layer3 initialization
 		
-		layerthree.add(new SquareCoordinates(616,616));
-		
-		for(int i=0;i<12;i++) {
-			layerthree.add(new SquareCoordinates(576-40*i, 616));
+		layerthree.add(new SquareCoordinates(690,660));
+		for(int i=0;i<11;i++) {
+			layerthree.add(new SquareCoordinates(620-40*i, 660));
 		}
-		layerthree.add(new SquareCoordinates(10,616));
+		for(int i=0;i<2;i++) {
+			layerthree.add(new SquareCoordinates(175-40*i, 660));
+		}
+		layerthree.add(new SquareCoordinates(90,660));
+		for(int i=0;i<6;i++) {
+			layerthree.add(new SquareCoordinates(90, 615-40*i));
+		}
+		for(int i=0;i<7;i++) {
+			layerthree.add(new SquareCoordinates(90, 370-40*i));
+		}
+		layerthree.add(new SquareCoordinates(90,70));
+		for(int i=0;i<3;i++) {
+			layerthree.add(new SquareCoordinates(135+40*i, 70));
+		}
+		for(int i=0;i<10;i++) {
+			layerthree.add(new SquareCoordinates(260+40*i, 70));
+		}
+		layerthree.add(new SquareCoordinates(690,70));
 		for(int i=0;i<13;i++) {
-			layerthree.add(new SquareCoordinates(10, 574-40*i));
-		}
-		layerthree.add(new SquareCoordinates(10,10));
-		layerthree.add(new SquareCoordinates(91,10));
-		for(int i=0;i<13;i++) {
-			layerthree.add(new SquareCoordinates(132+40*i, 10));
-		}
-		layerthree.add(new SquareCoordinates(616,91));
-		for(int i=0;i<12;i++) {
-			layerthree.add(new SquareCoordinates(616, 131+40*i));
+			layerthree.add(new SquareCoordinates(690, 130+40*i));
 		}
 		//layer3 initialized
+
 		layerList.add(layerone);
 		layerList.add(layertwo);
 		layerList.add(layerthree);

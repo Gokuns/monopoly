@@ -174,7 +174,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 					System.out.println("Ball "+i);
 					String x = "Piece" + Integer.toString(i);
 					Ball ballx = new Ball(x, i);
-					ballx.setBounds(coorX + i*6 ,coorY, 15, 15); //    4
+					ballx.setBounds(coorX + i*6 -15 ,coorY -15, 15, 15); //    4
 					balls.add(ballx);
 					monopolyLogoPanel.add(ballx);
 					repaint();
@@ -185,8 +185,8 @@ public class GameFrame extends JFrame implements GameStateListener{
 
 	public void moveUIPiece(int playerIndex, int layer, int number) {
 		SquareCoordinates current = boardLayers.getSquareCoordinates(layer, number);
-		int x = current.getX();
-		int y = current.getY();
+		int x = current.getX() - 35;
+		int y = current.getY() - 20;
 		balls.get(playerIndex).setLocation(x + playerIndex * 6, y);
 		repaint();
 	}
