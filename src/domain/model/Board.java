@@ -83,11 +83,15 @@ public class Board {
 					}
 					currentSquare = iter.next();
 					movedSquares.add(currentSquare);
-				}else currentSquare = iter.next();
+				}else {
+					currentSquare = iter.next();
+					movedSquares.add(currentSquare);
+				}
 				
 			}else {
 				currentPlayer.setChangingLayer(false);
 				currentSquare = iter.next();
+				movedSquares.add(currentSquare);
 
 			}
 		}
