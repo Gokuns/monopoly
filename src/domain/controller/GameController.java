@@ -64,7 +64,8 @@ public class GameController {
 		gameState = GameState.getInstance();
 		board = Board.getInstance();
 		Player currentP = gameState.getCurrentPlayer();
-		Square landedSquare = board.movePiece(currentP);
+		ArrayList<Square> moveList = board.movePiece(currentP);
+		Square landedSquare = moveList.get(moveList.size()-1);
 		System.out.println("Piece move Completed");
 		moveCommand(isLocalCommand);
 

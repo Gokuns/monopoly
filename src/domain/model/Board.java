@@ -3,6 +3,8 @@ package domain.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sun.org.apache.bcel.internal.generic.NEWARRAY;
+
 import domain.model.dice.Cup;
 import domain.model.dice.FaceValue;
 import domain.model.players.Piece;
@@ -62,18 +64,25 @@ public class Board {
 			
 	}
 	
-	public Square movePiece(Player currentPlayer) {
+	public ArrayList<Square> movePiece(Player currentPlayer) {
 		Square currentSquare = getPlayersSquare(currentPlayer);
 		iter = new SquareIterator(currentSquare, Squares);
 		int movement = calculateMovement();
+		ArrayList<Square> movedSquares = new ArrayList<Square>();
 		boolean even = movement%2 == 0;
 		for (int i=0;i<movement;i++) {
 			if(currentSquare.isTransit() && currentPlayer.isChangingLayer()==false)  {
 				if(even){
 					currentPlayer.setChangingLayer(true);
-					if(iter.hasInner()) currentSquare = iter.inner();
-					else currentSquare = iter.outer();
+					if(iter.hasInner()) {
+						currentSquare = iter.inner();
+						movedSquares.add(currentSquare);
+					}
+					else { currentSquare = iter.outer();
+					movedSquares.add(currentSquare);
+					}
 					currentSquare = iter.next();
+					movedSquares.add(currentSquare);
 				}else currentSquare = iter.next();
 				
 			}else {
@@ -87,7 +96,7 @@ public class Board {
 		setPlayersSquare(currentPlayer,landedOn);		
 		System.out.println("Moved to " + getPlayersSquare(game.getCurrentPlayer()).getName());
 		currentPlayer.setMoved(true);
-		return landedOn;
+		return movedSquares;
 		
 	}
 	
