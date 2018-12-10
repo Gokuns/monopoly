@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import domain.model.GameState;
 import domain.model.players.Player;
 import domain.model.squares.SpecialSquare;
+import domain.model.squares.Square;
+import domain.model.squares.SquareStrategy;
 
-public class BirthdayGift extends SpecialSquare {
+public class BirthdayGift extends Square implements SquareStrategy {
 
 	public BirthdayGift(String name, String description) {
 		super(name, description);

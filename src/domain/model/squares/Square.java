@@ -3,6 +3,7 @@ package domain.model.squares;
 public abstract class Square {
 	private String name;
 	private String desciption;
+	private SquareStrategy strat;
 
 	@SuppressWarnings("unused")
 	private boolean isTransitOuter = false;
