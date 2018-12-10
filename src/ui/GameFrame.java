@@ -26,6 +26,7 @@ import domain.controller.GameController;
 import domain.controller.NetworkController;
 import domain.model.GameState;
 import domain.model.GameStateListener;
+import domain.model.squares.Square;
 
 @SuppressWarnings("serial")
 public class GameFrame extends JFrame implements GameStateListener{
@@ -139,7 +140,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 
 		moveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				gameController.move(true);
+				ArrayList<Square> moveList = gameController.move(true);
 				rollButton.setEnabled(false);
 				moveButton.setEnabled(false);
 				endTurnButton.setEnabled(true);
