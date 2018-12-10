@@ -175,8 +175,9 @@ public class SquareFactory {
 			result = new StockExchange(name, "A pay corner");
 		}
 
-		else
+		else {
 			result = new FreeParking(name, "You can stay here for free!!!");
+		}
 		return result;
 	}
 }
