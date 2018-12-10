@@ -60,7 +60,7 @@ public class GameController {
 		gameState.publishToUIListeners(gameStartedMap);
 	}
 
-	public void move(boolean isLocalCommand) {
+	public ArrayList<Square> move(boolean isLocalCommand) {
 		gameState = GameState.getInstance();
 		board = Board.getInstance();
 		Player currentP = gameState.getCurrentPlayer();
@@ -82,7 +82,7 @@ public class GameController {
 
 			moveCommand(false);
 		}
-
+			return moveList;
 	}
 	
 	public void moveCommand(boolean isLocalCommand) {
