@@ -13,8 +13,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.imageio.ImageIO;
+<<<<<<< HEAD
 import javax.swing.*;
 import javax.swing.Icon;
+=======
+>>>>>>> branch 'master' of https://git.ku.edu.tr/eozsuer16/302_2018_project_DDT.git
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -28,6 +31,7 @@ import domain.controller.GameController;
 import domain.controller.NetworkController;
 import domain.model.GameState;
 import domain.model.GameStateListener;
+import domain.model.squares.Square;
 
 @SuppressWarnings("serial")
 public class GameFrame extends JFrame implements GameStateListener{
@@ -141,7 +145,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 
 		moveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				gameController.move(true);
+				ArrayList<Square> moveList = gameController.move(true);
 				rollButton.setEnabled(false);
 				moveButton.setEnabled(false);
 				endTurnButton.setEnabled(true);

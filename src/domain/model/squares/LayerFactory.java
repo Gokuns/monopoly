@@ -4,8 +4,6 @@ import java.util.ArrayList;
 //import java.util.HashMap;
 import java.util.List;
 
-import domain.model.squares.specialSquares.payCorners.Go;
-
 public class LayerFactory {
 	private static LayerFactory layerFactory;
 	private SquareFactory squareFactory;
@@ -52,7 +50,7 @@ public class LayerFactory {
 			
 			
 		}else if(type.equals("middle")) {
-			result.add(Go.getInstance());
+			result.add(squareFactory.createSquare("Go"));
 			result.add(squareFactory.createSquare("Mediterranean Avenue"));
 			result.add(squareFactory.createSquare("Community Chest"));
 			result.add(squareFactory.createSquare("Baltic Avenue"));

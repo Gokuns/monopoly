@@ -1,14 +1,10 @@
 package domain.model.squares.specialSquares;
 
 import domain.model.players.Player;
-import domain.model.squares.SpecialSquare;
 
-public class Subway extends SpecialSquare{
+import domain.model.squares.SquareStrategy;
 
-	public Subway(String name, String description) {
-		super(name, description);
-		// TODO Auto-generated constructor stub
-	}
+public class Subway implements SquareStrategy{
 
 	@Override
 	public String action(Player p) {

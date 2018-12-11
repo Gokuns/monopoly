@@ -8,9 +8,7 @@ import domain.model.Board;
 import domain.model.GameState;
 import domain.model.dice.Cup;
 import domain.model.dice.FaceValue;
-import domain.model.players.Piece;
 import domain.model.players.Player;
-import domain.model.squares.SpecialSquare;
 import domain.model.squares.Square;
 
 public class GameController {
@@ -48,7 +46,7 @@ public class GameController {
 		for(int i=0; i<playerCount; i++) {
 			String username = map.get("player" + i + "Name");
 			int ID = Integer.parseInt(map.get("player" + i + "ID"));
-			Player p = new Player(username, ID, new Piece());
+			Player p = new Player(username, ID);
 			playerList.add(p);
 		}
 		gameState.setOrderedPlayerList(playerList);
@@ -60,19 +58,20 @@ public class GameController {
 		gameState.publishToUIListeners(gameStartedMap);
 	}
 
-	public void move(boolean isLocalCommand) {
+	public ArrayList<Square> move(boolean isLocalCommand) {
 		gameState = GameState.getInstance();
 		board = Board.getInstance();
 		Player currentP = gameState.getCurrentPlayer();
-		Square landedSquare = board.movePiece(currentP);
+		ArrayList<Square> moveList = board.movePiece(currentP);
+		Square landedSquare = moveList.get(moveList.size()-1);
 		System.out.println("Piece move Completed");
 		moveCommand(isLocalCommand);
 
-		if(landedSquare.isSpecialSquare()) {
+		if(landedSquare.getSqStrat()!=null) {
 			HashMap<String, String> specialMap = new HashMap<String, String>();
 			specialMap.put("type", "special");
-			String desc = ((SpecialSquare) landedSquare).action(currentP);
-			if(desc==null) desc = landedSquare.getDesciption();
+			String desc = landedSquare.tryToAct(currentP);
+			if(desc==null) desc = landedSquare.getDescription();
 			specialMap.put("description", desc);
 			GameState.getInstance().publishToUIListeners(specialMap);
 			if(isLocalCommand) {
@@ -81,7 +80,7 @@ public class GameController {
 
 			moveCommand(false);
 		}
-
+			return moveList;
 	}
 	
 	public void moveCommand(boolean isLocalCommand) {
@@ -127,7 +126,7 @@ public class GameController {
 	}
 
 	public void initializeLocalPlayer(String username, int ID) {
-		Player player = new Player(username, ID, new Piece());
+		Player player = new Player(username, ID);
 		localPlayer = player;
 	}
 
