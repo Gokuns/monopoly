@@ -28,6 +28,7 @@ import domain.controller.GameController;
 import domain.controller.NetworkController;
 import domain.model.GameState;
 import domain.model.GameStateListener;
+import domain.model.squares.Square;
 
 @SuppressWarnings("serial")
 public class GameFrame extends JFrame implements GameStateListener{
