@@ -3,8 +3,6 @@ package domain.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sun.org.apache.bcel.internal.generic.NEWARRAY;
-
 import domain.model.dice.Cup;
 import domain.model.dice.FaceValue;
 import domain.model.players.Piece;

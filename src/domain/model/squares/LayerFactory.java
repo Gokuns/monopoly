@@ -4,8 +4,6 @@ import java.util.ArrayList;
 //import java.util.HashMap;
 import java.util.List;
 
-import domain.model.squares.specialSquares.payCorners.Go;
-
 public class LayerFactory {
 	private static LayerFactory layerFactory;
 	private SquareFactory squareFactory;

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import domain.model.GameState;
 import domain.model.players.Player;
-import domain.model.squares.Square;
 import domain.model.squares.SquareStrategy;
 
 public class BirthdayGift implements SquareStrategy {

@@ -8,7 +8,6 @@ import domain.model.Board;
 import domain.model.GameState;
 import domain.model.dice.Cup;
 import domain.model.dice.FaceValue;
-import domain.model.players.Piece;
 import domain.model.players.Player;
 import domain.model.squares.Square;
 
