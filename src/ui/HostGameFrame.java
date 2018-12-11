@@ -72,7 +72,7 @@ public class HostGameFrame extends JFrame implements NetworkControllerListener{
 					hostGameButton.setText("Start Game");
 					hostGameButton.setEnabled(false);
 				} else if(hostGameButton.getText().equals("Start Game")) {
-					GameFrame gameFrame = new GameFrame(hostNetworkController);
+					GameFrame gameFrame = new GameFrame();
 					mainMenu.dispose();
 					dispose();
 					gameFrame.setVisible(true);

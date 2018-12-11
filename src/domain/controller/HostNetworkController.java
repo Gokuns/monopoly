@@ -92,6 +92,7 @@ public class HostNetworkController extends NetworkController implements GameStat
 
 	public void gameStarted(String playerName) {
 		ArrayList<Player> playerList = GameState.getInstance().getPlayerList();
+		GameController.getInstance().setNetworkController(this);
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("type", "gameStarted");
 		map.put("currentPlayer", playerName);

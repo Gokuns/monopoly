@@ -21,7 +21,6 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import domain.controller.GameController;
-import domain.controller.NetworkController;
 import domain.model.GameState;
 import domain.model.GameStateListener;
 
@@ -30,7 +29,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 
 	private JPanel contentPane;
 	private JPanel monopolyLogoPanel;
-	private GameController gameController;
+	private GameController gameController = GameController.getInstance();
 	private GameState gameState;
 	private int numberOfPlayers;
 	private ArrayList<Ball> balls;
@@ -45,11 +44,9 @@ public class GameFrame extends JFrame implements GameStateListener{
 	/**
 	 * Create the frame.
 	 */
-	public GameFrame(NetworkController networkController) {
+	public GameFrame() {
 		setTitle("Monopoly");
 
-		gameController = GameController.getInstance();
-		gameController.setNetworkController(networkController);
 		gameState = GameState.getInstance();
 		gameState.addUIListener(this);
 

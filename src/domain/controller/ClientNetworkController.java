@@ -42,6 +42,7 @@ public class ClientNetworkController extends NetworkController implements GameSt
 		switch(type){
 		case "gameStarted":
 			publishToListeners(map);
+			GameController.getInstance().setNetworkController(this);
 			gameController.initializePlayers(map);
 			break;
 		case "roll":

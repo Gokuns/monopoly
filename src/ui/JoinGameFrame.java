@@ -135,7 +135,7 @@ public class JoinGameFrame extends JFrame implements NetworkControllerListener{
 			connected();
 			break;
 		case "gameStarted":
-			GameFrame gameFrame = new GameFrame(clientNetworkController);
+			GameFrame gameFrame = new GameFrame();
 			mainMenu.dispose();
 			dispose();
 			gameFrame.setVisible(true);
