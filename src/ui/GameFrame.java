@@ -1,5 +1,6 @@
 package ui;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Image;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -167,17 +169,18 @@ public class GameFrame extends JFrame implements GameStateListener{
 			@Override
 			public void run() {
 				System.out.println("Balls initializing");
-				int coorX = boardLayers.getSquareCoordinates(1, 0).getX();
-				int coorY = boardLayers.getSquareCoordinates(1, 0).getY();
+				int coorX = boardLayers.getSquareCoordinates(1, 0).getX()-10;
+				int coorY = boardLayers.getSquareCoordinates(1, 0).getY()-5;
 				numberOfPlayers = gameState.getOrderedPlayerList().size();
 				for(int i = 0;i<numberOfPlayers; i++) {
 					System.out.println("Ball "+i);
 					String x = "Piece" + Integer.toString(i);
-					Ball ballx = new Ball(x, i);
-					ballx.setBounds(coorX + i*6 -15 ,coorY -15, 15, 15); //    4
-					balls.add(ballx);
+					Ball ballx = new Ball(x, i,coorX + i*6 -15 ,coorY -15);//    4
 					monopolyLogoPanel.add(ballx);
-					repaint();
+					ballx.setBounds(coorX + i*6 -15 ,coorY -15, 20, 20);
+					balls.add(ballx);
+
+
 				}
 			}
 		});
@@ -185,10 +188,9 @@ public class GameFrame extends JFrame implements GameStateListener{
 
 	public void moveUIPiece(int playerIndex, int layer, int number) {
 		SquareCoordinates current = boardLayers.getSquareCoordinates(layer, number);
-		int x = current.getX() - 35;
-		int y = current.getY() - 20;
-		balls.get(playerIndex).setLocation(x + playerIndex * 6, y);
-		repaint();
+		int x = current.getX() - 45;
+		int y = current.getY() - 25;
+		balls.get(playerIndex).moveAnimating(x + playerIndex * 6, y);
 	}
 
 	@Override
