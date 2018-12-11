@@ -1,4 +1,4 @@
-package domain.model.squares.specialSquares.payCorners;
+package domain.model.squares.specialSquares;
 
 import domain.model.players.Player;
 import domain.model.squares.SquareStrategy;

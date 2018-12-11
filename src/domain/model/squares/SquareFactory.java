@@ -18,10 +18,10 @@ import domain.model.squares.specialSquares.RollThree;
 import domain.model.squares.specialSquares.SqueezePlay;
 import domain.model.squares.specialSquares.StockExchange;
 import domain.model.squares.specialSquares.Subway;
+import domain.model.squares.specialSquares.TaxRefund;
 import domain.model.squares.specialSquares.payCorners.Bonus;
 import domain.model.squares.specialSquares.payCorners.Go;
 import domain.model.squares.specialSquares.payCorners.PayDay;
-import domain.model.squares.specialSquares.payCorners.TaxRefund;
 
 public class SquareFactory {
 	private static SquareFactory squareFactory;
