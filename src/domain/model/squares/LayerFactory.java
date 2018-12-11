@@ -52,7 +52,7 @@ public class LayerFactory {
 			
 			
 		}else if(type.equals("middle")) {
-			result.add(Go.getInstance());
+			result.add(squareFactory.createSquare("Go"));
 			result.add(squareFactory.createSquare("Mediterranean Avenue"));
 			result.add(squareFactory.createSquare("Community Chest"));
 			result.add(squareFactory.createSquare("Baltic Avenue"));

@@ -4,16 +4,12 @@ import java.util.ArrayList;
 
 import domain.model.GameState;
 import domain.model.players.Player;
-import domain.model.squares.SpecialSquare;
 import domain.model.squares.Square;
 import domain.model.squares.SquareStrategy;
 
-public class BirthdayGift extends Square implements SquareStrategy {
+public class BirthdayGift implements SquareStrategy {
 
-	public BirthdayGift(String name, String description) {
-		super(name, description);
-		// TODO Auto-generated constructor stub
-	}
+
 
 	@Override
 	public String action(Player p) {

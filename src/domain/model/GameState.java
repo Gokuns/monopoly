@@ -110,7 +110,7 @@ public class GameState {
 	}
 
 	public void addPlayer(String username, int ID) {
-		Player p = new Player(username, ID, new Piece());
+		Player p = new Player(username, ID);
 		playerList.add(p);
 	}
 	

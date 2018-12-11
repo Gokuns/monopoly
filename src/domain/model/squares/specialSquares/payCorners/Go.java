@@ -1,27 +1,24 @@
 package domain.model.squares.specialSquares.payCorners;
 
 import domain.model.players.Player;
-import domain.model.squares.specialSquares.PayCorner;
+import domain.model.squares.PayCornerStrategy;
 
-public class Go extends PayCorner{
+public class Go implements PayCornerStrategy{
 	
 	private static Go go;
 	
-	public static synchronized Go getInstance() {
-		if(go == null) {
-			go = new Go("Go", "Take $200 when you pass");
-		}return go;
-	}
-
-	private Go(String name, String description) {
-		super(name, description);
-		// TODO Auto-generated constructor stub
-	}
+	private Go() {}
+	
+	public static Go getInstance() {
+		if(go==null) {
+			go = new Go();
+		}
+		return go;
+	}	
 
 	@Override
-	public String action(Player p) {
-		return null;
+	public String getPaid(Player p) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 }

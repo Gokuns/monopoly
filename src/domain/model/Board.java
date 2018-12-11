@@ -86,23 +86,25 @@ public class Board {
 				}else {
 					currentSquare = iter.next();
 					movedSquares.add(currentSquare);
-				}
-				
+				}		
 			}else {
+				if(i<movement-1 && currentSquare.getPayStrat()!=null) {
+					currentSquare.tryToGetPaid(currentPlayer);
+				}
 				currentPlayer.setChangingLayer(false);
 				currentSquare = iter.next();
 				movedSquares.add(currentSquare);
-
+				
 			}
 		}
-
 		Square landedOn = currentSquare;
 		setPlayersSquare(currentPlayer,landedOn);		
 		System.out.println("Moved to " + getPlayersSquare(game.getCurrentPlayer()).getName());
 		currentPlayer.setMoved(true);
-		return movedSquares;
 		
+		return movedSquares;
 	}
+	
 	
 	
 	public void movePiece(Square squareToMove) {

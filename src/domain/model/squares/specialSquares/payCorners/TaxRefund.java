@@ -1,15 +1,15 @@
-package domain.model.squares.specialSquares;
+package domain.model.squares.specialSquares.payCorners;
 
 import domain.model.players.Player;
 import domain.model.squares.SquareStrategy;
 
-public class ReverseDirection implements SquareStrategy{
+public class TaxRefund implements SquareStrategy {
+
 
 	@Override
 	public String action(Player p) {
-		return null;
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
 }
