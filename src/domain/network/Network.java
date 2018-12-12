@@ -8,7 +8,7 @@ import domain.controller.NetworkController;
 
 public abstract class Network {
 	protected final Gson gson;
-	protected final NetworkController networkController;
+	private final NetworkController networkController;
 
 	protected Network(NetworkController networkController) {
 		gson = new Gson();

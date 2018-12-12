@@ -5,22 +5,19 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
 @SuppressWarnings("serial")
 public class Ball extends JPanel implements ActionListener{
 	
-	Timer tm;
-	String name;
-	int color;
-	int xStart, yStart;
-	int xLimit, yLimit;
-	StraightLinePath myPath;
-	Point pos;
+	private Timer tm;
+	private String name;
+	private int color;
+	private int xStart, yStart;
+	private int xLimit, yLimit;
+	private StraightLinePath myPath;
+	private Point pos;
 	
 	
 	public Ball(String name, int color, int xStart, int yStart) {
@@ -65,8 +62,6 @@ public class Ball extends JPanel implements ActionListener{
 	public void moveAnimating(int xLimit, int yLimit) {
 		
 		//setLocation(xLimit, yLimit);
-		
-		
 		this.xLimit = xLimit;
 		this.yLimit = yLimit;
 		myPath = new StraightLinePath(xStart, yStart, xLimit, yLimit, 50);

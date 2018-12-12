@@ -1,6 +1,5 @@
 package ui;
 
-import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Image;
@@ -13,8 +12,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -27,7 +24,6 @@ import javax.swing.border.EmptyBorder;
 import domain.controller.GameController;
 import domain.model.GameState;
 import domain.model.GameStateListener;
-import domain.model.squares.Square;
 
 @SuppressWarnings("serial")
 public class GameFrame extends JFrame implements GameStateListener{
@@ -139,7 +135,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 
 		moveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ArrayList<Square> moveList = gameController.move(true);
+				gameController.move(true);
 				rollButton.setEnabled(false);
 				moveButton.setEnabled(false);
 				endTurnButton.setEnabled(true);
@@ -162,7 +158,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 		});
 	}
 
-	public void initializeBalls() {
+	private void initializeBalls() {
 		EventQueue.invokeLater(new Runnable() {
 			@Override
 			public void run() {
@@ -184,7 +180,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 		});
 	}
 
-	public void moveUIPiece(int playerIndex, int layer, int number) {
+	private void moveUIPiece(int playerIndex, int layer, int number) {
 		SquareCoordinates current = boardLayers.getSquareCoordinates(layer, number);
 		int x = current.getX() - 45;
 		int y = current.getY() - 25;
@@ -306,7 +302,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 		}
 	}
 	
-	public void pickDieImage(int i, String s) {
+	private void pickDieImage(int i, String s) {
 		if(i == 0) {
 			try {
 				dieImage1 = ImageIO.read(new File("imgDice/"+s+".png"));

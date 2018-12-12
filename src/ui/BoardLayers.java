@@ -8,7 +8,7 @@ public class BoardLayers {
 	private ArrayList<SquareCoordinates> layerone;
 	private ArrayList<SquareCoordinates> layertwo;
 	private ArrayList<SquareCoordinates> layerthree;
-	List<List<SquareCoordinates>> layerList = new ArrayList<List<SquareCoordinates>>();
+	private List<List<SquareCoordinates>> layerList = new ArrayList<List<SquareCoordinates>>();
 	
 	public BoardLayers() {
 		

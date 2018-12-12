@@ -13,7 +13,6 @@ import domain.network.HostNetwork;
 public class HostNetworkController extends NetworkController implements GameStateListener{
 	private HostNetwork network;
 	private List<NetworkControllerListener> listeners;
-	public final GameController gameController = GameController.getInstance();
 	private GameState gameState = GameState.getInstance();
 
 	public HostNetworkController(String port, String username) {

@@ -4,9 +4,9 @@ import java.awt.Point;
 
 public class StraightLinePath implements Path{
 
-	int startX, startY, endX, endY, steps;
-    int currentStep = -1;      // This makes the first step 0
-    double deltaX, deltaY;
+	private int startX, startY, endX, endY, steps;
+    private int currentStep = -1;      // This makes the first step 0
+    private double deltaX, deltaY;
 
     /** Constructor Stores the points, and builds the information
      *  needed to construct the next point.  Note that for a path we

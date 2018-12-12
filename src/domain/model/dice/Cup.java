@@ -5,8 +5,8 @@ import java.util.List;
 
 public class Cup {
 	
-	Die regularDie;
-	Die speedDie;
+	private Die regularDie;
+	private Die speedDie;
 	private static Cup cup;
 	private List<FaceValue> faceValues;
 

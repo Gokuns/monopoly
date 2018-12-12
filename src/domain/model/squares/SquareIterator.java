@@ -189,7 +189,7 @@ public class SquareIterator implements ISquareIteratator {
 		return result;
 	}
 
-	public List<Square> findLayer(Square sq) {
+	private List<Square> findLayer(Square sq) {
 		/*
 		 * returns the index of the layer of the given square
 		 */

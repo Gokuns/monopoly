@@ -10,7 +10,7 @@ import domain.model.squares.Square;
 public class GameState {
 	private static GameState game;
 	private Player currentPlayer;
-	private int nPlayers;
+//	private int nPlayers;
 	private ArrayList<Player> playerList = new ArrayList<Player>();
 	private ArrayList<Player> orderedPlayerList = new ArrayList<Player>();
 	
@@ -80,9 +80,10 @@ public class GameState {
 		return currentPlayer;
 	}
 
-	public int getnPlayers() {
-		return nPlayers;
-	}
+// TODO Remove unused code found by UCDetector
+// 	public int getnPlayers() {
+// 		return nPlayers;
+// 	}
 
 	public ArrayList<Player> getPlayerList() {
 		return playerList;
@@ -96,9 +97,10 @@ public class GameState {
 		this.currentPlayer = currentPlayer;
 	}
 
-	public void setnPlayers(int nPlayers) {
-		this.nPlayers = nPlayers;
-	}
+// TODO Remove unused code found by UCDetector
+// 	public void setnPlayers(int nPlayers) {
+// 		this.nPlayers = nPlayers;
+// 	}
 
 	public void setPlayerList(ArrayList<Player> playerList) {
 		this.playerList = playerList;

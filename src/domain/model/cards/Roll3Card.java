@@ -10,7 +10,7 @@ import domain.model.players.Player;
 
 public class Roll3Card extends Card{
 	
-	List<FaceValue> roll3Values;
+	private List<FaceValue> roll3Values;
 	
 	public Roll3Card(FaceValue fVal1, FaceValue fVal2, FaceValue fVal3, String desc){
 		super(desc);

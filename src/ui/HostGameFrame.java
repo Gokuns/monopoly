@@ -131,7 +131,7 @@ public class HostGameFrame extends JFrame implements NetworkControllerListener{
 		setVisible(true);
 	}
 
-	public void clientConnected(int connectionCount) {
+	private void clientConnected(int connectionCount) {
 		usernameTextLabel.setText(connectionCount + " players connected.");
 		if(connectionCount>0) {
 			getStartGameButton().setEnabled(true);

@@ -58,11 +58,9 @@ public class GameController {
 		gameState.publishToUIListeners(gameStartedMap);
 	}
 
-	public ArrayList<Square> move(boolean isLocalCommand) {
-		gameState = GameState.getInstance();
-		board = Board.getInstance();
-		Player currentP = gameState.getCurrentPlayer();
-		ArrayList<Square> moveList = board.movePiece(currentP);
+	public void move(boolean isLocalCommand) {
+		ArrayList<Square> moveList = Board.getInstance().movePiece(
+				GameState.getInstance().getCurrentPlayer());
 		Square landedSquare = moveList.get(moveList.size()-1);
 		System.out.println("Piece move Completed");
 		moveCommand(isLocalCommand);
@@ -70,20 +68,18 @@ public class GameController {
 		if(landedSquare.getSqStrat()!=null) {
 			HashMap<String, String> specialMap = new HashMap<String, String>();
 			specialMap.put("type", "special");
-			String desc = landedSquare.tryToAct(currentP);
+			String desc = landedSquare.tryToAct(GameState.getInstance().getCurrentPlayer());
 			if(desc==null) desc = landedSquare.getDescription();
 			specialMap.put("description", desc);
 			GameState.getInstance().publishToUIListeners(specialMap);
 			if(isLocalCommand) {
 				gameState.publishToNetworkListeners(specialMap);
 			}
-
 			moveCommand(false);
 		}
-			return moveList;
 	}
 	
-	public void moveCommand(boolean isLocalCommand) {
+	private void moveCommand(boolean isLocalCommand) {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("type", "move");
 		map.put("ID", GameState.getInstance().getCurrentPlayer().getID()+"");

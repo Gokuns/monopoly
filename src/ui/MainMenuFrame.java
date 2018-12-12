@@ -72,7 +72,7 @@ public class MainMenuFrame extends JFrame {
 		setVisible(true);
 	}
 
-	public void initHostAGameFrame() {
+	private void initHostAGameFrame() {
 		setEnabled(false);
 		HostGameFrame hostGameFrame = new HostGameFrame(this);
 		hostGameFrame.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -83,7 +83,7 @@ public class MainMenuFrame extends JFrame {
 		});
 	}
 
-	public void initJoinAGameFrame() {
+	private void initJoinAGameFrame() {
 		setEnabled(false);
 		JoinGameFrame joinGameFrame = new JoinGameFrame(this);
 		joinGameFrame.addWindowListener(new java.awt.event.WindowAdapter() {
