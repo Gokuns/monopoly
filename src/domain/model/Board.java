@@ -62,32 +62,47 @@ public class Board {
 			
 	}
 	
-	public Square movePiece(Player currentPlayer) {
+	public ArrayList<Square> movePiece(Player currentPlayer) {
 		Square currentSquare = getPlayersSquare(currentPlayer);
 		iter = new SquareIterator(currentSquare, Squares);
 		int movement = calculateMovement();
+		ArrayList<Square> movedSquares = new ArrayList<Square>();
 		boolean even = movement%2 == 0;
 		for (int i=0;i<movement;i++) {
 			if(currentSquare.isTransit() && currentPlayer.isChangingLayer()==false)  {
 				if(even){
 					currentPlayer.setChangingLayer(true);
-					if(iter.hasInner()) currentSquare = iter.inner();
-					else currentSquare = iter.outer();
-				}else currentSquare = iter.next();
-				
+					if(iter.hasInner()) {
+						currentSquare = iter.inner();
+						movedSquares.add(currentSquare);
+					}
+					else { currentSquare = iter.outer();
+					movedSquares.add(currentSquare);
+					}
+					currentSquare = iter.next();
+					movedSquares.add(currentSquare);
+				}else {
+					currentSquare = iter.next();
+					movedSquares.add(currentSquare);
+				}		
 			}else {
+				if(i<movement-1 && currentSquare.getPayStrat()!=null) {
+					currentSquare.tryToGetPaid(currentPlayer);
+				}
 				currentPlayer.setChangingLayer(false);
 				currentSquare = iter.next();
+				movedSquares.add(currentSquare);
+				
 			}
 		}
-		
 		Square landedOn = currentSquare;
 		setPlayersSquare(currentPlayer,landedOn);		
 		System.out.println("Moved to " + getPlayersSquare(game.getCurrentPlayer()).getName());
 		currentPlayer.setMoved(true);
-		return landedOn;
 		
+		return movedSquares;
 	}
+	
 	
 	
 	public void movePiece(Square squareToMove) {

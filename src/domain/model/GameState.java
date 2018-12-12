@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import domain.model.dice.Cup;
-import domain.model.players.Piece;
 import domain.model.players.Player;
 import domain.model.squares.Square;
 
@@ -110,7 +109,7 @@ public class GameState {
 	}
 
 	public void addPlayer(String username, int ID) {
-		Player p = new Player(username, ID, new Piece());
+		Player p = new Player(username, ID);
 		playerList.add(p);
 	}
 	

@@ -15,7 +15,7 @@ public class BoardLayers {
 		layerone = new ArrayList<SquareCoordinates>();
 		layertwo = new ArrayList<SquareCoordinates>();
 		layerthree = new ArrayList<SquareCoordinates>();
-		
+
 		//layer1 initialization
 		layerone.add(new SquareCoordinates(510,515));
 		layerone.add(new SquareCoordinates(455,515));
@@ -83,6 +83,7 @@ public class BoardLayers {
 			layerthree.add(new SquareCoordinates(690, 130+40*i));
 		}
 		//layer3 initialized
+
 		layerList.add(layerone);
 		layerList.add(layertwo);
 		layerList.add(layerthree);

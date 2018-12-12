@@ -1,13 +1,13 @@
 package domain.model.players;
 
-import domain.model.specialSquares.payCorners.Go;
+import domain.model.Board;
 import domain.model.squares.Square;
 
 public class Piece {
 	private Square currentSquare;
      
      public Piece() {
-      currentSquare = Go.getInstance();
+      currentSquare = Board.getInstance().getSquares().get(1).get(0);
      }
 
 	/**
