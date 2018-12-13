@@ -75,7 +75,6 @@ public class GameController {
 			if(isLocalCommand) {
 				gameState.publishToNetworkListeners(specialMap);
 			}
-			moveCommand(false);
 		}
 	}
 	
@@ -132,5 +131,9 @@ public class GameController {
 			faceValues.add(FaceValue.valueOf(str));
 		}
 		Cup.getInstance().setFaceValues(faceValues);
+	}
+
+	public void setLocalPlayerID(int ID) {
+		localPlayer.setID(ID);
 	}
 }

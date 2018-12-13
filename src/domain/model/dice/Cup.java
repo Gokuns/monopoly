@@ -52,9 +52,7 @@ public class Cup {
 		result.add(first);
 		result.add(second);
 		result.add(speed);
-		System.out.println(first);
-		System.out.println(second);
-		System.out.println(speed);
+		System.out.println("First: " + first + ", Second: " + second + ", Third: " + speed);
 		return result;
 		
 	}
