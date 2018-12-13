@@ -34,7 +34,7 @@ public class GameState {
 	
 	/**
 	 * Singleton getInstance method
-	 * @return gameState object, creates new if not created bofore.
+	 * @return gameState object, creates new if not created before.
 	 */
 	public static synchronized GameState getInstance() {
 		if(game == null) {
@@ -60,7 +60,7 @@ public class GameState {
 	
 	/**
 	 * send the  listeners from network classes the command to update their states.
-	 * @param map: hasmap, containing the info
+	 * @param map: hashmap, containing the info
 	 */
 	public void publishToNetworkListeners(HashMap<String, String> map) {
 		for(GameStateListener listener : networkListeners) {
@@ -70,7 +70,7 @@ public class GameState {
 	
 	/**
 	 * send the listeners from UI classes the command to update their states.
-	 * @param map: hasmap, containing the info
+	 * @param map: hashmap, containing the info
 	 */
 	public void publishToUIListeners(HashMap<String, String> map) {
 		for(GameStateListener listener : UIListeners) {
@@ -105,7 +105,7 @@ public class GameState {
 	}
 	
 	/**
-	 * get currntly selected players squares
+	 * get currently selected players squares
 	 * @return Square
 	 */
 	public Square getPlayerCurrentSquare() {
