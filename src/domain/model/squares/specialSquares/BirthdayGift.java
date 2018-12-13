@@ -2,7 +2,7 @@ package domain.model.squares.specialSquares;
 
 import java.util.ArrayList;
 
-import domain.model.GameState;
+import domain.model.gameHandler.GameState;
 import domain.model.players.Player;
 import domain.model.squares.SquareStrategy;
 

@@ -3,9 +3,9 @@ package domain.model.cards;
 import java.util.HashMap;
 import java.util.List;
 
-import domain.model.GameState;
 import domain.model.dice.Cup;
 import domain.model.dice.FaceValue;
+import domain.model.gameHandler.GameState;
 import domain.model.players.Player;
 
 public class Roll3Card extends Card{

@@ -1,4 +1,4 @@
-package domain.model;
+package domain.model.gameHandler;
 
 import java.util.ArrayList;
 import java.util.HashMap;

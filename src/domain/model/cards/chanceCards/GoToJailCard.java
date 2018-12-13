@@ -3,9 +3,9 @@ package domain.model.cards.chanceCards;
 import java.util.HashMap;
 import java.util.List;
 
-import domain.model.Board;
-import domain.model.GameState;
 import domain.model.cards.ChanceCard;
+import domain.model.gameHandler.Board;
+import domain.model.gameHandler.GameState;
 import domain.model.players.Player;
 import domain.model.squares.Square;
 
