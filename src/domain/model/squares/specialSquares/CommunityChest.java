@@ -12,7 +12,7 @@ public class CommunityChest implements SquareStrategy{
 	public String action(Player p) {
 		// TODO Auto-generated method stub
 		Deck communtityDeck = new Deck("community");
-		Card c = communtityDeck.draw();
+		Card c = communtityDeck.draw(p);
 		return c.getDesc();
 	}
 

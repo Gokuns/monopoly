@@ -11,6 +11,12 @@ import domain.model.squares.LayerFactory;
 import domain.model.squares.Square;
 import domain.model.squares.SquareIterator;
 
+/**
+ * The Board Object is where the squares and cup that holds the dice are stand on.
+ * it is also the class where the movement is calculated.
+ * @author Goko
+ *
+ */
 public class Board {
 	private GameState game = GameState.getInstance();
 	private static Board board;
@@ -20,10 +26,18 @@ public class Board {
 	private int poolBalance;
 	private LayerFactory layerFactory = LayerFactory.getInstance();
 	
+	/**
+	 * Constructor
+	 */
 	private Board() {
 		initiateSquares();
 	}
 	
+	/**
+	 * Singleton board, getInstance method.
+	 * @return if its not created before, creates a new one
+	 * if not, returns the same board object.
+	 */
 	public static synchronized Board getInstance() {
 		if(board==null) {
 			
@@ -34,6 +48,10 @@ public class Board {
 		
 	}
 	
+	/**
+	 * Via the factory classes, it creates the squares and the layers
+	 * this method adds the layers to Squares list.
+	 */
 	private void initiateSquares() {
 		List<Square> layerOne = layerFactory.createLayer("inner");
 		List<Square> layerTwo = layerFactory.createLayer("middle");
@@ -44,6 +62,10 @@ public class Board {
 		
 	}
 	
+	/**
+	 * Rolls the dice in the cup one by one.
+	 * Checks the conditions of double, Mr Monopoly etc
+	 */
 	public void rollCup() {
 		List<FaceValue> diceValues = cup.rollCup();
 		FaceValue firstDieVal = diceValues.get(0);
@@ -62,6 +84,11 @@ public class Board {
 			
 	}
 	
+	/**
+	 * Moves the piece of the current player according to the current faceValues of the dice.
+	 * @param currentPlayer the Player who has the turn.
+	 * @return A List of Square's that the player's piece has passed.
+	 */
 	public ArrayList<Square> movePiece(Player currentPlayer) {
 		Square currentSquare = getPlayersSquare(currentPlayer);
 		iter = new SquareIterator(currentSquare, Squares);
@@ -104,12 +131,22 @@ public class Board {
 	}
 	
 	
-	
-	public void movePiece(Square squareToMove) {
-		setPlayersSquare(game.getCurrentPlayer(),squareToMove);
+	/**
+	 * Moves the current player's piece to the target square immediately. For action methods
+	 * @param currentPlayer The player who has the turn
+	 * @param squareToMove The target square that the piece will go.
+	 */
+	public void movePiece(Player currentPlayer, Square squareToMove) {
+		setPlayersSquare(currentPlayer,squareToMove);
 		System.out.println("Transported to " + getPlayersSquare(game.getCurrentPlayer()).getName());
 	}
 	
+	
+	/**
+	 * When searching for a certain square on the board, this gets us the layer.
+	 * @param sq The square that we are trying to find
+	 * @return the int value of the layer that contains target square.
+	 */
 	public int getSquareLayerIndex(Square sq) {
 		int result=-1;
 	if(Squares.get(0).contains(sq)) result =0;
@@ -118,6 +155,12 @@ public class Board {
 	return result;
 	}
 	
+	/**
+	 * With the method above after we find the layer that contains the target square
+	 * this method iterates over the squares till it finds the square.
+	 * @param sq the target square
+	 * @return The squares index number in the list.
+	 */
 	public int getSquareIndex(Square sq) {
 		List<Square> layer = Squares.get(getSquareLayerIndex(sq));
 		int result=-1;
@@ -129,6 +172,12 @@ public class Board {
 		return result;
 	}
 	
+	/**
+	 * Takes the cups current face values and calculates it to an int.
+	 * This calculation only consist of the pure movement.
+	 * Exluding the features such as Mr. Monopoly or tiple roll.
+	 * @return the result of the calculation
+	 */
 	private int calculateMovement() {
 
 		List<Integer> fValues = cup.convertFaceValueToInt();
@@ -140,28 +189,56 @@ public class Board {
 		return result;
 		
 	}
+	
+	/**
+	 * Used for getting the given players current square.
+	 * @param p the Player who we want to get the square
+	 * @return The current square of the Player.
+	 */
 	private Square getPlayersSquare(Player p) {
 		Piece piece = p.getPiece();
 		Square playerSquare = piece.getCurrentSquare();
 		return playerSquare;
 	}
+	
+	/**
+	 * Changes the player's piece's current square to a given square.
+	 * @param p The player
+	 * @param s The target square.
+	 */
 	private void setPlayersSquare(Player p, Square s) {
 		Piece piece = p.getPiece();
 		piece.setCurrentSquare(s);
 	}
-
+	
+	/**
+	 * The money accumulated in the pool on the board
+	 * @return int value of the pool money.
+	 */
 	public int getPoolBalance() {
 		return poolBalance;
 	}
-
+	
+	/**
+	 * Sets the pool balance
+	 * @param poolBalance the new pool balance
+	 */
 	public void setPoolBalance(int poolBalance) {
 		this.poolBalance = poolBalance;
 	}
 	
+	/**
+	 * The list of lists that contains all the squares on the board
+	 * @return List of lists
+	 */
 	public List<List<Square>> getSquares() {
 		return Squares;
 	}
-
+	
+	/**
+	 * Sets the list of list of squares to a given list of lists
+	 * @param squares new list
+	 */
 	public void setSquares(List<List<Square>> squares) {
 		Squares = squares;
 	}	

@@ -6,6 +6,7 @@ import java.util.List;
 import domain.model.cards.chanceCards.GoToJailCard;
 import domain.model.cards.communityChestCards.PayHospitalBillsCard;
 import domain.model.dice.FaceValue;
+import domain.model.players.Player;
 
 public class Deck {
 	
@@ -57,9 +58,9 @@ public class Deck {
 		this.type = type;
 	}
 	
-	public Card draw(){//drawing a card from the top of the deck & conducting its corresponding action.
+	public Card draw(Player p){//drawing a card from the top of the deck & conducting its corresponding action.
 		Card card = cards.get(0);
-		card.action();
+		card.action(p);
 		return card;
 	}
 }

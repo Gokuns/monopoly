@@ -16,11 +16,10 @@ public class PayHospitalBillsCard extends CommunityChestCard{
 	}
 
 	@Override
-	protected void action() {
+	protected void action(Player currentPlayer) {
 		// TODO Auto-generated method stub
 		Board board = Board.getInstance();
 		GameState game = GameState.getInstance();
-		Player currentPlayer = game.getCurrentPlayer();
 		
 		int newPoolBalance = board.getPoolBalance() + 100;
 		int newPlayerBalance = currentPlayer.getBalance() - 100;

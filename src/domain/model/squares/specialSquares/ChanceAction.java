@@ -11,7 +11,7 @@ public class ChanceAction implements SquareStrategy{
 	public String action(Player p) {
 		// TODO Auto-generated method stub
 		Deck chanceDeck = new Deck("chance");
-		Card c = chanceDeck.draw();
+		Card c = chanceDeck.draw(p);
 		return c.getDesc();
 	}
 

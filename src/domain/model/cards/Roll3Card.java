@@ -20,10 +20,9 @@ public class Roll3Card extends Card{
 	}
 	
 	@Override
-	protected void action() {
+	protected void action(Player currentPlayer) {
 		// TODO Auto-generated method stub
 		GameState game = GameState.getInstance();
-		Player currentPlayer = game.getCurrentPlayer();
 		
 		Cup cup = Cup.getInstance();
 		List<FaceValue> roll3Dice = cup.roll3Dice();

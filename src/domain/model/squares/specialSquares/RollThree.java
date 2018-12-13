@@ -12,7 +12,7 @@ public class RollThree  implements SquareStrategy{
 	public String action(Player p) {
 		// TODO Auto-generated method stub
 		Deck roll3Deck = new Deck("roll3");
-		Card c =roll3Deck.draw();
+		Card c =roll3Deck.draw(p);
 		return c.getDesc();
 	}
 

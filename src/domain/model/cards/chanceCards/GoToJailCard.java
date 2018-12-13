@@ -16,7 +16,7 @@ public class GoToJailCard extends ChanceCard{
 	}
 
 	@Override
-	protected void action() {
+	protected void action(Player p) {
 		// TODO Auto-generated method stub
 		Board board = Board.getInstance();
 		GameState game = GameState.getInstance();
@@ -31,7 +31,7 @@ public class GoToJailCard extends ChanceCard{
 		
 		Square squareToMove = secondLayerSquares.get(10); //jail Square
 		
-		board.movePiece(squareToMove);
+		board.movePiece(p, squareToMove);
 		currentPlayer.setInJail(true);
 		
 		String pName = currentPlayer.getName();
