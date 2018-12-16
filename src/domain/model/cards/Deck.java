@@ -33,11 +33,9 @@ public class Deck {
 	}
 	
 	private void initializeChanceCards(List<Card> cards){//creating & adding a sample chance action card to the deck
-<<<<<<< HEAD
+
 		Card c = new GoToJailCard("Chance card\n Go to jail immediately.");
-=======
-		Card c = new GoToJailCard("Chance card\nGo immediately to Jail.");
->>>>>>> refs/remotes/origin/Onat
+
 		cards.add(c);
 	}
 	
