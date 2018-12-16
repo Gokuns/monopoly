@@ -66,13 +66,12 @@ public class SquareIterator implements ISquareIteratator {
 		return true;
 	}
 
-	@Override
-	
 	/**
 	 * @modifies currentSquare
 	 * @effects it sets the index of the currentSquare to nextIndex(),
 	 * returns the currentSquare
 	 */
+	@Override
 	public Square next() {
 		// TODO Auto-generated method stub
 		List<Square> layer = findLayer(currentSquare);
@@ -207,7 +206,11 @@ public class SquareIterator implements ISquareIteratator {
 		return result;
 	}
 
-	private List<Square> findLayer(Square sq) {
+	/**
+	 * @param a Square
+	 * @effects returns the layer of the input Square
+	 */
+	public List<Square> findLayer(Square sq) {
 		/*
 		 * returns the index of the layer of the given square
 		 */
