@@ -73,7 +73,13 @@ public class GameController {
 		gameStartedMap.put("currentPlayerID", Integer.toString(gameState.getCurrentPlayer().getID()));
 		gameState.publishToUIListeners(gameStartedMap);
 	}
-
+	/**
+	 * @param isLocalCommand
+	 * @modifies specialMap
+	 * @effects method calls the moveCommand with the boolean parameter isLocalComand. 
+	 * Then, move method gets which square the player must land on,puts these information
+	 * into a map and publishes this information to UI listeners and network listeners.
+	 */
 	public void move(boolean isLocalCommand) {
 		ArrayList<Square> moveList = Board.getInstance().movePiece(
 				GameState.getInstance().getCurrentPlayer());
@@ -94,6 +100,14 @@ public class GameController {
 		}
 	}
 	
+	/**
+	 *@param isLocalCommand
+	 *@modifies map
+	 *@effects This method takes a boolean as a parameter, generates a hashMap. Then puts the
+	 *information about movement such as player ID, layer and square index info in this map.
+	 *It publishes this map to the UI listeners and if the input boolean is true, publishes map 
+	 *also to the network listeners.
+	 */
 	private void moveCommand(boolean isLocalCommand) {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("type", "move");
@@ -113,6 +127,15 @@ public class GameController {
 		this.networkController = networkController;
 	}
 
+	/**
+	 * @param isLocalCommand
+	 * @modifies isTurn and map
+	 * @effects end turn method sets the turn of the current player as false, which terminates
+	 * the players turn. Then it takes the next player to have turn from gameState and sets this players
+	 * turn true, which initiates the players' turn. Method also puts the currentPlayer and currentPlayerID
+	 * in map and publishes this map to UI listeners. If the input boolean of this method is true, it also
+	 * publishes this map to network listeners too.
+	 */
 	public void endTurn(boolean isLocalCommand) {
 		gameState = GameState.getInstance();
 		gameState.getCurrentPlayer().setTurn(false);
@@ -136,6 +159,13 @@ public class GameController {
 		this.localPlayer = localPlayer;
 	}
 
+	/**
+	 * @param username
+	 * @param ID
+	 * @modifies localPlayer
+	 * @effects This method creates a new instance of Player with the input string and integer,
+	 * then sets the local player to this new created player.
+	 */
 	public void initializeLocalPlayer(String username, int ID) {
 		Player player = new Player(username, ID);
 		localPlayer = player;
