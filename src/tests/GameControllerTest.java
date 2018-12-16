@@ -11,7 +11,7 @@ import static org.hamcrest.CoreMatchers.*;
 import org.junit.Test;
 
 import domain.controller.GameController;
-import domain.model.GameState;
+import domain.model.gameHandler.GameState;
 import domain.model.dice.FaceValue;
 import domain.model.players.Player;
 

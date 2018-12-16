@@ -22,8 +22,8 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import domain.controller.GameController;
-import domain.model.GameState;
-import domain.model.GameStateListener;
+import domain.model.gameHandler.GameState;
+import domain.model.gameHandler.GameStateListener;
 
 @SuppressWarnings("serial")
 public class GameFrame extends JFrame implements GameStateListener{

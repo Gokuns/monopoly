@@ -1,6 +1,6 @@
 package domain.model.players;
 
-import domain.model.Board;
+import domain.model.gameHandler.Board;
 import domain.model.squares.Square;
 
 public class Piece {

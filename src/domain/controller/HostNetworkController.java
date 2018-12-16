@@ -5,8 +5,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-import domain.model.GameState;
-import domain.model.GameStateListener;
+import domain.model.gameHandler.GameState;
+import domain.model.gameHandler.GameStateListener;
 import domain.model.players.Player;
 import domain.network.HostNetwork;
 
