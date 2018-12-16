@@ -16,7 +16,6 @@ import domain.model.squares.Square;
 public class GameState {
 	private static GameState game;
 	private Player currentPlayer;
-//	private int nPlayers;
 	private ArrayList<Player> playerList = new ArrayList<Player>();
 	private ArrayList<Player> orderedPlayerList = new ArrayList<Player>();
 	
