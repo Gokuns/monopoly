@@ -1,7 +1,7 @@
 /**
  * 
  */
-package domain.model.dice;
+package tests;
 
 import static org.junit.Assert.*;
 
@@ -11,6 +11,9 @@ import static org.hamcrest.CoreMatchers.*;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import domain.model.dice.Cup;
+import domain.model.dice.FaceValue;
 
 /**
  * @author Ege Onat
