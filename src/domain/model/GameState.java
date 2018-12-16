@@ -8,7 +8,7 @@ import domain.model.players.Player;
 import domain.model.squares.Square;
 
 /**
- * The Class that holds the information of the players and being the subject.
+ * @overview The Class that holds the information of the players and being the subject.
  * This is the object that will be serialized.
  * @author Goko
  *
@@ -44,6 +44,9 @@ public class GameState {
 	
 	/** adds the listener to network listeners list.
 	 * @param listener: observer that observers this class.
+	 * @requires a new list of networkListeners
+	 * @modifies the list
+	 * @effects the publishing an event.
 	 */
 	public void addNetworkListener(GameStateListener listener) {
 		networkListeners.add(listener);
@@ -52,6 +55,9 @@ public class GameState {
 	/**
 	 * adds the listener to UI listeners list.
 	 * @param listener: observer that observers this class.
+	 * @requires a new list of UIListeners
+	 * @modifies the list
+	 * @effects the publishing an event.
 	 */
 	public void addUIListener(GameStateListener listener) {
 		UIListeners.add(listener);
@@ -60,6 +66,9 @@ public class GameState {
 	/**
 	 * send the  listeners from network classes the command to update their states.
 	 * @param map: hashmap, containing the info
+	 * @requires a filled list of listeners
+	 * @modifies the game state in other computers
+	 * @effects the game state
 	 */
 	public void publishToNetworkListeners(HashMap<String, String> map) {
 		for(GameStateListener listener : networkListeners) {
@@ -70,7 +79,11 @@ public class GameState {
 	/**
 	 * send the listeners from UI classes the command to update their states.
 	 * @param map: hashmap, containing the info
+	 * @requires a filled list of listeners
+	 * @modifies the UI in other computers
+	 * @effects the UI
 	 */
+	 
 	public void publishToUIListeners(HashMap<String, String> map) {
 		for(GameStateListener listener : UIListeners) {
 			listener.update(this, map);
@@ -80,6 +93,9 @@ public class GameState {
 	/**
 	 * Changes the currently selected player to the next one in the list
 	 * @return Player that is next in the line.
+	 * @requires a filled orderedPlayerList 
+	 * @modifies the currentPlayer in gameState
+	 * @effects the turn change
 	 */
 	public Player getNextPlayer() {
 		
@@ -106,6 +122,9 @@ public class GameState {
 	/**
 	 * get currently selected players squares
 	 * @return Square
+	 * @requires a Player's piece on a Square
+	 * @modifies nothing.
+	 * @effects the movement
 	 */
 	public Square getPlayerCurrentSquare() {
 		return currentPlayer.getPiece().getCurrentSquare();
@@ -114,6 +133,9 @@ public class GameState {
 	/**
 	 * getter of the current player.
 	 * @return Player.
+	 * @requires a created Player
+	 * @modifies nothing
+	 * @effects changing the players state
 	 */
 	public Player getCurrentPlayer() {
 		return currentPlayer;
@@ -127,6 +149,9 @@ public class GameState {
 	/**
 	 * The list of players in the game
 	 * @return List of Players
+	 * @requires a filled playerList
+	 * @modifies nothing
+	 * @effects getNextPlayer
 	 */
 	public ArrayList<Player> getPlayerList() {
 		return playerList;
@@ -135,6 +160,9 @@ public class GameState {
 	/**
 	 * The ordered version of the Player list.
 	 * @return List of PLayers
+	 * @requires a filled orderedPlayerList
+	 * @modifies nothing
+	 * @effects getNextPlayer
 	 */
 	public ArrayList<Player> getOrderedPlayerList() {
 		return orderedPlayerList;
@@ -143,6 +171,9 @@ public class GameState {
 	/**
 	 * setter of the current player field.
 	 * @param currentPlayer : different player.
+	 * @requires created GameState object
+	 * @modifies currently selected player in GameState
+	 * @effects the player who will play their turn.
 	 */
 	public void setCurrentPlayer(Player currentPlayer) {
 		this.currentPlayer = currentPlayer;
@@ -156,6 +187,9 @@ public class GameState {
 	/**
 	 * Setter of the player list
 	 * @param playerList : List of Players
+	 * @requires GameState object
+	 * @modifies player list in game state
+	 * @effects the game state
 	 */
 	public void setPlayerList(ArrayList<Player> playerList) {
 		this.playerList = playerList;
@@ -164,6 +198,9 @@ public class GameState {
 	/**
 	 * setter of the ordered player list
 	 * @param orderedPlayerList : List of Players
+	 * @requires GameState object
+	 * @modifies ordered player list in game state
+	 * @effects the turn changing
 	 */
 	public void setOrderedPlayerList(ArrayList<Player> orderedPlayerList) {
 		this.orderedPlayerList = orderedPlayerList;
@@ -173,6 +210,9 @@ public class GameState {
 	 * Adds the player the Player list
 	 * @param username : username of the new player
 	 * @param ID : Id of the new player
+	 * @requires created playerList
+	 * @modifies player list
+	 * @effects gameState
 	 */
 	public void addPlayer(String username, int ID) {
 		Player p = new Player(username, ID);

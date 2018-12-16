@@ -10,7 +10,11 @@ import java.util.HashMap;
 import java.util.List;
 
 import domain.controller.NetworkController;
-
+/**
+ * @overview The Network that holds the host's attributes
+ * @author Onat
+ *
+ */
 public class HostNetwork extends Network implements Runnable{
 	private ServerSocket serverSocket;
 	private List<Socket> socketList = Collections.synchronizedList(

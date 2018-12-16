@@ -12,7 +12,7 @@ import domain.model.squares.Square;
 import domain.model.squares.SquareIterator;
 
 /**
- * The Board Object is where the squares and cup that holds the dice are stand on.
+ * @overview The Board Object is where the squares and cup that holds the dice are stand on.
  * it is also the class where the movement is calculated.
  * @author Goko
  *
@@ -51,6 +51,9 @@ public class Board {
 	/**
 	 * Via the factory classes, it creates the squares and the layers
 	 * this method adds the layers to Squares list.
+	 * @modifies Squares list of lists in Board's fields
+	 * @requires a new Squares list of lists
+	 * @effects The SquareIterator
 	 */
 	private void initiateSquares() {
 		List<Square> layerOne = layerFactory.createLayer("inner");
@@ -65,6 +68,9 @@ public class Board {
 	/**
 	 * Rolls the dice in the cup one by one.
 	 * Checks the conditions of double, Mr Monopoly etc
+	 * @requires a cup instance that holds three dice
+	 * @modifies the FaceValues of the dice.
+	 * @effects the movement.
 	 */
 	public void rollCup() {
 		List<FaceValue> diceValues = cup.rollCup();
@@ -88,6 +94,9 @@ public class Board {
 	 * Moves the piece of the current player according to the current faceValues of the dice.
 	 * @param currentPlayer the Player who has the turn.
 	 * @return A List of Square's that the player's piece has passed.
+	 * @requires A player's piece on a square on the board.
+	 * @modifies the given players currentSquare
+	 * @effects The game state.
 	 */
 	public ArrayList<Square> movePiece(Player currentPlayer) {
 		Square currentSquare = getPlayersSquare(currentPlayer);
@@ -135,6 +144,9 @@ public class Board {
 	 * Moves the current player's piece to the target square immediately. For action methods
 	 * @param currentPlayer The player who has the turn
 	 * @param squareToMove The target square that the piece will go.
+	 * @requires a player from the available players.
+	 * @modifies the currentSquare of the given player.
+	 * @effects Card actions.
 	 */
 	public void movePiece(Player currentPlayer, Square squareToMove) {
 		setPlayersSquare(currentPlayer,squareToMove);
@@ -146,6 +158,9 @@ public class Board {
 	 * When searching for a certain square on the board, this gets us the layer.
 	 * @param sq The square that we are trying to find
 	 * @return the int value of the layer that contains target square.
+	 * @requires Squares list to be initialized.
+	 * @modifies nothing
+	 * @effects  the movement, getSquareIndex, SquareIterator
 	 */
 	public int getSquareLayerIndex(Square sq) {
 		int result=-1;
@@ -160,6 +175,9 @@ public class Board {
 	 * this method iterates over the squares till it finds the square.
 	 * @param sq the target square
 	 * @return The squares index number in the list.
+	 * @requires Squares list to be initialized
+	 * @modifies nothing.
+	 * @effects SquareIterator, the movement
 	 */
 	public int getSquareIndex(Square sq) {
 		List<Square> layer = Squares.get(getSquareLayerIndex(sq));
@@ -177,6 +195,9 @@ public class Board {
 	 * This calculation only consist of the pure movement.
 	 * Exluding the features such as Mr. Monopoly or tiple roll.
 	 * @return the result of the calculation
+	 * @requires a defined FaceValues from the cup.
+	 * @modifies nothing.
+	 * @effects the movement
 	 */
 	private int calculateMovement() {
 
@@ -194,6 +215,9 @@ public class Board {
 	 * Used for getting the given players current square.
 	 * @param p the Player who we want to get the square
 	 * @return The current square of the Player.
+	 * @requires a Player's piece on a square
+	 * @modifies nothing.
+	 * @effects the movement
 	 */
 	private Square getPlayersSquare(Player p) {
 		Piece piece = p.getPiece();
@@ -205,6 +229,9 @@ public class Board {
 	 * Changes the player's piece's current square to a given square.
 	 * @param p The player
 	 * @param s The target square.
+	 * @requires an available player and a created Square.
+	 * @modifies the currentSquare of the PLayer
+	 * @effects movePiece
 	 */
 	private void setPlayersSquare(Player p, Square s) {
 		Piece piece = p.getPiece();
@@ -214,6 +241,9 @@ public class Board {
 	/**
 	 * The money accumulated in the pool on the board
 	 * @return int value of the pool money.
+	 * @requires a instantiated poolBalance field.
+	 * @modifies nothing.
+	 * @effects card effects.
 	 */
 	public int getPoolBalance() {
 		return poolBalance;
@@ -222,6 +252,9 @@ public class Board {
 	/**
 	 * Sets the pool balance
 	 * @param poolBalance the new pool balance
+	 * @requires a Board.
+	 * @modifies the pool balance on the board.
+	 * @effects card effects.
 	 */
 	public void setPoolBalance(int poolBalance) {
 		this.poolBalance = poolBalance;
@@ -230,6 +263,9 @@ public class Board {
 	/**
 	 * The list of lists that contains all the squares on the board
 	 * @return List of lists
+	 * @requires an instantiated List of Squares.
+	 * @modifies nothing
+	 * @effects the movement
 	 */
 	public List<List<Square>> getSquares() {
 		return Squares;
@@ -238,6 +274,9 @@ public class Board {
 	/**
 	 * Sets the list of list of squares to a given list of lists
 	 * @param squares new list
+	 * @requires a Board object
+	 * @modifies the Squares list.
+	 * @effects Square iterator.
 	 */
 	public void setSquares(List<List<Square>> squares) {
 		Squares = squares;
