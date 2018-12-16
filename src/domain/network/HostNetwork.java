@@ -40,7 +40,12 @@ public class HostNetwork extends Network implements Runnable{
 		}
 	}
 
-
+	/**
+	 * Used for sending a message to all clients.
+	 * Converts the given HashMap input into a json string.
+	 * Then, writes this string into the output streams of all client sockets.
+	 * @param map The String to String HashMap containing the message
+	 */
 	public void sendMessageToPlayers(HashMap<String, String> map) {
 		for  (Socket s : socketList) {
 			try {
@@ -54,15 +59,41 @@ public class HostNetwork extends Network implements Runnable{
 			}
 		}
 	}
-
+	
+	/**
+	 * Used for relaying a message sent by a client to the other clients.
+	 * Converts the given HashMap input into a json string.
+	 * Then, writes this string into the output streams of all client sockets, 
+	 * except for the player who sent the message in the first place.
+	 * @param map The String to String HashMap containing the message
+	 */
 	public void relayMessageToPlayers(HashMap<String, String> map) {
 		for  (Socket s : socketList) {
 			try {
-//				System.out.println("inet host = "+s.getInetAddress().getHostAddress());
-//				System.out.println("inet localhost = "+lastSenderIP);
-//				System.out.println(s.getLocalAddress().getHostAddress());
-//				System.out.println(s.getLocalSocketAddress());
 				if(!s.getInetAddress().getHostAddress().equals(lastSenderIP)) {
+					map.put("source", s.getLocalAddress().getHostAddress());
+					String json = gson.toJson(map);
+					PrintWriter out = new PrintWriter(s.getOutputStream(), true);
+					out.println(json);
+					out.flush();
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	/**
+	 * Used for replying to the latest message received.
+	 * Converts the given HashMap input into a json string.
+	 * Then, writes this string into the output stream of the last sender.
+	 * The last sender is determined by IP checking.
+	 * @param map The String to String HashMap containing the message
+	 */
+	public void sendMessageToLastSender(HashMap<String, String> map) {
+		for  (Socket s : socketList) {
+			try {
+				if(s.getInetAddress().getHostAddress().equals(lastSenderIP)) {
 					map.put("source", s.getLocalAddress().getHostAddress());
 					String json = gson.toJson(map);
 					PrintWriter out = new PrintWriter(s.getOutputStream(), true);
@@ -84,6 +115,4 @@ public class HostNetwork extends Network implements Runnable{
 		lastSenderIP = map.get("source");
 		super.handleMessage(map);
 	}
-	
-	
 }

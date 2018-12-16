@@ -33,7 +33,9 @@ public class Deck {
 	}
 	
 	private void initializeChanceCards(List<Card> cards){//creating & adding a sample chance action card to the deck
+
 		Card c = new GoToJailCard("Chance card\n Go to jail immediately.");
+
 		cards.add(c);
 	}
 	

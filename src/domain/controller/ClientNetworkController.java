@@ -67,6 +67,11 @@ public class ClientNetworkController extends NetworkController implements GameSt
 			break;
 		case "move":
 			gameController.move(false);
+			break;
+		case "newConnection":
+			GameController.getInstance().setLocalPlayerID(
+					Integer.parseInt(map.get("connectionCount")));
+			break;
 		}
 	}
 		

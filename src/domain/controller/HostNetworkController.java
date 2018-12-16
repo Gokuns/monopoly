@@ -39,6 +39,7 @@ public class HostNetworkController extends NetworkController implements GameStat
 			GameState.getInstance().addPlayer(username, ID);
 			map.put("connectionCount", Integer.toString(network.getConnectionCount()));
 			publishToListeners(map);
+			sendMessageToLastSender(map);
 			break;
 		case "roll":
 			List<String> faceValues = new ArrayList<String>();
@@ -71,8 +72,16 @@ public class HostNetworkController extends NetworkController implements GameStat
 		}
 	}
 
+	public void sendMessageToPlayers(HashMap<String, String> map) {
+		network.sendMessageToPlayers(map);
+	}
+
 	private void relayMessageToPlayers(HashMap<String, String> map) {
 		network.relayMessageToPlayers(map);
+	}
+	
+	private void sendMessageToLastSender(HashMap<String, String> map) {
+		network.sendMessageToLastSender(map);
 	}
 
 	public void publishToListeners(HashMap<String, String> map) {
@@ -85,10 +94,14 @@ public class HostNetworkController extends NetworkController implements GameStat
 		return network.getConnectionCount();
 	}
 
-	public void sendMessageToPlayers(HashMap<String, String> map) {
-		network.sendMessageToPlayers(map);
-	}
-
+	/**
+	 * Does the necessary tasks to move from awaiting new players to playing the game.
+	 * Sets the HostNetworkController instance as the networkController of the GameController.
+	 * Creates a message HashMap that contains information about the connected players.
+	 * Tells the gameState to publish this map to client players and to the UI.
+	 * 
+	 * @param playerName The String containing the username for the host player.
+	 */
 	public void gameStarted(String playerName) {
 		ArrayList<Player> playerList = GameState.getInstance().getPlayerList();
 		GameController.getInstance().setNetworkController(this);
