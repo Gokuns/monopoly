@@ -11,6 +11,12 @@ import domain.model.gameHandler.GameState;
 import domain.model.players.Player;
 import domain.model.squares.Square;
 
+/**
+ * @Overview This class is the first class after UI Layer,
+ * it receives messages from UI and does the necessary things or
+ * notifies the responsible classes
+ */
+
 public class GameController {
 	private static GameController controller;
 	private Board board = Board.getInstance();
@@ -39,7 +45,16 @@ public class GameController {
 		gameState.publishToNetworkListeners(map);
 		gameState.publishToUIListeners(map);
 	}
-
+	
+	/**
+	 * @param map The String to String HashMap containing the message
+	 * @modifies orderedPlayerList and currentPlayer
+	 * @effects  creates and initializes as many players using playerCount from input map, 
+	 * adds them to a newly created playerList that was equal to gameState.getPlayerList(),
+	 * sets orderedPlayerList and currentPlayer using newly created arrayList,
+	 * puts the message "gameStarted" and currentPlayer information in a HashMap,
+	 * publishes it to UIListeners
+	 */
 	public void initializePlayers(HashMap<String, String> map) {
 		ArrayList<Player> playerList = gameState.getPlayerList();
 		int playerCount = Integer.parseInt(map.get("playerCount"));

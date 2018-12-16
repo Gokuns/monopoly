@@ -9,7 +9,17 @@ public class Cup {
 	private Die speedDie;
 	private static Cup cup;
 	private List<FaceValue> faceValues;
-
+	
+	
+	/**
+<<<<<<< src/domain/model/dice/Cup.java
+	 * @overview This class implements a cup which consists of dice. It generates an instance of a RegularDie
+=======
+	 * This class implements a cup which consists of dice. It generates an instance of a RegularDie
+>>>>>>> src/domain/model/dice/Cup.java
+	 * and a SpeedDie. 
+	 */
+	
 	@SuppressWarnings("serial")
 	private Cup() {
 		regularDie = RegularDie.getInstance();
@@ -27,6 +37,17 @@ public class Cup {
 	}
 	
 	
+	/**
+<<<<<<< src/domain/model/dice/Cup.java
+	 * @modifies faceValues
+	 * @effects When a dice is rolled with the cup, this method sets the face values of rolled dices. There 
+=======
+	 * When a dice is rolled with the cup, this method sets the face values of rolled dices. There 
+>>>>>>> src/domain/model/dice/Cup.java
+	 * are two regular dices and a speed die. Method gets currentFaceValue of these dice from either 
+	 * RegularDie or SpeedDie object and sets these values inside an ArrayList which is called faceValues.
+	 * @return a list of faceValues of 3 dice.
+	 */
 	public List<FaceValue> rollCup() {
 		regularDie.roll();
 		FaceValue regularVal = regularDie.getCurrentFaceValue();
@@ -41,6 +62,15 @@ public class Cup {
 		
 	}
 	
+	/** 
+<<<<<<< src/domain/model/dice/Cup.java
+	 * @effects Board object calls this method to move piece. This method simply turns the face values 
+=======
+	 * Board object calls this method to move piece. This method simply turns the face values 
+>>>>>>> src/domain/model/dice/Cup.java
+	 * to integers and writes them into a list called result.
+	 * @return a list that holds face values of dices as integers.
+	 */
 	public List<Integer> convertFaceValueToInt() {
 		int first = faceValues.get(0).ordinal()+1;
 		int second = faceValues.get(1).ordinal()+1;
@@ -57,14 +87,37 @@ public class Cup {
 		
 	}
 	
+	/**
+	 *  A getter method to get the faceValues.
+	 * @return a list that holds faceValues of dice.
+	 */
 	public List<FaceValue> getFaceValues() {
 		return faceValues;
 	}
 
+	/**
+<<<<<<< src/domain/model/dice/Cup.java
+	 * @modifies faceValues
+=======
+>>>>>>> src/domain/model/dice/Cup.java
+	 * A setter method to set the list of faceValues to a new list of faceValues.
+	 * @param faceValues
+	 */
 	public void setFaceValues(List<FaceValue> faceValues) {
 		this.faceValues = faceValues;
 	}
 	
+	
+	/**
+<<<<<<< src/domain/model/dice/Cup.java
+	 * @modifies faceValues
+	 * @effects When Roll3Card is called, it calls this method roll3Dice. This method gets the faceValues of 
+=======
+	 * When Roll3Card is called, it calls this method roll3Dice. This method gets the faceValues of 
+>>>>>>> src/domain/model/dice/Cup.java
+	 * three regular dices from the regularDie object and a list faceValues holds these values of dices.
+	 * @return a list that holds faceValues of three regularDices. 
+	 */
 	public List<FaceValue> roll3Dice(){
 		
 		regularDie.roll();
