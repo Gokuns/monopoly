@@ -5,6 +5,13 @@ package domain.model.squares;
 import java.util.List;
 
 public class SquareIterator implements ISquareIteratator {
+	
+	/**
+	 * @Overview This class implements the interface ISQuareIterator,
+	 * it`s purpose is to make the List<List<Square>> Squares iterable and
+	 * to iterate through it as required
+	 */
+	
 	private List<List<Square>> Squares;
 	// private GameState game = GameState.getInstance();
 	// private Player currentPlayer = game.getCurrentPlayer();
@@ -60,6 +67,12 @@ public class SquareIterator implements ISquareIteratator {
 	}
 
 	@Override
+	
+	/**
+	 * @modifies currentSquare
+	 * @effects it sets the index of the currentSquare to nextIndex(),
+	 * returns the currentSquare
+	 */
 	public Square next() {
 		// TODO Auto-generated method stub
 		List<Square> layer = findLayer(currentSquare);
@@ -70,6 +83,11 @@ public class SquareIterator implements ISquareIteratator {
 	}
 
 	@Override
+	
+	/**
+	 * @effects finds out the index of currentSquare and returns +1
+	 */
+	
 	public int nextIndex() {
 		// TODO Auto-generated method stub
 		List<Square> layer = findLayer(currentSquare);
