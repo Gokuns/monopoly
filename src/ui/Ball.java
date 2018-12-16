@@ -67,7 +67,6 @@ public class Ball extends JPanel implements ActionListener{
 		myPath = new StraightLinePath(xStart, yStart, xLimit, yLimit, 50);
 		tm = new Timer(5, this);
 		tm.start();
-		
 	}
 
 	
