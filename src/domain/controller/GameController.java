@@ -36,7 +36,8 @@ public class GameController {
 	public void roll() {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("type", "roll");
-		board.rollCup();
+		board.rollCup(gameState.getCurrentPlayer());
+		board.setDieToPlayerState(gameState.getCurrentPlayer());
 		Cup cup = Cup.getInstance();
 		List<FaceValue> faceValList = cup.getFaceValues();
 		for(int i=0; i<3;i++) {

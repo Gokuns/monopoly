@@ -30,7 +30,7 @@ public class Board {
 	 * Constructor
 	 */
 	private Board() {
-		initiateSquares();
+		initiateSquares(this.Squares);
 	}
 	
 	/**
@@ -51,11 +51,12 @@ public class Board {
 	/**
 	 * Via the factory classes, it creates the squares and the layers
 	 * this method adds the layers to Squares list.
+	 * @param Squares list of list of squares
 	 * @modifies Squares list of lists in Board's fields
 	 * @requires a new Squares list of lists
 	 * @effects The SquareIterator
 	 */
-	private void initiateSquares() {
+	public void initiateSquares(List<List<Square>> Squares) {
 		List<Square> layerOne = layerFactory.createLayer("inner");
 		List<Square> layerTwo = layerFactory.createLayer("middle");
 		List<Square> layerThree = layerFactory.createLayer("outer");
@@ -67,27 +68,42 @@ public class Board {
 	
 	/**
 	 * Rolls the dice in the cup one by one.
-	 * Checks the conditions of double, Mr Monopoly etc
+	 * @param p The current player.
+	 * @return list of FaceValues
 	 * @requires a cup instance that holds three dice
-	 * @modifies the FaceValues of the dice.
+	 * @modifies the FaceValues of the dice., players moved state
 	 * @effects the movement.
 	 */
-	public void rollCup() {
-		List<FaceValue> diceValues = cup.rollCup();
+	public List<FaceValue> rollCup(Player player) {
+		List<FaceValue> diceValues = cup.rollCup();	
+		if(player!=null) {
+		player.setRolled(true);
+		}
+		return diceValues;
+	}
+	
+	/**
+	 * Sets the Players state according to the dice values
+	 * @param p The current player
+	 * @requires a cup object
+	 * @modifies players state according to the faceValues.
+	 * @effects the players state
+	 */
+	public void setDieToPlayerState(Player p) {
+		List<FaceValue> diceValues = cup.getFaceValues();
 		FaceValue firstDieVal = diceValues.get(0);
 		FaceValue secondDieVal = diceValues.get(1);
 		FaceValue speedDieVal = diceValues.get(2);
 		if(firstDieVal == secondDieVal && secondDieVal == speedDieVal) {
-			game.getCurrentPlayer().setRolledTriple(true);
+			p.setRolledTriple(true);
 		}else if(firstDieVal == secondDieVal || firstDieVal==speedDieVal || secondDieVal==speedDieVal) {
-			game.getCurrentPlayer().setRolledDouble(true);
+			p.setRolledDouble(true);
 		}else if(speedDieVal.name().equals("MRMONOPOLY")) {
-			game.getCurrentPlayer().setRolledMrMonopoly(true);
+			p.setRolledMrMonopoly(true);
 		}else if(secondDieVal.name().equals("BUS")) {
-			game.getCurrentPlayer().setRolledBus(true);
+			p.setRolledBus(true);
 		}
-		game.getCurrentPlayer().setRolled(true);
-			
+
 	}
 	
 	/**
