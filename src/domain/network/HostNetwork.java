@@ -44,6 +44,7 @@ public class HostNetwork extends Network implements Runnable{
 	 * Used for sending a message to all clients.
 	 * Converts the given HashMap input into a json string.
 	 * Then, writes this string into the output streams of all client sockets.
+	 * @modifies The input map
 	 * @param map The String to String HashMap containing the message
 	 */
 	public void sendMessageToPlayers(HashMap<String, String> map) {
@@ -65,6 +66,8 @@ public class HostNetwork extends Network implements Runnable{
 	 * Converts the given HashMap input into a json string.
 	 * Then, writes this string into the output streams of all client sockets, 
 	 * except for the player who sent the message in the first place.
+	 * @requires The field lastSenderIP holds the IP of the sender of the latest message.
+	 * @modifies The input map
 	 * @param map The String to String HashMap containing the message
 	 */
 	public void relayMessageToPlayers(HashMap<String, String> map) {
@@ -88,6 +91,8 @@ public class HostNetwork extends Network implements Runnable{
 	 * Converts the given HashMap input into a json string.
 	 * Then, writes this string into the output stream of the last sender.
 	 * The last sender is determined by IP checking.
+	 * @requires The field lastSenderIP holds the IP of the sender of the latest message.
+	 * @modifies The input map
 	 * @param map The String to String HashMap containing the message
 	 */
 	public void sendMessageToLastSender(HashMap<String, String> map) {
