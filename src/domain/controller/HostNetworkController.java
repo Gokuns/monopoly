@@ -95,8 +95,12 @@ public class HostNetworkController extends NetworkController implements GameStat
 	}
 
 	/**
+	 * Does the necessary tasks to move from awaiting new players to playing the game.
+	 * Sets the HostNetworkController instance as the networkController of the GameController.
+	 * Creates a message HashMap that contains information about the connected players.
+	 * Tells the gameState to publish this map to client players and to the UI.
 	 * 
-	 * @param playerName
+	 * @param playerName The String containing the username for the host player.
 	 */
 	public void gameStarted(String playerName) {
 		ArrayList<Player> playerList = GameState.getInstance().getPlayerList();
