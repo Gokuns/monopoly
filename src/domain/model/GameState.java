@@ -120,7 +120,7 @@ public class GameState {
 		return currentPlayer;
 	}
 
-// TODO Remove unused code found by UCDetector
+// TODO Remove unused code
 // 	public int getnPlayers() {
 // 		return nPlayers;
 // 	}
@@ -149,7 +149,7 @@ public class GameState {
 		this.currentPlayer = currentPlayer;
 	}
 
-// TODO Remove unused code found by UCDetector
+// TODO Remove unused code
 // 	public void setnPlayers(int nPlayers) {
 // 		this.nPlayers = nPlayers;
 // 	}

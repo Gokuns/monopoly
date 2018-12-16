@@ -185,7 +185,7 @@ public class Board {
 		int second = fValues.get(1);
 		int speed = fValues.get(2);
 		int result = first + second + speed;
-		System.out.println(result);
+		System.out.println("The dice result is = " + result);
 		return result;
 		
 	}

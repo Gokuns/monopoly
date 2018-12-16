@@ -39,6 +39,7 @@ public class HostNetworkController extends NetworkController implements GameStat
 			GameState.getInstance().addPlayer(username, ID);
 			map.put("connectionCount", Integer.toString(network.getConnectionCount()));
 			publishToListeners(map);
+			sendMessageToLastSender(map);
 			break;
 		case "roll":
 			List<String> faceValues = new ArrayList<String>();
@@ -71,8 +72,16 @@ public class HostNetworkController extends NetworkController implements GameStat
 		}
 	}
 
+	public void sendMessageToPlayers(HashMap<String, String> map) {
+		network.sendMessageToPlayers(map);
+	}
+
 	private void relayMessageToPlayers(HashMap<String, String> map) {
 		network.relayMessageToPlayers(map);
+	}
+	
+	private void sendMessageToLastSender(HashMap<String, String> map) {
+		network.sendMessageToLastSender(map);
 	}
 
 	public void publishToListeners(HashMap<String, String> map) {
@@ -83,10 +92,6 @@ public class HostNetworkController extends NetworkController implements GameStat
 
 	public int getConnectionCount() {
 		return network.getConnectionCount();
-	}
-
-	public void sendMessageToPlayers(HashMap<String, String> map) {
-		network.sendMessageToPlayers(map);
 	}
 
 	public void gameStarted(String playerName) {
