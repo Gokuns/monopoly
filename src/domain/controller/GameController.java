@@ -11,6 +11,12 @@ import domain.model.dice.FaceValue;
 import domain.model.players.Player;
 import domain.model.squares.Square;
 
+/**
+ * @Overview This class is the first class after UI Layer,
+ * it receives messages from UI and does the necessary things or
+ * notifies the responsible classes
+ */
+
 public class GameController {
 	private static GameController controller;
 	private Board board = Board.getInstance();
