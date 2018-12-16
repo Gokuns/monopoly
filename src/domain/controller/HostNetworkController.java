@@ -94,6 +94,10 @@ public class HostNetworkController extends NetworkController implements GameStat
 		return network.getConnectionCount();
 	}
 
+	/**
+	 * 
+	 * @param playerName
+	 */
 	public void gameStarted(String playerName) {
 		ArrayList<Player> playerList = GameState.getInstance().getPlayerList();
 		GameController.getInstance().setNetworkController(this);
