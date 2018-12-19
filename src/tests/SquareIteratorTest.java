@@ -9,7 +9,7 @@ import static org.hamcrest.CoreMatchers.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import domain.model.Board;
+import domain.model.gameHandler.Board;
 import domain.model.squares.*;;
 
 public class SquareIteratorTest {

@@ -12,11 +12,8 @@ public class Cup {
 	
 	
 	/**
-<<<<<<< src/domain/model/dice/Cup.java
 	 * @overview This class implements a cup which consists of dice. It generates an instance of a RegularDie
-=======
 	 * This class implements a cup which consists of dice. It generates an instance of a RegularDie
->>>>>>> src/domain/model/dice/Cup.java
 	 * and a SpeedDie. 
 	 */
 	
@@ -38,12 +35,9 @@ public class Cup {
 	
 	
 	/**
-<<<<<<< src/domain/model/dice/Cup.java
 	 * @modifies faceValues
 	 * @effects When a dice is rolled with the cup, this method sets the face values of rolled dices. There 
-=======
 	 * When a dice is rolled with the cup, this method sets the face values of rolled dices. There 
->>>>>>> src/domain/model/dice/Cup.java
 	 * are two regular dices and a speed die. Method gets currentFaceValue of these dice from either 
 	 * RegularDie or SpeedDie object and sets these values inside an ArrayList which is called faceValues.
 	 * @return a list of faceValues of 3 dice.
@@ -63,11 +57,8 @@ public class Cup {
 	}
 	
 	/** 
-<<<<<<< src/domain/model/dice/Cup.java
 	 * @effects Board object calls this method to move piece. This method simply turns the face values 
-=======
 	 * Board object calls this method to move piece. This method simply turns the face values 
->>>>>>> src/domain/model/dice/Cup.java
 	 * to integers and writes them into a list called result.
 	 * @return a list that holds face values of dices as integers.
 	 */
@@ -96,10 +87,7 @@ public class Cup {
 	}
 
 	/**
-<<<<<<< src/domain/model/dice/Cup.java
 	 * @modifies faceValues
-=======
->>>>>>> src/domain/model/dice/Cup.java
 	 * A setter method to set the list of faceValues to a new list of faceValues.
 	 * @param faceValues
 	 */
@@ -109,12 +97,10 @@ public class Cup {
 	
 	
 	/**
-<<<<<<< src/domain/model/dice/Cup.java
+
 	 * @modifies faceValues
 	 * @effects When Roll3Card is called, it calls this method roll3Dice. This method gets the faceValues of 
-=======
 	 * When Roll3Card is called, it calls this method roll3Dice. This method gets the faceValues of 
->>>>>>> src/domain/model/dice/Cup.java
 	 * three regular dices from the regularDie object and a list faceValues holds these values of dices.
 	 * @return a list that holds faceValues of three regularDices. 
 	 */

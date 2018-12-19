@@ -1,1 +1,4 @@
-domain.model
+domain.controller
+domain.model.dice
+domain.model.gameHandler
+domain.model.squares

@@ -68,7 +68,7 @@ public class Board {
 	
 	/**
 	 * Rolls the dice in the cup one by one.
-	 * @param p The current player.
+	 * @param player: The current player.
 	 * @return list of FaceValues
 	 * @requires a cup instance that holds three dice
 	 * @modifies the FaceValues of the dice., players moved state
@@ -84,7 +84,7 @@ public class Board {
 	
 	/**
 	 * Sets the Players state according to the dice values
-	 * @param p The current player
+	 * @param p: The current player
 	 * @requires a cup object
 	 * @modifies players state according to the faceValues.
 	 * @effects the players state
@@ -108,7 +108,7 @@ public class Board {
 	
 	/**
 	 * Moves the piece of the current player according to the current faceValues of the dice.
-	 * @param currentPlayer the Player who has the turn.
+	 * @param currentPlayer: the Player who has the turn.
 	 * @return A List of Square's that the player's piece has passed.
 	 * @requires A player's piece on a square on the board.
 	 * @modifies the given players currentSquare

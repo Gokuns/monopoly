@@ -74,7 +74,7 @@ public class GameController {
 		gameState.publishToUIListeners(gameStartedMap);
 	}
 	/**
-	 * @param isLocalCommand
+	 * @param isLocalCommand: 
 	 * @modifies specialMap
 	 * @effects method calls the moveCommand with the boolean parameter isLocalComand. 
 	 * Then, move method gets which square the player must land on,puts these information
@@ -128,7 +128,7 @@ public class GameController {
 	}
 
 	/**
-	 * @param isLocalCommand
+	 * @param isLocalCommand: 
 	 * @modifies isTurn and map
 	 * @effects end turn method sets the turn of the current player as false, which terminates
 	 * the players turn. Then it takes the next player to have turn from gameState and sets this players
@@ -160,8 +160,8 @@ public class GameController {
 	}
 
 	/**
-	 * @param username
-	 * @param ID
+	 * @param username: The username of the player
+	 * @param ID: the ID number of the player
 	 * @modifies localPlayer
 	 * @effects This method creates a new instance of Player with the input string and integer,
 	 * then sets the local player to this new created player.

@@ -97,6 +97,9 @@ public class SquareIterator implements ISquareIteratator {
 	}
 
 	@Override
+	/**
+	 * effects the movement
+	 */
 	public Square previous() {
 		// TODO Auto-generated method stub
 		List<Square> layer = findLayer(currentSquare);
@@ -106,6 +109,9 @@ public class SquareIterator implements ISquareIteratator {
 	}
 
 	@Override
+	/**
+	 * effects the movement
+	 */
 	public int previousIndex() {
 		// TODO Auto-generated method stub
 		List<Square> layer = findLayer(currentSquare);
@@ -116,6 +122,7 @@ public class SquareIterator implements ISquareIteratator {
 	}
 
 	@Override
+	
 	public void remove() {
 		// TODO Auto-generated method stub
 
@@ -128,6 +135,9 @@ public class SquareIterator implements ISquareIteratator {
 	}
 
 	@Override
+	/**
+	 * effects the movement
+	 */
 	public boolean hasOuter() {
 		// TODO Auto-generated method stub
 
@@ -144,6 +154,9 @@ public class SquareIterator implements ISquareIteratator {
 	}
 
 	@Override
+	/**
+	 * effects the movement
+	 */
 	public boolean hasInner() {
 		// TODO Auto-generated method stub
 		if (currentSquare == middleTransitPenns) {
@@ -159,6 +172,9 @@ public class SquareIterator implements ISquareIteratator {
 	}
 
 	@Override
+	/**
+	 * effects the movement
+	 */
 	public Square outer() {
 		// TODO Auto-generated method stub
 		if (hasOuter()) {
@@ -175,7 +191,9 @@ public class SquareIterator implements ISquareIteratator {
 		}
 		return null; // if it doesnt have any outer.
 	}
-
+	/**
+	 * effects the movement
+	 */
 	public int outerIndex() {
 		List<Square> layer = findLayer(currentSquare);
 		int result = layer.indexOf(outer());
@@ -183,6 +201,9 @@ public class SquareIterator implements ISquareIteratator {
 	}
 
 	@Override
+	/**
+	 * effects the movement
+	 */
 	public Square inner() {
 		// TODO Auto-generated method stub
 		if (hasInner()) {
@@ -199,7 +220,9 @@ public class SquareIterator implements ISquareIteratator {
 		}
 		return null; // if it doesnt have any inner.
 	}
-
+	/**
+	 * effects the movement
+	 */
 	public int innerIndex() {
 		List<Square> layer = findLayer(currentSquare);
 		int result = layer.indexOf(inner());
@@ -207,7 +230,7 @@ public class SquareIterator implements ISquareIteratator {
 	}
 
 	/**
-	 * @param a Square
+	 * @param sq: Square
 	 * @effects returns the layer of the input Square
 	 */
 	public List<Square> findLayer(Square sq) {
