@@ -15,8 +15,6 @@ public class GoToJail extends SpecialSquare{
 	public String action(Player p) {
 		return null;
 		// TODO Auto-generated method stub
-		
-		
 	}
 
 }
