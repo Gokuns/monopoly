@@ -42,6 +42,10 @@ public class GameFrame extends JFrame implements GameStateListener{
 	private JButton rollButton;
 	private JButton endTurnButton;
 	private JButton moveButton;
+	private JButton saveButton;
+	private JButton loadButton;
+	private JButton pauseButton;
+	private JButton resumeButton;
 	
 	private Image dieImage1;
 	private Image dieImage2;
@@ -95,9 +99,9 @@ public class GameFrame extends JFrame implements GameStateListener{
 		picLabel2 = new JLabel(new ImageIcon(dieImage2));
 		picLabel3 = new JLabel(new ImageIcon(dieImage3));
 		
-		picLabel1.setBounds(60, 320, 50, 50);
-		picLabel2.setBounds(120, 320, 50, 50);
-		picLabel3.setBounds(180, 320, 50, 50);
+		picLabel1.setBounds(60, 66, 50, 50);
+		picLabel2.setBounds(120, 66, 50, 50);
+		picLabel3.setBounds(180, 66, 50, 50);
 		
 		System.out.println(monopolyLogoPanel.getWidth() +" , " + monopolyLogoPanel.getHeight());
 		panel = new JPanel();
@@ -126,6 +130,24 @@ public class GameFrame extends JFrame implements GameStateListener{
 		moveButton = new JButton("Move");
 		moveButton.setBounds(0, 172, 300, 40);
 		panel.add(moveButton);
+		
+		saveButton = new JButton("Save");
+		saveButton.setBounds(0, 384, 300, 40);
+		panel.add(saveButton);
+		
+		loadButton = new JButton("Load");
+		loadButton.setBounds(0, 437, 300, 40);
+		panel.add(loadButton);
+		
+		pauseButton = new JButton("Pause");
+		pauseButton.setBounds(0, 278, 300, 40);
+		panel.add(pauseButton);
+		
+		resumeButton = new JButton("Resume");
+		resumeButton.setBounds(0, 331, 300, 40);
+		panel.add(resumeButton);
+		
+		
 
 		endTurnButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -139,6 +161,18 @@ public class GameFrame extends JFrame implements GameStateListener{
 				rollButton.setEnabled(false);
 				moveButton.setEnabled(false);
 				endTurnButton.setEnabled(true);
+			}
+		});
+		
+		saveButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gameController.saveGame();
+			}
+		});
+		
+		loadButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gameController.loadGame();
 			}
 		});
 

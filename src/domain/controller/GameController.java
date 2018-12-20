@@ -1,5 +1,6 @@
 package domain.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -7,6 +8,8 @@ import java.util.List;
 import domain.model.dice.Cup;
 import domain.model.dice.FaceValue;
 import domain.model.gameHandler.Board;
+import domain.model.gameHandler.GameLoader;
+import domain.model.gameHandler.GameSaver;
 import domain.model.gameHandler.GameState;
 import domain.model.players.Player;
 import domain.model.squares.Square;
@@ -148,6 +151,21 @@ public class GameController {
 		gameState.publishToUIListeners(map);
 		if(isLocalCommand) {
 			gameState.publishToNetworkListeners(map);
+		}
+	}
+	
+	public void saveGame() {
+		GameSaver saver = new GameSaver();
+		saver.Serialize();
+	}
+	
+	public void loadGame() {
+		GameLoader loader = new GameLoader();
+		GameState newGame = null;
+		newGame = loader.deserialize();
+		if(newGame!=null) {
+		gameState.setGameState(newGame);
+		
 		}
 	}
 

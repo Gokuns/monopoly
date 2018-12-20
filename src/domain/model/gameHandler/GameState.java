@@ -1,5 +1,6 @@
 package domain.model.gameHandler;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -13,7 +14,8 @@ import domain.model.squares.Square;
  * @author Goko
  *
  */
-public class GameState {
+@SuppressWarnings("serial")
+public class GameState implements Serializable{
 	private static GameState game;
 	private Player currentPlayer;
 	private ArrayList<Player> playerList = new ArrayList<Player>();
@@ -217,6 +219,17 @@ public class GameState {
 	public void addPlayer(String username, int ID) {
 		Player p = new Player(username, ID);
 		playerList.add(p);
+	}
+	
+	/**
+	 * Sets the GameState object to another GameState object
+	 * @param newgame the new GameSttate object
+	 * @requires a loaded GameState
+	 * @modifies GameState
+	 * @effects the contionuation of the game via save and load
+	 */
+	public void setGameState(GameState newgame) {
+		GameState.game = newgame;
 	}
 	
 }
