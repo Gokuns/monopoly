@@ -3,20 +3,16 @@ package domain.model.squares.specialSquares;
 import domain.model.cards.Card;
 import domain.model.cards.Deck;
 import domain.model.players.Player;
-import domain.model.squares.SpecialSquare;
+import domain.model.squares.SquareStrategy;
 
-public class CommunityChest extends SpecialSquare{
+public class CommunityChest implements SquareStrategy{
 
-	public CommunityChest(String name, String description) {
-		super(name, description);
-		// TODO Auto-generated constructor stub
-	}
 
 	@Override
 	public String action(Player p) {
 		// TODO Auto-generated method stub
 		Deck communtityDeck = new Deck("community");
-		Card c = communtityDeck.draw();
+		Card c = communtityDeck.draw(p);
 		return c.getDesc();
 	}
 

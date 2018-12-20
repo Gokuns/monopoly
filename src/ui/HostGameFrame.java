@@ -72,7 +72,7 @@ public class HostGameFrame extends JFrame implements NetworkControllerListener{
 					hostGameButton.setText("Start Game");
 					hostGameButton.setEnabled(false);
 				} else if(hostGameButton.getText().equals("Start Game")) {
-					GameFrame gameFrame = new GameFrame(hostNetworkController);
+					GameFrame gameFrame = new GameFrame();
 					mainMenu.dispose();
 					dispose();
 					gameFrame.setVisible(true);
@@ -131,7 +131,7 @@ public class HostGameFrame extends JFrame implements NetworkControllerListener{
 		setVisible(true);
 	}
 
-	public void clientConnected(int connectionCount) {
+	private void clientConnected(int connectionCount) {
 		usernameTextLabel.setText(connectionCount + " players connected.");
 		if(connectionCount>0) {
 			getStartGameButton().setEnabled(true);

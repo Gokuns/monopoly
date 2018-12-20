@@ -3,14 +3,14 @@ package domain.model.cards;
 import java.util.HashMap;
 import java.util.List;
 
-import domain.model.GameState;
 import domain.model.dice.Cup;
 import domain.model.dice.FaceValue;
+import domain.model.gameHandler.GameState;
 import domain.model.players.Player;
 
 public class Roll3Card extends Card{
 	
-	List<FaceValue> roll3Values;
+	private List<FaceValue> roll3Values;
 	
 	public Roll3Card(FaceValue fVal1, FaceValue fVal2, FaceValue fVal3, String desc){
 		super(desc);
@@ -20,10 +20,9 @@ public class Roll3Card extends Card{
 	}
 	
 	@Override
-	protected void action() {
+	protected void action(Player currentPlayer) {
 		// TODO Auto-generated method stub
 		GameState game = GameState.getInstance();
-		Player currentPlayer = game.getCurrentPlayer();
 		
 		Cup cup = Cup.getInstance();
 		List<FaceValue> roll3Dice = cup.roll3Dice();

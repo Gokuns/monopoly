@@ -4,14 +4,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import domain.model.Board;
-import domain.model.GameState;
 import domain.model.dice.Cup;
 import domain.model.dice.FaceValue;
-import domain.model.players.Piece;
+import domain.model.gameHandler.Board;
+import domain.model.gameHandler.GameState;
 import domain.model.players.Player;
-import domain.model.squares.SpecialSquare;
 import domain.model.squares.Square;
+
+/**
+ * @Overview This class is the first class after UI Layer,
+ * it receives messages from UI and does the necessary things or
+ * notifies the responsible classes
+ */
 
 public class GameController {
 	private static GameController controller;
@@ -32,7 +36,8 @@ public class GameController {
 	public void roll() {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("type", "roll");
-		board.rollCup();
+		board.rollCup(gameState.getCurrentPlayer());
+		board.setDieToPlayerState(gameState.getCurrentPlayer());
 		Cup cup = Cup.getInstance();
 		List<FaceValue> faceValList = cup.getFaceValues();
 		for(int i=0; i<3;i++) {
@@ -41,14 +46,23 @@ public class GameController {
 		gameState.publishToNetworkListeners(map);
 		gameState.publishToUIListeners(map);
 	}
-
+	
+	/**
+	 * @param map The String to String HashMap containing the message
+	 * @modifies orderedPlayerList and currentPlayer
+	 * @effects  creates and initializes as many players using playerCount from input map, 
+	 * adds them to a newly created playerList that was equal to gameState.getPlayerList(),
+	 * sets orderedPlayerList and currentPlayer using newly created arrayList,
+	 * puts the message "gameStarted" and currentPlayer information in a HashMap,
+	 * publishes it to UIListeners
+	 */
 	public void initializePlayers(HashMap<String, String> map) {
 		ArrayList<Player> playerList = gameState.getPlayerList();
 		int playerCount = Integer.parseInt(map.get("playerCount"));
 		for(int i=0; i<playerCount; i++) {
 			String username = map.get("player" + i + "Name");
 			int ID = Integer.parseInt(map.get("player" + i + "ID"));
-			Player p = new Player(username, ID, new Piece());
+			Player p = new Player(username, ID);
 			playerList.add(p);
 		}
 		gameState.setOrderedPlayerList(playerList);
@@ -59,32 +73,42 @@ public class GameController {
 		gameStartedMap.put("currentPlayerID", Integer.toString(gameState.getCurrentPlayer().getID()));
 		gameState.publishToUIListeners(gameStartedMap);
 	}
-
+	/**
+	 * @param isLocalCommand: 
+	 * @modifies specialMap
+	 * @effects method calls the moveCommand with the boolean parameter isLocalComand. 
+	 * Then, move method gets which square the player must land on,puts these information
+	 * into a map and publishes this information to UI listeners and network listeners.
+	 */
 	public void move(boolean isLocalCommand) {
-		gameState = GameState.getInstance();
-		board = Board.getInstance();
-		Player currentP = gameState.getCurrentPlayer();
-		Square landedSquare = board.movePiece(currentP);
+		ArrayList<Square> moveList = Board.getInstance().movePiece(
+				GameState.getInstance().getCurrentPlayer());
+		Square landedSquare = moveList.get(moveList.size()-1);
 		System.out.println("Piece move Completed");
 		moveCommand(isLocalCommand);
 
-		if(landedSquare.isSpecialSquare()) {
+		if(landedSquare.getSqStrat()!=null) {
 			HashMap<String, String> specialMap = new HashMap<String, String>();
 			specialMap.put("type", "special");
-			String desc = ((SpecialSquare) landedSquare).action(currentP);
-			if(desc==null) desc = landedSquare.getDesciption();
+			String desc = landedSquare.tryToAct(GameState.getInstance().getCurrentPlayer());
+			if(desc==null) desc = landedSquare.getDescription();
 			specialMap.put("description", desc);
 			GameState.getInstance().publishToUIListeners(specialMap);
 			if(isLocalCommand) {
 				gameState.publishToNetworkListeners(specialMap);
 			}
-
-			moveCommand(false);
 		}
-
 	}
 	
-	public void moveCommand(boolean isLocalCommand) {
+	/**
+	 *@param isLocalCommand
+	 *@modifies map
+	 *@effects This method takes a boolean as a parameter, generates a hashMap. Then puts the
+	 *information about movement such as player ID, layer and square index info in this map.
+	 *It publishes this map to the UI listeners and if the input boolean is true, publishes map 
+	 *also to the network listeners.
+	 */
+	private void moveCommand(boolean isLocalCommand) {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("type", "move");
 		map.put("ID", GameState.getInstance().getCurrentPlayer().getID()+"");
@@ -103,6 +127,15 @@ public class GameController {
 		this.networkController = networkController;
 	}
 
+	/**
+	 * @param isLocalCommand: 
+	 * @modifies isTurn and map
+	 * @effects end turn method sets the turn of the current player as false, which terminates
+	 * the players turn. Then it takes the next player to have turn from gameState and sets this players
+	 * turn true, which initiates the players' turn. Method also puts the currentPlayer and currentPlayerID
+	 * in map and publishes this map to UI listeners. If the input boolean of this method is true, it also
+	 * publishes this map to network listeners too.
+	 */
 	public void endTurn(boolean isLocalCommand) {
 		gameState = GameState.getInstance();
 		gameState.getCurrentPlayer().setTurn(false);
@@ -126,8 +159,15 @@ public class GameController {
 		this.localPlayer = localPlayer;
 	}
 
+	/**
+	 * @param username: The username of the player
+	 * @param ID: the ID number of the player
+	 * @modifies localPlayer
+	 * @effects This method creates a new instance of Player with the input string and integer,
+	 * then sets the local player to this new created player.
+	 */
 	public void initializeLocalPlayer(String username, int ID) {
-		Player player = new Player(username, ID, new Piece());
+		Player player = new Player(username, ID);
 		localPlayer = player;
 	}
 
@@ -137,5 +177,9 @@ public class GameController {
 			faceValues.add(FaceValue.valueOf(str));
 		}
 		Cup.getInstance().setFaceValues(faceValues);
+	}
+
+	public void setLocalPlayerID(int ID) {
+		localPlayer.setID(ID);
 	}
 }

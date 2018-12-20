@@ -1,20 +1,23 @@
 package domain.model.squares.specialSquares.payCorners;
 
 import domain.model.players.Player;
-import domain.model.squares.specialSquares.PayCorner;
+import domain.model.squares.PayCornerStrategy;
+import domain.model.squares.SquareStrategy;
 
-public class PayDay extends PayCorner{
+public class PayDay implements PayCornerStrategy, SquareStrategy{
 
-	public PayDay(String name, String description) {
-		super(name, description);
-		// TODO Auto-generated constructor stub
-	}
 
 	@Override
 	public String action(Player p) {
 		return null;
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public String getPaid(Player p) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

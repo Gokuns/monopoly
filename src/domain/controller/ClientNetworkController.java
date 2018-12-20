@@ -5,8 +5,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-import domain.model.GameState;
-import domain.model.GameStateListener;
+import domain.model.gameHandler.GameState;
+import domain.model.gameHandler.GameStateListener;
 import domain.network.ClientNetwork;
 
 public class ClientNetworkController extends NetworkController implements GameStateListener{
@@ -42,6 +42,7 @@ public class ClientNetworkController extends NetworkController implements GameSt
 		switch(type){
 		case "gameStarted":
 			publishToListeners(map);
+			GameController.getInstance().setNetworkController(this);
 			gameController.initializePlayers(map);
 			break;
 		case "roll":
@@ -66,6 +67,11 @@ public class ClientNetworkController extends NetworkController implements GameSt
 			break;
 		case "move":
 			gameController.move(false);
+			break;
+		case "newConnection":
+			GameController.getInstance().setLocalPlayerID(
+					Integer.parseInt(map.get("connectionCount")));
+			break;
 		}
 	}
 		

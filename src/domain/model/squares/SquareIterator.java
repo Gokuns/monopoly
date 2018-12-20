@@ -5,6 +5,13 @@ package domain.model.squares;
 import java.util.List;
 
 public class SquareIterator implements ISquareIteratator {
+	
+	/**
+	 * @Overview This class implements the interface ISQuareIterator,
+	 * it`s purpose is to make the List<List<Square>> Squares iterable and
+	 * to iterate through it as required
+	 */
+	
 	private List<List<Square>> Squares;
 	// private GameState game = GameState.getInstance();
 	// private Player currentPlayer = game.getCurrentPlayer();
@@ -59,6 +66,11 @@ public class SquareIterator implements ISquareIteratator {
 		return true;
 	}
 
+	/**
+	 * @modifies currentSquare
+	 * @effects it sets the index of the currentSquare to nextIndex(),
+	 * returns the currentSquare
+	 */
 	@Override
 	public Square next() {
 		// TODO Auto-generated method stub
@@ -70,6 +82,11 @@ public class SquareIterator implements ISquareIteratator {
 	}
 
 	@Override
+	
+	/**
+	 * @effects finds out the index of currentSquare and returns +1
+	 */
+	
 	public int nextIndex() {
 		// TODO Auto-generated method stub
 		List<Square> layer = findLayer(currentSquare);
@@ -80,6 +97,9 @@ public class SquareIterator implements ISquareIteratator {
 	}
 
 	@Override
+	/**
+	 * effects the movement
+	 */
 	public Square previous() {
 		// TODO Auto-generated method stub
 		List<Square> layer = findLayer(currentSquare);
@@ -89,6 +109,9 @@ public class SquareIterator implements ISquareIteratator {
 	}
 
 	@Override
+	/**
+	 * effects the movement
+	 */
 	public int previousIndex() {
 		// TODO Auto-generated method stub
 		List<Square> layer = findLayer(currentSquare);
@@ -99,6 +122,7 @@ public class SquareIterator implements ISquareIteratator {
 	}
 
 	@Override
+	
 	public void remove() {
 		// TODO Auto-generated method stub
 
@@ -111,6 +135,9 @@ public class SquareIterator implements ISquareIteratator {
 	}
 
 	@Override
+	/**
+	 * effects the movement
+	 */
 	public boolean hasOuter() {
 		// TODO Auto-generated method stub
 
@@ -127,6 +154,9 @@ public class SquareIterator implements ISquareIteratator {
 	}
 
 	@Override
+	/**
+	 * effects the movement
+	 */
 	public boolean hasInner() {
 		// TODO Auto-generated method stub
 		if (currentSquare == middleTransitPenns) {
@@ -142,6 +172,9 @@ public class SquareIterator implements ISquareIteratator {
 	}
 
 	@Override
+	/**
+	 * effects the movement
+	 */
 	public Square outer() {
 		// TODO Auto-generated method stub
 		if (hasOuter()) {
@@ -158,7 +191,9 @@ public class SquareIterator implements ISquareIteratator {
 		}
 		return null; // if it doesnt have any outer.
 	}
-
+	/**
+	 * effects the movement
+	 */
 	public int outerIndex() {
 		List<Square> layer = findLayer(currentSquare);
 		int result = layer.indexOf(outer());
@@ -166,6 +201,9 @@ public class SquareIterator implements ISquareIteratator {
 	}
 
 	@Override
+	/**
+	 * effects the movement
+	 */
 	public Square inner() {
 		// TODO Auto-generated method stub
 		if (hasInner()) {
@@ -182,13 +220,19 @@ public class SquareIterator implements ISquareIteratator {
 		}
 		return null; // if it doesnt have any inner.
 	}
-
+	/**
+	 * effects the movement
+	 */
 	public int innerIndex() {
 		List<Square> layer = findLayer(currentSquare);
 		int result = layer.indexOf(inner());
 		return result;
 	}
 
+	/**
+	 * @param sq: Square
+	 * @effects returns the layer of the input Square
+	 */
 	public List<Square> findLayer(Square sq) {
 		/*
 		 * returns the index of the layer of the given square

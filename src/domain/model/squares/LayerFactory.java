@@ -4,8 +4,6 @@ import java.util.ArrayList;
 //import java.util.HashMap;
 import java.util.List;
 
-import domain.model.squares.specialSquares.payCorners.Go;
-
 public class LayerFactory {
 	private static LayerFactory layerFactory;
 	private SquareFactory squareFactory;
@@ -37,7 +35,7 @@ public class LayerFactory {
 			result.add(squareFactory.createSquare("Transit"));
 			result.add(squareFactory.createSquare("Fifth Avenue"));
 			result.add(squareFactory.createSquare("Madison Avenue"));
-			result.add(squareFactory.createSquare("Roll Three"));
+			result.add(squareFactory.createSquare("Stock Exchange"));
 			result.add(squareFactory.createSquare("Wall Street"));
 			result.add(squareFactory.createSquare("Tax Refund"));
 			result.add(squareFactory.createSquare("Gas Company"));
@@ -52,7 +50,7 @@ public class LayerFactory {
 			
 			
 		}else if(type.equals("middle")) {
-			result.add(Go.getInstance());
+			result.add(squareFactory.createSquare("Go"));
 			result.add(squareFactory.createSquare("Mediterranean Avenue"));
 			result.add(squareFactory.createSquare("Community Chest"));
 			result.add(squareFactory.createSquare("Baltic Avenue"));
@@ -82,7 +80,7 @@ public class LayerFactory {
 			result.add(squareFactory.createSquare("Ventnor Avenue"));
 			result.add(squareFactory.createSquare("Water Works"));
 			result.add(squareFactory.createSquare("Marvin Garden"));
-			result.add(squareFactory.createSquare("Go To Jail"));
+			result.add(squareFactory.createSquare("Roll Three"));
 			result.add(squareFactory.createSquare("Pacific Avenue"));
 			result.add(squareFactory.createSquare("North Carolina Avenue"));
 			result.add(squareFactory.createSquare("CommunityChest"));
@@ -93,7 +91,7 @@ public class LayerFactory {
 			result.add(squareFactory.createSquare("Luxury Tax"));
 			result.add(squareFactory.createSquare("Boardwalk"));
 		}else if(type.equals("outer")) {
-			result.add(squareFactory.createSquare("Stock Exchange"));
+			result.add(squareFactory.createSquare("Subway"));
 			result.add(squareFactory.createSquare("Lake Street"));
 			result.add(squareFactory.createSquare("Community Chest"));
 			result.add(squareFactory.createSquare("Nicollet Avenue"));
@@ -135,7 +133,7 @@ public class LayerFactory {
 			result.add(squareFactory.createSquare("Trash Collector"));
 			result.add(squareFactory.createSquare("North Temple"));
 			result.add(squareFactory.createSquare("Temple Square"));
-			result.add(squareFactory.createSquare("Sumbway"));
+			result.add(squareFactory.createSquare("Go To Jail"));
 			result.add(squareFactory.createSquare("South Street"));
 			result.add(squareFactory.createSquare("Broad Street"));
 			result.add(squareFactory.createSquare("Walnut Street"));
@@ -148,7 +146,7 @@ public class LayerFactory {
 			result.add(squareFactory.createSquare("Muholland Drive"));
 			result.add(squareFactory.createSquare("Ventura Boulevard"));
 			result.add(squareFactory.createSquare("Chance"));
-			result.add(squareFactory.createSquare("Rode Drive"));
+			result.add(squareFactory.createSquare("Rodeo Drive"));
 		}
 		return result;
 	}

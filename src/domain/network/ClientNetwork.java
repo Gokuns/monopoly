@@ -25,6 +25,13 @@ public class ClientNetwork extends Network{
 		}
 	}
 
+	/**
+	 * Used for sending a message to all clients.
+	 * Converts the given HashMap input into a json string.
+	 * Then, writes this string into the output streams of all client sockets.
+	 * @modifies The input map
+	 * @param map The String to String HashMap containing the message
+	 */
 	public void sendMessageToPlayers(HashMap<String, String> map) {
 		try {
 			map.put("source", socket.getLocalAddress().getHostAddress());

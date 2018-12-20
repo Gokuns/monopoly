@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.imageio.ImageIO;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -23,9 +22,8 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import domain.controller.GameController;
-import domain.controller.NetworkController;
-import domain.model.GameState;
-import domain.model.GameStateListener;
+import domain.model.gameHandler.GameState;
+import domain.model.gameHandler.GameStateListener;
 
 @SuppressWarnings("serial")
 public class GameFrame extends JFrame implements GameStateListener{
@@ -33,7 +31,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 	private JPanel panel;
 	private JPanel contentPane;
 	private JPanel monopolyLogoPanel;
-	private GameController gameController;
+	private GameController gameController = GameController.getInstance();
 	private GameState gameState;
 	private int numberOfPlayers;
 	private ArrayList<Ball> balls;
@@ -56,11 +54,9 @@ public class GameFrame extends JFrame implements GameStateListener{
 	/**
 	 * Create the frame.
 	 */
-	public GameFrame(NetworkController networkController) {
+	public GameFrame() {
 		setTitle("Monopoly");
 
-		gameController = GameController.getInstance();
-		gameController.setNetworkController(networkController);
 		gameState = GameState.getInstance();
 		gameState.addUIListener(this);
 
@@ -162,33 +158,33 @@ public class GameFrame extends JFrame implements GameStateListener{
 		});
 	}
 
-	public void initializeBalls() {
+	private void initializeBalls() {
 		EventQueue.invokeLater(new Runnable() {
 			@Override
 			public void run() {
 				System.out.println("Balls initializing");
-				int coorX = boardLayers.getSquareCoordinates(1, 0).getX();
-				int coorY = boardLayers.getSquareCoordinates(1, 0).getY();
+				int coorX = boardLayers.getSquareCoordinates(1, 0).getX()-10;
+				int coorY = boardLayers.getSquareCoordinates(1, 0).getY()-5;
 				numberOfPlayers = gameState.getOrderedPlayerList().size();
 				for(int i = 0;i<numberOfPlayers; i++) {
 					System.out.println("Ball "+i);
 					String x = "Piece" + Integer.toString(i);
-					Ball ballx = new Ball(x, i);
-					ballx.setBounds(coorX + i*6 ,coorY, 15, 15); //    4
-					balls.add(ballx);
+					Ball ballx = new Ball(x, i,coorX + i*6 -15 ,coorY -15);//    4
 					monopolyLogoPanel.add(ballx);
-					repaint();
+					ballx.setBounds(coorX + i*6 -15 ,coorY -15, 20, 20);
+					balls.add(ballx);
+
+
 				}
 			}
 		});
 	}
 
-	public void moveUIPiece(int playerIndex, int layer, int number) {
+	private void moveUIPiece(int playerIndex, int layer, int number) {
 		SquareCoordinates current = boardLayers.getSquareCoordinates(layer, number);
-		int x = current.getX();
-		int y = current.getY();
-		balls.get(playerIndex).setLocation(x + playerIndex * 6, y);
-		repaint();
+		int x = current.getX() - 45;
+		int y = current.getY() - 25;
+		balls.get(playerIndex).moveAnimating(x + playerIndex * 6, y);
 	}
 
 	@Override
@@ -306,7 +302,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 		}
 	}
 	
-	public void pickDieImage(int i, String s) {
+	private void pickDieImage(int i, String s) {
 		if(i == 0) {
 			try {
 				dieImage1 = ImageIO.read(new File("imgDice/"+s+".png"));

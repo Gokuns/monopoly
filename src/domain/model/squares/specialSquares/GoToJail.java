@@ -2,14 +2,9 @@ package domain.model.squares.specialSquares;
 
 //import domain.model.cards.Deck;
 import domain.model.players.Player;
-import domain.model.squares.SpecialSquare;
+import domain.model.squares.SquareStrategy;
 
-public class GoToJail extends SpecialSquare{
-
-	public GoToJail(String name, String description) {
-		super(name, description);
-		// TODO Auto-generated constructor stub
-	}
+public class GoToJail implements SquareStrategy{
 
 	@Override
 	public String action(Player p) {

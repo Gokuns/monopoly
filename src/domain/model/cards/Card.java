@@ -1,5 +1,7 @@
 package domain.model.cards;
 
+import domain.model.players.Player;
+
 //import domain.model.dice.FaceValue;
 
 public abstract class Card {
@@ -8,7 +10,7 @@ public abstract class Card {
 	public Card(String desc) {
 		this.desc = desc;
 	}
-	protected abstract void action();
+	protected abstract void action(Player p);
 
 	/**
 	 * @return the desc

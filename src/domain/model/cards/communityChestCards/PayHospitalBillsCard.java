@@ -2,9 +2,9 @@ package domain.model.cards.communityChestCards;
 
 import java.util.HashMap;
 
-import domain.model.Board;
-import domain.model.GameState;
 import domain.model.cards.CommunityChestCard;
+import domain.model.gameHandler.Board;
+import domain.model.gameHandler.GameState;
 import domain.model.players.Player;
 
 public class PayHospitalBillsCard extends CommunityChestCard{
@@ -16,11 +16,10 @@ public class PayHospitalBillsCard extends CommunityChestCard{
 	}
 
 	@Override
-	protected void action() {
+	protected void action(Player currentPlayer) {
 		// TODO Auto-generated method stub
 		Board board = Board.getInstance();
 		GameState game = GameState.getInstance();
-		Player currentPlayer = game.getCurrentPlayer();
 		
 		int newPoolBalance = board.getPoolBalance() + 100;
 		int newPlayerBalance = currentPlayer.getBalance() - 100;

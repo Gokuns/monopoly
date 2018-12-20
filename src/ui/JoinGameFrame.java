@@ -118,7 +118,7 @@ public class JoinGameFrame extends JFrame implements NetworkControllerListener{
 		setVisible(true);
 	}
 	
-	public void connected() {
+	private void connected() {
 		IPTextField.setText("Connected to host.");
 		IPTextField.setEditable(false);
 		portTextField.setText("Waiting for game to start.");
@@ -135,7 +135,7 @@ public class JoinGameFrame extends JFrame implements NetworkControllerListener{
 			connected();
 			break;
 		case "gameStarted":
-			GameFrame gameFrame = new GameFrame(clientNetworkController);
+			GameFrame gameFrame = new GameFrame();
 			mainMenu.dispose();
 			dispose();
 			gameFrame.setVisible(true);

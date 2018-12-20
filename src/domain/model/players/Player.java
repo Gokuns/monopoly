@@ -36,7 +36,7 @@ public class Player {
 	private boolean changingLayer; //true when the player is changing the layer.
 	
 
-	public Player (String name, int ID, Piece piece) {
+	public Player (String name, int ID) {
 		this.name = name;
 		this.ID = ID;
 		this.piece = new Piece();

@@ -3,9 +3,9 @@ package domain.model.cards.chanceCards;
 import java.util.HashMap;
 import java.util.List;
 
-import domain.model.Board;
-import domain.model.GameState;
 import domain.model.cards.ChanceCard;
+import domain.model.gameHandler.Board;
+import domain.model.gameHandler.GameState;
 import domain.model.players.Player;
 import domain.model.squares.Square;
 
@@ -16,7 +16,7 @@ public class GoToJailCard extends ChanceCard{
 	}
 
 	@Override
-	protected void action() {
+	protected void action(Player p) {
 		// TODO Auto-generated method stub
 		Board board = Board.getInstance();
 		GameState game = GameState.getInstance();
@@ -31,7 +31,7 @@ public class GoToJailCard extends ChanceCard{
 		
 		Square squareToMove = secondLayerSquares.get(10); //jail Square
 		
-		board.movePiece(squareToMove);
+		board.movePiece(p, squareToMove);
 		currentPlayer.setInJail(true);
 		
 		String pName = currentPlayer.getName();
