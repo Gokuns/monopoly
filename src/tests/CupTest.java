@@ -116,6 +116,6 @@ public class CupTest {
 		assertEquals(faceValues.size(), 3);
 		assertTrue(regularFaceValues.contains(faceValues.get(0)));
 		assertTrue(regularFaceValues.contains(faceValues.get(1)));
-		assertTrue(regularFaceValues.contains(faceValues.get(2)));
+		assertTrue(speedFaceValues.contains(faceValues.get(2)));
 	}
 }
