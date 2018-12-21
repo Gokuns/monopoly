@@ -1,10 +1,8 @@
 package domain.model.gameHandler;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import domain.model.dice.Cup;
 import domain.model.players.Player;
 import domain.model.squares.Square;
 
@@ -15,16 +13,12 @@ import domain.model.squares.Square;
  *
  */
 @SuppressWarnings("serial")
-public class GameState implements Serializable{
+public class GameState{
 	private static GameState game;
 	private Player currentPlayer;
 	private ArrayList<Player> playerList = new ArrayList<Player>();
 	private ArrayList<Player> orderedPlayerList = new ArrayList<Player>();
-	
-	@SuppressWarnings("unused")
-	private static Board board = Board.getInstance();
-	@SuppressWarnings("unused")
-	private static Cup cup = Cup.getInstance();
+
 	private ArrayList<GameStateListener> networkListeners = new ArrayList<GameStateListener>();
 	private ArrayList<GameStateListener> UIListeners = new ArrayList<GameStateListener>();
 	
