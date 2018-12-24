@@ -297,5 +297,25 @@ public class Board {
 	public void setSquares(List<List<Square>> squares) {
 		Squares = squares;
 	}	
+	
+	/**
+	 * Finds the square with the given name
+	 * @param name the name of the target square
+	 * @param squares the list of all the squares
+	 * @return the square with the given name
+	 * @requires a created board, and a correct name
+	 * @effects the save load
+	 */
+	public Square findSquare(String name, List<List<Square>> squares) {
+		Square result=null;
+		for(List<Square> layer: squares) {
+			for(Square sq:layer) {
+				if(sq.getName().equals(name)) {
+					result = sq;
+				}
+			}
+		}
+		return result;
+	}
 
 }

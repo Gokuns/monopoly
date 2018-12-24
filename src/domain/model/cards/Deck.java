@@ -28,19 +28,19 @@ public class Deck {
 	}
 	
 	private void initializeCommunityCards(List<Card> cards){//creating & adding a sample community chest card to the deck
-		Card c = new PayHospitalBillsCard("Pay hospital bills.\nPay $100 ");
+		Card c = new PayHospitalBillsCard("0", "Pay hospital bills.\nPay $100 ");
 		cards.add(c);
 	}
 	
 	private void initializeChanceCards(List<Card> cards){//creating & adding a sample chance action card to the deck
 
-		Card c = new GoToJailCard("Chance card\n Go to jail immediately.");
+		Card c = new GoToJailCard("0", "Chance card\n Go to jail immediately.");
 
 		cards.add(c);
 	}
 	
 	private void initializeRoll3Cards(List<Card> cards){//creating & adding a sample roll three card to the deck
-		Card c = new Roll3Card(FaceValue.ONE, FaceValue.TWO, FaceValue.THREE, "1\t2\t3\t");
+		Card c = new Roll3Card("0", FaceValue.ONE, FaceValue.TWO, FaceValue.THREE, "1\t2\t3\t");
 		cards.add(c);
 	}
 	
@@ -64,5 +64,15 @@ public class Deck {
 		Card card = cards.get(0);
 		card.action(p);
 		return card;
+	}
+	
+	public Card findCard(String name) {
+		Card result=null;
+		for(Card c:cards) {
+			if(c.getName().equals(name)) {
+				result = c;
+			}
+		}
+		return result;
 	}
 }

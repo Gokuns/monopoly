@@ -11,8 +11,8 @@ import domain.model.squares.Square;
 
 public class GoToJailCard extends ChanceCard{
 	
-	public GoToJailCard(String d) {
-		super(d);
+	public GoToJailCard(String name, String d) {
+		super(name, d);
 	}
 
 	@Override

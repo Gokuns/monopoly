@@ -12,8 +12,8 @@ public class Roll3Card extends Card{
 	
 	private List<FaceValue> roll3Values;
 	
-	public Roll3Card(FaceValue fVal1, FaceValue fVal2, FaceValue fVal3, String desc){
-		super(desc);
+	public Roll3Card(String name, FaceValue fVal1, FaceValue fVal2, FaceValue fVal3, String desc){
+		super(name, desc);
 		roll3Values.add(fVal1);
 		roll3Values.add(fVal2);
 		roll3Values.add(fVal3);

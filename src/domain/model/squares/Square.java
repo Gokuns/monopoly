@@ -120,5 +120,10 @@ public class Square {
 	public void setTransitInner(boolean isTransitInner) {
 		this.isTransitInner = isTransitInner;
 	}
+	
+	@Override
+	public String toString() {
+		return name;
+	}
 
 }

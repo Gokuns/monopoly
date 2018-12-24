@@ -166,13 +166,23 @@ public class GameFrame extends JFrame implements GameStateListener{
 		
 		saveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				gameController.saveGame();
+				try {
+					gameController.saveGame();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		
 		loadButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				gameController.loadGame();
+				try {
+					gameController.loadGame();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 
@@ -221,119 +231,87 @@ public class GameFrame extends JFrame implements GameStateListener{
 		balls.get(playerIndex).moveAnimating(x + playerIndex * 6, y);
 	}
 
-	@Override
-	public void update(GameState source, HashMap<String, String> map) {
-		String type = map.get("type");
-		switch(type){
-		case "roll":
-			String rollStr;
-			for(int i=0; i<3;i++) {
-				rollStr = map.get("faceValue"+i);
-				switch(rollStr) {
-				case "ONE":
-					pickDieImage(i, "1");
-					break;
-				case "TWO":
-					pickDieImage(i, "2");
-					break;
-				case "THREE":
-					pickDieImage(i, "3");
-					break;
-				case "FOUR":
-					pickDieImage(i, "4");
-					break;
-				case "FIVE":
-					pickDieImage(i, "5");
-					break;
-				case "SIX":
-					pickDieImage(i, "6");
-					break;
-				case "MRMONOPOLY":
-					pickDieImage(i, "mrmonopoly");
-					break;
-				case "BUS":
-					pickDieImage(i, "bus");
-					break;
-				}		
-			}
-			break;
-		case "roll3":
-			String roll3Str = "=>";
-			for(String pName:map.keySet()){
-				if(!pName.equals("type")){
-					String award = map.get(pName);
-					roll3Str += " / " + pName + " has won $" + award + ".";
-				}
-			}
-			rollLabel.setText(roll3Str);
-			break;
-		case "payHospitalBill":
-			String hospitalStr = "=>";
-			for(String name:map.keySet()){
-				if(!name.equals("type")){
-					String balance = map.get(name);
-					hospitalStr += " / " + " Balance of " + name + " has been updated to $"  + balance + ".";
-				}
-			}
-			rollLabel.setText(hospitalStr);
-			break;
-		case "goToJail":
-			String jailStr = "=>";
-			for(String name:map.keySet()){
-				if(!name.equals("type")){
-					String info = map.get(name);
-					jailStr += name + " " + info;
-				}
 
-			}
-			rollLabel.setText(jailStr);
-			break;
-		case "endTurn":
-			String endTurnStr = map.get("currentPlayer");
-			playerLabel.setText(endTurnStr);
-			int localID = gameController.getLocalPlayer().getID();
-			int currentID = Integer.parseInt(map.get("currentPlayerID"));
-			if(localID == currentID) {
-				rollButton.setEnabled(true);
-				moveButton.setEnabled(false);
-				endTurnButton.setEnabled(false);
-			} else
-			{
-				rollButton.setEnabled(false);
-				moveButton.setEnabled(false);
-				endTurnButton.setEnabled(false);
-			}
-			break;
-		case "gameStarted":
-			String currentPlayerStr = map.get("currentPlayer");
-			playerLabel.setText(currentPlayerStr);
-			initializeBalls();
-			if(GameController.getInstance().getLocalPlayer().getID() == 
-					Integer.parseInt(map.get("currentPlayerID"))) {
-				rollButton.setEnabled(true);
-				moveButton.setEnabled(false);
-				endTurnButton.setEnabled(false);
-			} else
-			{
-				rollButton.setEnabled(false);
-				moveButton.setEnabled(false);
-				endTurnButton.setEnabled(false);
-			}
-			break;
-		case "special":
-			
-			JOptionPane.showMessageDialog(this.getContentPane(),
-				    map.get("description"));
-			
-			break;
-		case "move":
-			
-			int playerIndex = Integer.parseInt(map.get("ID"));
-			int layer = Integer.parseInt(map.get("layer"));
-			int number = Integer.parseInt(map.get("number"));
-			System.out.println(layer + "-" + number);
-			moveUIPiece(playerIndex, layer, number);
+
+	private void moveCase(HashMap<String, String> map) {
+		int playerIndex = Integer.parseInt(map.get("ID"));
+		int layer = Integer.parseInt(map.get("layer"));
+		int number = Integer.parseInt(map.get("number"));
+		System.out.println(layer + "-" + number);
+		moveUIPiece(playerIndex, layer, number);
+	}
+
+	private void specialCase(HashMap<String, String> map) {
+		JOptionPane.showMessageDialog(this.getContentPane(),
+			    map.get("description"));
+	}
+
+	private void gameStartedCase(HashMap<String, String> map) {
+		String currentPlayerStr = map.get("currentPlayer");
+		playerLabel.setText(currentPlayerStr);
+		initializeBalls();
+		if(GameController.getInstance().getLocalPlayer().getID() == 
+				Integer.parseInt(map.get("currentPlayerID"))) {
+			rollButton.setEnabled(true);
+			moveButton.setEnabled(false);
+			endTurnButton.setEnabled(false);
+		} else
+		{
+			rollButton.setEnabled(false);
+			moveButton.setEnabled(false);
+			endTurnButton.setEnabled(false);
 		}
+	}
+
+	private void endTurnCase(HashMap<String, String> map) {
+		String endTurnStr = map.get("currentPlayer");
+		playerLabel.setText(endTurnStr);
+		int localID = gameController.getLocalPlayer().getID();
+		int currentID = Integer.parseInt(map.get("currentPlayerID"));
+		if(localID == currentID) {
+			rollButton.setEnabled(true);
+			moveButton.setEnabled(false);
+			endTurnButton.setEnabled(false);
+		} else
+		{
+			rollButton.setEnabled(false);
+			moveButton.setEnabled(false);
+			endTurnButton.setEnabled(false);
+		}
+	}
+
+	private void jailCase(HashMap<String, String> map) {
+		String jailStr = "=>";
+		for(String name:map.keySet()){
+			if(!name.equals("type")){
+				String info = map.get(name);
+				jailStr += name + " " + info;
+			}
+
+		}
+		rollLabel.setText(jailStr);
+	}
+
+	private void payHospitalCase(HashMap<String, String> map) {
+		String hospitalStr = "=>";
+		for(String name:map.keySet()){
+			if(!name.equals("type")){
+				String balance = map.get(name);
+				hospitalStr += " / " + " Balance of " + name + " has been updated to $"  + balance + ".";
+			}
+		}
+		rollLabel.setText(hospitalStr);
+	}
+
+	private void roll3Case(HashMap<String, String> map) {
+		String roll3Str = "=>";
+		for(String pName:map.keySet()){
+			if(!pName.equals("type")){
+				String award = map.get(pName);
+				roll3Str += " / " + pName + " has won $" + award + ".";
+			}
+		}
+		rollLabel.setText(roll3Str);
 	}
 	
 	private void pickDieImage(int i, String s) {
@@ -363,6 +341,69 @@ public class GameFrame extends JFrame implements GameStateListener{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		}
+	}
+	
+	private void dieCase(HashMap<String, String> map) {
+		String rollStr;
+		for(int i=0; i<3;i++) {
+			rollStr = map.get("faceValue"+i);
+			switch(rollStr) {
+			case "ONE":
+				pickDieImage(i, "1");
+				break;
+			case "TWO":
+				pickDieImage(i, "2");
+				break;
+			case "THREE":
+				pickDieImage(i, "3");
+				break;
+			case "FOUR":
+				pickDieImage(i, "4");
+				break;
+			case "FIVE":
+				pickDieImage(i, "5");
+				break;
+			case "SIX":
+				pickDieImage(i, "6");
+				break;
+			case "MRMONOPOLY":
+				pickDieImage(i, "mrmonopoly");
+				break;
+			case "BUS":
+				pickDieImage(i, "bus");
+				break;
+			}		
+		}
+	}
+	
+	@Override
+	public void update(GameState source, HashMap<String, String> map) {
+		String type = map.get("type");
+		switch(type){
+		case "roll":
+			dieCase(map); 
+			break;
+		case "roll3":
+			roll3Case(map);
+			break;
+		case "payHospitalBill":
+			payHospitalCase(map);
+			break;
+		case "goToJail":
+			jailCase(map);
+			break;
+		case "endTurn":
+			endTurnCase(map);
+			break;
+		case "gameStarted":
+			gameStartedCase(map);
+			break;
+		case "special":	
+			specialCase(map);
+			break;
+		case "move":
+			moveCase(map);
 		}
 	}
 }

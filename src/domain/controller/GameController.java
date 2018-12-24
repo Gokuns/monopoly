@@ -11,6 +11,7 @@ import domain.model.gameHandler.Board;
 import domain.model.gameHandler.GameLoader;
 import domain.model.gameHandler.GameSaver;
 import domain.model.gameHandler.GameState;
+import domain.model.gameHandler.SaveData;
 import domain.model.players.Player;
 import domain.model.squares.Square;
 
@@ -154,19 +155,15 @@ public class GameController {
 		}
 	}
 	
-	public void saveGame() {
-		GameSaver saver = new GameSaver();
-		saver.Serialize();
+	public void saveGame() throws Exception {
+		GameSaver.writeJsonOnject();
 	}
 	
-	public void loadGame() {
+	public void loadGame() throws Exception {
+		String filename = "game.json";
 		GameLoader loader = new GameLoader();
-		GameState newGame = null;
-		newGame = loader.deserialize();
-		if(newGame!=null) {
-		gameState.setGameState(newGame);
-		
-		}
+		SaveData data = SaveData.getInstance();
+		data.converDataToGameState(loader.readJsonSimpleDemo(filename), gameState);
 	}
 
 	public Player getLocalPlayer() {

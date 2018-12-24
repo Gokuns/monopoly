@@ -1,39 +1,27 @@
 package domain.model.gameHandler;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
+import com.google.gson.*;
 
 public class GameSaver {
 	
-	GameState game = GameState.getInstance();
-	String filename = "game.ser";
+	static SaveData data = SaveData.getInstance();
+	static String filename =  "game.json";
 	public GameSaver() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void Serialize() {
-		try
-        {    
-            //Saving of object in a file 
-            FileOutputStream file = new FileOutputStream(filename); 
-            ObjectOutputStream out = new ObjectOutputStream(file); 
-              
-            // Method for serialization of object 
-            out.writeObject(game); 
-              
-            out.close(); 
-            file.close(); 
-              
-            System.out.println("Object has been serialized"); 
-  
-        } 
-          
-        catch(IOException ex) 
-        { 
-            System.out.println("IOException is caught"); 
-        } 
-	}
+	
+	public static void writeJsonOnject() throws Exception {
+		  JsonObject saveObject = data.convertGameStateToSave(GameState.getInstance());
+		  
+		  Files.write(Paths.get(filename), saveObject.toString().getBytes());
+//		  Files.write(Paths.get(filename), "aaaaa".getBytes());
+		  
+		  }
+	
+	
 
 }

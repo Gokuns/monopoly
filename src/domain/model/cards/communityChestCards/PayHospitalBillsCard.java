@@ -10,8 +10,8 @@ import domain.model.players.Player;
 public class PayHospitalBillsCard extends CommunityChestCard{
 
 	
-	public PayHospitalBillsCard(String d) {
-		super(d);
+	public PayHospitalBillsCard(String name, String d) {
+		super(name, d);
 		// TODO Auto-generated constructor stub
 	}
 

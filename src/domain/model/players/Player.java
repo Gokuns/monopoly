@@ -1,12 +1,14 @@
 package domain.model.players;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import domain.model.cards.Card;
 import domain.model.cards.ChanceCard;
 import domain.model.cards.CommunityChestCard;
 import domain.model.cards.Roll3Card;
+import domain.model.gameHandler.Board;
 import domain.model.squares.properties.Property;
 
 //import domain.model.squares.specialSquares.ChanceAction;
@@ -52,6 +54,13 @@ public class Player {
 		this.rolledMrMonopoly = false;
 		this.rolledBus = false;
 		this.setChangingLayer(false);
+		chanceCards  = new ArrayList<ChanceCard>();
+		communityCards  = new ArrayList<CommunityChestCard>();
+		roll3Cards  = new ArrayList<Roll3Card>();
+	}
+	
+	public String intToString(int i) {
+		return new Integer(i).toString();
 	}
 
 	public String getName() {

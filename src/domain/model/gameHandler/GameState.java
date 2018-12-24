@@ -222,8 +222,28 @@ public class GameState{
 	 * @modifies GameState
 	 * @effects the contionuation of the game via save and load
 	 */
-	public void setGameState(GameState newgame) {
-		GameState.game = newgame;
+	public void setGameState(SaveData newgame) {
+		//TODO 2: implement how do convert SaveData to GameState
+	}
+	
+	/**
+	 * Returns the number of players
+	 * @return the int value of the size of the player list which is the number of players in the gmae
+	 * @requires a initialized list
+	 * @effects the Save Load methods
+	 */
+	public int getPlayerCount() {
+		return orderedPlayerList.size();
+	}
+	
+	public Player findPlayer(String name) {
+		Player result=null;
+		for(Player p: orderedPlayerList) {
+			if(p.getName().equals(name)) {
+				result = p;
+			}
+		}
+		return result;
 	}
 	
 }
