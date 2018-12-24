@@ -4,6 +4,6 @@ import java.awt.Graphics;
 
 public interface Drawable {
 
-	public void draw(int xLimit, int yLimit);
+	public void draw(int xLimit, int yLimit, int animationSlowness);
 	
 }

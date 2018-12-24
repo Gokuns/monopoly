@@ -186,7 +186,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 		SquareCoordinates current = boardLayers.getSquareCoordinates(layer, number);
 		int x = current.getX() - 45;
 		int y = current.getY() - 25;
-		animator.animate(balls.get(playerIndex),x + playerIndex * 6, y);
+		animator.animate(balls.get(playerIndex),x + playerIndex * 6, y, 10);
 	}
 
 	@Override
