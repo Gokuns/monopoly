@@ -18,6 +18,7 @@ public class GameState{
 	private Player currentPlayer;
 	private ArrayList<Player> playerList = new ArrayList<Player>();
 	private ArrayList<Player> orderedPlayerList = new ArrayList<Player>();
+	private boolean isPaused = false;
 
 	private ArrayList<GameStateListener> networkListeners = new ArrayList<GameStateListener>();
 	private ArrayList<GameStateListener> UIListeners = new ArrayList<GameStateListener>();
@@ -236,6 +237,13 @@ public class GameState{
 		return orderedPlayerList.size();
 	}
 	
+	/**
+	 * Finds the player with th given name in orderedPlayerList
+	 * @param name the String name of the target
+	 * @return the Player object
+	 * @requires a orderedPlayerList
+	 * @effects load
+	 */
 	public Player findPlayer(String name) {
 		Player result=null;
 		for(Player p: orderedPlayerList) {
@@ -244,6 +252,20 @@ public class GameState{
 			}
 		}
 		return result;
+	}
+
+	/**
+	 * @return the isPaused
+	 */
+	public boolean isPaused() {
+		return isPaused;
+	}
+
+	/**
+	 * @param isPaused the isPaused to set
+	 */
+	public void setPaused(boolean isPaused) {
+		this.isPaused = isPaused;
 	}
 	
 }

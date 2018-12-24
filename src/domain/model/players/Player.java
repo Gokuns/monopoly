@@ -36,6 +36,7 @@ public class Player {
 	private List<CommunityChestCard> communityCards; //community chest cards belonging to the player
 	private List<Roll3Card> roll3Cards; //roll 3 cards belonging to the player
 	private boolean changingLayer; //true when the player is changing the layer.
+	private boolean hasPaused; // true if this player paused the game.
 	
 
 	public Player (String name, int ID) {
@@ -57,6 +58,8 @@ public class Player {
 		chanceCards  = new ArrayList<ChanceCard>();
 		communityCards  = new ArrayList<CommunityChestCard>();
 		roll3Cards  = new ArrayList<Roll3Card>();
+		this.changingLayer = false;
+		this.hasPaused=false;
 	}
 	
 	public String intToString(int i) {
@@ -239,6 +242,20 @@ public class Player {
 	 */
 	public void setChangingLayer(boolean changingLayer) {
 		this.changingLayer = changingLayer;
+	}
+
+	/**
+	 * @return the hasPaused
+	 */
+	public boolean hasPaused() {
+		return hasPaused;
+	}
+
+	/**
+	 * @param hasPaused the hasPaused to set
+	 */
+	public void setHasPaused(boolean hasPaused) {
+		this.hasPaused = hasPaused;
 	}
 	
 	

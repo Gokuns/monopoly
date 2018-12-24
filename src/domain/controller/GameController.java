@@ -38,6 +38,7 @@ public class GameController {
 	}
 
 	public void roll() {
+		gameState.getCurrentPlayer().setRolled(true);
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("type", "roll");
 		board.rollCup(gameState.getCurrentPlayer());
@@ -102,6 +103,7 @@ public class GameController {
 				gameState.publishToNetworkListeners(specialMap);
 			}
 		}
+		gameState.getCurrentPlayer().setMoved(true);
 	}
 	
 	/**
@@ -155,15 +157,36 @@ public class GameController {
 		}
 	}
 	
+	public void pauseGame() {
+		gameState.setPaused(true);
+		gameState.getCurrentPlayer().setHasPaused(true);
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("type", "pause");
+		gameState.publishToNetworkListeners(map);
+		gameState.publishToUIListeners(map);
+	}
+	public void resumeGame() {
+		gameState.setPaused(false);
+		gameState.getCurrentPlayer().setHasPaused(false);
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("type",  "resume");
+		gameState.publishToNetworkListeners(map);
+		gameState.publishToUIListeners(map);
+	}
+	
 	public void saveGame() throws Exception {
 		GameSaver.writeJsonOnject();
 	}
 	
 	public void loadGame() throws Exception {
 		String filename = "game.json";
-		GameLoader loader = new GameLoader();
 		SaveData data = SaveData.getInstance();
-		data.converDataToGameState(loader.readJsonSimpleDemo(filename), gameState);
+		data.converDataToGameState(GameLoader.readJsonSimpleDemo(filename), gameState);
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("type", "load");
+		gameState.publishToNetworkListeners(map);
+		gameState.publishToUIListeners(map);
+		
 	}
 
 	public Player getLocalPlayer() {
@@ -196,5 +219,17 @@ public class GameController {
 
 	public void setLocalPlayerID(int ID) {
 		localPlayer.setID(ID);
+	}
+	
+	public ArrayList<Boolean> getPlayerState() {
+		ArrayList<Boolean> result = new ArrayList();
+		Player p = gameState.getCurrentPlayer();
+		result.add(p.isRolled());
+		result.add(p.isMoved());
+		result.add(p.isTurn());
+		result.add(p.hasPaused());
+		
+		return result;
+		
 	}
 }

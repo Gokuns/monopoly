@@ -185,6 +185,18 @@ public class GameFrame extends JFrame implements GameStateListener{
 				}
 			}
 		});
+		
+		pauseButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+					gameController.pauseGame();
+			}
+		});
+		
+		resumeButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+					gameController.resumeGame();
+			}
+		});
 
 		rollLabel = new JLabel("You rolled: ");
 		rollLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -255,11 +267,19 @@ public class GameFrame extends JFrame implements GameStateListener{
 			rollButton.setEnabled(true);
 			moveButton.setEnabled(false);
 			endTurnButton.setEnabled(false);
+			pauseButton.setEnabled(true);
+			resumeButton.setEnabled(false);
+			saveButton.setEnabled(false);
+			loadButton.setEnabled(false);
 		} else
 		{
 			rollButton.setEnabled(false);
 			moveButton.setEnabled(false);
 			endTurnButton.setEnabled(false);
+			pauseButton.setEnabled(false);
+			resumeButton.setEnabled(false);
+			saveButton.setEnabled(false);
+			loadButton.setEnabled(false);
 		}
 	}
 
@@ -272,11 +292,13 @@ public class GameFrame extends JFrame implements GameStateListener{
 			rollButton.setEnabled(true);
 			moveButton.setEnabled(false);
 			endTurnButton.setEnabled(false);
+			pauseButton.setEnabled(true);
 		} else
 		{
 			rollButton.setEnabled(false);
 			moveButton.setEnabled(false);
 			endTurnButton.setEnabled(false);
+			pauseButton.setEnabled(false);
 		}
 	}
 
@@ -376,6 +398,30 @@ public class GameFrame extends JFrame implements GameStateListener{
 			}		
 		}
 	}
+	public void disableButtons() {
+		rollButton.setEnabled(false);
+		moveButton.setEnabled(false);
+		endTurnButton.setEnabled(false);
+		pauseButton.setEnabled(false);
+		resumeButton.setEnabled(false);
+		saveButton.setEnabled(false);
+		loadButton.setEnabled(false);
+	}
+	public void refreshButtons() {
+
+		ArrayList<Boolean> states = gameController.getPlayerState();
+		boolean rolled = states.get(0);
+		boolean moved = states.get(1);
+		boolean turn = states.get(2);
+		boolean paused = states.get(3);
+		rollButton.setEnabled(!rolled);
+		moveButton.setEnabled(rolled && !moved);
+		endTurnButton.setEnabled(moved && turn);
+		pauseButton.setEnabled(turn);
+		resumeButton.setEnabled(paused);
+		saveButton.setEnabled(paused);
+		loadButton.setEnabled(paused);
+	}
 	
 	@Override
 	public void update(GameState source, HashMap<String, String> map) {
@@ -402,8 +448,36 @@ public class GameFrame extends JFrame implements GameStateListener{
 		case "special":	
 			specialCase(map);
 			break;
+		case "load":
+			loadCase(map);
+		break;
+		case "pause":
+			pauseCase(map);
+		break;
+		case "resume":
+			resumeCase(map);
+		break;
 		case "move":
 			moveCase(map);
 		}
+	}
+
+	private void resumeCase(HashMap<String, String> map) {
+		refreshButtons();
+		
+	}
+
+	private void pauseCase(HashMap<String, String> map) {
+		disableButtons();
+		resumeButton.setEnabled(true);
+		saveButton.setEnabled(true);
+		loadButton.setEnabled(true);
+		
+		
+	}
+
+	private void loadCase(HashMap<String, String> map) {
+		refreshButtons();
+		
 	}
 }
