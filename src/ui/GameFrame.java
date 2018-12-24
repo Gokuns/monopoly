@@ -35,6 +35,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 	private GameState gameState;
 	private int numberOfPlayers;
 	private ArrayList<Ball> balls;
+	private Animator animator;
 	private BoardLayers boardLayers;
 	private JLabel playerLabel;
 	private JLabel rollLabel;
@@ -70,6 +71,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 
 		boardLayers = new BoardLayers();
 		balls = new ArrayList<Ball>();
+		animator = new Animator();
 
 		try {
 			Image logoImage = ImageIO.read(new File("monopolyBoard.png"));
@@ -184,7 +186,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 		SquareCoordinates current = boardLayers.getSquareCoordinates(layer, number);
 		int x = current.getX() - 45;
 		int y = current.getY() - 25;
-		balls.get(playerIndex).moveAnimating(x + playerIndex * 6, y);
+		animator.animate(balls.get(playerIndex),x + playerIndex * 6, y);
 	}
 
 	@Override
