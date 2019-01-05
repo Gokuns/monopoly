@@ -1,5 +1,6 @@
 package domain.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -196,15 +197,15 @@ public class GameController {
 		gameState.publishToUIListeners(map);
 	}
 	
-	public void saveGame() throws Exception {
+	public void saveGame(File file) throws Exception {
 		String filename = "game.json";
-		GameSaver.writeJsonOnject(filename, gameState, Cup.getInstance());
+		GameSaver.writeJsonOnject(file, gameState, Cup.getInstance());
 	}
 	
-	public void loadGame() throws Exception {
+	public void loadGame(File file) throws Exception {
 		String filename = "game.json";
 		SaveData data = SaveData.getInstance();
-		data.converDataToGame(GameLoader.readJsonSimpleDemo(filename), gameState, Cup.getInstance());
+		data.converDataToGame(GameLoader.readJsonSimpleDemo(file), gameState, Cup.getInstance());
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("type", "load");
 		ArrayList<Player> lst = gameState.getOrderedPlayerList();

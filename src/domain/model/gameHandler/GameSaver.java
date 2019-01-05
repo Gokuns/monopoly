@@ -1,5 +1,6 @@
 package domain.model.gameHandler;
 
+import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
@@ -15,10 +16,10 @@ public class GameSaver {
 	}
 	
 	
-	public static void writeJsonOnject(String filename, GameState gameState, Cup cup) throws Exception {
+	public static void writeJsonOnject(File file, GameState gameState, Cup cup) throws Exception {
 		  JsonObject saveObject = data.convertGameToSave(gameState, cup);
 		  
-		  Files.write(Paths.get(filename), saveObject.toString().getBytes());
+		  Files.write(Paths.get(file.getAbsolutePath()), saveObject.toString().getBytes());
 		  
 		  }
 	
