@@ -38,6 +38,7 @@ public class Player {
 	private List<Roll3Card> roll3Cards; //roll 3 cards belonging to the player
 	private boolean changingLayer; //true when the player is changing the layer.
 	private boolean hasPaused; // true if this player paused the game.
+	private boolean enableBuy;
 	
 
 	public Player (String name, int ID) {
@@ -292,6 +293,21 @@ public class Player {
 		setRolledMrMonopoly(false);
 		setRolledTriple(false);
 		setTurn(false);
+		setEnableBuy(false);
+	}
+
+	/**
+	 * @return the enableBuy
+	 */
+	public boolean isEnableBuy() {
+		return enableBuy;
+	}
+
+	/**
+	 * @param enableBuy the enableBuy to set
+	 */
+	public void setEnableBuy(boolean enableBuy) {
+		this.enableBuy = enableBuy;
 	}
 	
 	
