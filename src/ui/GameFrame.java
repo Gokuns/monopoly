@@ -327,6 +327,18 @@ public class GameFrame extends JFrame implements GameStateListener{
 		rollLabel.setText(trafficTicketStr);
 		
 	}
+	
+	private void schoolFeesCase(HashMap<String, String> map) {
+		String schoolFeesStr = "=>";
+		for(String name:map.keySet()){
+			if(!name.equals("type")){
+				String balance = map.get(name);
+				schoolFeesStr += " / " + " Balance of " + name + " has been updated to $"  + balance + ".";
+			}
+		}
+		rollLabel.setText(schoolFeesStr);
+		
+	}
 
 	private void payHospitalCase(HashMap<String, String> map) {
 		String hospitalStr = "=>";
@@ -452,6 +464,9 @@ public class GameFrame extends JFrame implements GameStateListener{
 			break;
 		case "trafficTicket":
 			trafficTicketCase(map);
+			break;
+		case "schoolFees":
+			schoolFeesCase(map);
 			break;
 		case "goToJail":
 			jailCase(map);
