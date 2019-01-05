@@ -304,28 +304,6 @@ public class GameFrame extends JFrame implements GameStateListener{
 			pauseButton.setEnabled(false);
 		}
 	}
-
-	private void chairPersonCase(HashMap<String, String> map) {
-		String chairPersonStr = "=>";
-		for(String name:map.keySet()){
-			if(!name.equals("type")){
-				String balance = map.get(name);
-				chairPersonStr += " / " + " Balance of " + name + " has been updated to $"  + balance + ".";
-			}
-		}
-		rollLabel.setText(chairPersonStr);
-	}
-	
-	private void openingNightTicketsCase(HashMap<String, String> map) {
-		String openingNightTicketsStr = "=>";
-		for(String name:map.keySet()){
-			if(!name.equals("type")){
-				String balance = map.get(name);
-				openingNightTicketsStr += " / " + " Balance of " + name + " has been updated to $"  + balance + ".";
-			}
-		}
-		rollLabel.setText(openingNightTicketsStr);
-	}
 	
 	private void jailCase(HashMap<String, String> map) {
 		String jailStr = "=>";
@@ -339,41 +317,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 		rollLabel.setText(jailStr);
 	}
 	
-	private void trafficTicketCase(HashMap<String, String> map) {
-		String trafficTicketStr = "=>";
-		for(String name:map.keySet()){
-			if(!name.equals("type")){
-				String balance = map.get(name);
-				trafficTicketStr += " / " + " Balance of " + name + " has been updated to $"  + balance + ".";
-			}
-		}
-		rollLabel.setText(trafficTicketStr);
-		
-	}
 	
-	private void schoolFeesCase(HashMap<String, String> map) {
-		String schoolFeesStr = "=>";
-		for(String name:map.keySet()){
-			if(!name.equals("type")){
-				String balance = map.get(name);
-				schoolFeesStr += " / " + " Balance of " + name + " has been updated to $"  + balance + ".";
-			}
-		}
-		rollLabel.setText(schoolFeesStr);
-		
-	}
-	
-	private void doctorsFeeCase(HashMap<String, String> map) {
-		String doctorsFeeStr = "=>";
-		for(String name:map.keySet()){
-			if(!name.equals("type")){
-				String balance = map.get(name);
-				doctorsFeeStr += " / " + " Balance of " + name + " has been updated to $"  + balance + ".";
-			}
-
-		}
-		rollLabel.setText(doctorsFeeStr);
-	}
 	
 	private void inheritHundredDollarsCase(HashMap<String, String> map) {
 		String inheritHundredDollarsStr = "=>";
@@ -387,15 +331,15 @@ public class GameFrame extends JFrame implements GameStateListener{
 		rollLabel.setText(inheritHundredDollarsStr);
 	}
 
-	private void payHospitalCase(HashMap<String, String> map) {
-		String hospitalStr = "=>";
+	private void genericBalanceDescriptionLabeller(HashMap<String, String> map) {
+		String desc = "=>";
 		for(String name:map.keySet()){
 			if(!name.equals("type")){
 				String balance = map.get(name);
-				hospitalStr += " / " + " Balance of " + name + " has been updated to $"  + balance + ".";
+				desc += " / " + " Balance of " + name + " has been updated to $"  + balance + ".";
 			}
 		}
-		rollLabel.setText(hospitalStr);
+		rollLabel.setText(desc);
 	}
 
 	private void roll3Case(HashMap<String, String> map) {
@@ -507,28 +451,28 @@ public class GameFrame extends JFrame implements GameStateListener{
 			roll3Case(map);
 			break;
 		case "chairPerson":
-			chairPersonCase(map);
+			genericBalanceDescriptionLabeller(map);
 			break;
 		case "goToJail":
 			jailCase(map);
 			break;
 		case "schoolFees":
-			schoolFeesCase(map);
+			genericBalanceDescriptionLabeller(map);
 			break;
 		case "trafficTicket":
-			trafficTicketCase(map);
+			genericBalanceDescriptionLabeller(map);
 			break;
-		case "payHospitalBill":
-			payHospitalCase(map);
-			break;
-		case "openingNightTickets":
-			openingNightTicketsCase(map);
+		case "doctorsFee":
+			genericBalanceDescriptionLabeller(map);
 			break;
 		case "inheritHundredDollars":
 			inheritHundredDollarsCase(map);
 			break;
-		case "doctorsFee":
-			doctorsFeeCase(map);
+		case "openingNightTickets":
+			genericBalanceDescriptionLabeller(map);
+			break;
+		case "payHospitalBill":
+			genericBalanceDescriptionLabeller(map);
 			break;
 		case "endTurn":
 			endTurnCase(map);
