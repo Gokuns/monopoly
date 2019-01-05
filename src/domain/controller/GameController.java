@@ -164,6 +164,7 @@ public class GameController {
 		map.put("number", Board.getInstance().getSquareIndex(
 				GameState.getInstance().getPlayerCurrentSquare())+"");
 		map.put("enableBuy", p.isEnableBuy()+"");
+		map.put("enableBuildHouse", p.isEnableBuildHouse()+"");
 		GameState.getInstance().publishToUIListeners(map);
 
 		if(isLocalCommand) {
@@ -296,6 +297,5 @@ public class GameController {
 		result.add(hasBeenBought);
 		
 		return result;
-		
 	}
 }

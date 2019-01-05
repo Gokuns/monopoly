@@ -542,7 +542,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 	}
 
 	private void buildHouseCase(HashMap<String, String> map) {
-		
+		buildHouseButton.setEnabled(false);
 	}
 
 	private void resumeCase(HashMap<String, String> map) {

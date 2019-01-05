@@ -41,6 +41,7 @@ public class Player {
 	private boolean changingLayer; //true when the player is changing the layer.
 	private boolean hasPaused; // true if this player paused the game.
 	private boolean enableBuy;
+	private boolean enableBuildHouse;
 	private HashMap<String, Integer> ownedColoredDisctricts= new HashMap<String, Integer>();
 	
 
@@ -144,6 +145,14 @@ public class Player {
 		return false;
 	}
 	
+	public HashMap<String, Integer> getOwnedColoredDisctricts() {
+		return ownedColoredDisctricts;
+	}
+
+	public void setOwnedColoredDisctricts(HashMap<String, Integer> ownedColoredDisctricts) {
+		this.ownedColoredDisctricts = ownedColoredDisctricts;
+	}
+
 	public String intToString(int i) {
 		return new Integer(i).toString();
 	}
@@ -352,6 +361,7 @@ public class Player {
 		setRolledTriple(false);
 		setTurn(false);
 		setEnableBuy(false);
+		setEnableBuildHouse(false);
 	}
 
 	/**
@@ -366,6 +376,14 @@ public class Player {
 	 */
 	public void setEnableBuy(boolean enableBuy) {
 		this.enableBuy = enableBuy;
+	}
+
+	public boolean isEnableBuildHouse() {
+		return enableBuildHouse;
+	}
+
+	public void setEnableBuildHouse(boolean enableBuildHouse) {
+		this.enableBuildHouse = enableBuildHouse;
 	}
 	
 	

@@ -11,6 +11,8 @@ import domain.model.players.Player;
 import domain.model.squares.LayerFactory;
 import domain.model.squares.Square;
 import domain.model.squares.SquareIterator;
+import domain.model.squares.properties.Property;
+import domain.model.squares.properties.Street;
 
 /**
  * @overview The Board Object is where the squares and cup that holds the dice are stand on.
@@ -196,9 +198,25 @@ public class Board {
 		}
 		Square landedOn = currentSquare;
 		setPlayersSquare(currentPlayer,landedOn);		
-		System.out.println("Moved to " + getPlayersSquare(game.getCurrentPlayer()).getName());
+		System.out.println("Moved to " + getPlayersSquare(currentPlayer).getName());
 		if(landedOn.isProperty()) {
-			currentPlayer.setEnableBuy(true);
+			Piece playerPiece = currentPlayer.getPiece();
+			Square playerSquare = playerPiece.getCurrentSquare();
+			Property playerProperty = (Property) playerSquare;
+			Player propertyOwner = playerProperty.getOwner();
+			if(propertyOwner == null){
+				currentPlayer.setEnableBuy(true);
+			}else{
+				if(propertyOwner.getName().equals(currentPlayer.getName())){
+					Street street = (Street) playerProperty;
+					String propertyColor = street.getColor();
+					int referenceColorCount = Board.getInstance().getColoredDistricts().get(propertyColor);
+					int ownedColorCount = currentPlayer.getOwnedColoredDisctricts().get(propertyColor);
+					if(referenceColorCount == ownedColorCount){
+						currentPlayer.setEnableBuildHouse(true);
+					}
+				}
+			}
 		}
 		return movedSquares;
 	}
