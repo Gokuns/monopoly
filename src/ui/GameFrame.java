@@ -24,11 +24,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import domain.controller.GameController;
-<<<<<<< HEAD
 import domain.model.cards.communityChestCards.OpeningNightTickets;
-=======
-import domain.model.gameHandler.Board;
->>>>>>> refs/remotes/origin/animation
 import domain.model.gameHandler.GameState;
 import domain.model.gameHandler.GameStateListener;
 
@@ -285,8 +281,8 @@ public class GameFrame extends JFrame implements GameStateListener{
 		}
 		//System.out.println(coordinateList);
 		animator.animate(balls.get(playerIndex),coordinateList, 5);
+
 	}
-	
 
 
 
@@ -304,42 +300,9 @@ public class GameFrame extends JFrame implements GameStateListener{
 			if(isEnableBuildHouse.equals("true")){
 				buildHouseButton.setEnabled(true);
 			}
-<<<<<<< HEAD
-=======
-			break;
-		case "gameStarted":
-			String currentPlayerStr = map.get("currentPlayer");
-			playerLabel.setText(currentPlayerStr);
-			initializeBalls();
-			if(GameController.getInstance().getLocalPlayer().getID() == 
-					Integer.parseInt(map.get("currentPlayerID"))) {
-				rollButton.setEnabled(true);
-				moveButton.setEnabled(false);
-				endTurnButton.setEnabled(false);
-			} else
-			{
-				rollButton.setEnabled(false);
-				moveButton.setEnabled(false);
-				endTurnButton.setEnabled(false);
-			}
-			break;
-		case "special":
-			
-			JOptionPane.showMessageDialog(this.getContentPane(),
-				    map.get("description"));
-			
-			break;
-		case "move":
-			
-			int playerIndex = Integer.parseInt(map.get("ID"));
-			int layer = Integer.parseInt(map.get("layer"));
-			int number = Integer.parseInt(map.get("number"));
-			System.out.println(layer + "-" + number);
-			moveUIPiece(playerIndex);
->>>>>>> refs/remotes/origin/animation
 		}
 		System.out.println(layer + "-" + number);
-		moveUIPiece(playerIndex, layer, number);
+		moveUIPiece(playerIndex);
 	}
 
 	private void specialCase(HashMap<String, String> map) {
