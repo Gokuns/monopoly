@@ -83,9 +83,9 @@ public class SquareFactory {
 		} else if (name.equals("Pennsylvania Avenue")) {
 			result = new Street(name, 320, "A nice place to buy.", "Dark Green", deedFactory.createDeed(name));
 		} else if (name.equals("Park Place")) {
-			result = new Street(name, 320, "A nice place to buy.", "Dark Green", deedFactory.createDeed(name));
+			result = new Street(name, 320, "A nice place to buy.", "Dark Blue", deedFactory.createDeed(name));
 		} else if (name.equals("Boardwalk")) {
-			result = new Street(name, 400, "A nice place to buy.", "Dark Green", deedFactory.createDeed(name));
+			result = new Street(name, 400, "A nice place to buy.", "Dark Blue", deedFactory.createDeed(name));
 		} else if (name.equals("Transit")) {
 			result = new Square(name,
 					"Passengers wishing to use the metrobus line should change at Sisli Mecidiyekoy or Gayrettepe stations.");

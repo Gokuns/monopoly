@@ -317,6 +317,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 			moveButton.setEnabled(false);
 			endTurnButton.setEnabled(false);
 			pauseButton.setEnabled(false);
+			buyButton.setEnabled(false);
 		}
 	}
 	
