@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 @SuppressWarnings("serial")
-public class Ball extends JPanel implements ActionListener{
+public class Ball extends JPanel implements ActionListener, Drawable{
 	
 	private Timer tm;
 	private String name;
@@ -59,13 +59,13 @@ public class Ball extends JPanel implements ActionListener{
 	       
 	    }
 		
-	public void moveAnimating(int xLimit, int yLimit) {
+	public void draw(int xLimit, int yLimit, int animationSlowness) {
 		
 		//setLocation(xLimit, yLimit);
 		this.xLimit = xLimit;
 		this.yLimit = yLimit;
 		myPath = new StraightLinePath(xStart, yStart, xLimit, yLimit, 50);
-		tm = new Timer(5, this);
+		tm = new Timer(animationSlowness, this);
 		tm.start();
 	}
 
