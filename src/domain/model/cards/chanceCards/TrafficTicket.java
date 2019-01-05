@@ -24,7 +24,7 @@ public class TrafficTicket extends ChanceCard{
 		int newPlayerBalance = currentPlayer.getBalance() - 15;
 		
 		HashMap<String, String> mapForUITransfer = new HashMap<String, String>();
-		mapForUITransfer.put("tyoe", "trafficTicket");
+		mapForUITransfer.put("type", "trafficTicket");
 		board.setPoolBalance(newPoolBalance);
 		currentPlayer.setBalance(newPlayerBalance);
 		
