@@ -66,6 +66,10 @@ public class HostNetworkController extends NetworkController implements GameStat
 			GameController.getInstance().endTurn(false);
 			relayMessageToPlayers(map);
 			break;
+		case "load":
+			gameState.publishToUIListeners(map);
+			relayMessageToPlayers(map);
+			break;
 		case "move":
 			GameController.getInstance().move(false);
 			relayMessageToPlayers(map);

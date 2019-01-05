@@ -247,10 +247,10 @@ public class GameFrame extends JFrame implements GameStateListener{
 
 
 
-	private void moveCase(HashMap<String, String> map) {
-		int playerIndex = Integer.parseInt(map.get("ID"));
-		int layer = Integer.parseInt(map.get("layer"));
-		int number = Integer.parseInt(map.get("number"));
+	private void moveCase(HashMap<String, String> map, String i) {
+		int playerIndex = Integer.parseInt(map.get("ID"+i));
+		int layer = Integer.parseInt(map.get("layer"+i));
+		int number = Integer.parseInt(map.get("number"+i));
 		System.out.println(layer + "-" + number);
 		moveUIPiece(playerIndex, layer, number);
 	}
@@ -423,6 +423,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 		resumeButton.setEnabled(paused);
 		saveButton.setEnabled(paused);
 		loadButton.setEnabled(paused);
+
 	}
 	
 	@Override
@@ -460,13 +461,12 @@ public class GameFrame extends JFrame implements GameStateListener{
 			resumeCase(map);
 		break;
 		case "move":
-			moveCase(map);
+			moveCase(map, "");
 		}
 	}
 
 	private void resumeCase(HashMap<String, String> map) {
 		refreshButtons();
-		
 	}
 
 	private void pauseCase(HashMap<String, String> map) {
@@ -480,11 +480,10 @@ public class GameFrame extends JFrame implements GameStateListener{
 
 	private void loadCase(HashMap<String, String> map) {
 		refreshButtons();
-		HashMap<String,String> dieMap = new HashMap<String, String>();
-		for (int i = 0; i <3 ; i++) {
-			dieMap.put("faceValue"+i, map.get("faceValue"+i));
+		dieCase(map);
+		for(int i=0; i<GameState.getInstance().getPlayerCount();i++) {
+			moveCase(map, i+"");
 		}
-		dieCase(dieMap);
 		
 	}
 }

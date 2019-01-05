@@ -195,12 +195,14 @@ public class GameController {
 			Player p = lst.get(i);
 			Square playerSq = p.getPiece().getCurrentSquare();
 			map.put("name"+i,p.getName());
+			map.put("ID"+i,p.getID()+"");
 			map.put("layer"+i, board.getSquareLayerIndex(playerSq)+"");
-			map.put("index"+i, board.getSquareIndex(playerSq)+"");
+			map.put("number"+i, board.getSquareIndex(playerSq)+"");
 			map.put("balance"+i, p.getBalance()+"");
 			
 		}
 		map.put("currentPlayer",  gameState.getCurrentPlayer().getName());
+		map.put("currentPlayerID", Integer.toString(gameState.getCurrentPlayer().getID()));
 		map.putAll(createFaceValMap(Cup.getInstance()));
 
 		gameState.publishToNetworkListeners(map);
