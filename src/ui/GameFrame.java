@@ -49,6 +49,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 	private JButton pauseButton;
 	private JButton resumeButton;
 	private JButton buyButton;
+	private JButton buildHouseButton;
 	
 	private Image dieImage1;
 	private Image dieImage2;
@@ -155,6 +156,10 @@ public class GameFrame extends JFrame implements GameStateListener{
 		buyButton.setBounds(0, 490, 300, 40);
 		panel.add(buyButton);
 		
+		buildHouseButton = new JButton("Buy");
+		buildHouseButton.setBounds(0, 543, 300, 40);
+		panel.add(buyButton);
+		
 
 		endTurnButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -204,6 +209,18 @@ public class GameFrame extends JFrame implements GameStateListener{
 					JOptionPane.showMessageDialog(GameFrame.this.getContentPane(),"You have insufficient funds to purchase, it may have been bought previously or it is an invalid square to buy.");
 				}
 				buyButton.setEnabled(false);
+			}
+		});
+		
+		buildHouseButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				HashMap<String, String> map = gameController.buyProperty();
+				if(map.get("successfullyBuilt").equals("false")){
+					JOptionPane.showMessageDialog(GameFrame.this.getContentPane(),"You can't build a house in this square since you don't have sufficient funds to build a house, it's an invalid square, you don't own the square or you don't own the entire colored district.");
+				}
+				buildHouseButton.setEnabled(false);
 			}
 		});
 
@@ -288,6 +305,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 			saveButton.setEnabled(false);
 			loadButton.setEnabled(false);
 			buyButton.setEnabled(false);
+			buildHouseButton.setEnabled(false);
 		} else
 		{
 			rollButton.setEnabled(false);
@@ -298,6 +316,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 			saveButton.setEnabled(false);
 			loadButton.setEnabled(false);
 			buyButton.setEnabled(false);
+			buildHouseButton.setEnabled(false);
 		}
 	}
 
@@ -318,6 +337,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 			endTurnButton.setEnabled(false);
 			pauseButton.setEnabled(false);
 			buyButton.setEnabled(false);
+			buildHouseButton.setEnabled(false);
 		}
 	}
 	

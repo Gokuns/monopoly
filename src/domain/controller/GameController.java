@@ -59,10 +59,10 @@ public class GameController {
 		Player currentPlayer = gameState.getCurrentPlayer();
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("type", "buildHouse");
-		map.put("successfullyBought", "false");
-		boolean successfullyBought = currentPlayer.buildHouse();
-		if(successfullyBought){
-			map.put("successfullyBought", "true");
+		map.put("successfullyBuilt", "false");
+		boolean successfullyBuilt = currentPlayer.buildHouse();
+		if(successfullyBuilt){
+			map.put("successfullyBuilt", "true");
 		}
 		gameState.publishToNetworkListeners(map);
 		gameState.publishToUIListeners(map);
