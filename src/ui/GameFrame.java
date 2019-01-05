@@ -514,6 +514,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 	private void loadCase(HashMap<String, String> map) {
 		refreshButtons();
 		dieCase(map);
+		endTurnCase(map);
 		for(int i=0; i<GameState.getInstance().getPlayerCount();i++) {
 			moveCase(map, i+"");
 		}
