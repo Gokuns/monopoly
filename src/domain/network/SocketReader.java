@@ -12,6 +12,7 @@ import com.google.gson.Gson;
 public class SocketReader implements Runnable{
 	private InputStream inputStream;
 	private Network network;
+	private Socket socket;
 	private Gson gson;
 
 	public SocketReader(Socket socket, Network network) {
@@ -20,6 +21,7 @@ public class SocketReader implements Runnable{
 			this.gson = new Gson();
 			this.network = network;
 			this.inputStream = socket.getInputStream();
+			this.socket = socket;
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -34,7 +36,7 @@ public class SocketReader implements Runnable{
 				if(line != null) {
 					@SuppressWarnings("unchecked")
 					HashMap<String, String> map = gson.fromJson(line, HashMap.class);
-					network.handleMessage(map);
+					network.handleMessage(socket, map);
 				}
 			}
 		} catch (IOException e) {
