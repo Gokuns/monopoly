@@ -1,5 +1,6 @@
 package domain.network;
 
+import java.net.Socket;
 import java.util.HashMap;
 
 import com.google.gson.Gson;
@@ -15,7 +16,7 @@ public abstract class Network {
 		this.networkController = networkController;
 	}
 	
-	public void handleMessage(HashMap<String, String> map){
+	public void handleMessage(Socket source, HashMap<String, String> map){
 		networkController.handleMessage(map);
 	}
 }
