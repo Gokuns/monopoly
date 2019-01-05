@@ -163,7 +163,9 @@ public class Board {
 		Square landedOn = currentSquare;
 		setPlayersSquare(currentPlayer,landedOn);		
 		System.out.println("Moved to " + getPlayersSquare(game.getCurrentPlayer()).getName());
-		
+		if(landedOn.isProperty()) {
+			currentPlayer.setEnableBuy(true);
+		}
 		return movedSquares;
 	}
 	

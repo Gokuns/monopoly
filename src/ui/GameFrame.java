@@ -203,6 +203,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 				if(map.get("successfullyBought").equals("false")){
 					JOptionPane.showMessageDialog(GameFrame.this.getContentPane(),"You have insufficient funds to purchase, it may have been bought previously or it is an invalid square to buy.");
 				}
+				buyButton.setEnabled(false);
 			}
 		});
 
@@ -257,9 +258,15 @@ public class GameFrame extends JFrame implements GameStateListener{
 		int playerIndex = Integer.parseInt(map.get("ID"+i));
 		int layer = Integer.parseInt(map.get("layer"+i));
 		int number = Integer.parseInt(map.get("number"+i));
+		String s = map.get("enableBuy");
+		if(GameController.getInstance().getLocalPlayer().getID() == 
+				Integer.parseInt(map.get("ID"+i))) {
+		if(s.equals("true")) {
+			buyButton.setEnabled(true);
+		}
+		}
 		System.out.println(layer + "-" + number);
 		moveUIPiece(playerIndex, layer, number);
-		buyCase(new HashMap<String, String>());
 	}
 
 	private void specialCase(HashMap<String, String> map) {
@@ -532,10 +539,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 		}
 		
 	}
-	
 	private void buyCase(HashMap<String, String> map) {
-		ArrayList<Boolean> states = gameController.getPlayerState(gameController.getLocalPlayer());
-		boolean hasBeenBought = states.get(4);
-		buyButton.setEnabled(!hasBeenBought);
+		buyButton.setEnabled(false);
 	}
 }

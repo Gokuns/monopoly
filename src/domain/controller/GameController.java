@@ -141,13 +141,16 @@ public class GameController {
 	 */
 	private void sendMoveCommand(boolean isLocalCommand) {
 		HashMap<String, String> map = new HashMap<String, String>();
+		Player p = GameState.getInstance().getCurrentPlayer();
 		map.put("type", "move");
-		map.put("ID", GameState.getInstance().getCurrentPlayer().getID()+"");
+		map.put("ID", p.getID()+"");
 		map.put("layer", Board.getInstance().getSquareLayerIndex(
 				GameState.getInstance().getPlayerCurrentSquare())+"");
 		map.put("number", Board.getInstance().getSquareIndex(
 				GameState.getInstance().getPlayerCurrentSquare())+"");
+		map.put("enableBuy", p.isEnableBuy()+"");
 		GameState.getInstance().publishToUIListeners(map);
+
 		if(isLocalCommand) {
 			gameState.publishToNetworkListeners(map);
 		}
@@ -264,7 +267,7 @@ public class GameController {
 	public ArrayList<Boolean> getPlayerState(Player p) {
 		ArrayList<Boolean> result = new ArrayList<Boolean>();
 		boolean hasBeenBought = true;
-		Square currentPlayerSquare = gameState.getCurrentPlayer().getPiece().getCurrentSquare();
+		Square currentPlayerSquare = p.getPiece().getCurrentSquare();
 		if(currentPlayerSquare.isProperty()){
 			Property currentPlayerProperty = (Property) currentPlayerSquare;
 			Player currentPlayerPropertyOwner = currentPlayerProperty.getOwner();
