@@ -304,6 +304,17 @@ public class GameFrame extends JFrame implements GameStateListener{
 		}
 	}
 
+	private void chairPersonCase(HashMap<String, String> map) {
+		String chairPersinCase = "=>";
+		for(String name:map.keySet()){
+			if(!name.equals("type")){
+				String balance = map.get(name);
+				chairPersinCase += " / " + " Balance of " + name + " has been updated to $"  + balance + ".";
+			}
+		}
+		rollLabel.setText(chairPersinCase);
+	}
+	
 	private void jailCase(HashMap<String, String> map) {
 		String jailStr = "=>";
 		for(String name:map.keySet()){
@@ -491,6 +502,9 @@ public class GameFrame extends JFrame implements GameStateListener{
 			break;
 		case "schoolFees":
 			schoolFeesCase(map);
+			break;
+		case "chairPerson":
+			chairPersonCase(map);
 			break;
 		case "goToJail":
 			jailCase(map);
