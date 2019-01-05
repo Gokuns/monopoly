@@ -485,5 +485,6 @@ public class GameFrame extends JFrame implements GameStateListener{
 			dieMap.put("faceValue"+i, map.get("faceValue"+i));
 		}
 		dieCase(dieMap);
+		
 	}
 }
