@@ -426,7 +426,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 	}
 	public void refreshButtons() {
 
-		ArrayList<Boolean> states = gameController.getPlayerState();
+		ArrayList<Boolean> states = gameController.getPlayerState(gameController.getLocalPlayer());
 		boolean rolled = states.get(0);
 		boolean moved = states.get(1);
 		boolean turn = states.get(2);

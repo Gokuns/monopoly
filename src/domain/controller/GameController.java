@@ -242,9 +242,9 @@ public class GameController {
 		localPlayer.setID(ID);
 	}
 	
-	public ArrayList<Boolean> getPlayerState() {
+	public ArrayList<Boolean> getPlayerState(Player p) {
 		ArrayList<Boolean> result = new ArrayList<Boolean>();
-		Player p = gameState.getCurrentPlayer();
+		//Player p = gameState.getCurrentPlayer();
 		result.add(p.isRolled());
 		result.add(p.isMoved());
 		result.add(p.isTurn());
