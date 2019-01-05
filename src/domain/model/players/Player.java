@@ -10,7 +10,9 @@ import domain.model.cards.CommunityChestCard;
 import domain.model.cards.Roll3Card;
 import domain.model.gameHandler.Board;
 import domain.model.squares.Square;
+import domain.model.squares.properties.Deed;
 import domain.model.squares.properties.Property;
+import domain.model.squares.properties.Street;
 
 //import domain.model.squares.specialSquares.ChanceAction;
 //import domain.model.squares.specialSquares.CommunityChest;
@@ -39,6 +41,7 @@ public class Player {
 	private boolean changingLayer; //true when the player is changing the layer.
 	private boolean hasPaused; // true if this player paused the game.
 	private boolean enableBuy;
+	private HashMap<String, Integer> ownedColoredDisctricts= new HashMap<String, Integer>();
 	
 
 	public Player (String name, int ID) {
@@ -62,6 +65,30 @@ public class Player {
 		roll3Cards  = new ArrayList<Roll3Card>();
 		this.changingLayer = false;
 		this.hasPaused=false;
+		initializeOwnedColoredDistricts();
+	}
+	
+	private void initializeOwnedColoredDistricts(){
+		ownedColoredDisctricts.put("Purple", 0);
+		ownedColoredDisctricts.put("Light Blue", 0);
+		ownedColoredDisctricts.put("Magenta", 0);
+		ownedColoredDisctricts.put("Orange", 0);
+		ownedColoredDisctricts.put("Red", 0);
+		ownedColoredDisctricts.put("Yellow", 0);
+		ownedColoredDisctricts.put("Dark Blue", 0);
+		ownedColoredDisctricts.put("Dark Green", 0);
+		ownedColoredDisctricts.put("Dark Orange", 0);
+		ownedColoredDisctricts.put("White", 0);
+		ownedColoredDisctricts.put("Black", 0);
+		ownedColoredDisctricts.put("Grey", 0);
+		ownedColoredDisctricts.put("Pink", 0);
+		ownedColoredDisctricts.put("Light Green ", 0);
+		ownedColoredDisctricts.put("Light Yellow ", 0);
+		ownedColoredDisctricts.put("Turquiose", 0);
+		ownedColoredDisctricts.put("Wine Red", 0);
+		ownedColoredDisctricts.put("Dark Yellow", 0);
+		ownedColoredDisctricts.put("Tan", 0);
+		ownedColoredDisctricts.put("Dark Red", 0);
 	}
 	
 	public boolean buyProperty(){
@@ -79,11 +106,40 @@ public class Player {
 					playerProperty.setOwner(this);
 					this.propList.add(playerProperty);
 					System.out.println(this.name + " has bought " + playerProperty.getName() +  " for $" + playerProperty.getPrice());
+					Street street = (Street) playerProperty;
+					String propertyColor = street.getColor();
+					ownedColoredDisctricts.put(propertyColor, ownedColoredDisctricts.get(propertyColor)+1);
 					return true;
 				}
 			}
 		}
 		return false;
+	}
+	
+	public void buildHouse(){
+		int playerBalance = this.getBalance();
+		Piece playerPiece = this.getPiece();
+		Square playerSquare = playerPiece.getCurrentSquare();
+		if(playerSquare.isProperty()){
+			Property playerProperty = (Property) playerSquare;
+			Player owner = playerProperty.getOwner();
+			Street street = (Street) playerProperty;
+			String propertyColor = street.getColor();
+			if(owner.getName().equals(this.getName())){
+				int referenceColorCount = Board.getInstance().getColoredDistricts().get(propertyColor);
+				int ownedColorCount = this.ownedColoredDisctricts.get(propertyColor);
+				if(referenceColorCount == ownedColorCount){
+					Deed propertyDeed = playerProperty.getDeed();
+					int housePrice = propertyDeed.getValues().get("housePrice");
+					if(playerBalance >= housePrice){
+						playerBalance -= housePrice;
+						this.setBalance(playerBalance);
+						int currentHouseCount = street.getHouseCount();
+						street.setHouseCount(currentHouseCount + 1);
+					}
+				}
+			}
+		}
 	}
 	
 	public String intToString(int i) {

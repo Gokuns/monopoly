@@ -1,6 +1,7 @@
 package domain.model.gameHandler;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import domain.model.dice.Cup;
@@ -25,14 +26,24 @@ public class Board {
 	private SquareIterator iter;
 	private int poolBalance;
 	private LayerFactory layerFactory = LayerFactory.getInstance();
+	private HashMap<String, Integer> coloredDistricts= new HashMap<String, Integer>();
 	
 	/**
 	 * Constructor
 	 */
 	private Board() {
 		initiateSquares(this.Squares);
+		intializeColoredDistricts();
 	}
 	
+	public HashMap<String, Integer> getColoredDistricts() {
+		return coloredDistricts;
+	}
+
+	public void setColoredDistricts(HashMap<String, Integer> coloredDistricts) {
+		this.coloredDistricts = coloredDistricts;
+	}
+
 	/**
 	 * Singleton board, getInstance method.
 	 * @return if its not created before, creates a new one
@@ -64,6 +75,29 @@ public class Board {
 		Squares.add(layerTwo);
 		Squares.add(layerThree);
 		
+	}
+	
+	private void intializeColoredDistricts(){
+		coloredDistricts.put("Purple", 2);
+		coloredDistricts.put("Light Blue", 3);
+		coloredDistricts.put("Magenta", 3);
+		coloredDistricts.put("Orange", 3);
+		coloredDistricts.put("Red", 3);
+		coloredDistricts.put("Yellow", 3);
+		coloredDistricts.put("Dark Blue", 2);
+		coloredDistricts.put("Dark Green", 3);
+		coloredDistricts.put("Dark Orange", 3);
+		coloredDistricts.put("White", 3);
+		coloredDistricts.put("Black", 3);
+		coloredDistricts.put("Grey", 3);
+		coloredDistricts.put("Pink", 3);
+		coloredDistricts.put("Light Green ", 4);
+		coloredDistricts.put("Light Yellow ", 4);
+		coloredDistricts.put("Turquiose", 4);
+		coloredDistricts.put("Wine Red", 4);
+		coloredDistricts.put("Dark Yellow", 4);
+		coloredDistricts.put("Tan", 4);
+		coloredDistricts.put("Dark Red", 3);
 	}
 	
 	/**
