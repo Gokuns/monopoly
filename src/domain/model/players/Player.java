@@ -9,6 +9,7 @@ import domain.model.cards.ChanceCard;
 import domain.model.cards.CommunityChestCard;
 import domain.model.cards.Roll3Card;
 import domain.model.gameHandler.Board;
+import domain.model.squares.Square;
 import domain.model.squares.properties.Property;
 
 //import domain.model.squares.specialSquares.ChanceAction;
@@ -60,6 +61,27 @@ public class Player {
 		roll3Cards  = new ArrayList<Roll3Card>();
 		this.changingLayer = false;
 		this.hasPaused=false;
+	}
+	
+	public boolean buyProperty(){
+		int playerBalance = this.getBalance();
+		Piece playerPiece = this.getPiece();
+		Square playerSquare = playerPiece.getCurrentSquare();
+		if(playerSquare.isProperty()){
+			Property playerProperty = (Property) playerSquare;
+			Player propertyOwner = playerProperty.getOwner();
+			if(propertyOwner == null){
+				int propertyPrice = playerProperty.getPrice();
+				if(playerBalance >= propertyPrice){
+					playerBalance -= propertyPrice;
+					this.setBalance(playerBalance);
+					playerProperty.setOwner(this);
+					this.propList.add(playerProperty);
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 	
 	public String intToString(int i) {
