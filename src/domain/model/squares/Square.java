@@ -11,6 +11,7 @@ public class Square {
 	private boolean isTransitOuter = false;
 	private boolean isTransitInner = false;
 	private boolean isSpecialSquare = false;
+	private boolean isProperty = false;
 
 	private boolean isTransit = false;
 
@@ -124,6 +125,14 @@ public class Square {
 	@Override
 	public String toString() {
 		return name;
+	}
+
+	public boolean isProperty() {
+		return isProperty;
+	}
+
+	public void setProperty(boolean isProperty) {
+		this.isProperty = isProperty;
 	}
 
 }

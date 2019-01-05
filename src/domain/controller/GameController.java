@@ -12,8 +12,10 @@ import domain.model.gameHandler.GameLoader;
 import domain.model.gameHandler.GameSaver;
 import domain.model.gameHandler.GameState;
 import domain.model.gameHandler.SaveData;
+import domain.model.players.Piece;
 import domain.model.players.Player;
 import domain.model.squares.Square;
+import domain.model.squares.properties.Property;
 
 /**
  * @Overview This class is the first class after UI Layer,
@@ -35,6 +37,21 @@ public class GameController {
 			controller = new GameController();
 		}
 		return controller;
+	}
+	
+	public HashMap<String, String> buyProperty(){
+		Player currentPlayer = gameState.getCurrentPlayer();
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("type", "buy");
+		map.put("successfullyBought", "false");
+		boolean successfullyBought = currentPlayer.buyProperty();
+		if(successfullyBought){
+			map.put("successfullyBought", "true");
+		}
+		gameState.publishToNetworkListeners(map);
+		gameState.publishToUIListeners(map);
+		
+		return map;
 	}
 
 	public void roll() {
@@ -223,10 +240,12 @@ public class GameController {
 	public ArrayList<Boolean> getPlayerState() {
 		ArrayList<Boolean> result = new ArrayList<Boolean>();
 		Player p = gameState.getCurrentPlayer();
+		boolean hasBeenBought = (((Property) p.getPiece().getCurrentSquare()).getOwner() != null);
 		result.add(p.isRolled());
 		result.add(p.isMoved());
 		result.add(p.isTurn());
 		result.add(p.hasPaused());
+		result.add(hasBeenBought);
 		
 		return result;
 		

@@ -14,6 +14,7 @@ public abstract class Property extends Square {
 		this.price = price;
 		this.owner = null;
 		this.isMortgaged = false;
+		setProperty(true);
 		this.deed = deed;
 	}
 

@@ -48,6 +48,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 	private JButton loadButton;
 	private JButton pauseButton;
 	private JButton resumeButton;
+	private JButton buyButton;
 	
 	private Image dieImage1;
 	private Image dieImage2;
@@ -122,10 +123,6 @@ public class GameFrame extends JFrame implements GameStateListener{
 		playerLabel.setBounds(0, 0, 300, 100);
 		panel.add(playerLabel);
 
-		endTurnButton = new JButton("End Turn");
-		endTurnButton.setBounds(0, 225, 300, 40);
-		panel.add(endTurnButton);
-
 		rollButton = new JButton("Roll");
 		rollButton.setBounds(0, 119, 300, 40);
 		panel.add(rollButton);
@@ -134,13 +131,9 @@ public class GameFrame extends JFrame implements GameStateListener{
 		moveButton.setBounds(0, 172, 300, 40);
 		panel.add(moveButton);
 		
-		saveButton = new JButton("Save");
-		saveButton.setBounds(0, 384, 300, 40);
-		panel.add(saveButton);
-		
-		loadButton = new JButton("Load");
-		loadButton.setBounds(0, 437, 300, 40);
-		panel.add(loadButton);
+		endTurnButton = new JButton("End Turn");
+		endTurnButton.setBounds(0, 225, 300, 40);
+		panel.add(endTurnButton);
 		
 		pauseButton = new JButton("Pause");
 		pauseButton.setBounds(0, 278, 300, 40);
@@ -150,6 +143,17 @@ public class GameFrame extends JFrame implements GameStateListener{
 		resumeButton.setBounds(0, 331, 300, 40);
 		panel.add(resumeButton);
 		
+		saveButton = new JButton("Save");
+		saveButton.setBounds(0, 384, 300, 40);
+		panel.add(saveButton);
+		
+		loadButton = new JButton("Load");
+		loadButton.setBounds(0, 437, 300, 40);
+		panel.add(loadButton);
+		
+		buyButton = new JButton("Buy");
+		buyButton.setBounds(0, 490, 300, 40);
+		panel.add(buyButton);
 		
 
 		endTurnButton.addActionListener(new ActionListener() {
@@ -198,6 +202,17 @@ public class GameFrame extends JFrame implements GameStateListener{
 		resumeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 					gameController.resumeGame();
+			}
+		});
+		
+		buyButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				HashMap<String, String> map = gameController.buyProperty();
+				if(map.get("successfullyBought").equals("false")){
+					JOptionPane.showMessageDialog(GameFrame.this.getContentPane(),"You have insufficient funds to purchase or it may have been bought previously.");
+				}
 			}
 		});
 
@@ -431,6 +446,8 @@ public class GameFrame extends JFrame implements GameStateListener{
 		boolean moved = states.get(1);
 		boolean turn = states.get(2);
 		boolean paused = states.get(3);
+		boolean hasBeenBought = states.get(4);
+		
 		rollButton.setEnabled(!rolled);
 		moveButton.setEnabled(rolled && !moved);
 		endTurnButton.setEnabled(moved && turn);
@@ -438,6 +455,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 		resumeButton.setEnabled(paused);
 		saveButton.setEnabled(paused);
 		loadButton.setEnabled(paused);
+		buyButton.setEnabled(!hasBeenBought);
 	}
 	
 	@Override
@@ -446,6 +464,9 @@ public class GameFrame extends JFrame implements GameStateListener{
 		switch(type){
 		case "roll":
 			dieCase(map); 
+			break;
+		case "buy":
+			buyCase(map);
 			break;
 		case "roll3":
 			roll3Case(map);
@@ -514,5 +535,9 @@ public class GameFrame extends JFrame implements GameStateListener{
 	private void loadCase(HashMap<String, String> map) {
 		refreshButtons();
 		
+	}
+	
+	private void buyCase(HashMap<String, String> map) {
+		refreshButtons();
 	}
 }
