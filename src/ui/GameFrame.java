@@ -22,6 +22,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import domain.controller.GameController;
+import domain.model.cards.communityChestCards.OpeningNightTickets;
 import domain.model.gameHandler.GameState;
 import domain.model.gameHandler.GameStateListener;
 
@@ -305,14 +306,25 @@ public class GameFrame extends JFrame implements GameStateListener{
 	}
 
 	private void chairPersonCase(HashMap<String, String> map) {
-		String chairPersinCase = "=>";
+		String chairPersonStr = "=>";
 		for(String name:map.keySet()){
 			if(!name.equals("type")){
 				String balance = map.get(name);
-				chairPersinCase += " / " + " Balance of " + name + " has been updated to $"  + balance + ".";
+				chairPersonStr += " / " + " Balance of " + name + " has been updated to $"  + balance + ".";
 			}
 		}
-		rollLabel.setText(chairPersinCase);
+		rollLabel.setText(chairPersonStr);
+	}
+	
+	private void openingNightTicketsCase(HashMap<String, String> map) {
+		String openingNightTicketsStr = "=>";
+		for(String name:map.keySet()){
+			if(!name.equals("type")){
+				String balance = map.get(name);
+				openingNightTicketsStr += " / " + " Balance of " + name + " has been updated to $"  + balance + ".";
+			}
+		}
+		rollLabel.setText(openingNightTicketsStr);
 	}
 	
 	private void jailCase(HashMap<String, String> map) {
@@ -494,20 +506,23 @@ public class GameFrame extends JFrame implements GameStateListener{
 		case "roll3":
 			roll3Case(map);
 			break;
-		case "payHospitalBill":
-			payHospitalCase(map);
-			break;
-		case "trafficTicket":
-			trafficTicketCase(map);
-			break;
-		case "schoolFees":
-			schoolFeesCase(map);
-			break;
 		case "chairPerson":
 			chairPersonCase(map);
 			break;
 		case "goToJail":
 			jailCase(map);
+			break;
+		case "schoolFees":
+			schoolFeesCase(map);
+			break;
+		case "trafficTicket":
+			trafficTicketCase(map);
+			break;
+		case "payHospitalBill":
+			payHospitalCase(map);
+			break;
+		case "openingNightTickets":
+			openingNightTicketsCase(map);
 			break;
 		case "inheritHundredDollars":
 			inheritHundredDollarsCase(map);

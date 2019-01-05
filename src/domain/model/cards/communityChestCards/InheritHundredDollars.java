@@ -18,7 +18,7 @@ public class InheritHundredDollars extends CommunityChestCard{
 		// TODO Auto-generated method stub
 		GameState game = GameState.getInstance();
 		
-		int newPlayerBalance = currentPlayer.getBalance() - 100;
+		int newPlayerBalance = currentPlayer.getBalance() + 100;
 		
 		HashMap<String, String> mapForUITransfer = new HashMap<String, String>();
 		mapForUITransfer.put("type", "inheritHundredDollars");
