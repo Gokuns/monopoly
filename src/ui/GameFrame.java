@@ -156,7 +156,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 		buyButton.setBounds(0, 490, 300, 40);
 		panel.add(buyButton);
 		
-		buildHouseButton = new JButton("Buy");
+		buildHouseButton = new JButton("Build House");
 		buildHouseButton.setBounds(0, 543, 300, 40);
 		panel.add(buyButton);
 		
