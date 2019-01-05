@@ -535,6 +535,8 @@ public class GameFrame extends JFrame implements GameStateListener{
 	}
 	
 	private void buyCase(HashMap<String, String> map) {
-		refreshButtons();
+		ArrayList<Boolean> states = gameController.getPlayerState(gameController.getLocalPlayer());
+		boolean hasBeenBought = states.get(4);
+		buyButton.setEnabled(!hasBeenBought);
 	}
 }
