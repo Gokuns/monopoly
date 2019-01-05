@@ -39,6 +39,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 	private Animator animator;
 	private BoardLayers boardLayers;
 	private JLabel playerLabel;
+	private JLabel localPlayerLabel;
 	private JLabel rollLabel;
 
 	private JButton rollButton;
@@ -116,6 +117,12 @@ public class GameFrame extends JFrame implements GameStateListener{
 		panel.add(picLabel1);
 		panel.add(picLabel2);
 		panel.add(picLabel3);
+		
+		localPlayerLabel = new JLabel("You are: " +gameController.getLocalPlayer().getName());
+		localPlayerLabel.setHorizontalAlignment(SwingConstants.LEFT);
+		localPlayerLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		localPlayerLabel.setBounds(0, -40, 300, 100);
+		panel.add(localPlayerLabel);
 		
 		playerLabel = new JLabel("Player X");
 		playerLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -277,7 +284,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 
 	private void gameStartedCase(HashMap<String, String> map) {
 		String currentPlayerStr = map.get("currentPlayer");
-		playerLabel.setText(currentPlayerStr);
+		playerLabel.setText(currentPlayerStr+"'s Turn!");
 		initializeBalls();
 		if(GameController.getInstance().getLocalPlayer().getID() == 
 				Integer.parseInt(map.get("currentPlayerID"))) {
@@ -304,7 +311,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 
 	private void endTurnCase(HashMap<String, String> map) {
 		String endTurnStr = map.get("currentPlayer");
-		playerLabel.setText(endTurnStr);
+		playerLabel.setText(endTurnStr+"'s Turn!");
 		int localID = gameController.getLocalPlayer().getID();
 		int currentID = Integer.parseInt(map.get("currentPlayerID"));
 		if(localID == currentID) {
