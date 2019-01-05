@@ -92,6 +92,22 @@ public class GameController {
 		return map;
 	}
 	
+	public ArrayList<int[]> getMoveSquares() {
+		ArrayList<Square> squareList = board.movePiece(gameState.getCurrentPlayer());
+		ArrayList<int[]> squareIntList = new ArrayList<int[]>(); 
+		for(int i=0; i<squareList.size();i++){
+			int layer = board.getSquareLayerIndex(squareList.get(i));
+			int index = board.getSquareIndex(squareList.get(i));
+			int[] intArray = new int[2];
+			intArray[0] = layer;
+			intArray[1] = index;
+			squareIntList.add(intArray);
+			}
+		return squareIntList;
+	}
+	
+	
+	
 	/**
 	 * @param map The String to String HashMap containing the message
 	 * @modifies orderedPlayerList and currentPlayer

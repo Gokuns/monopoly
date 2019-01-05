@@ -5,6 +5,8 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -18,6 +20,10 @@ public class Ball extends JPanel implements ActionListener, Drawable{
 	private int xLimit, yLimit;
 	private StraightLinePath myPath;
 	private Point pos;
+	private int pathNumber = 1;
+	private int numberOfPaths;
+	private ArrayList<Point> coordinateList;
+	private int animationSlowness;
 	
 	
 	public Ball(String name, int color, int xStart, int yStart) {
@@ -59,14 +65,19 @@ public class Ball extends JPanel implements ActionListener, Drawable{
 	       
 	    }
 		
-	public void draw(int xLimit, int yLimit, int animationSlowness) {
+	public void draw(ArrayList<Point> coordinateList, int animationSlowness) {
 		
 		//setLocation(xLimit, yLimit);
-		this.xLimit = xLimit;
-		this.yLimit = yLimit;
+		this.animationSlowness = animationSlowness;
+		this.coordinateList = coordinateList;
+		this.numberOfPaths = coordinateList.size();
+		this.xLimit = (int) coordinateList.get(0).getX();
+		this.yLimit = (int) coordinateList.get(0).getY();
 		myPath = new StraightLinePath(xStart, yStart, xLimit, yLimit, 50);
 		tm = new Timer(animationSlowness, this);
 		tm.start();
+			
+		
 	}
 
 	
@@ -97,11 +108,25 @@ public class Ball extends JPanel implements ActionListener, Drawable{
 		setLocation((int)pos.getX(), (int)pos.getY());
 		
 		
-		if (! myPath.hasMoreSteps()) {
-			xStart = xLimit;
-			yStart = yLimit;
-			tm.stop();
-	        }
+			if (! myPath.hasMoreSteps()) {
+				xStart = xLimit;
+				yStart = yLimit;
+				tm.stop();
+				if(pathNumber <= numberOfPaths) {
+					pathNumber++;
+					if(pathNumber > numberOfPaths) {
+						pathNumber = 1;
+					}
+					else {
+						this.xLimit = (int) coordinateList.get(pathNumber-1).getX();
+						this.yLimit = (int) coordinateList.get(pathNumber-1).getY();
+						myPath = new StraightLinePath(xStart, yStart, xLimit, yLimit, 50);
+						tm = new Timer(animationSlowness, this);
+						tm.start();
+					}
+				}
+			
+		}
 	}
 	
 }

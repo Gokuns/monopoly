@@ -3,6 +3,7 @@ package ui;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,6 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -22,7 +24,11 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import domain.controller.GameController;
+<<<<<<< HEAD
 import domain.model.cards.communityChestCards.OpeningNightTickets;
+=======
+import domain.model.gameHandler.Board;
+>>>>>>> refs/remotes/origin/animation
 import domain.model.gameHandler.GameState;
 import domain.model.gameHandler.GameStateListener;
 
@@ -262,12 +268,25 @@ public class GameFrame extends JFrame implements GameStateListener{
 		});
 	}
 
-	private void moveUIPiece(int playerIndex, int layer, int number) {
-		SquareCoordinates current = boardLayers.getSquareCoordinates(layer, number);
-		int x = current.getX() - 45;
-		int y = current.getY() - 25;
-		animator.animate(balls.get(playerIndex),x + playerIndex * 6, y, 10);
+	private void moveUIPiece(int playerIndex) {
+		ArrayList<int[]> squareList = gameController.getMoveSquares();
+		//System.out.println(squareList);
+		ArrayList<Point> coordinateList = new ArrayList<Point>();
+		for(int i=0;i<squareList.size();i++){
+			int layer = squareList.get(i)[0];
+			int number = squareList.get(i)[1];
+			System.out.println(layer);
+			System.out.println(number);
+			SquareCoordinates current = boardLayers.getSquareCoordinates(layer, number);
+			int x = current.getX() - 45 + playerIndex * 6;
+			int y = current.getY() - 25;
+			Point a = new Point(x,y);
+			coordinateList.add(a);
+		}
+		//System.out.println(coordinateList);
+		animator.animate(balls.get(playerIndex),coordinateList, 5);
 	}
+	
 
 
 
@@ -285,6 +304,39 @@ public class GameFrame extends JFrame implements GameStateListener{
 			if(isEnableBuildHouse.equals("true")){
 				buildHouseButton.setEnabled(true);
 			}
+<<<<<<< HEAD
+=======
+			break;
+		case "gameStarted":
+			String currentPlayerStr = map.get("currentPlayer");
+			playerLabel.setText(currentPlayerStr);
+			initializeBalls();
+			if(GameController.getInstance().getLocalPlayer().getID() == 
+					Integer.parseInt(map.get("currentPlayerID"))) {
+				rollButton.setEnabled(true);
+				moveButton.setEnabled(false);
+				endTurnButton.setEnabled(false);
+			} else
+			{
+				rollButton.setEnabled(false);
+				moveButton.setEnabled(false);
+				endTurnButton.setEnabled(false);
+			}
+			break;
+		case "special":
+			
+			JOptionPane.showMessageDialog(this.getContentPane(),
+				    map.get("description"));
+			
+			break;
+		case "move":
+			
+			int playerIndex = Integer.parseInt(map.get("ID"));
+			int layer = Integer.parseInt(map.get("layer"));
+			int number = Integer.parseInt(map.get("number"));
+			System.out.println(layer + "-" + number);
+			moveUIPiece(playerIndex);
+>>>>>>> refs/remotes/origin/animation
 		}
 		System.out.println(layer + "-" + number);
 		moveUIPiece(playerIndex, layer, number);
