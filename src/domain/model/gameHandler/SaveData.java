@@ -70,6 +70,7 @@ public class SaveData implements Serializable{
 		    player.addProperty("rolledMrMonopoly", p.isRolledMrMonopoly());
 		    player.addProperty("rolledBus", p.isRolledBus());
 		    player.addProperty("hasPaused", p.hasPaused());
+		    player.addProperty("enableBuy",  p.isEnableBuy());
 		    JsonArray chance = new JsonArray();
 		    for(ChanceCard c :p.getChanceCards()) {
 		    	props.add(c.getName());
@@ -129,6 +130,7 @@ public class SaveData implements Serializable{
 			player.setRolledMrMonopoly(p.get("rolledMrMonopoly").getAsBoolean());
 			player.setRolledBus(p.get("rolledBus").getAsBoolean());
 			player.setHasPaused(p.get("hasPaused").getAsBoolean());
+			player.setEnableBuy(p.get("enableBuy").getAsBoolean());
 			
 			
 			JsonArray chances = p.get("chance").getAsJsonArray();
