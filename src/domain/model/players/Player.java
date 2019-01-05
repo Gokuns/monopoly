@@ -81,7 +81,7 @@ public class Player {
 		ownedColoredDisctricts.put("Dark Orange", 0);
 		ownedColoredDisctricts.put("White", 0);
 		ownedColoredDisctricts.put("Black", 0);
-		ownedColoredDisctricts.put("Grey", 0);
+		ownedColoredDisctricts.put("Gray", 0);
 		ownedColoredDisctricts.put("Pink", 0);
 		ownedColoredDisctricts.put("Light Green ", 0);
 		ownedColoredDisctricts.put("Light Yellow ", 0);

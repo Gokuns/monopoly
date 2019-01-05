@@ -122,9 +122,9 @@ public class SquareFactory {
 		} else if (name.equals("Kirby Drive") || name.equals("Cullen Boulevard")) {
 			result = new Street(name, 180, "A nice place to buy.", "Light Yellow", deedFactory.createDeed(name));
 		} else if (name.equals("Dekalb Avenue") || name.equals("Andrew Young Intl Boulevard")) {
-			result = new Street(name, 210, "A nice place to buy.", "Turqoise", deedFactory.createDeed(name));
+			result = new Street(name, 210, "A nice place to buy.", "Turquiose", deedFactory.createDeed(name));
 		} else if (name.equals("Decatur Street") || name.equals("Peachtree Street")) {
-			result = new Street(name, 240, "A nice place to buy.", "Turqoise", deedFactory.createDeed(name));
+			result = new Street(name, 240, "A nice place to buy.", "Turquiose", deedFactory.createDeed(name));
 		} else if (name.equals("Randolph Street") || name.equals("Lake Shore Drive")) {
 			result = new Street(name, 270, "A nice place to buy.", "Wine Red", deedFactory.createDeed(name));
 		} else if (name.equals("Wacker Drive") || name.equals("Michigan Avenue")) {

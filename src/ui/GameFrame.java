@@ -216,7 +216,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				HashMap<String, String> map = gameController.buyProperty();
+				HashMap<String, String> map = gameController.buildHouse();
 				if(map.get("successfullyBuilt").equals("false")){
 					JOptionPane.showMessageDialog(GameFrame.this.getContentPane(),"You can't build a house in this square since you don't have sufficient funds to build a house, it's an invalid square, you don't own the square or you don't own the entire colored district.");
 				}
@@ -275,8 +275,8 @@ public class GameFrame extends JFrame implements GameStateListener{
 		int playerIndex = Integer.parseInt(map.get("ID"+i));
 		int layer = Integer.parseInt(map.get("layer"+i));
 		int number = Integer.parseInt(map.get("number"+i));
-		String isEnableBuy = map.get("enableBuy");
-		String isEnableBuildHouse = map.get("enableBuildHouse");
+		String isEnableBuy = map.get("enableBuy"+i);
+		String isEnableBuildHouse = map.get("enableBuildHouse"+i);
 		if(GameController.getInstance().getLocalPlayer().getID() == 
 				Integer.parseInt(map.get("ID"+i))) {
 			if(isEnableBuy.equals("true")) {

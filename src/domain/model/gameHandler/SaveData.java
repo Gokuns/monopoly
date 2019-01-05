@@ -18,7 +18,9 @@ import domain.model.cards.Roll3Card;
 import domain.model.dice.Cup;
 import domain.model.dice.FaceValue;
 import domain.model.players.Player;
+import domain.model.squares.Square;
 import domain.model.squares.properties.Property;
+import domain.model.squares.properties.Street;
 
 public class SaveData implements Serializable{
 	private static SaveData data;
@@ -71,6 +73,7 @@ public class SaveData implements Serializable{
 		    player.addProperty("rolledBus", p.isRolledBus());
 		    player.addProperty("hasPaused", p.hasPaused());
 		    player.addProperty("enableBuy",  p.isEnableBuy());
+		    player.addProperty("enableBuildHouse",  p.isEnableBuildHouse());
 		    JsonArray chance = new JsonArray();
 		    for(ChanceCard c :p.getChanceCards()) {
 		    	props.add(c.getName());
@@ -114,12 +117,13 @@ public class SaveData implements Serializable{
 			JsonArray props = p.get("props").getAsJsonArray();
 			ArrayList<Property> prLst = new ArrayList<>();
 			for(JsonElement a:props) {
-				JsonObject prop = (JsonObject) a;
-				String nameOfProp = prop.getAsString();
-				prLst.add((Property) bd.findSquare(nameOfProp, bd.getSquares()));
+				String propName = a.getAsString();
+				Street sq = (Street) bd.findSquare(propName, bd.getSquares());
+				sq.setOwner(player);
+				prLst.add(sq);
 			}
-			player.propertyList2ownedColoredDistricts();
 			player.setPrList(prLst);
+			player.propertyList2ownedColoredDistricts();
 			player.setTurn(p.get("isTurn").getAsBoolean());
 			player.setInJail(p.get("inJail").getAsBoolean());
 			player.setRolledDouble(p.get("rolledDouble").getAsBoolean());
@@ -132,6 +136,7 @@ public class SaveData implements Serializable{
 			player.setRolledBus(p.get("rolledBus").getAsBoolean());
 			player.setHasPaused(p.get("hasPaused").getAsBoolean());
 			player.setEnableBuy(p.get("enableBuy").getAsBoolean());
+			player.setEnableBuildHouse(p.get("enableBuildHouse").getAsBoolean());
 			
 			
 			
