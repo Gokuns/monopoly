@@ -77,6 +77,7 @@ public class Player {
 					this.setBalance(playerBalance);
 					playerProperty.setOwner(this);
 					this.propList.add(playerProperty);
+					System.out.println(this.name + " has bought " + playerProperty.getName() +  " for $" + playerProperty.getPrice());
 					return true;
 				}
 			}
@@ -278,6 +279,19 @@ public class Player {
 	 */
 	public void setHasPaused(boolean hasPaused) {
 		this.hasPaused = hasPaused;
+	}
+	
+	public void resetState() {
+		setRolled(false);
+		setMoved(false);
+		setChangingLayer(false);
+		setDoubleRollCounter(0);
+		setHasPaused(false);
+		setRolledBus(false);
+		setRolledDouble(false);
+		setRolledMrMonopoly(false);
+		setRolledTriple(false);
+		setTurn(false);
 	}
 	
 	

@@ -201,7 +201,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 			public void actionPerformed(ActionEvent e) {
 				HashMap<String, String> map = gameController.buyProperty();
 				if(map.get("successfullyBought").equals("false")){
-					JOptionPane.showMessageDialog(GameFrame.this.getContentPane(),"You have insufficient funds to purchase or it may have been bought previously.");
+					JOptionPane.showMessageDialog(GameFrame.this.getContentPane(),"You have insufficient funds to purchase, it may have been bought previously or it is an invalid square to buy.");
 				}
 			}
 		});
@@ -259,6 +259,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 		int number = Integer.parseInt(map.get("number"+i));
 		System.out.println(layer + "-" + number);
 		moveUIPiece(playerIndex, layer, number);
+		buyCase(new HashMap<String, String>());
 	}
 
 	private void specialCase(HashMap<String, String> map) {
@@ -433,12 +434,11 @@ public class GameFrame extends JFrame implements GameStateListener{
 	}
 	public void refreshButtons() {
 
-		ArrayList<Boolean> states = gameController.getPlayerState(gameController.getLocalPlayer());
+		ArrayList<Boolean> states = gameController.getPlayerState(gameState.getCurrentPlayer());
 		boolean rolled = states.get(0);
 		boolean moved = states.get(1);
 		boolean turn = states.get(2);
 		boolean paused = states.get(3);
-		boolean hasBeenBought = states.get(4);
 		
 		rollButton.setEnabled(!rolled);
 		moveButton.setEnabled(rolled && !moved);
@@ -447,7 +447,6 @@ public class GameFrame extends JFrame implements GameStateListener{
 		resumeButton.setEnabled(paused);
 		saveButton.setEnabled(paused);
 		loadButton.setEnabled(paused);
-		buyButton.setEnabled(!hasBeenBought);
 
 	}
 	
