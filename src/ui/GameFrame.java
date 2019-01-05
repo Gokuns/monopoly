@@ -103,13 +103,13 @@ public class GameFrame extends JFrame implements GameStateListener{
 		picLabel2 = new JLabel(new ImageIcon(dieImage2));
 		picLabel3 = new JLabel(new ImageIcon(dieImage3));
 		
-		picLabel1.setBounds(60, 66, 50, 50);
-		picLabel2.setBounds(120, 66, 50, 50);
-		picLabel3.setBounds(180, 66, 50, 50);
+		picLabel1.setBounds(153, 90, 50, 50);
+		picLabel2.setBounds(213, 90, 50, 50);
+		picLabel3.setBounds(273, 90, 50, 50);
 		
 		System.out.println(monopolyLogoPanel.getWidth() +" , " + monopolyLogoPanel.getHeight());
 		panel = new JPanel();
-		panel.setBounds(860, 20, 300, 700);
+		panel.setBounds(770, 20, 480, 700);
 		contentPane.add(panel);
 		panel.setLayout(null);
 
@@ -120,40 +120,41 @@ public class GameFrame extends JFrame implements GameStateListener{
 		playerLabel = new JLabel("Player X");
 		playerLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		playerLabel.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		playerLabel.setBounds(0, 0, 300, 100);
+		playerLabel.setBounds(93, 0, 300, 100);
 		panel.add(playerLabel);
 
 		rollButton = new JButton("Roll");
-		rollButton.setBounds(0, 119, 300, 40);
+		rollButton.setBounds(0, 160, 100, 40);
 		panel.add(rollButton);
 
 		moveButton = new JButton("Move");
-		moveButton.setBounds(0, 172, 300, 40);
+		moveButton.setBounds(0, 210, 100, 40);
 		panel.add(moveButton);
 		
+		buyButton = new JButton("Buy");
+		buyButton.setBounds(120, 160, 100, 40);
+		panel.add(buyButton);
+		
 		endTurnButton = new JButton("End Turn");
-		endTurnButton.setBounds(0, 225, 300, 40);
+		endTurnButton.setBounds(120, 210, 100, 40);
 		panel.add(endTurnButton);
 		
 		pauseButton = new JButton("Pause");
-		pauseButton.setBounds(0, 278, 300, 40);
+		pauseButton.setBounds(260, 160, 100, 40);
 		panel.add(pauseButton);
 		
 		resumeButton = new JButton("Resume");
-		resumeButton.setBounds(0, 331, 300, 40);
+		resumeButton.setBounds(260, 210, 100, 40);
 		panel.add(resumeButton);
 		
 		saveButton = new JButton("Save");
-		saveButton.setBounds(0, 384, 300, 40);
+		saveButton.setBounds(380, 160, 100, 40);
 		panel.add(saveButton);
 		
 		loadButton = new JButton("Load");
-		loadButton.setBounds(0, 437, 300, 40);
+		loadButton.setBounds(380, 210, 100, 40);
 		panel.add(loadButton);
 		
-		buyButton = new JButton("Buy");
-		buyButton.setBounds(0, 490, 300, 40);
-		panel.add(buyButton);
 		
 
 		endTurnButton.addActionListener(new ActionListener() {
@@ -210,7 +211,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 		rollLabel = new JLabel("You rolled: ");
 		rollLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		rollLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		rollLabel.setBounds(0, 278, 300, 40);
+		rollLabel.setBounds(93, 60, 300, 40);
 		panel.add(rollLabel);
 
 		rollButton.addActionListener(new ActionListener() {
