@@ -261,8 +261,14 @@ public class GameController {
 	
 	public ArrayList<Boolean> getPlayerState(Player p) {
 		ArrayList<Boolean> result = new ArrayList<Boolean>();
+		boolean hasBeenBought = true;
+		Square currentPlayerSquare = gameState.getCurrentPlayer().getPiece().getCurrentSquare();
+		if(currentPlayerSquare.isProperty()){
+			Property currentPlayerProperty = (Property) currentPlayerSquare;
+			Player currentPlayerPropertyOwner = currentPlayerProperty.getOwner();
+			hasBeenBought = (currentPlayerPropertyOwner != null);
+		}
 		
-		boolean hasBeenBought = (((Property)gameState.getCurrentPlayer().getPiece().getCurrentSquare()).getOwner() != null);
 		result.add(p.isRolled());
 		result.add(p.isMoved());
 		result.add(p.isTurn());
