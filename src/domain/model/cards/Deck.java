@@ -1,6 +1,7 @@
 package domain.model.cards;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import domain.model.cards.chanceCards.GoToJailCard;
@@ -30,6 +31,7 @@ public class Deck {
 		}else if(type.equals("roll3")){
 			initializeRoll3Cards(cards);
 		}
+		Collections.shuffle(cards);//shuffle cards so as to obtain a randomized drawing order...
 	}
 	
 	private void initializeCommunityCards(List<Card> cards){//creating & adding a sample community chest card to the deck
@@ -39,6 +41,7 @@ public class Deck {
 		cards.add(new DoctorsFee("doctorsFeeCard", "Pay $50 to the pool."));
 		cards.add(new InheritHundredDollars("inheritHundredDollarsCard", "Collect $100 from the bank."));
 	
+		
 	}
 	
 	private void initializeChanceCards(List<Card> cards){//creating & adding a sample chance action card to the deck
