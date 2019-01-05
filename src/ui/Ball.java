@@ -85,6 +85,10 @@ public class Ball extends JPanel implements ActionListener, Drawable{
 	public void setColor(int color) {
 		this.color = color;
 	}
+	
+	public Timer getTimer() {
+		return tm;
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
