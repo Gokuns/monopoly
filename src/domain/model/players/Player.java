@@ -42,7 +42,7 @@ public class Player {
 	private boolean hasPaused; // true if this player paused the game.
 	private boolean enableBuy;
 	private boolean enableBuildHouse;
-	private HashMap<String, Integer> ownedColoredDisctricts= new HashMap<String, Integer>();
+	private HashMap<String, Integer> ownedColoredDisctricts = new HashMap<String, Integer>();
 	
 
 	public Player (String name, int ID) {
@@ -90,6 +90,20 @@ public class Player {
 		ownedColoredDisctricts.put("Dark Yellow", 0);
 		ownedColoredDisctricts.put("Tan", 0);
 		ownedColoredDisctricts.put("Dark Red", 0);
+	}
+	
+	private HashMap<String, Integer> propertyList2ownedColoredDistricts(){
+		HashMap<String, Integer> ownedColoredDistrictMap = new HashMap<String, Integer>();
+		for(Property prop:propList){
+			Street street = (Street) prop;
+			String propColor = street.getColor();
+			if(!ownedColoredDistrictMap.containsKey(propColor)){
+				ownedColoredDistrictMap.put(propColor, 1);
+			}else{
+				ownedColoredDistrictMap.put(propColor, ownedColoredDistrictMap.get(propColor)+1);
+			}
+		}
+		return ownedColoredDistrictMap;
 	}
 	
 	public boolean buyProperty(){
