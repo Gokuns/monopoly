@@ -275,12 +275,16 @@ public class GameFrame extends JFrame implements GameStateListener{
 		int playerIndex = Integer.parseInt(map.get("ID"+i));
 		int layer = Integer.parseInt(map.get("layer"+i));
 		int number = Integer.parseInt(map.get("number"+i));
-		String s = map.get("enableBuy");
+		String isEnableBuy = map.get("enableBuy");
+		String isEnableBuildHouse = map.get("enableBuildHouse");
 		if(GameController.getInstance().getLocalPlayer().getID() == 
 				Integer.parseInt(map.get("ID"+i))) {
-		if(s.equals("true")) {
-			buyButton.setEnabled(true);
-		}
+			if(isEnableBuy.equals("true")) {
+				buyButton.setEnabled(true);
+			}
+			if(isEnableBuildHouse.equals("true")){
+				buildHouseButton.setEnabled(true);
+			}
 		}
 		System.out.println(layer + "-" + number);
 		moveUIPiece(playerIndex, layer, number);
