@@ -92,7 +92,7 @@ public class Player {
 		ownedColoredDisctricts.put("Dark Red", 0);
 	}
 	
-	private HashMap<String, Integer> propertyList2ownedColoredDistricts(){
+	public HashMap<String, Integer> propertyList2ownedColoredDistricts(){
 		HashMap<String, Integer> ownedColoredDistrictMap = new HashMap<String, Integer>();
 		for(Property prop:propList){
 			Street street = (Street) prop;
@@ -103,6 +103,7 @@ public class Player {
 				ownedColoredDistrictMap.put(propColor, ownedColoredDistrictMap.get(propColor)+1);
 			}
 		}
+		this.ownedColoredDisctricts = ownedColoredDistrictMap;
 		return ownedColoredDistrictMap;
 	}
 	

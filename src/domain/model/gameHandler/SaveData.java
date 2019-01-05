@@ -118,6 +118,7 @@ public class SaveData implements Serializable{
 				String nameOfProp = prop.getAsString();
 				prLst.add((Property) bd.findSquare(nameOfProp, bd.getSquares()));
 			}
+			player.propertyList2ownedColoredDistricts();
 			player.setPrList(prLst);
 			player.setTurn(p.get("isTurn").getAsBoolean());
 			player.setInJail(p.get("inJail").getAsBoolean());
@@ -131,6 +132,7 @@ public class SaveData implements Serializable{
 			player.setRolledBus(p.get("rolledBus").getAsBoolean());
 			player.setHasPaused(p.get("hasPaused").getAsBoolean());
 			player.setEnableBuy(p.get("enableBuy").getAsBoolean());
+			
 			
 			
 			JsonArray chances = p.get("chance").getAsJsonArray();
