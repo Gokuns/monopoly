@@ -98,6 +98,7 @@ public class Board {
 			p.setRolledTriple(true);
 		}else if(firstDieVal == secondDieVal || firstDieVal==speedDieVal || secondDieVal==speedDieVal) {
 			p.setRolledDouble(true);
+			p.setInJail(false); // If one rolls double then he gets out of the jail for sure.
 		}else if(speedDieVal.name().equals("MRMONOPOLY")) {
 			p.setRolledMrMonopoly(true);
 		}else if(secondDieVal.name().equals("BUS")) {
@@ -115,10 +116,22 @@ public class Board {
 	 * @effects The game state.
 	 */
 	public ArrayList<Square> movePiece(Player currentPlayer) {
+		
+		ArrayList<Square> movedSquares = new ArrayList<Square>();
+		currentPlayer.setMoved(true);
+		
+		if(currentPlayer.isInJail()){// If player is in jail then make the player stay where he is currently at for that movement.
+			Piece currentPlayerPiece = currentPlayer.getPiece();
+			Square currentPlayerSquare = currentPlayerPiece.getCurrentSquare();
+			movedSquares.add(currentPlayerSquare);
+			System.out.println("Moved to " + getPlayersSquare(game.getCurrentPlayer()).getName());
+			return movedSquares;
+		}
+		
 		Square currentSquare = getPlayersSquare(currentPlayer);
 		iter = new SquareIterator(currentSquare, Squares);
 		int movement = calculateMovement();
-		ArrayList<Square> movedSquares = new ArrayList<Square>();
+		
 		boolean even = movement%2 == 0;
 		for (int i=0;i<movement;i++) {
 			if(currentSquare.isTransit() && currentPlayer.isChangingLayer()==false)  {
@@ -150,7 +163,6 @@ public class Board {
 		Square landedOn = currentSquare;
 		setPlayersSquare(currentPlayer,landedOn);		
 		System.out.println("Moved to " + getPlayersSquare(game.getCurrentPlayer()).getName());
-		currentPlayer.setMoved(true);
 		
 		return movedSquares;
 	}
