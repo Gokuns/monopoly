@@ -38,8 +38,8 @@ public class GoToJailCard extends ChanceCard{
 		
 		mapForUITransfer.put(pName, "has been put behind bars for some reason :)");
 		
-		//game.publishToUIListeners(mapForUITransfer);////displays an info indicating that current player has been put in prison.
-		//game.publishToNetworkListeners(mapForUITransfer);//publish the mapping to the network.
+		game.publishToUIListeners(mapForUITransfer);////displays an info indicating that current player has been put in prison.
+		game.publishToNetworkListeners(mapForUITransfer);//publish the mapping to the network.
 	}
 
 }

@@ -22,6 +22,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import domain.controller.GameController;
+import domain.model.cards.communityChestCards.OpeningNightTickets;
 import domain.model.gameHandler.GameState;
 import domain.model.gameHandler.GameStateListener;
 
@@ -303,7 +304,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 			pauseButton.setEnabled(false);
 		}
 	}
-
+	
 	private void jailCase(HashMap<String, String> map) {
 		String jailStr = "=>";
 		for(String name:map.keySet()){
@@ -315,16 +316,30 @@ public class GameFrame extends JFrame implements GameStateListener{
 		}
 		rollLabel.setText(jailStr);
 	}
-
-	private void payHospitalCase(HashMap<String, String> map) {
-		String hospitalStr = "=>";
+	
+	
+	
+	private void inheritHundredDollarsCase(HashMap<String, String> map) {
+		String inheritHundredDollarsStr = "=>";
 		for(String name:map.keySet()){
 			if(!name.equals("type")){
 				String balance = map.get(name);
-				hospitalStr += " / " + " Balance of " + name + " has been updated to $"  + balance + ".";
+				inheritHundredDollarsStr += " Balance of " + name + " has been updated to $"  + balance + ".";
+			}
+
+		}
+		rollLabel.setText(inheritHundredDollarsStr);
+	}
+
+	private void genericBalanceDescriptionLabeller(HashMap<String, String> map) {
+		String desc = "=>";
+		for(String name:map.keySet()){
+			if(!name.equals("type")){
+				String balance = map.get(name);
+				desc += " / " + " Balance of " + name + " has been updated to $"  + balance + ".";
 			}
 		}
-		rollLabel.setText(hospitalStr);
+		rollLabel.setText(desc);
 	}
 
 	private void roll3Case(HashMap<String, String> map) {
@@ -436,11 +451,29 @@ public class GameFrame extends JFrame implements GameStateListener{
 		case "roll3":
 			roll3Case(map);
 			break;
-		case "payHospitalBill":
-			payHospitalCase(map);
+		case "chairPerson":
+			genericBalanceDescriptionLabeller(map);
 			break;
 		case "goToJail":
 			jailCase(map);
+			break;
+		case "schoolFees":
+			genericBalanceDescriptionLabeller(map);
+			break;
+		case "trafficTicket":
+			genericBalanceDescriptionLabeller(map);
+			break;
+		case "doctorsFee":
+			genericBalanceDescriptionLabeller(map);
+			break;
+		case "inheritHundredDollars":
+			inheritHundredDollarsCase(map);
+			break;
+		case "openingNightTickets":
+			genericBalanceDescriptionLabeller(map);
+			break;
+		case "payHospitalBill":
+			genericBalanceDescriptionLabeller(map);
 			break;
 		case "endTurn":
 			endTurnCase(map);
