@@ -280,5 +280,18 @@ public class Player {
 		this.hasPaused = hasPaused;
 	}
 	
+	public void resetState() {
+		setRolled(false);
+		setMoved(false);
+		setChangingLayer(false);
+		setDoubleRollCounter(0);
+		setHasPaused(false);
+		setRolledBus(false);
+		setRolledDouble(false);
+		setRolledMrMonopoly(false);
+		setRolledTriple(false);
+		setTurn(false);
+	}
+	
 	
 }
