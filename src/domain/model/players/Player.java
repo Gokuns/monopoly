@@ -86,6 +86,7 @@ public class Player {
 		return false;
 	}
 	
+	
 	public String intToString(int i) {
 		return new Integer(i).toString();
 	}

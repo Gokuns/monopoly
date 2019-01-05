@@ -8,7 +8,7 @@ public class Greedy implements Behaviour {
 
 	@Override
 	public void act() {
-		// TODO Auto-generated method stub
+		
 
 	}
 
