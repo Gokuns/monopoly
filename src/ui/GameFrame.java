@@ -279,6 +279,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 			resumeButton.setEnabled(false);
 			saveButton.setEnabled(false);
 			loadButton.setEnabled(false);
+			buyButton.setEnabled(false);
 		} else
 		{
 			rollButton.setEnabled(false);
