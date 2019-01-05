@@ -15,6 +15,8 @@ import domain.model.cards.ChanceCard;
 import domain.model.cards.CommunityChestCard;
 import domain.model.cards.Deck;
 import domain.model.cards.Roll3Card;
+import domain.model.dice.Cup;
+import domain.model.dice.FaceValue;
 import domain.model.players.Player;
 import domain.model.squares.properties.Property;
 
@@ -40,7 +42,7 @@ public class SaveData implements Serializable{
 
 
 	
-	public JsonObject convertGameStateToSave(GameState game) {
+	public JsonObject convertGameToSave(GameState game, Cup cup) {
 		JsonObject result = new JsonObject();
 		result.addProperty("num", game.getPlayerCount());
 		result.addProperty("currentPlayer", game.getCurrentPlayer().getName());
@@ -67,6 +69,7 @@ public class SaveData implements Serializable{
 		    player.addProperty("rolledTriple", p.isRolledTriple());
 		    player.addProperty("rolledMrMonopoly", p.isRolledMrMonopoly());
 		    player.addProperty("rolledBus", p.isRolledBus());
+		    player.addProperty("hasPaused", p.hasPaused());
 		    JsonArray chance = new JsonArray();
 		    for(ChanceCard c :p.getChanceCards()) {
 		    	props.add(c.getName());
@@ -86,10 +89,15 @@ public class SaveData implements Serializable{
 		    orderedPlayers.add(player);
 	    }
 	    result.add("orderedPlayerList", orderedPlayers);
+	    List<FaceValue> lst = cup.getFaceValues();
+	    for (int i = 0; i < lst.size(); i++) {
+		    result.addProperty("faceValue"+i, lst.get(i).toString());
+		}
+
 		
 		return result;
 	}
-	public GameState converDataToGameState(JsonObject json, GameState game) {
+	public void converDataToGame(JsonObject json, GameState game, Cup cup) {
 		JsonArray orderedLst =json.get("orderedPlayerList").getAsJsonArray();
 		ArrayList<Player> lst = new ArrayList<Player>();
 		Board bd = Board.getInstance();
@@ -120,6 +128,8 @@ public class SaveData implements Serializable{
 			player.setRolledTriple(p.get("rolledTriple").getAsBoolean());
 			player.setRolledMrMonopoly(p.get("rolledMrMonopoly").getAsBoolean());
 			player.setRolledBus(p.get("rolledBus").getAsBoolean());
+			player.setHasPaused(p.get("hasPaused").getAsBoolean());
+			
 			
 			JsonArray chances = p.get("chance").getAsJsonArray();
 			ArrayList<ChanceCard> chanceCards = new ArrayList<>();
@@ -154,7 +164,12 @@ public class SaveData implements Serializable{
 		String name = json.get("currentPlayer").getAsString();
 		Player p = game.findPlayer(name);
 		game.setCurrentPlayer(p);
-		return game;
+		ArrayList<FaceValue> faceValues = new ArrayList<FaceValue>();
+		for (int i = 0; i < 3; i++) {
+			faceValues.add(FaceValue.valueOf(json.get("faceValue"+i).getAsString()));
+		}
+
+		Cup.getInstance().setFaceValues(faceValues);
 	}
 	
 

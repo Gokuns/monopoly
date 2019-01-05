@@ -480,6 +480,10 @@ public class GameFrame extends JFrame implements GameStateListener{
 
 	private void loadCase(HashMap<String, String> map) {
 		refreshButtons();
-		
+		HashMap<String,String> dieMap = new HashMap<String, String>();
+		for (int i = 0; i <3 ; i++) {
+			dieMap.put("faceValue"+i, map.get("faceValue"+i));
+		}
+		dieCase(dieMap);
 	}
 }

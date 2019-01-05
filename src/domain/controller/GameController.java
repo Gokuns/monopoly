@@ -44,12 +44,19 @@ public class GameController {
 		board.rollCup(gameState.getCurrentPlayer());
 		board.setDieToPlayerState(gameState.getCurrentPlayer());
 		Cup cup = Cup.getInstance();
+		map.putAll(createFaceValMap(cup));
+		gameState.publishToNetworkListeners(map);
+		gameState.publishToUIListeners(map);
+	}
+	
+	public HashMap<String, String> createFaceValMap(Cup cup){
+		HashMap<String, String> map = new HashMap<String, String>();
 		List<FaceValue> faceValList = cup.getFaceValues();
 		for(int i=0; i<3;i++) {
 			map.put("faceValue" + i, faceValList.get(i).toString());
 		}
-		gameState.publishToNetworkListeners(map);
-		gameState.publishToUIListeners(map);
+		
+		return map;
 	}
 	
 	/**
@@ -174,15 +181,28 @@ public class GameController {
 	
 	public void saveGame() throws Exception {
 		String filename = "game.json";
-		GameSaver.writeJsonOnject(filename, gameState);
+		GameSaver.writeJsonOnject(filename, gameState, Cup.getInstance());
 	}
 	
 	public void loadGame() throws Exception {
 		String filename = "game.json";
 		SaveData data = SaveData.getInstance();
-		data.converDataToGameState(GameLoader.readJsonSimpleDemo(filename), gameState);
+		data.converDataToGame(GameLoader.readJsonSimpleDemo(filename), gameState, Cup.getInstance());
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("type", "load");
+		ArrayList<Player> lst = gameState.getOrderedPlayerList();
+		for (int i = 0; i < lst.size(); i++) {
+			Player p = lst.get(i);
+			Square playerSq = p.getPiece().getCurrentSquare();
+			map.put("name"+i,p.getName());
+			map.put("layer"+i, board.getSquareLayerIndex(playerSq)+"");
+			map.put("index"+i, board.getSquareIndex(playerSq)+"");
+			map.put("balance"+i, p.getBalance()+"");
+			
+		}
+		map.put("currentPlayer",  gameState.getCurrentPlayer().getName());
+		map.putAll(createFaceValMap(Cup.getInstance()));
+
 		gameState.publishToNetworkListeners(map);
 		gameState.publishToUIListeners(map);
 		
