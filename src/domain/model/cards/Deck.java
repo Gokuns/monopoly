@@ -31,7 +31,7 @@ public class Deck {
 		}else if(type.equals("roll3")){
 			initializeRoll3Cards(cards);
 		}
-		Collections.shuffle(cards);//shuffle cards so as to obtain a randomized drawing order...
+		//Collections.shuffle(cards);//shuffle cards so as to obtain a randomized drawing order...
 	}
 	
 	private void initializeCommunityCards(List<Card> cards){//creating & adding a sample community chest card to the deck
