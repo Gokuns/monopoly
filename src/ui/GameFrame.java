@@ -201,7 +201,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 			public void actionPerformed(ActionEvent e) {
 				HashMap<String, String> map = gameController.buyProperty();
 				if(map.get("successfullyBought").equals("false")){
-					JOptionPane.showMessageDialog(GameFrame.this.getContentPane(),"You have insufficient funds to purchase or it may have been bought previously.");
+					JOptionPane.showMessageDialog(GameFrame.this.getContentPane(),"You have insufficient funds to purchase, it may have been bought previously or it is an invalid square to buy.");
 				}
 			}
 		});

@@ -77,6 +77,7 @@ public class Player {
 					this.setBalance(playerBalance);
 					playerProperty.setOwner(this);
 					this.propList.add(playerProperty);
+					System.out.println(this.name + " has bought " + playerProperty.getName() +  " for $" + playerProperty.getPrice());
 					return true;
 				}
 			}
