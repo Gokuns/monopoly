@@ -259,6 +259,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 		int number = Integer.parseInt(map.get("number"+i));
 		System.out.println(layer + "-" + number);
 		moveUIPiece(playerIndex, layer, number);
+		buyCase(new HashMap<String, String>());
 	}
 
 	private void specialCase(HashMap<String, String> map) {
