@@ -468,6 +468,9 @@ public class GameFrame extends JFrame implements GameStateListener{
 		case "buy":
 			buyCase(map);
 			break;
+		case "buildHouse":
+			buildHouseCase(map);
+			break;
 		case "roll3":
 			roll3Case(map);
 			break;
@@ -516,6 +519,10 @@ public class GameFrame extends JFrame implements GameStateListener{
 		case "move":
 			moveCase(map, "");
 		}
+	}
+
+	private void buildHouseCase(HashMap<String, String> map) {
+		
 	}
 
 	private void resumeCase(HashMap<String, String> map) {

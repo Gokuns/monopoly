@@ -116,7 +116,7 @@ public class Player {
 		return false;
 	}
 	
-	public void buildHouse(){
+	public boolean buildHouse(){
 		int playerBalance = this.getBalance();
 		Piece playerPiece = this.getPiece();
 		Square playerSquare = playerPiece.getCurrentSquare();
@@ -136,10 +136,12 @@ public class Player {
 						this.setBalance(playerBalance);
 						int currentHouseCount = street.getHouseCount();
 						street.setHouseCount(currentHouseCount + 1);
+						return true;
 					}
 				}
 			}
 		}
+		return false;
 	}
 	
 	public String intToString(int i) {
