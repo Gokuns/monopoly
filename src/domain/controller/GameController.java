@@ -169,7 +169,8 @@ public class GameController {
 	 */
 	public void endTurn(boolean isLocalCommand) {
 		gameState = GameState.getInstance();
-		gameState.getCurrentPlayer().setTurn(false);
+		Player p = gameState.getCurrentPlayer();
+		p.resetState();
 		gameState.setCurrentPlayer(gameState.getNextPlayer());
 		gameState.getCurrentPlayer().setTurn(true);
 		HashMap<String, String> map = new HashMap<String, String>();

@@ -433,12 +433,11 @@ public class GameFrame extends JFrame implements GameStateListener{
 	}
 	public void refreshButtons() {
 
-		ArrayList<Boolean> states = gameController.getPlayerState(gameController.getLocalPlayer());
+		ArrayList<Boolean> states = gameController.getPlayerState(gameState.getCurrentPlayer());
 		boolean rolled = states.get(0);
 		boolean moved = states.get(1);
 		boolean turn = states.get(2);
 		boolean paused = states.get(3);
-		boolean hasBeenBought = states.get(4);
 		
 		rollButton.setEnabled(!rolled);
 		moveButton.setEnabled(rolled && !moved);
@@ -447,7 +446,6 @@ public class GameFrame extends JFrame implements GameStateListener{
 		resumeButton.setEnabled(paused);
 		saveButton.setEnabled(paused);
 		loadButton.setEnabled(paused);
-		buyButton.setEnabled(!hasBeenBought);
 
 	}
 	
