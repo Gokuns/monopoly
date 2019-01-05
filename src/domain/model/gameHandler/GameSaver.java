@@ -8,17 +8,15 @@ import com.google.gson.*;
 public class GameSaver {
 	
 	static SaveData data = SaveData.getInstance();
-	static String filename =  "game.json";
 	public GameSaver() {
 		// TODO Auto-generated constructor stub
 	}
 	
 	
-	public static void writeJsonOnject() throws Exception {
-		  JsonObject saveObject = data.convertGameStateToSave(GameState.getInstance());
+	public static void writeJsonOnject(String filename, GameState gameState) throws Exception {
+		  JsonObject saveObject = data.convertGameStateToSave(gameState);
 		  
 		  Files.write(Paths.get(filename), saveObject.toString().getBytes());
-//		  Files.write(Paths.get(filename), "aaaaa".getBytes());
 		  
 		  }
 	

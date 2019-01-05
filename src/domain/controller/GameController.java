@@ -90,7 +90,7 @@ public class GameController {
 				GameState.getInstance().getCurrentPlayer());
 		Square landedSquare = moveList.get(moveList.size()-1);
 		System.out.println("Piece move Completed");
-		moveCommand(isLocalCommand);
+		sendMoveCommand(isLocalCommand);
 
 		if(landedSquare.getSqStrat()!=null) {
 			HashMap<String, String> specialMap = new HashMap<String, String>();
@@ -114,7 +114,7 @@ public class GameController {
 	 *It publishes this map to the UI listeners and if the input boolean is true, publishes map 
 	 *also to the network listeners.
 	 */
-	private void moveCommand(boolean isLocalCommand) {
+	private void sendMoveCommand(boolean isLocalCommand) {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("type", "move");
 		map.put("ID", GameState.getInstance().getCurrentPlayer().getID()+"");
@@ -158,16 +158,14 @@ public class GameController {
 	}
 	
 	public void pauseGame() {
-		gameState.setPaused(true);
-		gameState.getCurrentPlayer().setHasPaused(true);
+		gameState.setGamePaused(true);
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("type", "pause");
 		gameState.publishToNetworkListeners(map);
 		gameState.publishToUIListeners(map);
 	}
 	public void resumeGame() {
-		gameState.setPaused(false);
-		gameState.getCurrentPlayer().setHasPaused(false);
+		gameState.setGamePaused(false);
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("type",  "resume");
 		gameState.publishToNetworkListeners(map);
@@ -175,7 +173,8 @@ public class GameController {
 	}
 	
 	public void saveGame() throws Exception {
-		GameSaver.writeJsonOnject();
+		String filename = "game.json";
+		GameSaver.writeJsonOnject(filename, gameState);
 	}
 	
 	public void loadGame() throws Exception {
@@ -222,7 +221,7 @@ public class GameController {
 	}
 	
 	public ArrayList<Boolean> getPlayerState() {
-		ArrayList<Boolean> result = new ArrayList();
+		ArrayList<Boolean> result = new ArrayList<Boolean>();
 		Player p = gameState.getCurrentPlayer();
 		result.add(p.isRolled());
 		result.add(p.isMoved());

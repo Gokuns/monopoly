@@ -12,7 +12,6 @@ import domain.model.squares.Square;
  * @author Goko
  *
  */
-@SuppressWarnings("serial")
 public class GameState{
 	private static GameState game;
 	private Player currentPlayer;
@@ -266,6 +265,18 @@ public class GameState{
 	 */
 	public void setPaused(boolean isPaused) {
 		this.isPaused = isPaused;
+	}
+	/**
+	 * does the plumbing for the pausing and resuming state
+	 * @param paused the state of being paused or not
+	 * @requires a current player, and an ongoing game
+	 * @effects the pausing and resuming in gameController
+	 * @modifies the state of paused game
+	 */
+	public void setGamePaused(boolean paused) {
+		Player p = getCurrentPlayer();
+		p.setHasPaused(paused);
+		setPaused(paused);
 	}
 	
 }
