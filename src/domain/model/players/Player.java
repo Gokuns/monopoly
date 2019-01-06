@@ -145,6 +145,31 @@ public class Player {
 		return false;
 	}
 	
+	public boolean buildHotel(){
+		int playerBalance = this.getBalance();
+		Piece playerPiece = this.getPiece();
+		Square playerSquare = playerPiece.getCurrentSquare();
+		if(playerSquare.isProperty()){
+			Property playerProperty = (Property) playerSquare;
+			Player owner = playerProperty.getOwner();
+			Street street = (Street) playerProperty;
+			String propertyColor = street.getColor();
+			if(owner.getName().equals(this.getName())){
+				Deed propertyDeed = playerProperty.getDeed();
+				int houseCount = street.getHouseCount();
+				int hotelPrice = propertyDeed.getValues().get("houseCount");
+				if(houseCount==4){
+					if(playerBalance>=hotelPrice){
+						street.setHouseCount(0);
+						street.setHasHotel(true);
+						return true;
+					}
+				}
+			}
+		}
+		return false;
+	}
+	
 	public HashMap<String, Integer> getOwnedColoredDisctricts() {
 		return ownedColoredDisctricts;
 	}
