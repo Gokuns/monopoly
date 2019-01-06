@@ -218,9 +218,12 @@ public class Board {
 				Street street = (Street) playerProperty;
 				String propertyColor = street.getColor();
 				if(propertyOwner.getName().equals(currentPlayer.getName())){
+					boolean hasHotel = street.isHasHotel();
 					int houseCount = street.getHouseCount();
-					if(houseCount==4){
-							currentPlayer.setEnableBuildHotel(true);
+					if(hasHotel){
+						currentPlayer.setEnableBuildSkyscraper(true);
+					}else if(houseCount==4){
+						currentPlayer.setEnableBuildHotel(true);
 					}else{
 						int referenceColorCount = Board.getInstance().getColoredDistricts().get(propertyColor);
 						int ownedColorCount = currentPlayer.getOwnedColoredDisctricts().get(propertyColor);
