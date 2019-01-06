@@ -48,7 +48,6 @@ public class GameFrame extends JFrame implements GameStateListener{
 	private JLabel localPlayerLabel;
 	private JLabel rollLabel;
 	private JLabel balanceLabel;
-	private JLabel localPlayerLabel;
 
 	private JButton rollButton;
 	private JButton endTurnButton;
