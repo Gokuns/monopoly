@@ -102,6 +102,20 @@ public class Player {
 		ownedColoredDisctricts.put("Dark Red", 0);
 	}
 	
+	public HashMap<String, Integer> propertyList2ownedColoredDistricts(){
+		HashMap<String, Integer> ownedColoredDistrictMap = new HashMap<String, Integer>();
+		for(Property prop:propList){
+			Street street = (Street) prop;
+			String propColor = street.getColor();
+			if(!ownedColoredDistrictMap.containsKey(propColor)){
+				ownedColoredDistrictMap.put(propColor, 1);
+			}else{
+				ownedColoredDistrictMap.put(propColor, ownedColoredDistrictMap.get(propColor)+1);
+			}
+		}
+		return ownedColoredDistrictMap;
+	}
+	
 	public boolean buyProperty(){
 		int playerBalance = this.getBalance();
 		Piece playerPiece = this.getPiece();

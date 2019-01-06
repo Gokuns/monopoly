@@ -523,7 +523,17 @@ public class GameFrame extends JFrame implements GameStateListener{
 		rollLabel.setText(jailStr);
 	}
 	
-	
+	private void hurricaneCase(HashMap<String, String> map) {
+		String label = "";
+		String successfulHurricane = map.get("successfulHurricane");
+		String detail = map.get("detail");
+		if(successfulHurricane.equals("false")){
+			label = "Hurricane card cannot be applied to the given colored district.";
+		}else{//successfulHurricane.equals("true")
+			label = detail;
+		}
+		rollLabel.setText(label);
+	}
 	
 	private void inheritHundredDollarsCase(HashMap<String, String> map) {
 		String inheritHundredDollarsStr = "=>";
@@ -676,6 +686,9 @@ public class GameFrame extends JFrame implements GameStateListener{
 		case "goToJail":
 			jailCase(map);
 			break;
+		case "hurricane":
+			hurricaneCase(map);
+			break;	
 		case "schoolFees":
 			genericBalanceDescriptionLabeller(map);
 			break;
