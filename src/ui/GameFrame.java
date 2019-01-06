@@ -48,6 +48,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 	private JLabel localPlayerLabel;
 	private JLabel rollLabel;
 	private JLabel balanceLabel;
+	private JLabel actionLabel;
 
 	private JButton rollButton;
 	private JButton endTurnButton;
@@ -189,6 +190,12 @@ public class GameFrame extends JFrame implements GameStateListener{
 		cardsButton = new JButton("Your Properties");
 		cardsButton.setBounds(120, 320, 240, 40);
 		panel.add(cardsButton);
+		
+		actionLabel = new JLabel("");
+		actionLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		actionLabel.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		actionLabel.setBounds(0, 350, 600, 100);
+		panel.add(actionLabel);
 		
 		buildHotelButton = new JButton("Build Hotel");
 		buildHotelButton.setBounds(310, 250, 100, 40);
@@ -488,7 +495,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 	}
 	
 	private void jailCase(HashMap<String, String> map) {
-		String jailStr = "=>";
+		String jailStr = "=> ";
 		for(String name:map.keySet()){
 			if(!name.equals("type")){
 				String info = map.get(name);
@@ -496,7 +503,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 			}
 
 		}
-		rollLabel.setText(jailStr);
+		actionLabel.setText(jailStr);
 	}
 	
 	
@@ -510,7 +517,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 			}
 
 		}
-		rollLabel.setText(inheritHundredDollarsStr);
+		actionLabel.setText(inheritHundredDollarsStr);
 	}
 
 	private void genericBalanceDescriptionLabeller(HashMap<String, String> map) {
@@ -521,7 +528,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 				desc += " / " + " Balance of " + name + " has been updated to $"  + balance + ".";
 			}
 		}
-		rollLabel.setText(desc);
+		actionLabel.setText(desc);
 	}
 
 	private void roll3Case(HashMap<String, String> map) {
@@ -532,7 +539,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 				roll3Str += " / " + pName + " has won $" + award + ".";
 			}
 		}
-		rollLabel.setText(roll3Str);
+		actionLabel.setText(roll3Str);
 	}
 	
 	private void pickDieImage(int i, String s) {
