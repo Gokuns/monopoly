@@ -15,6 +15,7 @@ import domain.model.gameHandler.GameState;
 import domain.model.gameHandler.SaveData;
 import domain.model.players.Piece;
 import domain.model.players.Player;
+import domain.model.players.Bot.PlayerBot;
 import domain.model.squares.Square;
 import domain.model.squares.properties.Property;
 
@@ -31,6 +32,7 @@ public class GameController {
 	@SuppressWarnings("unused")
 	private NetworkController networkController;
 	private Player localPlayer;
+	private PlayerBot bot;
 	private GameController() {}
 
 	public static synchronized GameController getInstance() {
@@ -155,6 +157,7 @@ public class GameController {
 			Player p = new Player(username, ID);
 			playerList.add(p);
 		}
+		playerList.add(bot);
 		gameState.setOrderedPlayerList(playerList);
 		gameState.setCurrentPlayer(playerList.get(0));
 		HashMap<String, String> gameStartedMap = new HashMap<String, String>();
@@ -252,8 +255,22 @@ public class GameController {
 		if(isLocalCommand) {
 			gameState.publishToNetworkListeners(map);
 		}
+		if(gameState.getCurrentPlayer().isBot()) {
+			playBotTurn(bot);
+		}
 	}
 	
+	private void playBotTurn(PlayerBot p) {
+		if(getLocalPlayer().getID()==0) {
+		boolean decision = p.tryToAct();
+		this.roll();
+		this.move(true);
+		if(decision) this.buyProperty();
+		this.endTurn(true);
+		}
+		
+	}
+
 	public void pauseGame() {
 		gameState.setGamePaused(true);
 		HashMap<String, String> map = new HashMap<String, String>();
@@ -270,12 +287,10 @@ public class GameController {
 	}
 	
 	public void saveGame(File file) throws Exception {
-		String filename = "game.json";
 		GameSaver.writeJsonOnject(file, gameState, Cup.getInstance());
 	}
 	
 	public void loadGame(File file) throws Exception {
-		String filename = "game.json";
 		SaveData data = SaveData.getInstance();
 		data.converDataToGame(GameLoader.readJsonSimpleDemo(file), gameState, Cup.getInstance());
 		HashMap<String, String> map = new HashMap<String, String>();
@@ -349,5 +364,19 @@ public class GameController {
 		result.add(hasBeenBought);
 		
 		return result;
+	}
+
+	/**
+	 * @return the bot
+	 */
+	public PlayerBot getBot() {
+		return bot;
+	}
+
+	/**
+	 * @param bot the bot to set
+	 */
+	public void setBot(PlayerBot bot) {
+		this.bot = bot;
 	}
 }

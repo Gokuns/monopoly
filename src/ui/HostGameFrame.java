@@ -9,8 +9,10 @@ import java.util.HashMap;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
@@ -35,6 +37,8 @@ public class HostGameFrame extends JFrame implements NetworkControllerListener{
 	private JLabel usernameTextLabel;
 	private JTextField portTextField;
 	private JTextField usernameTextField;
+	private JLabel botBehvaiourLabel;
+	private JComboBox<String> botBehaviour;
 	
 	private JButton hostGameButton;
 	
@@ -46,7 +50,7 @@ public class HostGameFrame extends JFrame implements NetworkControllerListener{
 	 * Create the frame.
 	 */
 	public HostGameFrame(MainMenuFrame mainMenu) {
-		setBounds(new Rectangle(100, 100, 430, 480));
+		setBounds(new Rectangle(100, 100, 430, 520));
 		setResizable(false);
 		this.mainMenu = mainMenu;
 		setTitle("Host Game");
@@ -76,12 +80,12 @@ public class HostGameFrame extends JFrame implements NetworkControllerListener{
 					mainMenu.dispose();
 					dispose();
 					gameFrame.setVisible(true);
-					hostNetworkController.gameStarted(usernameTextField.getText());
+					hostNetworkController.gameStarted(usernameTextField.getText(), botBehaviour.getSelectedIndex());
 				}
 			}
 		});
 		hostGameButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		hostGameButton.setBounds(145, 298, 150, 45);
+		hostGameButton.setBounds(145, 358, 150, 45);
 		contentPane.add(hostGameButton);
 		
 		try {
@@ -117,12 +121,33 @@ public class HostGameFrame extends JFrame implements NetworkControllerListener{
 			usernameTextLabel.setBounds(12, 198, 420, 30);
 			contentPane.add(usernameTextLabel);
 			
+			botBehvaiourLabel = new JLabel("Select bot's behaviour");
+			botBehvaiourLabel.setHorizontalTextPosition(SwingConstants.CENTER);
+			botBehvaiourLabel.setHorizontalAlignment(SwingConstants.CENTER);
+			botBehvaiourLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
+			botBehvaiourLabel.setBounds(12, 250, 420, 100);
+			contentPane.add(botBehvaiourLabel);
+			
+			String[] botOptions = {"Thrifty", "Random", "Greedy"};
+			botBehaviour = new JComboBox<String>(botOptions);
+			botBehaviour.setSelectedItem(botOptions[0]);
+			botBehaviour.setBounds(110, 320, 220, 30);
+			contentPane.add(botBehaviour);
+
+			
 			yourIPAdress = new JLabel(InetAddress.getLocalHost().getHostAddress());
 			yourIPAdress.setHorizontalTextPosition(SwingConstants.CENTER);
 			yourIPAdress.setHorizontalAlignment(SwingConstants.CENTER);
 			yourIPAdress.setFont(new Font("Tahoma", Font.PLAIN, 18));
-			yourIPAdress.setBounds(10, 360, 420, 30);
+			yourIPAdress.setBounds(10, 420, 420, 30);
 			contentPane.add(yourIPAdress);
+			
+
+			
+			
+			
+			
+
 			
 		} catch (IOException e) {
 			e.printStackTrace();

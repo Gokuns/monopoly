@@ -41,9 +41,12 @@ public class Player {
 	private boolean changingLayer; //true when the player is changing the layer.
 	private boolean hasPaused; // true if this player paused the game.
 	private boolean enableBuy;
+	private boolean isBot = false;
 	private boolean enableBuildHouse;
 	private boolean enableBuildHotel;
 	private boolean enableBuildSkyscraper;
+	private HashMap<String, Integer> ownedColoredDisctricts= new HashMap<String, Integer>();
+	
 	public boolean isEnableBuildSkyscraper() {
 		return enableBuildSkyscraper;
 	}
@@ -52,8 +55,7 @@ public class Player {
 		this.enableBuildSkyscraper = enableBuildSkyscraper;
 	}
 
-	private HashMap<String, Integer> ownedColoredDisctricts= new HashMap<String, Integer>();
-	
+
 
 	public Player (String name, int ID) {
 		this.name = name;
@@ -460,12 +462,26 @@ public class Player {
 		this.enableBuy = enableBuy;
 	}
 
+	/**
+	 * @return the isBot
+	 */
+	public boolean isBot() {
+		return isBot;
+	}
+	/**
+	 * @param isBot the isBot to set
+	 */
+	public void setBot(boolean isBot) {
+		this.isBot = isBot;
+	}
+		
 	public boolean isEnableBuildHouse() {
 		return enableBuildHouse;
 	}
 
 	public void setEnableBuildHouse(boolean enableBuildHouse) {
 		this.enableBuildHouse = enableBuildHouse;
+
 	}
 	
 	

@@ -7,6 +7,7 @@ import java.util.List;
 
 import domain.model.gameHandler.GameState;
 import domain.model.gameHandler.GameStateListener;
+import domain.model.players.Bot.PlayerBot;
 import domain.network.ClientNetwork;
 
 public class ClientNetworkController extends NetworkController{
@@ -69,6 +70,10 @@ public class ClientNetworkController extends NetworkController{
 			break;
 		case "load":
 			gameState.publishToUIListeners(map);
+			break;
+		case "bot":
+			PlayerBot pb = new PlayerBot(map.get("name"),Integer.parseInt(map.get("id")),Integer.parseInt(map.get("botType")));
+			gameController.setBot(pb);
 			break;
 		case "newConnection":
 			GameController.getInstance().setLocalPlayerID(

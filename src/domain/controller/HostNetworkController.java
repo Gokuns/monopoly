@@ -8,6 +8,7 @@ import java.util.List;
 import domain.model.gameHandler.GameState;
 import domain.model.gameHandler.GameStateListener;
 import domain.model.players.Player;
+import domain.model.players.Bot.PlayerBot;
 import domain.network.HostNetwork;
 
 public class HostNetworkController extends NetworkController{
@@ -36,6 +37,9 @@ public class HostNetworkController extends NetworkController{
 			String username = map.get("username");
 			int ID = network.getConnectionCount();
 			GameState.getInstance().addPlayer(username, ID);
+			if(network.getConnectionCount()==1) {
+//				GameState.getInstance().getPlayerList().add(new PlayerBot("Bot",-1,1));
+			}
 			map.put("connectionCount", Integer.toString(network.getConnectionCount()));
 			publishToListeners(map);
 			sendMessageToLastSender(map);
@@ -104,7 +108,7 @@ public class HostNetworkController extends NetworkController{
 	 * Tells the gameState to publish this map to client players and to the UI.
 	 * @param playerName The String containing the username for the host player.
 	 */
-	public void gameStarted(String playerName) {
+	public void gameStarted(String playerName, int botType) {
 		ArrayList<Player> playerList = GameState.getInstance().getPlayerList();
 		GameController.getInstance().setNetworkController(this);
 		HashMap<String, String> map = new HashMap<String, String>();
@@ -117,6 +121,20 @@ public class HostNetworkController extends NetworkController{
 			map.put("player"+(i)+"Name", p.getName());
 			map.put("player"+(i)+"ID", Integer.toString(p.getID()));
 		}
+		map.put("botType", "0");
+		System.out.println("size: " +playerList.size());
+		String botName = "Bot";
+		int botId = playerList.size();
+		PlayerBot pb = new PlayerBot(botName,botId, botType);
+		GameController.getInstance().setBot(pb);
+		playerList.add(pb);
+		HashMap<String, String> botMap = new HashMap<String, String>();
+		botMap.put("type", "bot");
+		botMap.put("name", botName);
+		botMap.put("id", botId+"");
+		botMap.put("botType", botType+"");
+		sendMessageToPlayers(botMap);
+		System.out.println("size: " +playerList.size());
 		GameState.getInstance().publishToUIListeners(map);
 		GameState.getInstance().setCurrentPlayer(playerList.get(0));
 		GameState.getInstance().setOrderedPlayerList(playerList);
