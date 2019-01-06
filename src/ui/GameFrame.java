@@ -29,6 +29,7 @@ import domain.controller.GameController;
 import domain.model.cards.communityChestCards.OpeningNightTickets;
 import domain.model.gameHandler.GameState;
 import domain.model.gameHandler.GameStateListener;
+import domain.model.squares.properties.Property;
 
 @SuppressWarnings("serial")
 public class GameFrame extends JFrame implements GameStateListener{
@@ -44,6 +45,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 	private Animator animator;
 	private BoardLayers boardLayers;
 	private JLabel playerLabel;
+	private JLabel localPlayerLabel;
 	private JLabel rollLabel;
 	private JLabel balanceLabel;
 	private JLabel localPlayerLabel;
