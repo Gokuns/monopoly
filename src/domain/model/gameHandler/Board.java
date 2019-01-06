@@ -11,6 +11,7 @@ import domain.model.players.Player;
 import domain.model.squares.LayerFactory;
 import domain.model.squares.Square;
 import domain.model.squares.SquareIterator;
+import domain.model.squares.properties.Deed;
 import domain.model.squares.properties.Property;
 import domain.model.squares.properties.Street;
 
@@ -199,26 +200,40 @@ public class Board {
 		Square landedOn = currentSquare;
 		setPlayersSquare(currentPlayer,landedOn);		
 		System.out.println("Moved to " + getPlayersSquare(currentPlayer).getName());
+		
+		booleanSetter(currentPlayer, landedOn);
+		
+		return movedSquares;
+	}
+
+	private void booleanSetter(Player currentPlayer, Square landedOn) {
 		if(landedOn.isProperty()) {
 			Piece playerPiece = currentPlayer.getPiece();
+			int playerBalance = currentPlayer.getBalance();
 			Square playerSquare = playerPiece.getCurrentSquare();
 			Property playerProperty = (Property) playerSquare;
 			Player propertyOwner = playerProperty.getOwner();
 			if(propertyOwner == null){
 				currentPlayer.setEnableBuy(true);
 			}else{
+				Street street = (Street) playerProperty;
+				String propertyColor = street.getColor();
 				if(propertyOwner.getName().equals(currentPlayer.getName())){
-					Street street = (Street) playerProperty;
-					String propertyColor = street.getColor();
-					int referenceColorCount = Board.getInstance().getColoredDistricts().get(propertyColor);
-					int ownedColorCount = currentPlayer.getOwnedColoredDisctricts().get(propertyColor);
-					if(referenceColorCount == ownedColorCount){
-						currentPlayer.setEnableBuildHouse(true);
+					Deed propertyDeed = playerProperty.getDeed();
+					int houseCount = street.getHouseCount();
+					int hotelPrice = propertyDeed.getValues().get("houseCount");
+					if(houseCount==4 && playerBalance>=hotelPrice){
+							currentPlayer.setEnableBuildHotel(true);
+					}else{
+						int referenceColorCount = Board.getInstance().getColoredDistricts().get(propertyColor);
+						int ownedColorCount = currentPlayer.getOwnedColoredDisctricts().get(propertyColor);
+						if(referenceColorCount == ownedColorCount){
+							currentPlayer.setEnableBuildHouse(true);
+						}
 					}
 				}
 			}
 		}
-		return movedSquares;
 	}
 	
 	
