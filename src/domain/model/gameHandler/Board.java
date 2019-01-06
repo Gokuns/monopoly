@@ -209,7 +209,6 @@ public class Board {
 	private void booleanSetter(Player currentPlayer, Square landedOn) {
 		if(landedOn.isProperty()) {
 			Piece playerPiece = currentPlayer.getPiece();
-			int playerBalance = currentPlayer.getBalance();
 			Square playerSquare = playerPiece.getCurrentSquare();
 			Property playerProperty = (Property) playerSquare;
 			Player propertyOwner = playerProperty.getOwner();
@@ -219,10 +218,8 @@ public class Board {
 				Street street = (Street) playerProperty;
 				String propertyColor = street.getColor();
 				if(propertyOwner.getName().equals(currentPlayer.getName())){
-					Deed propertyDeed = playerProperty.getDeed();
 					int houseCount = street.getHouseCount();
-					int hotelPrice = propertyDeed.getValues().get("houseCount");
-					if(houseCount==4 && playerBalance>=hotelPrice){
+					if(houseCount==4){
 							currentPlayer.setEnableBuildHotel(true);
 					}else{
 						int referenceColorCount = Board.getInstance().getColoredDistricts().get(propertyColor);
