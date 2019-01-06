@@ -466,6 +466,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 			loadButton.setEnabled(false);
 			buyButton.setEnabled(false);
 			buildHouseButton.setEnabled(false);
+			buildHotelButton.setEnabled(false);
 		} else
 		{
 			rollButton.setEnabled(false);
@@ -477,6 +478,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 			loadButton.setEnabled(false);
 			buyButton.setEnabled(false);
 			buildHouseButton.setEnabled(false);
+			buildHotelButton.setEnabled(false);
 		}
 	}
 
@@ -498,6 +500,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 			pauseButton.setEnabled(false);
 			buyButton.setEnabled(false);
 			buildHouseButton.setEnabled(false);
+			buildHotelButton.setEnabled(false);
 		}
 	}
 	
