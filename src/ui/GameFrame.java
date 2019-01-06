@@ -58,6 +58,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 	private JButton resumeButton;
 	private JButton buyButton;
 	private JButton buildHouseButton;
+	private JButton buildHotelButton;
 	private JButton cardsButton;
 	
 	private Image dieImage1;
@@ -189,6 +190,10 @@ public class GameFrame extends JFrame implements GameStateListener{
 		cardsButton.setBounds(120, 320, 240, 40);
 		panel.add(cardsButton);
 		
+		buildHotelButton = new JButton("Build Hotel");
+		buildHotelButton.setBounds(310, 250, 100, 40);
+		panel.add(buildHotelButton);
+		
 
 		endTurnButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -245,11 +250,23 @@ public class GameFrame extends JFrame implements GameStateListener{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				HashMap<String, String> map = gameController.buyProperty();
+				HashMap<String, String> map = gameController.buildHouse();
 				if(map.get("successfullyBuilt").equals("false")){
 					JOptionPane.showMessageDialog(GameFrame.this.getContentPane(),"You can't build a house in this square since you don't have sufficient funds to build a house, it's an invalid square, you don't own the square or you don't own the entire colored district.");
 				}
 				buildHouseButton.setEnabled(false);
+			}
+		});
+		
+		buildHotelButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				HashMap<String, String> map = gameController.buildHotel();
+				if(map.get("successfullyBuilt").equals("false")){
+					JOptionPane.showMessageDialog(GameFrame.this.getContentPane(),"You can't build a hotel in this square since you don't have sufficient funds to build a house, it's an invalid square, you don't own the square or you don't own 4 houses for the time being.");
+				}
+				buildHotelButton.setEnabled(false);
 			}
 		});
 
@@ -613,6 +630,9 @@ public class GameFrame extends JFrame implements GameStateListener{
 		case "buildHouse":
 			buildHouseCase(map);
 			break;
+		case "buildHotel":
+			buildHotelCase(map);
+			break;
 		case "roll3":
 			roll3Case(map);
 			break;
@@ -661,6 +681,10 @@ public class GameFrame extends JFrame implements GameStateListener{
 		case "move":
 			moveCase(map, "");
 		}
+	}
+
+	private void buildHotelCase(HashMap<String, String> map) {
+		buildHotelButton.setEnabled(false);
 	}
 
 	private void buildHouseCase(HashMap<String, String> map) {
