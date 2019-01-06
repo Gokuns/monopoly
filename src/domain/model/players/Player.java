@@ -154,7 +154,6 @@ public class Player {
 			Property playerProperty = (Property) playerSquare;
 			Player owner = playerProperty.getOwner();
 			Street street = (Street) playerProperty;
-			String propertyColor = street.getColor();
 			if(owner.getName().equals(this.getName())){
 				Deed propertyDeed = playerProperty.getDeed();
 				int houseCount = street.getHouseCount();
@@ -163,6 +162,30 @@ public class Player {
 					if(playerBalance>=hotelPrice){
 						street.setHouseCount(0);
 						street.setHasHotel(true);
+						return true;
+					}
+				}
+			}
+		}
+		return false;
+	}
+	
+	public boolean buildSkyscraper(){
+		int playerBalance = this.getBalance();
+		Piece playerPiece = this.getPiece();
+		Square playerSquare = playerPiece.getCurrentSquare();
+		if(playerSquare.isProperty()){
+			Property playerProperty = (Property) playerSquare;
+			Player owner = playerProperty.getOwner();
+			Street street = (Street) playerProperty;
+			if(owner.getName().equals(this.getName())){
+				Deed propertyDeed = playerProperty.getDeed();
+				boolean hasHotel = street.isHasHotel();
+				int skyscraperPrice = propertyDeed.getValues().get("skyPrice");
+				if(hasHotel){
+					if(playerBalance>=skyscraperPrice){
+						street.setHasHotel(false);
+						street.setHasSkyscraper(true);
 						return true;
 					}
 				}
