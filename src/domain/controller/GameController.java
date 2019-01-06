@@ -32,6 +32,7 @@ public class GameController {
 	@SuppressWarnings("unused")
 	private NetworkController networkController;
 	private Player localPlayer;
+	private PlayerBot bot;
 	private GameController() {}
 
 	public static synchronized GameController getInstance() {
@@ -96,7 +97,6 @@ public class GameController {
 			Player p = new Player(username, ID);
 			playerList.add(p);
 		}
-		PlayerBot bot = new PlayerBot("Bot",playerList.size(),Integer.parseInt(map.get("botType")));
 		playerList.add(bot);
 		gameState.setOrderedPlayerList(playerList);
 		gameState.setCurrentPlayer(playerList.get(0));
@@ -196,8 +196,8 @@ public class GameController {
 		boolean decision = p.tryToAct();
 		this.roll();
 		this.move(true);
-		this.buyProperty();
-		this.endTurn(true);
+		if(decision) this.buyProperty();
+		this.endTurn(false);
 		
 	}
 
@@ -217,12 +217,10 @@ public class GameController {
 	}
 	
 	public void saveGame(File file) throws Exception {
-		String filename = "game.json";
 		GameSaver.writeJsonOnject(file, gameState, Cup.getInstance());
 	}
 	
 	public void loadGame(File file) throws Exception {
-		String filename = "game.json";
 		SaveData data = SaveData.getInstance();
 		data.converDataToGame(GameLoader.readJsonSimpleDemo(file), gameState, Cup.getInstance());
 		HashMap<String, String> map = new HashMap<String, String>();
@@ -297,5 +295,19 @@ public class GameController {
 		
 		return result;
 		
+	}
+
+	/**
+	 * @return the bot
+	 */
+	public PlayerBot getBot() {
+		return bot;
+	}
+
+	/**
+	 * @param bot the bot to set
+	 */
+	public void setBot(PlayerBot bot) {
+		this.bot = bot;
 	}
 }

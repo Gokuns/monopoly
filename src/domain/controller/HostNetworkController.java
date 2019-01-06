@@ -8,6 +8,7 @@ import java.util.List;
 import domain.model.gameHandler.GameState;
 import domain.model.gameHandler.GameStateListener;
 import domain.model.players.Player;
+import domain.model.players.Bot.PlayerBot;
 import domain.network.HostNetwork;
 
 public class HostNetworkController extends NetworkController implements GameStateListener{
@@ -105,7 +106,7 @@ public class HostNetworkController extends NetworkController implements GameStat
 	 * Tells the gameState to publish this map to client players and to the UI.
 	 * @param playerName The String containing the username for the host player.
 	 */
-	public void gameStarted(String playerName) {
+	public void gameStarted(String playerName, int botType) {
 		ArrayList<Player> playerList = GameState.getInstance().getPlayerList();
 		GameController.getInstance().setNetworkController(this);
 		HashMap<String, String> map = new HashMap<String, String>();
@@ -118,6 +119,12 @@ public class HostNetworkController extends NetworkController implements GameStat
 			map.put("player"+(i)+"Name", p.getName());
 			map.put("player"+(i)+"ID", Integer.toString(p.getID()));
 		}
+//		map.put("botType", "0");
+		System.out.println("size: " +playerList.size());
+		PlayerBot pb = new PlayerBot("Bot",network.getConnectionCount(), botType);
+		GameController.getInstance().setBot(pb);
+		playerList.add(pb);
+		System.out.println("size: " +playerList.size());
 		GameState.getInstance().publishToUIListeners(map);
 		GameState.getInstance().setCurrentPlayer(playerList.get(0));
 		GameState.getInstance().setOrderedPlayerList(playerList);
