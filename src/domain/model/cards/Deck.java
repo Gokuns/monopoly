@@ -46,7 +46,7 @@ public class Deck {
 	
 	private void initializeChanceCards(List<Card> cards){//creating & adding a sample chance action card to the deck
 
-		cards.add(new GoToJailCard("goToJailCard", "Goto jail immediately."));
+		//cards.add(new GoToJailCard("goToJailCard", "Goto jail immediately."));
 		cards.add(new SchoolFees("schoolFeesCard", "Pay $150 to the pool."));
 		cards.add(new TrafficTicket("trafficTicket", "pay $15 to the pool."));
 		

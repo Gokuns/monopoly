@@ -54,6 +54,21 @@ public class GameController {
 		
 		return map;
 	}
+	
+	public HashMap<String, String> buildHouse(){
+		Player currentPlayer = gameState.getCurrentPlayer();
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("type", "buildHouse");
+		map.put("successfullyBuilt", "false");
+		boolean successfullyBuilt = currentPlayer.buildHouse();
+		if(successfullyBuilt){
+			map.put("successfullyBuilt", "true");
+		}
+		gameState.publishToNetworkListeners(map);
+		gameState.publishToUIListeners(map);
+		
+		return map;
+	}
 
 	public void roll() {
 		gameState.getCurrentPlayer().setRolled(true);
@@ -76,6 +91,21 @@ public class GameController {
 		
 		return map;
 	}
+	
+	public ArrayList<int[]> getMoveSquares(ArrayList<Square> squareList) {
+		ArrayList<int[]> squareIntList = new ArrayList<int[]>(); 
+		for(int i=0; i<squareList.size();i++){
+			int layer = board.getSquareLayerIndex(squareList.get(i));
+			int index = board.getSquareIndex(squareList.get(i));
+			int[] intArray = new int[2];
+			intArray[0] = layer;
+			intArray[1] = index;
+			squareIntList.add(intArray);
+			}
+		return squareIntList;
+	}
+	
+	
 	
 	/**
 	 * @param map The String to String HashMap containing the message
@@ -114,9 +144,9 @@ public class GameController {
 		ArrayList<Square> moveList = Board.getInstance().movePiece(
 				GameState.getInstance().getCurrentPlayer());
 		Square landedSquare = moveList.get(moveList.size()-1);
+		ArrayList<int[]> moveSquares = getMoveSquares(moveList);
 		System.out.println("Piece move Completed");
-		sendMoveCommand(isLocalCommand);
-
+		sendMoveCommand(isLocalCommand, moveSquares);
 		if(landedSquare.getSqStrat()!=null) {
 			HashMap<String, String> specialMap = new HashMap<String, String>();
 			specialMap.put("type", "special");
@@ -139,7 +169,7 @@ public class GameController {
 	 *It publishes this map to the UI listeners and if the input boolean is true, publishes map 
 	 *also to the network listeners.
 	 */
-	private void sendMoveCommand(boolean isLocalCommand) {
+	private void sendMoveCommand(boolean isLocalCommand, ArrayList<int[]> moveData) {
 		HashMap<String, String> map = new HashMap<String, String>();
 		Player p = GameState.getInstance().getCurrentPlayer();
 		map.put("type", "move");
@@ -149,8 +179,14 @@ public class GameController {
 		map.put("number", Board.getInstance().getSquareIndex(
 				GameState.getInstance().getPlayerCurrentSquare())+"");
 		map.put("enableBuy", p.isEnableBuy()+"");
+		map.put("enableBuildHouse", p.isEnableBuildHouse()+"");
+		for(int i = 0; i<moveData.size(); i++) {
+			int[] squareData = moveData.get(i);
+			map.put("squareLayer"+i, Integer.toString(squareData[0]));
+			map.put("squareIndex"+i, Integer.toString(squareData[1]));
+		}
+		map.put("steps", Integer.toString(moveData.size()));
 		GameState.getInstance().publishToUIListeners(map);
-
 		if(isLocalCommand) {
 			gameState.publishToNetworkListeners(map);
 		}
@@ -281,6 +317,5 @@ public class GameController {
 		result.add(hasBeenBought);
 		
 		return result;
-		
 	}
 }
