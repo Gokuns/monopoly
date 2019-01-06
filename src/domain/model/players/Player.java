@@ -43,6 +43,15 @@ public class Player {
 	private boolean enableBuy;
 	private boolean enableBuildHouse;
 	private boolean enableBuildHotel;
+	private boolean enableBuildSkyscraper;
+	public boolean isEnableBuildSkyscraper() {
+		return enableBuildSkyscraper;
+	}
+
+	public void setEnableBuildSkyscraper(boolean enableBuildSkyscraper) {
+		this.enableBuildSkyscraper = enableBuildSkyscraper;
+	}
+
 	private HashMap<String, Integer> ownedColoredDisctricts= new HashMap<String, Integer>();
 	
 
@@ -412,6 +421,7 @@ public class Player {
 		setEnableBuy(false);
 		setEnableBuildHouse(false);
 		setEnableBuildHotel(false);
+		setEnableBuildSkyscraper(false);
 	}
 
 	public boolean isEnableBuildHotel() {
