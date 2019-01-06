@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import domain.model.cards.chanceCards.ChairPerson;
 import domain.model.cards.chanceCards.GoToJailCard;
+import domain.model.cards.chanceCards.Hurricane;
 import domain.model.cards.chanceCards.SchoolFees;
 import domain.model.cards.chanceCards.TrafficTicket;
 import domain.model.cards.communityChestCards.DoctorsFee;
@@ -49,6 +51,8 @@ public class Deck {
 		//cards.add(new GoToJailCard("goToJailCard", "Goto jail immediately."));
 		cards.add(new SchoolFees("schoolFeesCard", "Pay $150 to the pool."));
 		cards.add(new TrafficTicket("trafficTicket", "pay $15 to the pool."));
+		cards.add(new ChairPerson("ChairPersonCard", "Give every player $50."));
+//		cards.add(new Hurricane("HurricaneCard", "A hurricane has come."));
 		
 	}
 	
