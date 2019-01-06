@@ -12,13 +12,24 @@ public class Building extends JPanel{
 	
 	public Building(int x, int y) {
 		
+		this.x = x;
+		this.y = y;
+		
 	}
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		
 		g.setColor(Color.GREEN);
-		g.fillOval(this.x, this.y, 30, 30);
+		g.fillOval(this.x, this.y, 15, 15);
+	}
+	
+	public int getX() {
+		return x;
+	}
+	
+	public int getY() {
+		return y;
 	}
 
 }

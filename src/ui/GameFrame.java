@@ -1,5 +1,6 @@
 package ui;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Image;
@@ -12,6 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -250,11 +252,20 @@ public class GameFrame extends JFrame implements GameStateListener{
 			@Override
 			public void run() {
 				System.out.println("House Being built.");
-				int coorX = boardLayers.getSquareCoordinates(layer, number).getX()-10;
-				int coorY = boardLayers.getSquareCoordinates(layer, number).getY()-5;
-				Building house = new Building(coorX, coorY);//    4
+				int coorX = boardLayers.getSquareCoordinates(layer, number).getX()-37;
+				int coorY = boardLayers.getSquareCoordinates(layer, number).getY()-35;
+				for(int i=0;i<houses.size();i++) {
+					if(houses.get(i).getX() == coorX) {
+						coorX = coorX + 5;
+					}
+				}
+				Building house = new Building(coorX, coorY);
 				monopolyLogoPanel.add(house);
-				house.setBounds(coorX + houses.size() * 1- 27, coorY -30 + houses.size() * 2, 15, 15);
+				house.setBounds(coorX , coorY, 15, 15);
+				Random random = new Random();
+				int red = random.nextInt(256); int green = random.nextInt(256); 
+				int blue = random.nextInt(256); Color randomColor = new Color(red,green,blue);
+				house.setBackground(randomColor);
 				houses.add(house);
 			}
 		});
@@ -266,15 +277,15 @@ public class GameFrame extends JFrame implements GameStateListener{
 			@Override
 			public void run() {
 				System.out.println("Balls initializing");
-				int coorX = boardLayers.getSquareCoordinates(1, 0).getX()-10;
-				int coorY = boardLayers.getSquareCoordinates(1, 0).getY()-5;
+				int coorX = boardLayers.getSquareCoordinates(1, 0).getX()-25;
+				int coorY = boardLayers.getSquareCoordinates(1, 0).getY()-20;
 				numberOfPlayers = gameState.getOrderedPlayerList().size();
 				for(int i = 0;i<numberOfPlayers; i++) {
 					System.out.println("Ball "+i);
 					String x = "Piece" + Integer.toString(i);
-					Ball ballx = new Ball(x, i,coorX + i*6 -15 ,coorY -15);//    4
+					Ball ballx = new Ball(x, i,coorX + i*6, coorY);//    4
 					monopolyLogoPanel.add(ballx);
-					ballx.setBounds(coorX + i*6 -15 ,coorY -15, 20, 20);
+					ballx.setBounds(coorX + i*6, coorY, 20, 20);
 					balls.add(ballx);
 
 
@@ -334,8 +345,9 @@ public class GameFrame extends JFrame implements GameStateListener{
 		playerLabel.setText(currentPlayerStr);
 		initializeBalls();
 		/*buildHouse(0,0); buildHouse(0,0); buildHouse(0,1); buildHouse(0,1); buildHouse(0,2);
-		buildHouse(1,0); buildHouse(1,1); buildHouse(1,2);
-		buildHouse(2,0); buildHouse(2,1); buildHouse(2,2);*/
+		buildHouse(1,0); buildHouse(1,1); buildHouse(1,1); buildHouse(1,1); buildHouse(1,2);
+		buildHouse(2,0); buildHouse(2,1); buildHouse(2,2);
+		buildHouse(0,11); buildHouse(0,12); buildHouse(1,15);*/
 		if(GameController.getInstance().getLocalPlayer().getID() == 
 				Integer.parseInt(map.get("currentPlayerID"))) {
 			rollButton.setEnabled(true);
