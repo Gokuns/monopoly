@@ -42,6 +42,7 @@ public class Player {
 	private boolean hasPaused; // true if this player paused the game.
 	private boolean enableBuy;
 	private boolean enableBuildHouse;
+	private boolean enableBuildHotel;
 	private HashMap<String, Integer> ownedColoredDisctricts= new HashMap<String, Integer>();
 	
 
@@ -387,6 +388,15 @@ public class Player {
 		setTurn(false);
 		setEnableBuy(false);
 		setEnableBuildHouse(false);
+		setEnableBuildHotel(false);
+	}
+
+	public boolean isEnableBuildHotel() {
+		return enableBuildHotel;
+	}
+
+	public void setEnableBuildHotel(boolean enableBuildHotel) {
+		this.enableBuildHotel = enableBuildHotel;
 	}
 
 	/**

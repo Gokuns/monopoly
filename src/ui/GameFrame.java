@@ -396,6 +396,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 		int number = Integer.parseInt(map.get("number"+i));
 		String isEnableBuy = map.get("enableBuy");
 		String isEnableBuildHouse = map.get("enableBuildHouse");
+		String isEnableBuildHotel = map.get("enableBuildHotel");
 		if(GameController.getInstance().getLocalPlayer().getID() == 
 				Integer.parseInt(map.get("ID"+i))) {
 			if(isEnableBuy.equals("true")) {
@@ -403,6 +404,9 @@ public class GameFrame extends JFrame implements GameStateListener{
 			}
 			if(isEnableBuildHouse.equals("true")){
 				buildHouseButton.setEnabled(true);
+			}
+			if(isEnableBuildHotel.equals("true")){
+				buildHotelButton.setEnabled(true);
 			}
 		}
 		ArrayList<int[]> squareList = new ArrayList<int[]>();

@@ -195,6 +195,7 @@ public class GameController {
 				GameState.getInstance().getPlayerCurrentSquare())+"");
 		map.put("enableBuy", p.isEnableBuy()+"");
 		map.put("enableBuildHouse", p.isEnableBuildHouse()+"");
+		map.put("enableBuildHotel", p.isEnableBuildHotel()+"");
 		for(int i = 0; i<moveData.size(); i++) {
 			int[] squareData = moveData.get(i);
 			map.put("squareLayer"+i, Integer.toString(squareData[0]));
