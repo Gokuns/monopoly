@@ -39,7 +39,7 @@ public class Player {
 	private boolean changingLayer; //true when the player is changing the layer.
 	private boolean hasPaused; // true if this player paused the game.
 	private boolean enableBuy;
-	
+	private boolean isBot = false;
 
 	public Player (String name, int ID) {
 		this.name = name;
@@ -309,6 +309,20 @@ public class Player {
 	 */
 	public void setEnableBuy(boolean enableBuy) {
 		this.enableBuy = enableBuy;
+	}
+
+	/**
+	 * @return the isBot
+	 */
+	public boolean isBot() {
+		return isBot;
+	}
+
+	/**
+	 * @param isBot the isBot to set
+	 */
+	public void setBot(boolean isBot) {
+		this.isBot = isBot;
 	}
 	
 	

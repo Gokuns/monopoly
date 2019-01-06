@@ -1,5 +1,7 @@
 package domain.model.players.Bot;
 
+import domain.model.gameHandler.Board;
+
 public class Greedy implements Behaviour {
 
 	public Greedy() {
@@ -7,8 +9,8 @@ public class Greedy implements Behaviour {
 	}
 
 	@Override
-	public void act() {
-		
+	public boolean act() {
+		return true;
 
 	}
 

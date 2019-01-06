@@ -15,6 +15,7 @@ import domain.model.gameHandler.GameState;
 import domain.model.gameHandler.SaveData;
 import domain.model.players.Piece;
 import domain.model.players.Player;
+import domain.model.players.Bot.PlayerBot;
 import domain.model.squares.Square;
 import domain.model.squares.properties.Property;
 
@@ -95,6 +96,8 @@ public class GameController {
 			Player p = new Player(username, ID);
 			playerList.add(p);
 		}
+		PlayerBot bot = new PlayerBot("Bot",playerList.size(),Integer.parseInt(map.get("botType")));
+		playerList.add(bot);
 		gameState.setOrderedPlayerList(playerList);
 		gameState.setCurrentPlayer(playerList.get(0));
 		HashMap<String, String> gameStartedMap = new HashMap<String, String>();
@@ -184,8 +187,20 @@ public class GameController {
 		if(isLocalCommand) {
 			gameState.publishToNetworkListeners(map);
 		}
+		if(gameState.getCurrentPlayer().isBot()) {
+			playBotTurn((PlayerBot) gameState.getCurrentPlayer());
+		}
 	}
 	
+	private void playBotTurn(PlayerBot p) {
+		boolean decision = p.tryToAct();
+		this.roll();
+		this.move(true);
+		this.buyProperty();
+		this.endTurn(true);
+		
+	}
+
 	public void pauseGame() {
 		gameState.setGamePaused(true);
 		HashMap<String, String> map = new HashMap<String, String>();

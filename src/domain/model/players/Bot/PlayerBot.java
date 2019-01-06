@@ -9,14 +9,15 @@ public class PlayerBot extends Player{
 
 	public PlayerBot(String name, int ID, int type) {
 		super(name,ID);
+		this.setBot(true);
 		this.setType(type);
 		if(type==0) this.setBehaviour(new Thrifty());
 		if(type==1) this.setBehaviour(new Random());
 		if(type==2) this.setBehaviour(new Greedy());
 	}
 	
-	public void tryToAct() {
-		behaviour.act();
+	public boolean tryToAct() {
+		return behaviour.act();
 		
 	}
 

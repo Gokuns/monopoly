@@ -7,9 +7,9 @@ public class Thrifty implements Behaviour{
 	}
 
 	@Override
-	public void act() {
+	public boolean act() {
 		// TODO Auto-generated method stub
-		
+		return false;
 	}
 
 }
