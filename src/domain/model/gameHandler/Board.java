@@ -92,10 +92,10 @@ public class Board {
 		coloredDistricts.put("Dark Orange", 3);
 		coloredDistricts.put("White", 3);
 		coloredDistricts.put("Black", 3);
-		coloredDistricts.put("Grey", 3);
+		coloredDistricts.put("Gray", 3);
 		coloredDistricts.put("Pink", 3);
-		coloredDistricts.put("Light Green ", 4);
-		coloredDistricts.put("Light Yellow ", 4);
+		coloredDistricts.put("Light Green", 4);
+		coloredDistricts.put("Light Yellow", 4);
 		coloredDistricts.put("Turquiose", 4);
 		coloredDistricts.put("Wine Red", 4);
 		coloredDistricts.put("Dark Yellow", 4);
