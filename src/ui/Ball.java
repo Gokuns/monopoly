@@ -2,11 +2,13 @@ package ui;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.Random;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -15,7 +17,7 @@ public class Ball extends JPanel implements ActionListener, Drawable{
 	
 	private Timer tm;
 	private String name;
-	private int color;
+	private Color color;
 	private int xStart, yStart;
 	private int xLimit, yLimit;
 	private StraightLinePath myPath;
@@ -26,11 +28,14 @@ public class Ball extends JPanel implements ActionListener, Drawable{
 	private int animationSlowness;
 	
 	
-	public Ball(String name, int color, int xStart, int yStart) {
+	public Ball(String name, Color color, int xStart, int yStart) {
+		
 		this.name = name;
 		this.color = color;
 		this.xStart = xStart;
 		this.yStart = yStart;
+		setBorder(BorderFactory.createLineBorder(Color.black));
+		
 	}
 	
 	public void paintComponent(Graphics g) {
@@ -38,28 +43,7 @@ public class Ball extends JPanel implements ActionListener, Drawable{
 		
 		super.paintComponent(g);
 		
-		if(getColor() == 0) {
-			g.setColor(Color.BLACK);
-		}
-		else if(getColor() == 1) {
-			g.setColor(Color.BLUE);
-		}
-		else if(getColor() == 2) {
-			g.setColor(Color.RED);
-		}
-		else if(getColor() == 3) {
-			g.setColor(Color.MAGENTA);
-		}
-		else if(getColor() == 4) {
-			g.setColor(Color.ORANGE);
-		}
-		else if(getColor() == 5) {
-			g.setColor(Color.YELLOW);
-		}
-		else {
-			g.setColor(Color.PINK);
-		}
-		
+		g.setColor(color);
 		g.fillRect(0, 0, 20, 20);
 
 	       
@@ -89,11 +73,11 @@ public class Ball extends JPanel implements ActionListener, Drawable{
 		this.name = name;
 	}
 
-	public int getColor() {
+	public Color getColor() {
 		return color;
 	}
 
-	public void setColor(int color) {
+	public void setColor(Color color) {
 		this.color = color;
 	}
 	

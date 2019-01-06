@@ -40,7 +40,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 	private GameState gameState;
 	private int numberOfPlayers;
 	private ArrayList<Ball> balls;
-	private ArrayList<Building> houses;
+	private ArrayList<Building> buildings;
 	private Animator animator;
 	private BoardLayers boardLayers;
 	private JLabel playerLabel;
@@ -83,7 +83,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 
 		boardLayers = new BoardLayers();
 		balls = new ArrayList<Ball>();
-		houses = new ArrayList<Building>();
+		buildings = new ArrayList<Building>();
 		animator = new Animator();
 
 		try {
@@ -246,7 +246,25 @@ public class GameFrame extends JFrame implements GameStateListener{
 		});
 	}
 	
-	private void buildHouse(int layer, int number) {
+	private void deleteBuilding(int layer, int number, int buildingType) {
+		
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				for(int i=buildings.size()-1;i>=0;i--) {
+					if(buildings.get(i).getLayer() == layer && buildings.get(i).getIndex() == number &&
+							buildings.get(i).getBuildingType() == buildingType){
+						System.out.println("House Found");
+						System.out.println("Layer: " + layer +" Number: " + number);
+						monopolyLogoPanel.remove(buildings.get(i));
+						buildings.remove(i);
+						break;
+					}
+				}
+			}
+		});
+	}
+	
+	private void buildBuilding(int layer, int number, int buildingType) {
 		
 		EventQueue.invokeLater(new Runnable() {
 			@Override
@@ -254,19 +272,21 @@ public class GameFrame extends JFrame implements GameStateListener{
 				System.out.println("House Being built.");
 				int coorX = boardLayers.getSquareCoordinates(layer, number).getX()-37;
 				int coorY = boardLayers.getSquareCoordinates(layer, number).getY()-35;
-				for(int i=0;i<houses.size();i++) {
-					if(houses.get(i).getX() == coorX) {
-						coorX = coorX + 5;
+				int numberOfBuildings = 0;
+				for(int i=buildings.size()-1;i>=0;i--) {
+					if(buildings.get(i).getLayer() == layer && buildings.get(i).getIndex() == number) {
+						numberOfBuildings ++;
 					}
 				}
-				Building house = new Building(coorX, coorY);
-				monopolyLogoPanel.add(house);
-				house.setBounds(coorX , coorY, 15, 15);
-				Random random = new Random();
-				int red = random.nextInt(256); int green = random.nextInt(256); 
-				int blue = random.nextInt(256); Color randomColor = new Color(red,green,blue);
-				house.setBackground(randomColor);
-				houses.add(house);
+				coorX = coorX + numberOfBuildings * 5;
+				coorY = coorY + numberOfBuildings * 3;
+				int[] id = new int[2];
+				id[0] = layer;
+				id[1] = number;
+				Building building = new Building(coorX, coorY, buildingType,id);
+				monopolyLogoPanel.add(building);
+				building.setBounds(coorX , coorY, 15, 15);
+				buildings.add(building);
 			}
 		});
 		
@@ -283,7 +303,10 @@ public class GameFrame extends JFrame implements GameStateListener{
 				for(int i = 0;i<numberOfPlayers; i++) {
 					System.out.println("Ball "+i);
 					String x = "Piece" + Integer.toString(i);
-					Ball ballx = new Ball(x, i,coorX + i*6, coorY);//    4
+					Random random = new Random();
+					int red = random.nextInt(256); int green = random.nextInt(256); 
+					int blue = random.nextInt(256); Color randomColor = new Color(red,green,blue);
+					Ball ballx = new Ball(x, randomColor,coorX + i*6, coorY);//    4
 					monopolyLogoPanel.add(ballx);
 					ballx.setBounds(coorX + i*6, coorY, 20, 20);
 					balls.add(ballx);
@@ -344,10 +367,14 @@ public class GameFrame extends JFrame implements GameStateListener{
 		String currentPlayerStr = map.get("currentPlayer");
 		playerLabel.setText(currentPlayerStr);
 		initializeBalls();
-		/*buildHouse(0,0); buildHouse(0,0); buildHouse(0,1); buildHouse(0,1); buildHouse(0,2);
-		buildHouse(1,0); buildHouse(1,1); buildHouse(1,1); buildHouse(1,1); buildHouse(1,2);
-		buildHouse(2,0); buildHouse(2,1); buildHouse(2,2);
-		buildHouse(0,11); buildHouse(0,12); buildHouse(1,15);*/
+		/*
+		buildBuilding(1,0,0); buildBuilding(1,0,0); buildBuilding(1,0,0); 
+		deleteBuilding(1,0,0);
+		buildBuilding(1,1,0); buildBuilding(1,2,2);
+		buildBuilding(0,1,0); buildBuilding(0,1,0); buildBuilding(0,1,2); 
+		buildBuilding(0,2,1); buildBuilding(0,0,1); deleteBuilding(0,0,1);
+		buildBuilding(2,0,1); buildBuilding(2,1,2); buildBuilding(2,2,0);
+		buildBuilding(0,11,0); buildBuilding(0,12,1); buildBuilding(1,15,2);*/
 		if(GameController.getInstance().getLocalPlayer().getID() == 
 				Integer.parseInt(map.get("currentPlayerID"))) {
 			rollButton.setEnabled(true);
