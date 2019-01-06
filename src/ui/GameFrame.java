@@ -38,6 +38,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 	private GameState gameState;
 	private int numberOfPlayers;
 	private ArrayList<Ball> balls;
+	private ArrayList<Building> houses;
 	private Animator animator;
 	private BoardLayers boardLayers;
 	private JLabel playerLabel;
@@ -80,6 +81,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 
 		boardLayers = new BoardLayers();
 		balls = new ArrayList<Ball>();
+		houses = new ArrayList<Building>();
 		animator = new Animator();
 
 		try {
@@ -241,6 +243,23 @@ public class GameFrame extends JFrame implements GameStateListener{
 			}
 		});
 	}
+	
+	private void buildHouse(int layer, int number) {
+		
+		EventQueue.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				System.out.println("House Being built.");
+				int coorX = boardLayers.getSquareCoordinates(layer, number).getX()-10;
+				int coorY = boardLayers.getSquareCoordinates(layer, number).getY()-5;
+				Building house = new Building(coorX, coorY);//    4
+				monopolyLogoPanel.add(house);
+				house.setBounds(coorX + houses.size() * 1- 27, coorY -30 + houses.size() * 2, 15, 15);
+				houses.add(house);
+			}
+		});
+		
+	}
 
 	private void initializeBalls() {
 		EventQueue.invokeLater(new Runnable() {
@@ -314,6 +333,9 @@ public class GameFrame extends JFrame implements GameStateListener{
 		String currentPlayerStr = map.get("currentPlayer");
 		playerLabel.setText(currentPlayerStr);
 		initializeBalls();
+		/*buildHouse(0,0); buildHouse(0,0); buildHouse(0,1); buildHouse(0,1); buildHouse(0,2);
+		buildHouse(1,0); buildHouse(1,1); buildHouse(1,2);
+		buildHouse(2,0); buildHouse(2,1); buildHouse(2,2);*/
 		if(GameController.getInstance().getLocalPlayer().getID() == 
 				Integer.parseInt(map.get("currentPlayerID"))) {
 			rollButton.setEnabled(true);

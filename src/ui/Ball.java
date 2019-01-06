@@ -48,7 +48,7 @@ public class Ball extends JPanel implements ActionListener, Drawable{
 			g.setColor(Color.RED);
 		}
 		else if(getColor() == 3) {
-			g.setColor(Color.green);
+			g.setColor(Color.MAGENTA);
 		}
 		else if(getColor() == 4) {
 			g.setColor(Color.ORANGE);
