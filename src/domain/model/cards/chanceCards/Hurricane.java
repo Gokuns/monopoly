@@ -60,6 +60,7 @@ public class Hurricane extends ChanceCard{
 								}
 							}
 						}
+						break;
 					}
 				}
 			}
