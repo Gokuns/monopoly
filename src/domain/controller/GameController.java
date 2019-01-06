@@ -69,6 +69,21 @@ public class GameController {
 		
 		return map;
 	}
+	
+	public HashMap<String, String> buildHotel(){
+		Player currentPlayer = gameState.getCurrentPlayer();
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("type", "buildHotel");
+		map.put("successfullyBuilt", "false");
+		boolean successfullyBuilt = currentPlayer.buildHotel();
+		if(successfullyBuilt){
+			map.put("successfullyBuilt", "true");
+		}
+		gameState.publishToNetworkListeners(map);
+		gameState.publishToUIListeners(map);
+		
+		return map;
+	}
 
 	public void roll() {
 		gameState.getCurrentPlayer().setRolled(true);
