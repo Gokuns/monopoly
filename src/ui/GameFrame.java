@@ -45,6 +45,8 @@ public class GameFrame extends JFrame implements GameStateListener{
 	private BoardLayers boardLayers;
 	private JLabel playerLabel;
 	private JLabel rollLabel;
+	private JLabel balanceLabel;
+	private JLabel localPlayerLabel;
 
 	private JButton rollButton;
 	private JButton endTurnButton;
@@ -55,6 +57,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 	private JButton resumeButton;
 	private JButton buyButton;
 	private JButton buildHouseButton;
+	private JButton cardsButton;
 	
 	private Image dieImage1;
 	private Image dieImage2;
@@ -63,6 +66,9 @@ public class GameFrame extends JFrame implements GameStateListener{
 	private JLabel picLabel1;
 	private JLabel picLabel2;
 	private JLabel picLabel3;
+	
+	
+	
 
 	/**
 	 * Create the frame.
@@ -83,7 +89,6 @@ public class GameFrame extends JFrame implements GameStateListener{
 
 		boardLayers = new BoardLayers();
 		balls = new ArrayList<Ball>();
-		buildings = new ArrayList<Building>();
 		animator = new Animator();
 
 		try {
@@ -110,13 +115,13 @@ public class GameFrame extends JFrame implements GameStateListener{
 		picLabel2 = new JLabel(new ImageIcon(dieImage2));
 		picLabel3 = new JLabel(new ImageIcon(dieImage3));
 		
-		picLabel1.setBounds(60, 66, 50, 50);
-		picLabel2.setBounds(120, 66, 50, 50);
-		picLabel3.setBounds(180, 66, 50, 50);
+		picLabel1.setBounds(153, 130, 50, 50);
+		picLabel2.setBounds(213, 130, 50, 50);
+		picLabel3.setBounds(273, 130, 50, 50);
 		
 		System.out.println(monopolyLogoPanel.getWidth() +" , " + monopolyLogoPanel.getHeight());
 		panel = new JPanel();
-		panel.setBounds(860, 20, 300, 700);
+		panel.setBounds(770, 20, 480, 700);
 		contentPane.add(panel);
 		panel.setLayout(null);
 
@@ -124,47 +129,64 @@ public class GameFrame extends JFrame implements GameStateListener{
 		panel.add(picLabel2);
 		panel.add(picLabel3);
 		
+		localPlayerLabel = new JLabel("You are: " +gameController.getLocalPlayer().getName());
+		localPlayerLabel.setHorizontalAlignment(SwingConstants.LEFT);
+		localPlayerLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		localPlayerLabel.setBounds(0, -40, 300, 100);
+		panel.add(localPlayerLabel);
+		
+		balanceLabel = new JLabel("Balance: $"+gameController.getLocalPlayer().getBalance());
+		balanceLabel.setHorizontalAlignment(SwingConstants.LEFT);
+		balanceLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		balanceLabel.setBounds(0, 0, 300, 100);
+		panel.add(balanceLabel);
+		
 		playerLabel = new JLabel("Player X");
 		playerLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		playerLabel.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		playerLabel.setBounds(0, 0, 300, 100);
+		playerLabel.setBounds(93, 40, 300, 100);
 		panel.add(playerLabel);
-
+		
+		
 		rollButton = new JButton("Roll");
-		rollButton.setBounds(0, 119, 300, 40);
+		rollButton.setBounds(70, 200, 100, 40);
 		panel.add(rollButton);
 
 		moveButton = new JButton("Move");
-		moveButton.setBounds(0, 172, 300, 40);
+		moveButton.setBounds(70, 250, 100, 40);
 		panel.add(moveButton);
 		
-		endTurnButton = new JButton("End Turn");
-		endTurnButton.setBounds(0, 225, 300, 40);
-		panel.add(endTurnButton);
-		
-		pauseButton = new JButton("Pause");
-		pauseButton.setBounds(0, 278, 300, 40);
-		panel.add(pauseButton);
-		
-		resumeButton = new JButton("Resume");
-		resumeButton.setBounds(0, 331, 300, 40);
-		panel.add(resumeButton);
-		
-		saveButton = new JButton("Save");
-		saveButton.setBounds(0, 384, 300, 40);
-		panel.add(saveButton);
-		
-		loadButton = new JButton("Load");
-		loadButton.setBounds(0, 437, 300, 40);
-		panel.add(loadButton);
-		
 		buyButton = new JButton("Buy");
-		buyButton.setBounds(0, 490, 300, 40);
+		buyButton.setBounds(190, 200, 100, 40);
 		panel.add(buyButton);
 		
 		buildHouseButton = new JButton("Build House");
-		buildHouseButton.setBounds(0, 543, 300, 40);
+		buildHouseButton.setBounds(190, 250, 100, 40);
 		panel.add(buildHouseButton);
+		
+		endTurnButton = new JButton("End Turn");
+		endTurnButton.setBounds(310, 200, 100, 40);
+		panel.add(endTurnButton);
+		
+		pauseButton = new JButton("Pause");
+		pauseButton.setBounds(380, 450, 100, 40);
+		panel.add(pauseButton);
+		
+		resumeButton = new JButton("Resume");
+		resumeButton.setBounds(380, 500, 100, 40);
+		panel.add(resumeButton);
+		
+		saveButton = new JButton("Save");
+		saveButton.setBounds(380, 550, 100, 40);
+		panel.add(saveButton);
+		
+		loadButton = new JButton("Load");
+		loadButton.setBounds(380, 600, 100, 40);
+		panel.add(loadButton);
+		
+		cardsButton = new JButton("Your Properties");
+		cardsButton.setBounds(120, 320, 240, 40);
+		panel.add(cardsButton);
 		
 
 		endTurnButton.addActionListener(new ActionListener() {
@@ -230,10 +252,10 @@ public class GameFrame extends JFrame implements GameStateListener{
 			}
 		});
 
-		rollLabel = new JLabel("You rolled: ");
+		rollLabel = new JLabel("Rolled: ");
 		rollLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		rollLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		rollLabel.setBounds(0, 278, 300, 40);
+		rollLabel.setBounds(93, 100, 300, 40);
 		panel.add(rollLabel);
 
 		rollButton.addActionListener(new ActionListener() {
@@ -242,6 +264,18 @@ public class GameFrame extends JFrame implements GameStateListener{
 				gameController.roll();
 				rollButton.setEnabled(false);
 				moveButton.setEnabled(true);
+			}
+		});
+		
+		cardsButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JFrame f = new JFrame();
+				f.setSize(1000, 800);
+				setLayout(null);
+				f.setVisible(true);
+				
+				
 			}
 		});
 	}
@@ -372,7 +406,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 
 	private void gameStartedCase(HashMap<String, String> map) {
 		String currentPlayerStr = map.get("currentPlayer");
-		playerLabel.setText(currentPlayerStr);
+		playerLabel.setText(currentPlayerStr+"'s Turn!");
 		initializeBalls();
 		/*
 		buildBuilding(1,0,0); buildBuilding(1,0,0); buildBuilding(1,0,0); 
@@ -409,7 +443,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 
 	private void endTurnCase(HashMap<String, String> map) {
 		String endTurnStr = map.get("currentPlayer");
-		playerLabel.setText(endTurnStr);
+		playerLabel.setText(endTurnStr+"'s Turn!");
 		int localID = gameController.getLocalPlayer().getID();
 		int currentID = Integer.parseInt(map.get("currentPlayerID"));
 		if(localID == currentID) {
