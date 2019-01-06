@@ -502,7 +502,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 			gameStartedCase(map);
 			break;
 		case "special":	
-			specialCase(map);
+//			specialCase(map);
 			break;
 		case "load":
 			loadCase(map);
