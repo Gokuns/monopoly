@@ -25,6 +25,7 @@ import domain.controller.GameController;
 import domain.model.cards.communityChestCards.OpeningNightTickets;
 import domain.model.gameHandler.GameState;
 import domain.model.gameHandler.GameStateListener;
+import domain.model.squares.properties.Property;
 
 @SuppressWarnings("serial")
 public class GameFrame extends JFrame implements GameStateListener{
@@ -41,6 +42,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 	private JLabel playerLabel;
 	private JLabel localPlayerLabel;
 	private JLabel rollLabel;
+	private JLabel balanceLabel;
 
 	private JButton rollButton;
 	private JButton endTurnButton;
@@ -50,6 +52,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 	private JButton pauseButton;
 	private JButton resumeButton;
 	private JButton buyButton;
+	private JButton cardsButton;
 	
 	private Image dieImage1;
 	private Image dieImage2;
@@ -129,6 +132,12 @@ public class GameFrame extends JFrame implements GameStateListener{
 		playerLabel.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		playerLabel.setBounds(93, 0, 300, 100);
 		panel.add(playerLabel);
+		
+		balanceLabel = new JLabel("Balance: $3200");
+		balanceLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		balanceLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		balanceLabel.setBounds(0, 350, 300, 100);
+		panel.add(balanceLabel);
 
 		rollButton = new JButton("Roll");
 		rollButton.setBounds(0, 160, 100, 40);
@@ -162,7 +171,9 @@ public class GameFrame extends JFrame implements GameStateListener{
 		loadButton.setBounds(380, 210, 100, 40);
 		panel.add(loadButton);
 		
-		
+		cardsButton = new JButton("Your Properties");
+		cardsButton.setBounds(120, 270, 240, 40);
+		panel.add(cardsButton);
 
 		endTurnButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -211,6 +222,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 				if(map.get("successfullyBought").equals("false")){
 					JOptionPane.showMessageDialog(GameFrame.this.getContentPane(),"You have insufficient funds to purchase, it may have been bought previously or it is an invalid square to buy.");
 				}
+
 				buyButton.setEnabled(false);
 			}
 		});
@@ -227,6 +239,22 @@ public class GameFrame extends JFrame implements GameStateListener{
 				gameController.roll();
 				rollButton.setEnabled(false);
 				moveButton.setEnabled(true);
+			}
+		});
+		
+		cardsButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JFrame f = new JFrame();
+				f.setSize(1000, 800);
+				setLayout(null);
+				f.setVisible(true);
+				
+				ArrayList<Property> propList = gameController.getLocalPlayer().getPrList();
+				
+				for(int i=0; i<propList.size(); i++) {
+					
+				}
 			}
 		});
 	}
