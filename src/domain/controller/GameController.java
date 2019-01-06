@@ -188,16 +188,18 @@ public class GameController {
 			gameState.publishToNetworkListeners(map);
 		}
 		if(gameState.getCurrentPlayer().isBot()) {
-			playBotTurn((PlayerBot) gameState.getCurrentPlayer());
+			playBotTurn(bot);
 		}
 	}
 	
 	private void playBotTurn(PlayerBot p) {
+		if(getLocalPlayer().getID()==0) {
 		boolean decision = p.tryToAct();
 		this.roll();
 		this.move(true);
 		if(decision) this.buyProperty();
-		this.endTurn(false);
+		this.endTurn(true);
+		}
 		
 	}
 

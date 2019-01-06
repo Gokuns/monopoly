@@ -38,6 +38,9 @@ public class HostNetworkController extends NetworkController implements GameStat
 			String username = map.get("username");
 			int ID = network.getConnectionCount();
 			GameState.getInstance().addPlayer(username, ID);
+			if(network.getConnectionCount()==1) {
+//				GameState.getInstance().getPlayerList().add(new PlayerBot("Bot",-1,1));
+			}
 			map.put("connectionCount", Integer.toString(network.getConnectionCount()));
 			publishToListeners(map);
 			sendMessageToLastSender(map);
@@ -119,11 +122,14 @@ public class HostNetworkController extends NetworkController implements GameStat
 			map.put("player"+(i)+"Name", p.getName());
 			map.put("player"+(i)+"ID", Integer.toString(p.getID()));
 		}
-//		map.put("botType", "0");
+		map.put("botType", "0");
 		System.out.println("size: " +playerList.size());
-		PlayerBot pb = new PlayerBot("Bot",network.getConnectionCount(), botType);
+		PlayerBot pb = new PlayerBot("Bot",2, botType);
 		GameController.getInstance().setBot(pb);
 		playerList.add(pb);
+		HashMap<String, String> botMap = new HashMap<String, String>();
+		botMap.put("type", "bot");
+		sendMessageToPlayers(botMap);
 		System.out.println("size: " +playerList.size());
 		GameState.getInstance().publishToUIListeners(map);
 		GameState.getInstance().setCurrentPlayer(playerList.get(0));
