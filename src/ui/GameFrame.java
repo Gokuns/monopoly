@@ -317,8 +317,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 		});
 	}
 
-	private void moveUIPiece(int playerIndex) {
-		ArrayList<int[]> squareList = gameController.getMoveSquares();
+	private void moveUIPiece(int playerIndex, ArrayList<int[]> squareList) {
 		//System.out.println(squareList);
 		ArrayList<Point> coordinateList = new ArrayList<Point>();
 		for(int i=0;i<squareList.size();i++){
@@ -354,8 +353,16 @@ public class GameFrame extends JFrame implements GameStateListener{
 				buildHouseButton.setEnabled(true);
 			}
 		}
+		ArrayList<int[]> squareList = new ArrayList<int[]>();
+		int stepCount = Integer.parseInt(map.get("steps"));
+		for(int j = 0; j < stepCount; j++) {
+			int[] data = new int[2];
+			data[0] = Integer.parseInt(map.get("squareLayer"+j));
+			data[1] = Integer.parseInt(map.get("squareIndex"+j));
+			squareList.add(data);
+		}
 		System.out.println(layer + "-" + number);
-		moveUIPiece(playerIndex);
+		moveUIPiece(playerIndex, squareList);
 	}
 
 	private void specialCase(HashMap<String, String> map) {
