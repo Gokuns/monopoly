@@ -124,11 +124,16 @@ public class HostNetworkController extends NetworkController implements GameStat
 		}
 		map.put("botType", "0");
 		System.out.println("size: " +playerList.size());
-		PlayerBot pb = new PlayerBot("Bot",2, botType);
+		String botName = "Bot";
+		int botId = playerList.size();
+		PlayerBot pb = new PlayerBot(botName,botId, botType);
 		GameController.getInstance().setBot(pb);
 		playerList.add(pb);
 		HashMap<String, String> botMap = new HashMap<String, String>();
 		botMap.put("type", "bot");
+		botMap.put("name", botName);
+		botMap.put("id", botId+"");
+		botMap.put("botType", botType+"");
 		sendMessageToPlayers(botMap);
 		System.out.println("size: " +playerList.size());
 		GameState.getInstance().publishToUIListeners(map);

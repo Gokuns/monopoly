@@ -73,9 +73,8 @@ public class ClientNetworkController extends NetworkController implements GameSt
 			gameState.publishToUIListeners(map);
 			break;
 		case "bot":
-			PlayerBot pb = new PlayerBot("Bot",2,0);
+			PlayerBot pb = new PlayerBot(map.get("name"),Integer.parseInt(map.get("id")),Integer.parseInt(map.get("botType")));
 			gameController.setBot(pb);
-
 			break;
 		case "newConnection":
 			GameController.getInstance().setLocalPlayerID(
