@@ -11,7 +11,7 @@ import domain.model.players.Player;
 import domain.model.players.Bot.PlayerBot;
 import domain.network.HostNetwork;
 
-public class HostNetworkController extends NetworkController implements GameStateListener{
+public class HostNetworkController extends NetworkController{
 	private HostNetwork network;
 	private List<NetworkControllerListener> listeners;
 	private GameState gameState = GameState.getInstance();
@@ -20,7 +20,6 @@ public class HostNetworkController extends NetworkController implements GameStat
 		super();
 		GameController.getInstance().initializeLocalPlayer(username, 0);
 		GameState.getInstance().addPlayer(username, 0);
-		gameState.addNetworkListener(this);
 		listeners = Collections.synchronizedList(
 				new ArrayList<NetworkControllerListener>());
 		network = new HostNetwork(port, this);
@@ -142,8 +141,4 @@ public class HostNetworkController extends NetworkController implements GameStat
 		sendMessageToPlayers(map);
 	}
 
-	@Override
-	public void update(GameState source, HashMap<String, String> map) {
-		sendMessageToPlayers(map);
-	}
 }

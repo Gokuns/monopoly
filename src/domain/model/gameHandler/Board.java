@@ -1,6 +1,7 @@
 package domain.model.gameHandler;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import domain.model.dice.Cup;
@@ -10,6 +11,9 @@ import domain.model.players.Player;
 import domain.model.squares.LayerFactory;
 import domain.model.squares.Square;
 import domain.model.squares.SquareIterator;
+import domain.model.squares.properties.Deed;
+import domain.model.squares.properties.Property;
+import domain.model.squares.properties.Street;
 
 /**
  * @overview The Board Object is where the squares and cup that holds the dice are stand on.
@@ -25,14 +29,24 @@ public class Board {
 	private SquareIterator iter;
 	private int poolBalance;
 	private LayerFactory layerFactory = LayerFactory.getInstance();
+	private HashMap<String, Integer> coloredDistricts= new HashMap<String, Integer>();
 	
 	/**
 	 * Constructor
 	 */
 	private Board() {
 		initiateSquares(this.Squares);
+		intializeColoredDistricts();
 	}
 	
+	public HashMap<String, Integer> getColoredDistricts() {
+		return coloredDistricts;
+	}
+
+	public void setColoredDistricts(HashMap<String, Integer> coloredDistricts) {
+		this.coloredDistricts = coloredDistricts;
+	}
+
 	/**
 	 * Singleton board, getInstance method.
 	 * @return if its not created before, creates a new one
@@ -64,6 +78,29 @@ public class Board {
 		Squares.add(layerTwo);
 		Squares.add(layerThree);
 		
+	}
+	
+	private void intializeColoredDistricts(){
+		coloredDistricts.put("Purple", 2);
+		coloredDistricts.put("Light Blue", 3);
+		coloredDistricts.put("Magenta", 3);
+		coloredDistricts.put("Orange", 3);
+		coloredDistricts.put("Red", 3);
+		coloredDistricts.put("Yellow", 3);
+		coloredDistricts.put("Dark Blue", 2);
+		coloredDistricts.put("Dark Green", 3);
+		coloredDistricts.put("Dark Orange", 3);
+		coloredDistricts.put("White", 3);
+		coloredDistricts.put("Black", 3);
+		coloredDistricts.put("Grey", 3);
+		coloredDistricts.put("Pink", 3);
+		coloredDistricts.put("Light Green ", 4);
+		coloredDistricts.put("Light Yellow ", 4);
+		coloredDistricts.put("Turquiose", 4);
+		coloredDistricts.put("Wine Red", 4);
+		coloredDistricts.put("Dark Yellow", 4);
+		coloredDistricts.put("Tan", 4);
+		coloredDistricts.put("Dark Red", 3);
 	}
 	
 	/**
@@ -162,11 +199,41 @@ public class Board {
 		}
 		Square landedOn = currentSquare;
 		setPlayersSquare(currentPlayer,landedOn);		
-		System.out.println("Moved to " + getPlayersSquare(game.getCurrentPlayer()).getName());
-		if(landedOn.isProperty()) {
-			currentPlayer.setEnableBuy(true);
-		}
+		System.out.println("Moved to " + getPlayersSquare(currentPlayer).getName());
+		
+		booleanSetter(currentPlayer, landedOn);
+		
 		return movedSquares;
+	}
+
+	private void booleanSetter(Player currentPlayer, Square landedOn) {
+		if(landedOn.isProperty()) {
+			Piece playerPiece = currentPlayer.getPiece();
+			Square playerSquare = playerPiece.getCurrentSquare();
+			Property playerProperty = (Property) playerSquare;
+			Player propertyOwner = playerProperty.getOwner();
+			if(propertyOwner == null){
+				currentPlayer.setEnableBuy(true);
+			}else{
+				Street street = (Street) playerProperty;
+				String propertyColor = street.getColor();
+				if(propertyOwner.getName().equals(currentPlayer.getName())){
+					boolean hasHotel = street.isHasHotel();
+					int houseCount = street.getHouseCount();
+					if(hasHotel){
+						currentPlayer.setEnableBuildSkyscraper(true);
+					}else if(houseCount==4){
+						currentPlayer.setEnableBuildHotel(true);
+					}else{
+						int referenceColorCount = Board.getInstance().getColoredDistricts().get(propertyColor);
+						int ownedColorCount = currentPlayer.getOwnedColoredDisctricts().get(propertyColor);
+						if(referenceColorCount == ownedColorCount){
+							currentPlayer.setEnableBuildHouse(true);
+						}
+					}
+				}
+			}
+		}
 	}
 	
 	

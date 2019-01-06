@@ -19,6 +19,7 @@ import domain.model.dice.Cup;
 import domain.model.dice.FaceValue;
 import domain.model.players.Player;
 import domain.model.squares.properties.Property;
+import domain.model.squares.properties.Street;
 
 public class SaveData implements Serializable{
 	private static SaveData data;
@@ -56,7 +57,15 @@ public class SaveData implements Serializable{
 		    player.addProperty("index", Board.getInstance().getSquareIndex(p.getPiece().getCurrentSquare()));
 		    JsonArray props = new JsonArray();
 		    for(Property prop:p.getPrList()) {
-		    	props.add(prop.getName());	
+		    	Street pr = (Street) prop;
+		    	JsonObject property = new JsonObject();
+		    	property.addProperty("name", pr.getName());
+		    	property.addProperty("isMortgaged",  pr.isMortgaged());
+		    	property.addProperty("houseCount", pr.getHouseCount());
+		    	property.addProperty("hasHotel", pr.isHasHotel());
+		    	property.addProperty("hasSkyscraper", pr.isHasSkyscraper());
+		    	
+		    	props.add(property);	
 		    }
 		    player.add("props", props);
 		    player.addProperty("isTurn", p.isTurn());
@@ -115,7 +124,16 @@ public class SaveData implements Serializable{
 			ArrayList<Property> prLst = new ArrayList<>();
 			for(JsonElement a:props) {
 				JsonObject prop = (JsonObject) a;
-				String nameOfProp = prop.getAsString();
+				String nameOfProp = prop.get("name").getAsString();
+				boolean isMortgaged = prop.get("isMotgaged").getAsBoolean();
+				int houseCount = prop.get("houseCount").getAsInt();
+				boolean hasHotel = prop.get("hasHotel").getAsBoolean();
+				boolean hasSkyscraper = prop.get("hasSkyscraper").getAsBoolean();
+				Street st =  (Street) bd.findSquare(nameOfProp, bd.getSquares());
+				st.setMortgaged(isMortgaged);
+				st.setHouseCount(houseCount);
+				st.setHasHotel(hasHotel);
+				st.setHasSkyscraper(hasSkyscraper);
 				prLst.add((Property) bd.findSquare(nameOfProp, bd.getSquares()));
 			}
 			player.setPrList(prLst);

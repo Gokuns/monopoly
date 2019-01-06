@@ -10,7 +10,7 @@ import domain.model.gameHandler.GameStateListener;
 import domain.model.players.Bot.PlayerBot;
 import domain.network.ClientNetwork;
 
-public class ClientNetworkController extends NetworkController implements GameStateListener{
+public class ClientNetworkController extends NetworkController{
 	private ClientNetwork network;
 	private List<NetworkControllerListener> listeners;
 	
@@ -25,7 +25,6 @@ public class ClientNetworkController extends NetworkController implements GameSt
 	
 	public void initializeClientNetwork(String IP, String port, String username) {
 		network = new ClientNetwork(this, IP, port);
-		GameState.getInstance().addNetworkListener(this);
 		GameController.getInstance().initializeLocalPlayer(username, 1);
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("type", "newConnection");
@@ -93,10 +92,5 @@ public class ClientNetworkController extends NetworkController implements GameSt
 	@Override
 	public void sendMessageToPlayers(HashMap<String, String> map) {
 		network.sendMessageToPlayers(map);
-	}
-
-	@Override
-	public void update(GameState source, HashMap<String, String> map) {
-		sendMessageToPlayers(map);
 	}
 }

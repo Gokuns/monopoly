@@ -2,9 +2,13 @@ package ui;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.Random;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -13,18 +17,25 @@ public class Ball extends JPanel implements ActionListener, Drawable{
 	
 	private Timer tm;
 	private String name;
-	private int color;
+	private Color color;
 	private int xStart, yStart;
 	private int xLimit, yLimit;
 	private StraightLinePath myPath;
 	private Point pos;
+	private int pathNumber = 1;
+	private int numberOfPaths;
+	private ArrayList<Point> coordinateList;
+	private int animationSlowness;
 	
 	
-	public Ball(String name, int color, int xStart, int yStart) {
+	public Ball(String name, Color color, int xStart, int yStart) {
+		
 		this.name = name;
 		this.color = color;
 		this.xStart = xStart;
 		this.yStart = yStart;
+		setBorder(BorderFactory.createLineBorder(Color.black));
+		
 	}
 	
 	public void paintComponent(Graphics g) {
@@ -32,41 +43,25 @@ public class Ball extends JPanel implements ActionListener, Drawable{
 		
 		super.paintComponent(g);
 		
-		if(getColor() == 0) {
-			g.setColor(Color.BLACK);
-		}
-		else if(getColor() == 1) {
-			g.setColor(Color.BLUE);
-		}
-		else if(getColor() == 2) {
-			g.setColor(Color.RED);
-		}
-		else if(getColor() == 3) {
-			g.setColor(Color.green);
-		}
-		else if(getColor() == 4) {
-			g.setColor(Color.ORANGE);
-		}
-		else if(getColor() == 5) {
-			g.setColor(Color.YELLOW);
-		}
-		else {
-			g.setColor(Color.PINK);
-		}
-		
+		g.setColor(color);
 		g.fillRect(0, 0, 20, 20);
 
 	       
 	    }
 		
-	public void draw(int xLimit, int yLimit, int animationSlowness) {
+	public void draw(ArrayList<Point> coordinateList, int animationSlowness) {
 		
 		//setLocation(xLimit, yLimit);
-		this.xLimit = xLimit;
-		this.yLimit = yLimit;
+		this.animationSlowness = animationSlowness;
+		this.coordinateList = coordinateList;
+		this.numberOfPaths = coordinateList.size();
+		this.xLimit = (int) coordinateList.get(0).getX();
+		this.yLimit = (int) coordinateList.get(0).getY();
 		myPath = new StraightLinePath(xStart, yStart, xLimit, yLimit, 50);
 		tm = new Timer(animationSlowness, this);
 		tm.start();
+			
+		
 	}
 
 	
@@ -78,12 +73,16 @@ public class Ball extends JPanel implements ActionListener, Drawable{
 		this.name = name;
 	}
 
-	public int getColor() {
+	public Color getColor() {
 		return color;
 	}
 
-	public void setColor(int color) {
+	public void setColor(Color color) {
 		this.color = color;
+	}
+	
+	public Timer getTimer() {
+		return tm;
 	}
 
 	@Override
@@ -93,11 +92,25 @@ public class Ball extends JPanel implements ActionListener, Drawable{
 		setLocation((int)pos.getX(), (int)pos.getY());
 		
 		
-		if (! myPath.hasMoreSteps()) {
-			xStart = xLimit;
-			yStart = yLimit;
-			tm.stop();
-	        }
+			if (! myPath.hasMoreSteps()) {
+				xStart = xLimit;
+				yStart = yLimit;
+				tm.stop();
+				if(pathNumber <= numberOfPaths) {
+					pathNumber++;
+					if(pathNumber > numberOfPaths) {
+						pathNumber = 1;
+					}
+					else {
+						this.xLimit = (int) coordinateList.get(pathNumber-1).getX();
+						this.yLimit = (int) coordinateList.get(pathNumber-1).getY();
+						myPath = new StraightLinePath(xStart, yStart, xLimit, yLimit, 50);
+						tm = new Timer(animationSlowness, this);
+						tm.start();
+					}
+				}
+			
+		}
 	}
 	
 }
