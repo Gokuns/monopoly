@@ -40,6 +40,24 @@ public class GameController {
 		return controller;
 	}
 	
+	public String properties(){
+		
+		
+		ArrayList<Property> propList = gameState.getCurrentPlayer().getPrList();
+		
+		String prop = "Properties: ";
+		
+		for(int i=0;i<propList.size();i++) {
+			String mortgaged = "";
+			int number = i+1;
+			prop = prop + number + "- " + propList.get(i).getName() + " ";
+		}
+		
+		return prop;
+		
+		
+	}
+	
 	public HashMap<String, String> buyProperty(){
 		Player currentPlayer = gameState.getCurrentPlayer();
 		HashMap<String, String> map = new HashMap<String, String>();
