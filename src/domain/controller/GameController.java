@@ -1,7 +1,6 @@
 package domain.controller;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,7 +12,6 @@ import domain.model.gameHandler.GameLoader;
 import domain.model.gameHandler.GameSaver;
 import domain.model.gameHandler.GameState;
 import domain.model.gameHandler.SaveData;
-import domain.model.players.Piece;
 import domain.model.players.Player;
 import domain.model.players.Bot.PlayerBot;
 import domain.model.squares.Square;
@@ -58,10 +56,14 @@ public class GameController {
 	}
 	
 	public HashMap<String, String> buildHouse(){
+		int layer = board.getSquareLayerIndex(gameState.getPlayerCurrentSquare());
+		int index = board.getSquareIndex(gameState.getPlayerCurrentSquare());
 		Player currentPlayer = gameState.getCurrentPlayer();
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("type", "buildHouse");
 		map.put("successfullyBuilt", "false");
+		map.put("layer", Integer.toString(layer));
+		map.put("index", Integer.toString(index));
 		boolean successfullyBuilt = currentPlayer.buildHouse();
 		if(successfullyBuilt){
 			map.put("successfullyBuilt", "true");
@@ -73,10 +75,14 @@ public class GameController {
 	}
 	
 	public HashMap<String, String> buildHotel(){
+		int layer = board.getSquareLayerIndex(gameState.getPlayerCurrentSquare());
+		int index = board.getSquareIndex(gameState.getPlayerCurrentSquare());
 		Player currentPlayer = gameState.getCurrentPlayer();
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("type", "buildHotel");
 		map.put("successfullyBuilt", "false");
+		map.put("layer", Integer.toString(layer));
+		map.put("index", Integer.toString(index));
 		boolean successfullyBuilt = currentPlayer.buildHotel();
 		if(successfullyBuilt){
 			map.put("successfullyBuilt", "true");
@@ -88,10 +94,14 @@ public class GameController {
 	}
 	
 	public HashMap<String, String> buildSkyscraper(){
+		int layer = board.getSquareLayerIndex(gameState.getPlayerCurrentSquare());
+		int index = board.getSquareIndex(gameState.getPlayerCurrentSquare());
 		Player currentPlayer = gameState.getCurrentPlayer();
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("type", "buildSkyscraper");
 		map.put("successfullyBuilt", "false");
+		map.put("layer", Integer.toString(layer));
+		map.put("index", Integer.toString(index));
 		boolean successfullyBuilt = currentPlayer.buildSkyscraper();
 		if(successfullyBuilt){
 			map.put("successfullyBuilt", "true");

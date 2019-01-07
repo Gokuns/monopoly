@@ -11,7 +11,6 @@ import domain.model.players.Player;
 import domain.model.squares.LayerFactory;
 import domain.model.squares.Square;
 import domain.model.squares.SquareIterator;
-import domain.model.squares.properties.Deed;
 import domain.model.squares.properties.Property;
 import domain.model.squares.properties.Street;
 

@@ -12,7 +12,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.concurrent.TimeUnit;
 import java.util.Random;
 
 import javax.imageio.ImageIO;
@@ -39,7 +38,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 	private GameState gameState;
 	private int numberOfPlayers;
 	private ArrayList<Ball> balls;
-	private ArrayList<Building> buildings;
+	private ArrayList<Building> buildings = new ArrayList<Building>();
 	private Animator animator;
 	private BoardLayers boardLayers;
 	private JLabel playerLabel;
@@ -137,7 +136,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 		localPlayerLabel.setBounds(0, -40, 300, 100);
 		panel.add(localPlayerLabel);
 		
-		balanceLabel = new JLabel("Balance: $"+gameController.getLocalPlayer().getBalance());
+		balanceLabel = new JLabel("Current Player Balance: $3200");
 		balanceLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		balanceLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		balanceLabel.setBounds(0, 0, 300, 100);
@@ -493,7 +492,9 @@ public class GameFrame extends JFrame implements GameStateListener{
 		String currentPlayerStr = map.get("currentPlayer");
 		playerLabel.setText(currentPlayerStr+"'s Turn!");
 		initializeBalls();
-		/*
+		/*gameController.buildHouse();
+		gameController.buildHotel();
+		gameController.buildSkyscraper();
 		buildBuilding(1,0,0); buildBuilding(1,0,0); buildBuilding(1,0,0); 
 		deleteBuilding(1,0,0);
 		buildBuilding(1,1,0); buildBuilding(1,2,2);
@@ -551,6 +552,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 			buildHotelButton.setEnabled(false);
 			buildSkyscraperButton.setEnabled(false);
 		}
+		balanceLabel.setText("Current Player Balance: $"+gameState.getCurrentPlayer().getBalance());
 	}
 	
 	private void jailCase(HashMap<String, String> map) {
@@ -702,6 +704,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 	
 	@Override
 	public void update(GameState source, HashMap<String, String> map) {
+		balanceLabel.setText("Current Player Balance: $"+gameState.getCurrentPlayer().getBalance());
 		String type = map.get("type");
 		switch(type){
 		case "roll":
@@ -774,14 +777,29 @@ public class GameFrame extends JFrame implements GameStateListener{
 
 	private void buildSkyscraperCase(HashMap<String, String> map) {
 		buildSkyscraperButton.setEnabled(false);
+		if(map.get("successfullyBuilt").equals("true")) {
+			int layer = Integer.parseInt(map.get("layer"));
+			int index = Integer.parseInt(map.get("index"));
+			buildBuilding(layer, index, 2);
+		}
 	}
 
 	private void buildHotelCase(HashMap<String, String> map) {
 		buildHotelButton.setEnabled(false);
+		if(map.get("successfullyBuilt").equals("true")) {
+			int layer = Integer.parseInt(map.get("layer"));
+			int index = Integer.parseInt(map.get("index"));
+			buildBuilding(layer, index, 1);
+		}
 	}
 
 	private void buildHouseCase(HashMap<String, String> map) {
 		buildHouseButton.setEnabled(false);
+		if(map.get("successfullyBuilt").equals("true")) {
+			int layer = Integer.parseInt(map.get("layer"));
+			int index = Integer.parseInt(map.get("index"));
+			buildBuilding(layer, index, 0);
+		}
 	}
 
 	private void resumeCase(HashMap<String, String> map) {

@@ -40,7 +40,7 @@ public class SocketReader implements Runnable{
 				}
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			
 		}
 	}
 
