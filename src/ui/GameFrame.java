@@ -30,6 +30,7 @@ import domain.model.cards.communityChestCards.OpeningNightTickets;
 import domain.model.gameHandler.GameState;
 import domain.model.gameHandler.GameStateListener;
 import domain.model.squares.properties.Property;
+import domain.model.squares.properties.Street;
 
 @SuppressWarnings("serial")
 public class GameFrame extends JFrame implements GameStateListener{
@@ -283,7 +284,35 @@ public class GameFrame extends JFrame implements GameStateListener{
 				setLayout(null);
 				f.setVisible(true);
 				
+				ArrayList<Property> propList = gameController.getLocalPlayer().getPrList();
+				String name;
+				String type;
+				int x=0;
+				int y=0;
+				int w = 140;
+				int h = 160;
+				JLabel image;
+				Property prop;
+				String path;
 				
+				for(int i=0; i<propList.size(); i++) {
+					
+					prop = propList.get(i);
+					name = prop.getName().replaceAll("[^A-Za-z0-9]", "");
+					type = prop.getDeed().getType();
+					
+					path = "cards/titleDeeds/"+type+"/"+name+".png";
+					
+					image = new JLabel(new ImageIcon(path));
+					image.setBounds(x, y, w, h);
+					f.add(image);
+					
+					if(i%4==0) {
+						x=0;
+						y=y+h;
+					}
+					else x=x+w;		
+				}
 			}
 		});
 	}
