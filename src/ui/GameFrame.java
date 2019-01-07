@@ -136,7 +136,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 		localPlayerLabel.setBounds(0, -40, 300, 100);
 		panel.add(localPlayerLabel);
 		
-		balanceLabel = new JLabel("Balance: $"+gameController.getLocalPlayer().getBalance());
+		balanceLabel = new JLabel("Current Player Balance: $3200");
 		balanceLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		balanceLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		balanceLabel.setBounds(0, 0, 300, 100);
@@ -515,6 +515,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 			buildHotelButton.setEnabled(false);
 			buildSkyscraperButton.setEnabled(false);
 		}
+		balanceLabel.setText("Current Player Balance: $"+gameState.getCurrentPlayer().getBalance());
 	}
 	
 	private void jailCase(HashMap<String, String> map) {
@@ -666,6 +667,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 	
 	@Override
 	public void update(GameState source, HashMap<String, String> map) {
+		balanceLabel.setText("Current Player Balance: $"+gameState.getCurrentPlayer().getBalance());
 		String type = map.get("type");
 		switch(type){
 		case "roll":
