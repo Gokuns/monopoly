@@ -749,11 +749,11 @@ public class GameFrame extends JFrame implements GameStateListener{
 				"Turquiose", "Wine Red", "Dark Yellow", "Tan", "Dark Red"};
 		chosenColorOfDistrict = (String)JOptionPane.showInputDialog(
 		                    GameFrame.this.getContentPane(),
-		                    "Please choose a colored district to throw the hurricane to\n"
+		                    "Please choose a colored district to throw the hurricane to:\n"
 		                    + "\"........\"",
 		                    "Customized Dialog",
 		                    JOptionPane.PLAIN_MESSAGE,
-		                    new ImageIcon(getClass().getResource("")),
+		                    new ImageIcon(getClass().getResource("icon.png")),
 		                    possibilities,
 		                    "Purple");
 
