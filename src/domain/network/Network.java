@@ -4,6 +4,7 @@ import java.net.Socket;
 import java.util.HashMap;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import domain.controller.NetworkController;
 import domain.model.gameHandler.GameState;
@@ -29,4 +30,10 @@ public abstract class Network  implements GameStateListener{
 	}
 
 	protected abstract void sendMessageToPlayers(HashMap<String, String> map);
+
+	public void handleLoadData(JsonObject loadData) {
+		networkController.handleLoadData(loadData);
+	}
+
+	public abstract void sendLoadData(JsonObject loadData);
 }
