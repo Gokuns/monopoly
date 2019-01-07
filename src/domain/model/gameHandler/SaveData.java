@@ -139,13 +139,15 @@ public class SaveData implements Serializable{
 				int houseCount = prop.get("houseCount").getAsInt();
 				boolean hasHotel = prop.get("hasHotel").getAsBoolean();
 				boolean hasSkyscraper = prop.get("hasSkyscraper").getAsBoolean();
+
 				Street st =  (Street) bd.findSquare(nameOfProp, bd.getSquares());
+				System.out.println("Streets name:" + st.getName());
 				st.setOwner(player);
 				st.setMortgaged(isMortgaged);
 				st.setHouseCount(houseCount);
 				st.setHasHotel(hasHotel);
 				st.setHasSkyscraper(hasSkyscraper);
-				prLst.add((Property) bd.findSquare(nameOfProp, bd.getSquares()));
+				prLst.add(st);
 			}
 			player.setPrList(prLst);
 			player.propertyList2ownedColoredDistricts();
