@@ -77,6 +77,8 @@ public class ClientNetworkController extends NetworkController{
 			GameController.getInstance().setLocalPlayerID(
 					Integer.parseInt(map.get("connectionCount")));
 			break;
+		case "buy":
+			GameController.getInstance().buyProperty(false);
 		}
 	}
 	

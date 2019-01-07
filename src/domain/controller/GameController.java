@@ -63,7 +63,7 @@ public class GameController {
 		
 	}
 	
-	public HashMap<String, String> buyProperty(){
+	public HashMap<String, String> buyProperty(boolean isLocal){
 		Player currentPlayer = gameState.getCurrentPlayer();
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("type", "buy");
@@ -72,7 +72,9 @@ public class GameController {
 		if(successfullyBought){
 			map.put("successfullyBought", "true");
 		}
+		if(isLocal)
 		gameState.publishToNetworkListeners(map);
+		
 		gameState.publishToUIListeners(map);
 		
 		return map;
@@ -312,7 +314,7 @@ public class GameController {
 		boolean decision = p.tryToAct();
 		this.roll();
 		this.move(true);
-		if(decision) this.buyProperty();
+		if(decision) this.buyProperty(true);
 		this.endTurn(true);
 		}
 		
