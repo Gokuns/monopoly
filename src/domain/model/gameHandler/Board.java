@@ -207,7 +207,7 @@ public class Board {
 	}
 
 	private void booleanSetter(Player currentPlayer, Square landedOn) {
-		if(landedOn.isProperty()) {
+		if(landedOn.isStreet()) {
 			Piece playerPiece = currentPlayer.getPiece();
 			Square playerSquare = playerPiece.getCurrentSquare();
 			Property playerProperty = (Property) playerSquare;

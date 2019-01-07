@@ -7,6 +7,7 @@ public class Square {
 	private String desciption;
 	private SquareStrategy sqStrat;
 	private PayCornerStrategy payStrat;
+	private boolean isStreet =false;
 
 	private boolean isTransitOuter = false;
 	private boolean isTransitInner = false;
@@ -133,6 +134,20 @@ public class Square {
 
 	public void setProperty(boolean isProperty) {
 		this.isProperty = isProperty;
+	}
+
+	/**
+	 * @return the isStreet
+	 */
+	public boolean isStreet() {
+		return isStreet;
+	}
+
+	/**
+	 * @param isStreet the isStreet to set
+	 */
+	public void setStreet(boolean isStreet) {
+		this.isStreet = isStreet;
 	}
 
 }

@@ -50,4 +50,5 @@ public abstract class Property extends Square {
 		this.deed = deed;
 	}
 
+
 }

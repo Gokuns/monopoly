@@ -14,6 +14,7 @@ public class Street extends Property {
 		this.houseCount = 0;
 		this.hasHotel = false;
 		this.hasSkyscraper = false;
+		this.setStreet(true);
 	}
 
 	public String getColor() {
