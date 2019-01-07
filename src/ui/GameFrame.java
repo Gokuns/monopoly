@@ -185,7 +185,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 		loadButton.setBounds(380, 600, 100, 40);
 		panel.add(loadButton);
 		
-		cardsButton = new JButton("Your Properties");
+		cardsButton = new JButton("Current Player`s Properties");
 		cardsButton.setBounds(120, 320, 240, 40);
 		panel.add(cardsButton);
 		
@@ -311,8 +311,22 @@ public class GameFrame extends JFrame implements GameStateListener{
 			public void actionPerformed(ActionEvent e) {
 				JFrame f = new JFrame();
 				f.setSize(1000, 800);
-				setLayout(null);
 				f.setVisible(true);
+				
+				JPanel p = new JPanel();
+				p.setSize(1000,800);
+				p.setVisible(true);
+				p.setLayout(null);
+				f.add(p);
+				
+				JLabel properties = new JLabel("Properties");
+				properties.setText(gameController.properties());
+				properties.setBounds(0,0,800,750);
+				
+				p.add(properties);
+				
+
+				
 				
 				
 			}
