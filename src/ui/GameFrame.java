@@ -185,7 +185,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 		loadButton.setBounds(380, 600, 100, 40);
 		panel.add(loadButton);
 		
-		cardsButton = new JButton("Your Properties");
+		cardsButton = new JButton("Current Player`s Properties");
 		cardsButton.setBounds(120, 320, 240, 40);
 		panel.add(cardsButton);
 		
@@ -247,7 +247,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				HashMap<String, String> map = gameController.buyProperty();
+				HashMap<String, String> map = gameController.buyProperty(true);
 				if(map.get("successfullyBought").equals("false")){
 					JOptionPane.showMessageDialog(GameFrame.this.getContentPane(),"You have insufficient funds to purchase, it may have been bought previously or it is an invalid square to buy.");
 				}
@@ -311,8 +311,22 @@ public class GameFrame extends JFrame implements GameStateListener{
 			public void actionPerformed(ActionEvent e) {
 				JFrame f = new JFrame();
 				f.setSize(1000, 800);
-				setLayout(null);
 				f.setVisible(true);
+				
+				JPanel p = new JPanel();
+				p.setSize(1000,800);
+				p.setVisible(true);
+				p.setLayout(null);
+				f.add(p);
+				
+				JLabel properties = new JLabel("Properties");
+				properties.setText(gameController.properties());
+				properties.setBounds(0,0,800,750);
+				
+				p.add(properties);
+				
+
+				
 				
 				
 			}
@@ -389,6 +403,43 @@ public class GameFrame extends JFrame implements GameStateListener{
 			}
 		});
 	}
+	
+	private void moveUIPieceForLoad(int playerIndex, int layer, int number) {
+		SquareCoordinates current = boardLayers.getSquareCoordinates(layer, number);
+		int x = current.getX() - 45;
+		int y = current.getY() - 25;
+//		animator.animateForLoad(balls.get(playerIndex),x + playerIndex * 6, y, 10);
+		balls.get(playerIndex).setLocation(x, y);
+	}
+	
+	private void moveForLoad(HashMap<String, String> map, String i) {
+		int playerIndex = Integer.parseInt(map.get("ID"+i));
+		int layer = Integer.parseInt(map.get("layer"+i));
+		int number = Integer.parseInt(map.get("number"+i));
+		String isEnableBuy = map.get("enableBuy"+i);
+		String isEnableBuildHouse = map.get("enableBuildHouse"+i);
+		String isEnableBuildHotel = map.get("enableBuildHotel"+i);
+		String isEnableBuildSkyscraper = map.get("enableBuildSkyscraper"+i);
+		if(GameController.getInstance().getLocalPlayer().getID() == 
+				Integer.parseInt(map.get("ID"+i))) {
+			if(isEnableBuy.equals("true")) {
+				buyButton.setEnabled(true);
+			}
+			if(isEnableBuildHouse.equals("true")){
+				buildHouseButton.setEnabled(true);
+			}
+			if(isEnableBuildHotel.equals("true")){
+				buildHotelButton.setEnabled(true);
+			}
+			if(isEnableBuildSkyscraper.equals("true")){
+				buildSkyscraperButton.setEnabled(true);
+			}
+		}
+		System.out.println(layer + "-" + number);
+		moveUIPieceForLoad(playerIndex, layer, number);
+	}
+
+
 
 	private void moveUIPiece(int playerIndex, ArrayList<int[]> squareList) {
 		//System.out.println(squareList);
@@ -438,8 +489,8 @@ public class GameFrame extends JFrame implements GameStateListener{
 		int stepCount = Integer.parseInt(map.get("steps"+i));
 		for(int j = 0; j < stepCount; j++) {
 			int[] data = new int[2];
-			data[0] = Integer.parseInt(map.get("squareLayer"+i+j));
-			data[1] = Integer.parseInt(map.get("squareIndex"+i+j));
+			data[0] = Integer.parseInt(map.get("squareLayer"+j));
+			data[1] = Integer.parseInt(map.get("squareIndex"+j));
 			squareList.add(data);
 		}
 		System.out.println(layer + "-" + number);
@@ -749,15 +800,18 @@ public class GameFrame extends JFrame implements GameStateListener{
 		String[] possibilities = {"Purple", "Light Blue", "Magenta", "Orange", "Red", "Yellow", "Dark Blue",
 				"Dark Green", "Dark Orange", "White","Black", "Gray", "Pink", "Light Green", "Light Yellow",
 				"Turquiose", "Wine Red", "Dark Yellow", "Tan", "Dark Red"};
+		
+		if(controller.getLocalPlayer().getID()==GameState.getInstance().getCurrentPlayer().getID()) {
 		chosenColorOfDistrict = (String)JOptionPane.showInputDialog(
 		                    GameFrame.this.getContentPane(),
 		                    "Please choose a colored district to throw the hurricane to:\n"
 		                    + "\"........\"",
 		                    "Customized Dialog",
 		                    JOptionPane.PLAIN_MESSAGE,
-		                    new ImageIcon(getClass().getResource("icon.png")),
+		                    null,
 		                    possibilities,
 		                    "Purple");
+		}
 
 		
 		map.put("colorOfDistrict", chosenColorOfDistrict);
@@ -805,11 +859,12 @@ public class GameFrame extends JFrame implements GameStateListener{
 	}
 
 	private void loadCase(HashMap<String, String> map) {
-		refreshButtons();
+
 		dieCase(map);
 		endTurnCase(map);
+		refreshButtons();
 		for(int i=0; i<GameState.getInstance().getPlayerCount();i++) {
-			moveCase(map, i+"");
+			moveForLoad(map, i+"");
 		}
 		
 	}

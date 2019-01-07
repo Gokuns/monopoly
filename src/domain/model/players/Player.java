@@ -106,6 +106,7 @@ public class Player {
 	
 	public HashMap<String, Integer> propertyList2ownedColoredDistricts(){
 		HashMap<String, Integer> ownedColoredDistrictMap = new HashMap<String, Integer>();
+		System.out.println("propList of "+name + ": "+propList);
 		for(Property prop:propList){
 			Street street = (Street) prop;
 			String propColor = street.getColor();
@@ -115,6 +116,7 @@ public class Player {
 				ownedColoredDistrictMap.put(propColor, ownedColoredDistrictMap.get(propColor)+1);
 			}
 		}
+		this.ownedColoredDisctricts = ownedColoredDistrictMap;
 		return ownedColoredDistrictMap;
 	}
 	
@@ -147,7 +149,7 @@ public class Player {
 		int playerBalance = this.getBalance();
 		Piece playerPiece = this.getPiece();
 		Square playerSquare = playerPiece.getCurrentSquare();
-		if(playerSquare.isProperty()){
+		if(playerSquare.isStreet()){
 			Property playerProperty = (Property) playerSquare;
 			Player owner = playerProperty.getOwner();
 			Street street = (Street) playerProperty;
@@ -155,6 +157,8 @@ public class Player {
 			if(owner.getName().equals(this.getName())){
 				int referenceColorCount = Board.getInstance().getColoredDistricts().get(propertyColor);
 				int ownedColorCount = this.ownedColoredDisctricts.get(propertyColor);
+				System.out.println("referenceColorCount:" + referenceColorCount);
+				System.out.println("ownedColorCount:" + ownedColorCount);
 				if(referenceColorCount == ownedColorCount){
 					Deed propertyDeed = playerProperty.getDeed();
 					int housePrice = propertyDeed.getValues().get("housePrice");
@@ -182,7 +186,7 @@ public class Player {
 			if(owner.getName().equals(this.getName())){
 				Deed propertyDeed = playerProperty.getDeed();
 				int houseCount = street.getHouseCount();
-				int hotelPrice = propertyDeed.getValues().get("houseCount");
+				int hotelPrice = propertyDeed.getValues().get("hotelPrice");
 				if(houseCount==4){
 					if(playerBalance>=hotelPrice){
 						street.setHouseCount(0);

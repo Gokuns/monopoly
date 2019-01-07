@@ -6,6 +6,8 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.HashMap;
 
+import com.google.gson.JsonObject;
+
 import domain.controller.NetworkController;
 
 public class ClientNetwork extends Network{
@@ -38,6 +40,17 @@ public class ClientNetwork extends Network{
 			String json = gson.toJson(map);
 			PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 			out.println(json);
+			out.flush();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void sendLoadData(JsonObject loadData) {
+		try {
+			PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+			out.println(loadData);
 			out.flush();
 		} catch (IOException e) {
 			e.printStackTrace();

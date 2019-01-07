@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
+import com.google.gson.JsonObject;
+
 import domain.model.gameHandler.GameState;
 import domain.model.players.Bot.PlayerBot;
 import domain.network.ClientNetwork;
@@ -67,9 +69,6 @@ public class ClientNetworkController extends NetworkController{
 		case "move":
 			gameController.move(false);
 			break;
-		case "load":
-			gameState.publishToUIListeners(map);
-			break;
 		case "bot":
 			PlayerBot pb = new PlayerBot(map.get("name"),Integer.parseInt(map.get("id")),Integer.parseInt(map.get("botType")));
 			gameController.setBot(pb);
@@ -78,7 +77,21 @@ public class ClientNetworkController extends NetworkController{
 			GameController.getInstance().setLocalPlayerID(
 					Integer.parseInt(map.get("connectionCount")));
 			break;
+		case "buy":
+			GameController.getInstance().buyProperty(false);
 		}
+	}
+	
+	public void handleLoadData(JsonObject loadData) {
+		try {
+			GameController.getInstance().loadReceivedGame(loadData);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void distributeLoadData(JsonObject loadData) {
+		network.sendLoadData(loadData);
 	}
 		
 	public void publishToListeners(HashMap<String, String> map) {

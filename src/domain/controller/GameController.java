@@ -5,9 +5,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+
 import domain.model.cards.Card;
 import domain.model.cards.Deck;
 import domain.model.cards.chanceCards.Hurricane;
+import com.google.gson.JsonObject;
 import domain.model.dice.Cup;
 import domain.model.dice.FaceValue;
 import domain.model.gameHandler.Board;
@@ -43,7 +45,25 @@ public class GameController {
 		return controller;
 	}
 	
-	public HashMap<String, String> buyProperty(){
+	public String properties(){
+		
+		
+		ArrayList<Property> propList = gameState.getCurrentPlayer().getPrList();
+		
+		String prop = "Properties: ";
+		
+		for(int i=0;i<propList.size();i++) {
+			String mortgaged = "";
+			int number = i+1;
+			prop = prop + number + "- " + propList.get(i).getName() + " ";
+		}
+		
+		return prop;
+		
+		
+	}
+	
+	public HashMap<String, String> buyProperty(boolean isLocal){
 		Player currentPlayer = gameState.getCurrentPlayer();
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("type", "buy");
@@ -52,7 +72,9 @@ public class GameController {
 		if(successfullyBought){
 			map.put("successfullyBought", "true");
 		}
+		if(isLocal)
 		gameState.publishToNetworkListeners(map);
+		
 		gameState.publishToUIListeners(map);
 		
 		return map;
@@ -292,7 +314,7 @@ public class GameController {
 		boolean decision = p.tryToAct();
 		this.roll();
 		this.move(true);
-		if(decision) this.buyProperty();
+		if(decision) this.buyProperty(true);
 		this.endTurn(true);
 		}
 		
@@ -319,7 +341,12 @@ public class GameController {
 	
 	public void loadGame(File file) throws Exception {
 		SaveData data = SaveData.getInstance();
-		data.converDataToGame(GameLoader.readJsonSimpleDemo(file), gameState, Cup.getInstance());
+		JsonObject loadData = GameLoader.readJsonSimpleDemo(file);
+		data.converDataToGame(loadData, gameState, Cup.getInstance());
+		HashMap<String, String> loadNotificationMap = new HashMap<String, String>();
+		loadNotificationMap.put("type", "loadDataIncoming");
+		gameState.publishToNetworkListeners(loadNotificationMap);
+		networkController.distributeLoadData(loadData);
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("type", "load");
 		ArrayList<Player> lst = gameState.getOrderedPlayerList();
@@ -331,6 +358,10 @@ public class GameController {
 			map.put("layer"+i, board.getSquareLayerIndex(playerSq)+"");
 			map.put("number"+i, board.getSquareIndex(playerSq)+"");
 			map.put("balance"+i, p.getBalance()+"");
+			map.put("enableBuy"+i, p.isEnableBuy()+"");
+			map.put("enableBuildHouse"+i, p.isEnableBuildHouse()+"");
+			map.put("enableBuildHotel"+i, p.isEnableBuildHotel()+"");
+			map.put("enableBuildSkyscraper"+i, p.isEnableBuildSkyscraper()+"");
 			
 		}
 		map.put("currentPlayer",  gameState.getCurrentPlayer().getName());
@@ -339,7 +370,32 @@ public class GameController {
 
 		gameState.publishToNetworkListeners(map);
 		gameState.publishToUIListeners(map);
-		
+	}
+	
+	public void loadReceivedGame(JsonObject loadData) throws Exception {
+		SaveData data = SaveData.getInstance();
+		data.converDataToGame(loadData, gameState, Cup.getInstance());
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("type", "load");
+		ArrayList<Player> lst = gameState.getOrderedPlayerList();
+		for (int i = 0; i < lst.size(); i++) {
+			Player p = lst.get(i);
+			Square playerSq = p.getPiece().getCurrentSquare();
+			map.put("name"+i,p.getName());
+			map.put("ID"+i,p.getID()+"");
+			map.put("layer"+i, board.getSquareLayerIndex(playerSq)+"");
+			map.put("number"+i, board.getSquareIndex(playerSq)+"");
+			map.put("balance"+i, p.getBalance()+"");
+			map.put("enableBuy"+i, p.isEnableBuy()+"");
+			map.put("enableBuildHouse"+i, p.isEnableBuildHouse()+"");
+			map.put("enableBuildHotel"+i, p.isEnableBuildHotel()+"");
+			map.put("enableBuildSkyscraper"+i, p.isEnableBuildSkyscraper()+"");
+			
+		}
+		map.put("currentPlayer",  gameState.getCurrentPlayer().getName());
+		map.put("currentPlayerID", Integer.toString(gameState.getCurrentPlayer().getID()));
+		map.putAll(createFaceValMap(Cup.getInstance()));
+		gameState.publishToUIListeners(map);
 	}
 
 	public Player getLocalPlayer() {

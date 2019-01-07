@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
+import com.google.gson.JsonObject;
+
 import domain.model.gameHandler.GameState;
 import domain.model.players.Player;
 import domain.model.players.Bot.PlayerBot;
@@ -75,7 +77,24 @@ public class HostNetworkController extends NetworkController{
 		case "move":
 			GameController.getInstance().move(false);
 			relayMessageToPlayers(map);
+			break;
+		case "buy":
+			GameController.getInstance().buyProperty(false);
+			relayMessageToPlayers(map);
 		}
+	}
+	
+	public void handleLoadData(JsonObject loadData) {
+		try {
+			network.relayLoadData(loadData);
+			GameController.getInstance().loadReceivedGame(loadData);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void distributeLoadData(JsonObject loadData) {
+		network.sendLoadData(loadData);
 	}
 
 	public void sendMessageToPlayers(HashMap<String, String> map) {
@@ -132,12 +151,12 @@ public class HostNetworkController extends NetworkController{
 		botMap.put("name", botName);
 		botMap.put("id", botId+"");
 		botMap.put("botType", botType+"");
-		sendMessageToPlayers(botMap);
+		network.sendMessageToPlayers(botMap);
 		System.out.println("size: " +playerList.size());
 		GameState.getInstance().setCurrentPlayer(playerList.get(0));
 		GameState.getInstance().setOrderedPlayerList(playerList);
 		GameState.getInstance().publishToUIListeners(map);
-		sendMessageToPlayers(map);
+		network.sendMessageToPlayers(map);
 	}
 
 }
