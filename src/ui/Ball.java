@@ -63,19 +63,6 @@ public class Ball extends JPanel implements ActionListener, Drawable{
 	}
 	
 	
-	@Override
-	public void drawForLoad(int xLimit, int yLimit, int animationSlowness) {
-		//setLocation(xLimit, yLimit);
-		this.xLimit = xLimit;
-		this.yLimit = yLimit;
-		myPath = new StraightLinePath(xStart, yStart, xLimit, yLimit, 50);
-		tm = new Timer(animationSlowness, this);
-		tm.start();
-
-		
-	}
-
-	
 	public String getName() {
 		return name;
 	}
