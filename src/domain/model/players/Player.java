@@ -106,6 +106,7 @@ public class Player {
 	
 	public HashMap<String, Integer> propertyList2ownedColoredDistricts(){
 		HashMap<String, Integer> ownedColoredDistrictMap = new HashMap<String, Integer>();
+		System.out.println("propList of "+name + ": "+propList);
 		for(Property prop:propList){
 			Street street = (Street) prop;
 			String propColor = street.getColor();
@@ -115,6 +116,7 @@ public class Player {
 				ownedColoredDistrictMap.put(propColor, ownedColoredDistrictMap.get(propColor)+1);
 			}
 		}
+		this.ownedColoredDisctricts = ownedColoredDistrictMap;
 		return ownedColoredDistrictMap;
 	}
 	
@@ -184,7 +186,7 @@ public class Player {
 			if(owner.getName().equals(this.getName())){
 				Deed propertyDeed = playerProperty.getDeed();
 				int houseCount = street.getHouseCount();
-				int hotelPrice = propertyDeed.getValues().get("houseCount");
+				int hotelPrice = propertyDeed.getValues().get("hotelPrice");
 				if(houseCount==4){
 					if(playerBalance>=hotelPrice){
 						street.setHouseCount(0);
