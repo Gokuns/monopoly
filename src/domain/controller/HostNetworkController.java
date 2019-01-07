@@ -134,9 +134,9 @@ public class HostNetworkController extends NetworkController{
 		botMap.put("botType", botType+"");
 		sendMessageToPlayers(botMap);
 		System.out.println("size: " +playerList.size());
-		GameState.getInstance().publishToUIListeners(map);
 		GameState.getInstance().setCurrentPlayer(playerList.get(0));
 		GameState.getInstance().setOrderedPlayerList(playerList);
+		GameState.getInstance().publishToUIListeners(map);
 		sendMessageToPlayers(map);
 	}
 
