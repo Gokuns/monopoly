@@ -79,6 +79,10 @@ public class SaveData implements Serializable{
 		    player.addProperty("rolledBus", p.isRolledBus());
 		    player.addProperty("hasPaused", p.hasPaused());
 		    player.addProperty("enableBuy",  p.isEnableBuy());
+		    player.addProperty("enableBuildHouse", p.isEnableBuildHouse());
+		    player.addProperty("enableBuildHotel", p.isEnableBuildHotel());
+		    player.addProperty("enableBuildSkyscraper", p.isEnableBuildSkyscraper());
+		    
 		    JsonArray chance = new JsonArray();
 		    for(ChanceCard c :p.getChanceCards()) {
 		    	props.add(c.getName());
@@ -124,7 +128,7 @@ public class SaveData implements Serializable{
 			for(JsonElement a:props) {
 				JsonObject prop = (JsonObject) a;
 				String nameOfProp = prop.get("name").getAsString();
-				boolean isMortgaged = prop.get("isMotgaged").getAsBoolean();
+				boolean isMortgaged = prop.get("isMortgaged").getAsBoolean();
 				int houseCount = prop.get("houseCount").getAsInt();
 				boolean hasHotel = prop.get("hasHotel").getAsBoolean();
 				boolean hasSkyscraper = prop.get("hasSkyscraper").getAsBoolean();
@@ -148,6 +152,9 @@ public class SaveData implements Serializable{
 			player.setRolledBus(p.get("rolledBus").getAsBoolean());
 			player.setHasPaused(p.get("hasPaused").getAsBoolean());
 			player.setEnableBuy(p.get("enableBuy").getAsBoolean());
+			player.setEnableBuildHouse(p.get("enableBuildHotel").getAsBoolean());
+			player.setEnableBuildHotel(p.get("enableBuildHotel").getAsBoolean());
+			player.setEnableBuildSkyscraper(p.get("enableBuildHotel").getAsBoolean());
 			
 			
 			JsonArray chances = p.get("chance").getAsJsonArray();

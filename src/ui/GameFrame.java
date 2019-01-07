@@ -415,10 +415,10 @@ public class GameFrame extends JFrame implements GameStateListener{
 		int playerIndex = Integer.parseInt(map.get("ID"+i));
 		int layer = Integer.parseInt(map.get("layer"+i));
 		int number = Integer.parseInt(map.get("number"+i));
-		String isEnableBuy = map.get("enableBuy");
-		String isEnableBuildHouse = map.get("enableBuildHouse");
-		String isEnableBuildHotel = map.get("enableBuildHotel");
-		String isEnableBuildSkyscraper = map.get("enableBuildSkyscraper");
+		String isEnableBuy = map.get("enableBuy"+i);
+		String isEnableBuildHouse = map.get("enableBuildHouse"+i);
+		String isEnableBuildHotel = map.get("enableBuildHotel"+i);
+		String isEnableBuildSkyscraper = map.get("enableBuildSkyscraper"+i);
 		if(GameController.getInstance().getLocalPlayer().getID() == 
 				Integer.parseInt(map.get("ID"+i))) {
 			if(isEnableBuy.equals("true")) {
@@ -435,11 +435,11 @@ public class GameFrame extends JFrame implements GameStateListener{
 			}
 		}
 		ArrayList<int[]> squareList = new ArrayList<int[]>();
-		int stepCount = Integer.parseInt(map.get("steps"));
+		int stepCount = Integer.parseInt(map.get("steps"+i));
 		for(int j = 0; j < stepCount; j++) {
 			int[] data = new int[2];
-			data[0] = Integer.parseInt(map.get("squareLayer"+j));
-			data[1] = Integer.parseInt(map.get("squareIndex"+j));
+			data[0] = Integer.parseInt(map.get("squareLayer"+i+j));
+			data[1] = Integer.parseInt(map.get("squareIndex"+i+j));
 			squareList.add(data);
 		}
 		System.out.println(layer + "-" + number);
