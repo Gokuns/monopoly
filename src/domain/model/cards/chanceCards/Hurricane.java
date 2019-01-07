@@ -12,7 +12,7 @@ import domain.model.squares.properties.Street;
 
 public class Hurricane extends ChanceCard{
 	
-	private String colorOfDistrict;
+	private String colorOfDistrict = "";
 
 	public String getColorOfDistrict() {
 		return colorOfDistrict;
@@ -35,8 +35,13 @@ public class Hurricane extends ChanceCard{
 		
 		setColorOfDistrict2ChosenColorOfDistrict(game);
 		
+		colorOfDistrict = "Light Blue";
+		
 		HashMap<String, Integer> referenceHmap = board.getColoredDistricts();
+		System.out.println(referenceHmap);
+		System.out.println(colorOfDistrict);
 		int districtMaxCount = referenceHmap.get(colorOfDistrict);
+
 		
 		HashMap<String, String> mapForUITransfer = new HashMap<String, String>();
 		mapForUITransfer.put("type", "hurricane");
@@ -45,9 +50,14 @@ public class Hurricane extends ChanceCard{
 		
 		for(Player curP:playerList){
 			if(!curP.getName().equals(p.getName())){
-				HashMap<String, Integer> ownedColoredDistrictMap = p.propertyList2ownedColoredDistricts();
+				System.out.println(curP.getName());
+				HashMap<String, Integer> ownedColoredDistrictMap = curP.propertyList2ownedColoredDistricts();
+				System.out.println(ownedColoredDistrictMap);
+				System.out.println("districtMaxCount: "+ districtMaxCount);
+
 				if(ownedColoredDistrictMap.containsKey(colorOfDistrict)){
 					int count = ownedColoredDistrictMap.get(colorOfDistrict);
+					System.out.println("count: "+ count);
 					if(count == districtMaxCount){
 						ArrayList<Property> propertyList = curP.getPrList();
 						for(Property prop:propertyList){

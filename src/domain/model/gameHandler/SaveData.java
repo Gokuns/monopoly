@@ -148,6 +148,7 @@ public class SaveData implements Serializable{
 				prLst.add((Property) bd.findSquare(nameOfProp, bd.getSquares()));
 			}
 			player.setPrList(prLst);
+			player.propertyList2ownedColoredDistricts();
 			player.setTurn(p.get("isTurn").getAsBoolean());
 			player.setInJail(p.get("inJail").getAsBoolean());
 			player.setRolledDouble(p.get("rolledDouble").getAsBoolean());

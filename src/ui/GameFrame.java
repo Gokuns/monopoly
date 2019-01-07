@@ -786,15 +786,18 @@ public class GameFrame extends JFrame implements GameStateListener{
 		String[] possibilities = {"Purple", "Light Blue", "Magenta", "Orange", "Red", "Yellow", "Dark Blue",
 				"Dark Green", "Dark Orange", "White","Black", "Gray", "Pink", "Light Green", "Light Yellow",
 				"Turquiose", "Wine Red", "Dark Yellow", "Tan", "Dark Red"};
+		
+		if(controller.getLocalPlayer().getID()==GameState.getInstance().getCurrentPlayer().getID()) {
 		chosenColorOfDistrict = (String)JOptionPane.showInputDialog(
 		                    GameFrame.this.getContentPane(),
 		                    "Please choose a colored district to throw the hurricane to:\n"
 		                    + "\"........\"",
 		                    "Customized Dialog",
 		                    JOptionPane.PLAIN_MESSAGE,
-		                    new ImageIcon(getClass().getResource("icon.png")),
+		                    null,
 		                    possibilities,
 		                    "Purple");
+		}
 
 		
 		map.put("colorOfDistrict", chosenColorOfDistrict);
@@ -842,9 +845,10 @@ public class GameFrame extends JFrame implements GameStateListener{
 	}
 
 	private void loadCase(HashMap<String, String> map) {
-		refreshButtons();
+
 		dieCase(map);
 		endTurnCase(map);
+		refreshButtons();
 		for(int i=0; i<GameState.getInstance().getPlayerCount();i++) {
 			moveForLoad(map, i+"");
 		}
