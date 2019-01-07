@@ -9,6 +9,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
+import com.google.gson.JsonObject;
+
 import domain.controller.NetworkController;
 /**
  * @overview The Network that holds the host's attributes
@@ -118,5 +120,32 @@ public class HostNetwork extends Network implements Runnable{
 	public void handleMessage(Socket source, HashMap<String, String> map) {
 		lastSender = source;
 		super.handleMessage(source, map);
+	}
+
+	@Override
+	public void sendLoadData(JsonObject loadData) {
+		for  (Socket s : socketList) {
+			try {
+				PrintWriter out = new PrintWriter(s.getOutputStream(), true);
+				out.println(loadData);
+				out.flush();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public void relayLoadData(JsonObject loadData) {
+		for  (Socket s : socketList) {
+			try {
+				if(!s.equals(lastSender)) {
+					PrintWriter out = new PrintWriter(s.getOutputStream(), true);
+					out.println(loadData);
+					out.flush();
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }
