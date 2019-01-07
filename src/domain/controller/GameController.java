@@ -304,6 +304,10 @@ public class GameController {
 			map.put("layer"+i, board.getSquareLayerIndex(playerSq)+"");
 			map.put("number"+i, board.getSquareIndex(playerSq)+"");
 			map.put("balance"+i, p.getBalance()+"");
+			map.put("enableBuy"+i, p.isEnableBuy()+"");
+			map.put("enableBuildHouse"+i, p.isEnableBuildHouse()+"");
+			map.put("enableBuildHotel"+i, p.isEnableBuildHotel()+"");
+			map.put("enableBuildSkyscraper"+i, p.isEnableBuildSkyscraper()+"");
 			
 		}
 		map.put("currentPlayer",  gameState.getCurrentPlayer().getName());

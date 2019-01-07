@@ -9,4 +9,9 @@ public class Animator {
 		g.draw(coordinateList, animationSlowness);
 	}
 	
+	public void animateForLoad(Drawable g, int xLimit, int yLimit, int animationSlowness) {
+		g.drawForLoad(xLimit, yLimit, animationSlowness);
+	}
+
+	
 }
