@@ -58,13 +58,17 @@ public class GameController {
 	}
 	
 	public HashMap<String, String> buildHouse(){
+		int layer = 0;
+		int index = 0;
 		Player currentPlayer = gameState.getCurrentPlayer();
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("type", "buildHouse");
 		map.put("successfullyBuilt", "false");
+		map.put("layer", Integer.toString(layer));
+		map.put("index", Integer.toString(index));
 		boolean successfullyBuilt = currentPlayer.buildHouse();
 		if(successfullyBuilt){
-			map.put("successfullyBuilt", "true");
+			map.put("succesfullyBuilt", "true");
 		}
 		gameState.publishToNetworkListeners(map);
 		gameState.publishToUIListeners(map);
@@ -73,13 +77,17 @@ public class GameController {
 	}
 	
 	public HashMap<String, String> buildHotel(){
+		int layer = 0;
+		int index = 0;
 		Player currentPlayer = gameState.getCurrentPlayer();
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("type", "buildHotel");
-		map.put("successfullyBuilt", "false");
+		map.put("succesfullyBuilt", "false");
+		map.put("layer", Integer.toString(layer));
+		map.put("index", Integer.toString(index));
 		boolean successfullyBuilt = currentPlayer.buildHotel();
 		if(successfullyBuilt){
-			map.put("successfullyBuilt", "true");
+			map.put("succesfullyBuilt", "true");
 		}
 		gameState.publishToNetworkListeners(map);
 		gameState.publishToUIListeners(map);
@@ -88,13 +96,17 @@ public class GameController {
 	}
 	
 	public HashMap<String, String> buildSkyscraper(){
+		int layer = 0;
+		int index = 0;
 		Player currentPlayer = gameState.getCurrentPlayer();
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("type", "buildSkyscraper");
-		map.put("successfullyBuilt", "false");
+		map.put("succesfullyBuilt", "false");
+		map.put("layer", Integer.toString(layer));
+		map.put("index", Integer.toString(index));
 		boolean successfullyBuilt = currentPlayer.buildSkyscraper();
 		if(successfullyBuilt){
-			map.put("successfullyBuilt", "true");
+			map.put("succesfullyBuilt", "true");
 		}
 		gameState.publishToNetworkListeners(map);
 		gameState.publishToUIListeners(map);

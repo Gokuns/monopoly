@@ -458,6 +458,9 @@ public class GameFrame extends JFrame implements GameStateListener{
 		String currentPlayerStr = map.get("currentPlayer");
 		playerLabel.setText(currentPlayerStr+"'s Turn!");
 		initializeBalls();
+		gameController.buildHouse();
+		gameController.buildHotel();
+		gameController.buildSkyscraper();
 		/*
 		buildBuilding(1,0,0); buildBuilding(1,0,0); buildBuilding(1,0,0); 
 		deleteBuilding(1,0,0);
@@ -739,14 +742,29 @@ public class GameFrame extends JFrame implements GameStateListener{
 
 	private void buildSkyscraperCase(HashMap<String, String> map) {
 		buildSkyscraperButton.setEnabled(false);
+		if(map.get("succesfullyBuilt").equals("true")) {
+			int layer = Integer.parseInt(map.get("layer"));
+			int index = Integer.parseInt(map.get("index"));
+			buildBuilding(layer, index, 2);
+		}
 	}
 
 	private void buildHotelCase(HashMap<String, String> map) {
 		buildHotelButton.setEnabled(false);
+		if(map.get("succesfullyBuilt").equals("true")) {
+			int layer = Integer.parseInt(map.get("layer"));
+			int index = Integer.parseInt(map.get("index"));
+			buildBuilding(layer, index, 1);
+		}
 	}
 
 	private void buildHouseCase(HashMap<String, String> map) {
 		buildHouseButton.setEnabled(false);
+		if(map.get("succesfullyBuilt").equals("true")) {
+			int layer = Integer.parseInt(map.get("layer"));
+			int index = Integer.parseInt(map.get("index"));
+			buildBuilding(layer, index, 0);
+		}
 	}
 
 	private void resumeCase(HashMap<String, String> map) {
