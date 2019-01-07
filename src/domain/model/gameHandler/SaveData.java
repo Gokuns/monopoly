@@ -10,6 +10,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
+import domain.controller.GameController;
 import domain.model.cards.ChanceCard;
 import domain.model.cards.CommunityChestCard;
 import domain.model.cards.Deck;
@@ -17,6 +18,7 @@ import domain.model.cards.Roll3Card;
 import domain.model.dice.Cup;
 import domain.model.dice.FaceValue;
 import domain.model.players.Player;
+import domain.model.players.Bot.PlayerBot;
 import domain.model.squares.properties.Property;
 import domain.model.squares.properties.Street;
 
@@ -82,6 +84,7 @@ public class SaveData implements Serializable{
 		    player.addProperty("enableBuildHouse", p.isEnableBuildHouse());
 		    player.addProperty("enableBuildHotel", p.isEnableBuildHotel());
 		    player.addProperty("enableBuildSkyscraper", p.isEnableBuildSkyscraper());
+		    player.addProperty("isBot", p.isBot() );
 		    
 		    JsonArray chance = new JsonArray();
 		    for(ChanceCard c :p.getChanceCards()) {
@@ -119,6 +122,10 @@ public class SaveData implements Serializable{
 		for(JsonElement element:orderedLst) {
 			JsonObject p = (JsonObject) element;
 			Player player = new Player(p.get("name").getAsString(),  p.get("id").getAsInt());
+			if(p.get("name").getAsString().equals("Bot")) {
+				player = new PlayerBot(p.get("name").getAsString(),  p.get("id").getAsInt(),0);
+				GameController.getInstance().setBot((PlayerBot) player);
+			}
 			player.setBalance(p.get("balance").getAsInt());
 			int layer = p.get("layer").getAsInt();
 			int index = p.get("index").getAsInt();
@@ -155,6 +162,7 @@ public class SaveData implements Serializable{
 			player.setEnableBuildHouse(p.get("enableBuildHouse").getAsBoolean());
 			player.setEnableBuildHotel(p.get("enableBuildHotel").getAsBoolean());
 			player.setEnableBuildSkyscraper(p.get("enableBuildSkyscraper").getAsBoolean());
+			player.setBot(p.get("isBot").getAsBoolean());
 			
 			
 			JsonArray chances = p.get("chance").getAsJsonArray();
@@ -196,6 +204,10 @@ public class SaveData implements Serializable{
 		}
 
 		Cup.getInstance().setFaceValues(faceValues);
+	}
+	
+	private void convertDataToBot(PlayerBot p) {
+		
 	}
 	
 
