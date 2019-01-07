@@ -696,6 +696,9 @@ public class GameFrame extends JFrame implements GameStateListener{
 			break;
 		case "hurricane":
 			hurricaneCase(map);
+			break;
+		case "hurricaneGetColorOfDistrictFromUI":
+			hurricaneGetColorOfDistrictFromUICase(map);
 			break;	
 		case "schoolFees":
 			genericBalanceDescriptionLabeller(map);
@@ -736,6 +739,29 @@ public class GameFrame extends JFrame implements GameStateListener{
 		case "move":
 			moveCase(map, "");
 		}
+	}
+
+	private void hurricaneGetColorOfDistrictFromUICase(HashMap<String, String> map) {
+		GameController controller = GameController.getInstance();
+		String chosenColorOfDistrict = "";
+		
+		
+		String[] possibilities = {"Purple", "Light Blue", "Magenta", "Orange", "Red", "Yellow", "Dark Blue",
+				"Dark Green", "Dark Orange", "White","Black", "Gray", "Pink", "Light Green", "Light Yellow",
+				"Turquiose", "Wine Red", "Dark Yellow", "Tan", "Dark Red"};
+		chosenColorOfDistrict = (String)JOptionPane.showInputDialog(
+		                    GameFrame.this.getContentPane(),
+		                    "Please choose a colored district to throw the hurricane to:\n"
+		                    + "\"........\"",
+		                    "Customized Dialog",
+		                    JOptionPane.PLAIN_MESSAGE,
+		                    new ImageIcon(getClass().getResource("icon.png")),
+		                    possibilities,
+		                    "Purple");
+
+		
+		map.put("colorOfDistrict", chosenColorOfDistrict);
+		controller.setHurricaneColorOfDistrict2ChosenColorOfDistrict(map);
 	}
 
 	private void buildSkyscraperCase(HashMap<String, String> map) {

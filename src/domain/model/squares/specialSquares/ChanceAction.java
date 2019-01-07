@@ -1,7 +1,11 @@
 package domain.model.squares.specialSquares;
 
+import java.util.HashMap;
+
 import domain.model.cards.Card;
 import domain.model.cards.Deck;
+import domain.model.cards.chanceCards.Hurricane;
+import domain.model.gameHandler.GameState;
 import domain.model.players.Player;
 import domain.model.squares.SquareStrategy;
 

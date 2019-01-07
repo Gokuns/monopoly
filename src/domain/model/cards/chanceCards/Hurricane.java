@@ -11,6 +11,16 @@ import domain.model.squares.properties.Property;
 import domain.model.squares.properties.Street;
 
 public class Hurricane extends ChanceCard{
+	
+	private String colorOfDistrict;
+
+	public String getColorOfDistrict() {
+		return colorOfDistrict;
+	}
+
+	public void setColorOfDistrict(String colorOfDistrict) {
+		this.colorOfDistrict = colorOfDistrict;
+	}
 
 	public Hurricane(String name, String desc){
 		super(name,desc);
@@ -18,11 +28,13 @@ public class Hurricane extends ChanceCard{
 
 	@Override
 	protected void action(Player p) {
-		String colorOfDistrict = "";
 		
 		GameState game = GameState.getInstance();
 		Board board = Board.getInstance();
 		ArrayList<Player> playerList = game.getPlayerList();
+		
+		setColorOfDistrict2ChosenColorOfDistrict(game);
+		
 		HashMap<String, Integer> referenceHmap = board.getColoredDistricts();
 		int districtMaxCount = referenceHmap.get(colorOfDistrict);
 		
@@ -69,6 +81,15 @@ public class Hurricane extends ChanceCard{
 		game.publishToUIListeners(mapForUITransfer);////displays an info indicating that current player has been put in prison.
 		game.publishToNetworkListeners(mapForUITransfer);//publish the mapping to the network.
 		
+	}
+
+	private void setColorOfDistrict2ChosenColorOfDistrict(GameState game) {
+		HashMap<String, String> mapForGetColoredDistrictFromUI = new HashMap<String, String>();
+		mapForGetColoredDistrictFromUI.put("type", "hurricaneGetColorOfDistrictFromUI");
+		mapForGetColoredDistrictFromUI.put("colorOfDistrict", "");
+		
+		game.publishToUIListeners(mapForGetColoredDistrictFromUI);////displays player&pool balances in UI.
+		game.publishToNetworkListeners(mapForGetColoredDistrictFromUI);//publish the mapping to the network.
 	}
 	
 }

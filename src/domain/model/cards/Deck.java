@@ -18,7 +18,7 @@ import domain.model.players.Player;
 
 public class Deck {
 	
-	private List<Card> cards;
+	private static List<Card> cards;
 	private String type;
 	
 	public Deck(String type){
@@ -36,8 +36,12 @@ public class Deck {
 		//Collections.shuffle(cards);//shuffle cards so as to obtain a randomized drawing order...
 	}
 	
+	public static List<Card> getCardListInCurrentDeck(){
+		return cards;
+	}
+	
 	private void initializeCommunityCards(List<Card> cards){//creating & adding a sample community chest card to the deck
-		
+		cards.clear();
 		cards.add(new PayHospitalBillsCard("payHospitalBillsCard", "Pay hospital bills.\nPay $100 "));
 		cards.add(new OpeningNightTickets("openingNightTicketCard", "Collect $50 from each player."));
 		cards.add(new DoctorsFee("doctorsFeeCard", "Pay $50 to the pool."));
@@ -47,16 +51,17 @@ public class Deck {
 	}
 	
 	private void initializeChanceCards(List<Card> cards){//creating & adding a sample chance action card to the deck
-
+		cards.clear();
 //		cards.add(new GoToJailCard("goToJailCard", "Goto jail immediately."));
 		cards.add(new SchoolFees("schoolFeesCard", "Pay $150 to the pool."));
 		cards.add(new TrafficTicket("trafficTicket", "pay $15 to the pool."));
 		cards.add(new ChairPerson("ChairPersonCard", "Give every player $50."));
-//		cards.add(new Hurricane("HurricaneCard", "A hurricane has come."));
+		cards.add(new Hurricane("HurricaneCard", "A hurricane has come."));
 		
 	}
 	
 	private void initializeRoll3Cards(List<Card> cards){//creating & adding a sample roll three card to the deck
+		cards.clear();
 		cards.add(new Roll3Card("roll3Card", FaceValue.ONE, FaceValue.TWO, FaceValue.THREE, "1\t2\t3\t"));
 		cards.add(new Roll3Card("roll3Card", FaceValue.SIX, FaceValue.TWO, FaceValue.FIVE, "6\t2\t5\t"));
 		cards.add(new Roll3Card("roll3Card", FaceValue.THREE, FaceValue.FOUR, FaceValue.THREE, "3\t4\t3\t"));
