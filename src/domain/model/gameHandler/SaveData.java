@@ -153,9 +153,9 @@ public class SaveData implements Serializable{
 			player.setRolledBus(p.get("rolledBus").getAsBoolean());
 			player.setHasPaused(p.get("hasPaused").getAsBoolean());
 			player.setEnableBuy(p.get("enableBuy").getAsBoolean());
-			player.setEnableBuildHouse(p.get("enableBuildHotel").getAsBoolean());
+			player.setEnableBuildHouse(p.get("enableBuildHouse").getAsBoolean());
 			player.setEnableBuildHotel(p.get("enableBuildHotel").getAsBoolean());
-			player.setEnableBuildSkyscraper(p.get("enableBuildHotel").getAsBoolean());
+			player.setEnableBuildSkyscraper(p.get("enableBuildSkyscraper").getAsBoolean());
 			
 			
 			JsonArray chances = p.get("chance").getAsJsonArray();
