@@ -140,6 +140,7 @@ public class SaveData implements Serializable{
 				boolean hasHotel = prop.get("hasHotel").getAsBoolean();
 				boolean hasSkyscraper = prop.get("hasSkyscraper").getAsBoolean();
 				Street st =  (Street) bd.findSquare(nameOfProp, bd.getSquares());
+				st.setOwner(player);
 				st.setMortgaged(isMortgaged);
 				st.setHouseCount(houseCount);
 				st.setHasHotel(hasHotel);

@@ -147,7 +147,7 @@ public class Player {
 		int playerBalance = this.getBalance();
 		Piece playerPiece = this.getPiece();
 		Square playerSquare = playerPiece.getCurrentSquare();
-		if(playerSquare.isProperty()){
+		if(playerSquare.isStreet()){
 			Property playerProperty = (Property) playerSquare;
 			Player owner = playerProperty.getOwner();
 			Street street = (Street) playerProperty;
@@ -155,6 +155,8 @@ public class Player {
 			if(owner.getName().equals(this.getName())){
 				int referenceColorCount = Board.getInstance().getColoredDistricts().get(propertyColor);
 				int ownedColorCount = this.ownedColoredDisctricts.get(propertyColor);
+				System.out.println("referenceColorCount:" + referenceColorCount);
+				System.out.println("ownedColorCount:" + ownedColorCount);
 				if(referenceColorCount == ownedColorCount){
 					Deed propertyDeed = playerProperty.getDeed();
 					int housePrice = propertyDeed.getValues().get("housePrice");
