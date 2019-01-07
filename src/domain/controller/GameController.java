@@ -1,7 +1,6 @@
 package domain.controller;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,7 +12,6 @@ import domain.model.gameHandler.GameLoader;
 import domain.model.gameHandler.GameSaver;
 import domain.model.gameHandler.GameState;
 import domain.model.gameHandler.SaveData;
-import domain.model.players.Piece;
 import domain.model.players.Player;
 import domain.model.players.Bot.PlayerBot;
 import domain.model.squares.Square;

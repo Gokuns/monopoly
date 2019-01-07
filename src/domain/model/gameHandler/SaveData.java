@@ -10,7 +10,6 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-import domain.model.cards.Card;
 import domain.model.cards.ChanceCard;
 import domain.model.cards.CommunityChestCard;
 import domain.model.cards.Deck;

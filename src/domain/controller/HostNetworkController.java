@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import domain.model.gameHandler.GameState;
-import domain.model.gameHandler.GameStateListener;
 import domain.model.players.Player;
 import domain.model.players.Bot.PlayerBot;
 import domain.network.HostNetwork;
