@@ -168,7 +168,7 @@ public class Player {
 				}
 			}
 		}
-		return true;
+		return false;
 	}
 	
 	public boolean buildHotel(){

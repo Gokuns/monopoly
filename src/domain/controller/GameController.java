@@ -58,8 +58,8 @@ public class GameController {
 	}
 	
 	public HashMap<String, String> buildHouse(){
-		int layer = 0;
-		int index = 0;
+		int layer = board.getSquareLayerIndex(gameState.getPlayerCurrentSquare());
+		int index = board.getSquareIndex(gameState.getPlayerCurrentSquare());
 		Player currentPlayer = gameState.getCurrentPlayer();
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("type", "buildHouse");
@@ -68,7 +68,7 @@ public class GameController {
 		map.put("index", Integer.toString(index));
 		boolean successfullyBuilt = currentPlayer.buildHouse();
 		if(successfullyBuilt){
-			map.put("succesfullyBuilt", "true");
+			map.put("successfullyBuilt", "true");
 		}
 		gameState.publishToNetworkListeners(map);
 		gameState.publishToUIListeners(map);
@@ -77,17 +77,17 @@ public class GameController {
 	}
 	
 	public HashMap<String, String> buildHotel(){
-		int layer = 0;
-		int index = 0;
+		int layer = board.getSquareLayerIndex(gameState.getPlayerCurrentSquare());
+		int index = board.getSquareIndex(gameState.getPlayerCurrentSquare());
 		Player currentPlayer = gameState.getCurrentPlayer();
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("type", "buildHotel");
-		map.put("succesfullyBuilt", "false");
+		map.put("successfullyBuilt", "false");
 		map.put("layer", Integer.toString(layer));
 		map.put("index", Integer.toString(index));
 		boolean successfullyBuilt = currentPlayer.buildHotel();
 		if(successfullyBuilt){
-			map.put("succesfullyBuilt", "true");
+			map.put("successfullyBuilt", "true");
 		}
 		gameState.publishToNetworkListeners(map);
 		gameState.publishToUIListeners(map);
@@ -96,17 +96,17 @@ public class GameController {
 	}
 	
 	public HashMap<String, String> buildSkyscraper(){
-		int layer = 0;
-		int index = 0;
+		int layer = board.getSquareLayerIndex(gameState.getPlayerCurrentSquare());
+		int index = board.getSquareIndex(gameState.getPlayerCurrentSquare());
 		Player currentPlayer = gameState.getCurrentPlayer();
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("type", "buildSkyscraper");
-		map.put("succesfullyBuilt", "false");
+		map.put("successfullyBuilt", "false");
 		map.put("layer", Integer.toString(layer));
 		map.put("index", Integer.toString(index));
 		boolean successfullyBuilt = currentPlayer.buildSkyscraper();
 		if(successfullyBuilt){
-			map.put("succesfullyBuilt", "true");
+			map.put("successfullyBuilt", "true");
 		}
 		gameState.publishToNetworkListeners(map);
 		gameState.publishToUIListeners(map);
