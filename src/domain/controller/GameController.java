@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import domain.model.cards.Card;
+import domain.model.cards.Deck;
+import domain.model.cards.chanceCards.Hurricane;
 import domain.model.dice.Cup;
 import domain.model.dice.FaceValue;
 import domain.model.gameHandler.Board;
@@ -110,6 +113,20 @@ public class GameController {
 		gameState.publishToUIListeners(map);
 		
 		return map;
+	}
+	
+	public void setHurricaneColorOfDistrict2ChosenColorOfDistrict(HashMap<String, String> map){
+		String chosenColorOfDistrict = map.get("colorOfDistrict");
+		Board board = Board.getInstance();
+		List<Card> chanceDeck = Deck.getCardListInCurrentDeck();
+		for(Card c:chanceDeck){
+			String cardName = c.getName();
+			if(cardName.equals("HurricaneCard")){
+				Hurricane hurricane = (Hurricane) c;
+				hurricane.setColorOfDistrict(chosenColorOfDistrict);
+				break;
+			}
+		}
 	}
 
 	public void roll() {

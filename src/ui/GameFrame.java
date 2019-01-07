@@ -694,6 +694,9 @@ public class GameFrame extends JFrame implements GameStateListener{
 			break;
 		case "hurricane":
 			hurricaneCase(map);
+			break;
+		case "hurricaneGetColorOfDistrictFromUI":
+			hurricaneGetColorOfDistrictFromUICase(map);
 			break;	
 		case "schoolFees":
 			genericBalanceDescriptionLabeller(map);
@@ -734,6 +737,16 @@ public class GameFrame extends JFrame implements GameStateListener{
 		case "move":
 			moveCase(map, "");
 		}
+	}
+
+	private void hurricaneGetColorOfDistrictFromUICase(HashMap<String, String> map) {
+		GameController controller = GameController.getInstance();
+		String chosenColorOfDistrict = "";
+		
+		
+		
+		map.put("colorOfDistrict", chosenColorOfDistrict);
+		controller.setHurricaneColorOfDistrict2ChosenColorOfDistrict(map);
 	}
 
 	private void buildSkyscraperCase(HashMap<String, String> map) {
