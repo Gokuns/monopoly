@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.LayoutManager;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
@@ -29,6 +30,7 @@ import domain.controller.GameController;
 import domain.model.cards.communityChestCards.OpeningNightTickets;
 import domain.model.gameHandler.GameState;
 import domain.model.gameHandler.GameStateListener;
+import domain.model.players.Player;
 import domain.model.squares.properties.Property;
 import domain.model.squares.properties.Street;
 
@@ -284,34 +286,65 @@ public class GameFrame extends JFrame implements GameStateListener{
 				setLayout(null);
 				f.setVisible(true);
 				
-				ArrayList<Property> propList = gameController.getLocalPlayer().getPrList();
+				ArrayList<Player> playerList = gameState.getPlayerList();
+				Player player = null ;
+				for(int i =0; i<playerList.size(); i++) {
+					if(playerList.get(i).getID() == gameController.getLocalPlayer().getID()) {
+						player = playerList.get(i);
+					}
+				}
+				
+				ArrayList<Property> propList = player.getPrList();
 				String name;
-				String type;
 				int x=0;
 				int y=0;
-				int w = 140;
-				int h = 160;
-				JLabel image;
+				int a=1;
+				int w = 70;
+				int h = 80;
 				Property prop;
 				String path;
 				
+				System.out.println(propList);
 				for(int i=0; i<propList.size(); i++) {
 					
 					prop = propList.get(i);
 					name = prop.getName().replaceAll("[^A-Za-z0-9]", "");
-					type = prop.getDeed().getType();
 					
-					path = "cards/titleDeeds/"+type+"/"+name+".png";
+					path = "cards/"+name+".png";
+					System.out.println(path);
 					
-					image = new JLabel(new ImageIcon(path));
-					image.setBounds(x, y, w, h);
-					f.add(image);
+//					try {
+//						f.getGraphics().drawImage(ImageIO.read(new File(path)), x, y, w, h, null);
+//					} catch (IOException e1) {
+//						// TODO Auto-generated catch block
+//						e1.printStackTrace();
+//					}
+//					f.add(new JLabel(new ImageIcon(path)));
+//					f.get;
+//					
 					
-					if(i%4==0) {
+					Image logoImage = null;
+					try {
+						logoImage = ImageIO.read(new File(path));
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					System.out.println("x ="+ x+"y = "+y);
+					logoImage = logoImage.getScaledInstance(w, h, Image.SCALE_SMOOTH);
+					BackgroundImagePanel imagePanel = new BackgroundImagePanel(logoImage);
+					imagePanel.setLayout(null);
+					imagePanel.setBounds(x, y, w, h);
+					f.add(imagePanel);
+					
+					w = imagePanel.getWidth();
+					h = imagePanel.getHeight();
+					if(a%4==0) {
 						x=0;
 						y=y+h;
-					}
+					}				
 					else x=x+w;		
+					a++;
 				}
 			}
 		});

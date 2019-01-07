@@ -109,7 +109,7 @@ public class Player {
 					System.out.println(this.name + " has bought " + playerProperty.getName() +  " for $" + playerProperty.getPrice());
 					Street street = (Street) playerProperty;
 					String propertyColor = street.getColor();
-					ownedColoredDisctricts.put(propertyColor, ownedColoredDisctricts.get(propertyColor)+1);
+				//	ownedColoredDisctricts.put(propertyColor, ownedColoredDisctricts.get(propertyColor)+1);
 					return true;
 				}
 			}
