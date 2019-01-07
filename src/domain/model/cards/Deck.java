@@ -56,7 +56,7 @@ public class Deck {
 		cards.add(new SchoolFees("schoolFeesCard", "Pay $150 to the pool."));
 		cards.add(new TrafficTicket("trafficTicket", "pay $15 to the pool."));
 		cards.add(new ChairPerson("ChairPersonCard", "Give every player $50."));
-//		cards.add(new Hurricane("HurricaneCard", "A hurricane has come."));
+		cards.add(new Hurricane("HurricaneCard", "A hurricane has come."));
 		
 	}
 	
