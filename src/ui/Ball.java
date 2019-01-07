@@ -60,10 +60,8 @@ public class Ball extends JPanel implements ActionListener, Drawable{
 		myPath = new StraightLinePath(xStart, yStart, xLimit, yLimit, 50);
 		tm = new Timer(animationSlowness, this);
 		tm.start();
-			
-		
 	}
-
+	
 	
 	public String getName() {
 		return name;
@@ -112,5 +110,7 @@ public class Ball extends JPanel implements ActionListener, Drawable{
 			
 		}
 	}
+
+
 	
 }

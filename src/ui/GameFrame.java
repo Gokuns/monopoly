@@ -389,6 +389,43 @@ public class GameFrame extends JFrame implements GameStateListener{
 			}
 		});
 	}
+	
+	private void moveUIPieceForLoad(int playerIndex, int layer, int number) {
+		SquareCoordinates current = boardLayers.getSquareCoordinates(layer, number);
+		int x = current.getX() - 45;
+		int y = current.getY() - 25;
+//		animator.animateForLoad(balls.get(playerIndex),x + playerIndex * 6, y, 10);
+		balls.get(playerIndex).setLocation(x, y);
+	}
+	
+	private void moveForLoad(HashMap<String, String> map, String i) {
+		int playerIndex = Integer.parseInt(map.get("ID"+i));
+		int layer = Integer.parseInt(map.get("layer"+i));
+		int number = Integer.parseInt(map.get("number"+i));
+		String isEnableBuy = map.get("enableBuy"+i);
+		String isEnableBuildHouse = map.get("enableBuildHouse"+i);
+		String isEnableBuildHotel = map.get("enableBuildHotel"+i);
+		String isEnableBuildSkyscraper = map.get("enableBuildSkyscraper"+i);
+		if(GameController.getInstance().getLocalPlayer().getID() == 
+				Integer.parseInt(map.get("ID"+i))) {
+			if(isEnableBuy.equals("true")) {
+				buyButton.setEnabled(true);
+			}
+			if(isEnableBuildHouse.equals("true")){
+				buildHouseButton.setEnabled(true);
+			}
+			if(isEnableBuildHotel.equals("true")){
+				buildHotelButton.setEnabled(true);
+			}
+			if(isEnableBuildSkyscraper.equals("true")){
+				buildSkyscraperButton.setEnabled(true);
+			}
+		}
+		System.out.println(layer + "-" + number);
+		moveUIPieceForLoad(playerIndex, layer, number);
+	}
+
+
 
 	private void moveUIPiece(int playerIndex, ArrayList<int[]> squareList) {
 		//System.out.println(squareList);
@@ -438,8 +475,8 @@ public class GameFrame extends JFrame implements GameStateListener{
 		int stepCount = Integer.parseInt(map.get("steps"+i));
 		for(int j = 0; j < stepCount; j++) {
 			int[] data = new int[2];
-			data[0] = Integer.parseInt(map.get("squareLayer"+i+j));
-			data[1] = Integer.parseInt(map.get("squareIndex"+i+j));
+			data[0] = Integer.parseInt(map.get("squareLayer"+j));
+			data[1] = Integer.parseInt(map.get("squareIndex"+j));
 			squareList.add(data);
 		}
 		System.out.println(layer + "-" + number);
@@ -809,7 +846,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 		dieCase(map);
 		endTurnCase(map);
 		for(int i=0; i<GameState.getInstance().getPlayerCount();i++) {
-			moveCase(map, i+"");
+			moveForLoad(map, i+"");
 		}
 		
 	}
