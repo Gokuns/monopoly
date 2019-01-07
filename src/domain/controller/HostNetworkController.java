@@ -77,6 +77,10 @@ public class HostNetworkController extends NetworkController{
 		case "move":
 			GameController.getInstance().move(false);
 			relayMessageToPlayers(map);
+			break;
+		case "buy":
+			GameController.getInstance().buyProperty(false);
+			relayMessageToPlayers(map);
 		}
 	}
 	

@@ -4,8 +4,6 @@ import java.util.HashMap;
 
 import com.google.gson.JsonObject;
 
-import domain.network.Network;
-
 public abstract class NetworkController {
 	public void handleMessage(HashMap<String, String> map) {};
 	public void addNetworkControllerListener(NetworkControllerListener listener) {};
