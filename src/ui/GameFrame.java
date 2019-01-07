@@ -12,7 +12,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.concurrent.TimeUnit;
 import java.util.Random;
 
 import javax.imageio.ImageIO;
@@ -26,10 +25,8 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import domain.controller.GameController;
-import domain.model.cards.communityChestCards.OpeningNightTickets;
 import domain.model.gameHandler.GameState;
 import domain.model.gameHandler.GameStateListener;
-import domain.model.squares.properties.Property;
 
 @SuppressWarnings("serial")
 public class GameFrame extends JFrame implements GameStateListener{
@@ -41,7 +38,7 @@ public class GameFrame extends JFrame implements GameStateListener{
 	private GameState gameState;
 	private int numberOfPlayers;
 	private ArrayList<Ball> balls;
-	private ArrayList<Building> buildings;
+	private ArrayList<Building> buildings = new ArrayList<Building>();
 	private Animator animator;
 	private BoardLayers boardLayers;
 	private JLabel playerLabel;
